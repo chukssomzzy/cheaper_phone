@@ -1,0 +1,7 @@
+ {
+  "executionEnvironment": [
+    {"root": "src"}
+  ],
+  "venvPath": "/home/vagrant/cheaper_phone/backend/",
+  "venv": "venv"
+} 
