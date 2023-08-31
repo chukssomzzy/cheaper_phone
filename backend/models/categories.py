@@ -10,7 +10,7 @@ class Category(BaseModel, Base):
     """Defines Category table for db_storage"""
     __tablename__ = "categories"
     id = Column(Integer, Sequence('category_seq_id'), primary_key=True)
-    name = Column(String(50), nullable=False)
+    name = Column(String(50), nullable=False, unique=True)
 
     def __init__(self, *args, **kwargs):
         """Initializd category model with basemodel __init__"""

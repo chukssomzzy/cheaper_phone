@@ -2,8 +2,9 @@
 """Defines product class for db storage"""
 
 
-from sqlalchemy import Column, ForeignKey, Numeric, String, Table, Text
-from sqlalchemy.orm import relationship
+from collections import UserList
+from sqlalchemy import Column, ForeignKey, Integer, Numeric, String, Table, Text
+from sqlalchemy.orm import backref, relationship
 from models.base_model import BaseModel, Base
 
 
@@ -21,6 +22,7 @@ class Product(BaseModel, Base):
     name = Column(String(100), nullable=False)
     description = Column(Text)
     price = Column(Numeric(10, 2))
+    brand_id = Column(Integer, ForeignKey('brands.id'))
     product_images = Column(
         String(200), ForeignKey("product_images.image_url"))
     images = relationship("ProductImage", order_by="product_images.order",
