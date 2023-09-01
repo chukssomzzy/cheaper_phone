@@ -7,7 +7,7 @@ from sqlalchemy.orm import declarative_base
 
 import uuid
 
-from models import storage
+import models
 
 
 Base = declarative_base()
@@ -16,7 +16,6 @@ Base = declarative_base()
 class BaseModel():
     """Basemodel that would define common attribute that would be shared by
     all model"""
-    _time_format = ""
     id = Column(String(128), primary_key=True)
     created_at = Column(DateTime, default=datetime.utcnow)
     update_at = Column(DateTime, default=datetime.utcnow)
@@ -43,19 +42,19 @@ class BaseModel():
 
     def save(self):
         """Save the current model to database"""
-        storage.save()
+        self.update_at = datetime.utcnow()
+        models.storage.new(self)
+        models.storage.save()
 
     def deletes(self):
         """Delete this model from storage"""
-        storage.delete(self)
+        models.storage.delete(self)
 
     def update(self, *args, **kwargs):
         """update kwargs"""
         for key, val in kwargs.items():
             if key != "id" and key != "created_at" and key != "updated_at":
                 setattr(self, key, val)
-        if storage.session.dirty:
-            setattr(self, "updated_at", datetime.utcnow())
 
     def to_dict(self):
         """Return a dictionary representation of the current object"""
