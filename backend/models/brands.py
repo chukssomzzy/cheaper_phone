@@ -3,7 +3,7 @@
 
 from sqlalchemy import Column, Integer, Sequence, String
 from sqlalchemy.orm import relationship
-from models.base_model import BaeModel, Base, BaseModel
+from models.base_model import Base, BaseModel
 
 
 class Brand(BaseModel, Base):

@@ -8,7 +8,6 @@
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
 BOT_NAME = "ecommerce_scrape"
-SPLASH_URL = "http://localhost:8050"
 
 SPIDER_MODULES = ["ecommerce_scrape.spiders"]
 NEWSPIDER_MODULE = "ecommerce_scrape.spiders"
@@ -45,20 +44,16 @@ ROBOTSTXT_OBEY = True
 
 # Enable or disable spider middlewares
 # See https://docs.scrapy.org/en/latest/topics/spider-middleware.html
-SPIDER_MIDDLEWARES = {
-    'scrapy_splash.SplashDeduplicateArgsMiddleware': 100,
-}
+# SPIDER_MIDDLEWARES = {
+#    "ecommerce_scrape.middlewares.EcommerceScrapeSpiderMiddleware": 543,
+# }
 
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
-DOWNLOADER_MIDDLEWARES = {
-    'scrapy_splash.SplashCookiesMiddleware': 723,
-    'scrapy_splash.SplashMiddleware': 725,
-    'scrapy.downloadermiddlewares.httpcompression.\
-HttpCompressionMiddleware': 810,
-}
-# Set a custom DUPEFILTER_class:
-DUPEFILTER_CLASS = 'scrapy_splash.SplashAwareDupeFilter'
+# DOWNLOADER_MIDDLEWARES = {
+#    "ecommerce_scrape.middlewares.EcommerceScrapeDownloaderMiddleware": 543,
+# }
+
 # Enable or disable extensions
 # See https://docs.scrapy.org/en/latest/topics/extensions.html
 # EXTENSIONS = {
@@ -90,7 +85,7 @@ DUPEFILTER_CLASS = 'scrapy_splash.SplashAwareDupeFilter'
 # HTTPCACHE_EXPIRATION_SECS = 0
 # HTTPCACHE_DIR = "httpcache"
 # HTTPCACHE_IGNORE_HTTP_CODES = []
-HTTPCACHE_STORAGE = "scrapy_splash.SplashAwareFSCacheStorage"
+# HTTPCACHE_STORAGE = "scrapy.extensions.httpcache.FilesystemCacheStorage"
 
 # Set settings whose default value is deprecated to a future-proof value
 REQUEST_FINGERPRINTER_IMPLEMENTATION = "2.7"

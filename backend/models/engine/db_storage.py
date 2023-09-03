@@ -18,6 +18,7 @@ from models.promotions import Promotion
 from models.shipping_address import ShippingAddress
 from models.user_cart import UserCart
 from models.users import User
+from models.brands import Brand
 from os import getenv
 
 
@@ -29,7 +30,7 @@ class DBStorage:
                  "ProductImage": ProductImage, "Order": Order,
                  "Comment": Comment, "ChatHistory": ChatHistory,
                  "Category": Category, "Analytics": Analytics,
-                 "AdminLog": AdminLog}
+                 "AdminLog": AdminLog, "Brand": Brand}
     __engine = None
     __session = None
 
@@ -37,7 +38,7 @@ class DBStorage:
         """Connects sqlalchemy to storage and creates an engine"""
         db_name = getenv("ECOMMERCE_DB")
         db_user = getenv("ECOMMERCE_USER")
-        db_password = getenv("ECOMMERCE_USER_PWD")
+        db_password = getenv("ECOMMERCE_PWD")
         db_host = getenv("ECOMMERCE_HOST")
 
         self.__engine = create_engine(
@@ -49,6 +50,7 @@ class DBStorage:
     def reload(self):
         """Reload and allocate a scoped session"""
         if self.__engine:
+            Base.metadata.create_all(self.__engine)
             session_factory = sessionmaker(bind=self.__engine)
             Session = scoped_session(session_factory)
             self.__Session = Session

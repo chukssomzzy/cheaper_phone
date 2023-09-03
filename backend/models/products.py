@@ -2,9 +2,16 @@
 """Defines product class for db storage"""
 
 
-from collections import UserList
-from sqlalchemy import Column, ForeignKey, Integer, Numeric, String, Table, Text
-from sqlalchemy.orm import backref, relationship
+from sqlalchemy import (
+    Column,
+    ForeignKey,
+    Integer,
+    Numeric,
+    String,
+    Table,
+    Text
+)
+from sqlalchemy.orm import relationship
 from models.base_model import BaseModel, Base
 
 

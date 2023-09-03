@@ -1,0 +1,1 @@
+{"error": 400, "type": "ScriptError", "description": "Error happened while executing Lua script", "info": {"source": "[string \"...\"]", "line_number": 40, "error": "'}' expected (to close '{' at line 38) near 'content'", "type": "LUA_INIT_ERROR", "message": "[string \"...\"]:40: '}' expected (to close '{' at line 38) near 'content'"}}
