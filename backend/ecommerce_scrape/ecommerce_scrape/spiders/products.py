@@ -57,7 +57,7 @@ class ProductsSpider(scrapy.Spider):
                     search_term: [["category.category_id:5294"]],
                     numericFilters: [],
                     sortBy: "",
-                    paginate: { page: %i, limit: 40 },
+                    paginate: { page: %i, limit: 2000 },
                     store_id: 1
                 ) {
                     pagination {
@@ -119,7 +119,7 @@ class ProductsSpider(scrapy.Spider):
                             search_term: [["category.category_id:5294"]],
                             numericFilters: [],
                             sortBy: "",
-                            paginate: { page: %i, limit: 40 },
+                            paginate: { page: %i, limit: 2000 },
                             store_id: 1
                         ) {
                             pagination {
@@ -168,16 +168,16 @@ class ProductsSpider(scrapy.Spider):
         product["price"] = response.css('._678e4_e6nqh::text').get()
         product["description"] = product_desc
         product["id"] = str(uuid4())
-        product_images = response.css(".fd8e9_1qWnZ ._7fdb1_1W4TA")
-        for i, product in enumerate(product_images):
+        product_images = response.css(".fd8e9_1qWnZ ._7fdb1_1W4TA").css("img")
+        for i, product_info in enumerate(product_images):
             product_image = ProductImage()
-            product_image["image_url"] = product.xpath("@data-src").get()
-            product_image["alt_text"] = product.xpath("@alt").get()
-            product_image["caption"] = product.xpath("@alt").get()
+            product_image["image_url"] = product_info.xpath("@src").get()
+            product_image["alt_text"] = product_info.xpath("@alt").get()
+            product_image["caption"] = product_info.xpath("@alt").get()
             product_image["order"] = i
-            if not hasattr(product, "product_image"):
+            if not product.get("product_image"):
                 product["product_image"] = product_image["image_url"]
-            if "images":
+            if product.get("images"):
                 product["images"].append(product_image["image_url"])
             else:
                 product["images"] = [product_image["image_url"]]
@@ -205,19 +205,4 @@ class ProductsSpider(scrapy.Spider):
                 self.brands[brand_name]["products"].append(product["id"])
                 product["brand"] = self.brands["id"]
 
-        if response.css("._438a0_18mRq"):
-            reviews_id = []
-            for review in response.css("._438a0_18mRq"):
-                comment["content"] = review.css(
-                    ".a397c_2uBaY .a397c_2uBaY::text").get()
-                comment["product_id"] = product.get("id")
-                user["first_name"] = review.css(
-                    "#productDetailSection h4::text").get()
-                user["id"] = str(uuid4())
-                review["user_id"] = user["id"]
-                review["product_id"] = product.get("id")
-                reviews_id.append(review['product_id'])
-
-                review["rating"] = review.css("#productDetailSection h1").get()
-            product["reviews"] = reviews_id
         yield product

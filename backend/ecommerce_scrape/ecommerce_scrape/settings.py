@@ -1,3 +1,7 @@
+import cloudinary
+import dotenv
+from os import getenv
+dotenv.load_dotenv()
 # Scrapy settings for ecommerce_scrape project
 #
 # For simplicity, this file contains only settings considered important or
@@ -11,7 +15,13 @@ BOT_NAME = "ecommerce_scrape"
 
 SPIDER_MODULES = ["ecommerce_scrape.spiders"]
 NEWSPIDER_MODULE = "ecommerce_scrape.spiders"
-
+cloudinary.config(
+    cloud_name=getenv("CLOUD_NAME"),
+    api_key=getenv("API_KEY_CLOUD"),
+    api_secret=getenv("API_SECRET_CLOUD")
+)
+IMAGES_STORRE = f"cloudinary://{getenv('CLOUD_NAME')}:{getenv('API_KEY_CLOUD')}\
+@{getenv('CLOUD_NAME')}"
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 # USER_AGENT = "ecommerce_scrape (+http://www.yourdomain.com)"
@@ -62,9 +72,10 @@ ROBOTSTXT_OBEY = True
 
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-# ITEM_PIPELINES = {
-#    "ecommerce_scrape.pipelines.EcommerceScrapePipeline": 300,
-# }
+ITEM_PIPELINES = {
+    "scrapy.pipelines.images.ImagesPipeline": 1,
+    "ecommerce_scrape.pipelines.EcommerceScrapePipeline": 300,
+}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html

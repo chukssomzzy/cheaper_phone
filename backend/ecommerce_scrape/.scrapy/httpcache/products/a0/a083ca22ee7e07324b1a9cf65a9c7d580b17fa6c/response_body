@@ -1,1 +1,0 @@
-{"error": 400, "type": "ScriptError", "description": "Error happened while executing Lua script", "info": {"type": "SPLASH_LUA_ERROR", "message": "[string \"...\"]:23: 'NoneType' object is not iterable", "source": "[string \"...\"]", "line_number": 23, "error": "'NoneType' object is not iterable"}}
