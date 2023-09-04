@@ -20,7 +20,6 @@ class ChatHistory(BaseModel, Base):
     id = Column(Integer, Sequence('chat_history_seq_id'), primary_key=True)
     user_id = Column(String(60), ForeignKey("users.id"))
     message = Column(Text)
-    timestamp = Column(DateTime, default=datetime.timestamp)
 
     def __init__(self, *args, **kwargs):
         """Initialized chathistory with basemodel __init__"""

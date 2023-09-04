@@ -4,6 +4,7 @@
 
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
+from models.order_items import OrderItem
 from models.admin_logs import AdminLog
 from models.analytics import Analytics
 from models.base_model import Base
@@ -30,7 +31,7 @@ class DBStorage:
                  "ProductImage": ProductImage, "Order": Order,
                  "Comment": Comment, "ChatHistory": ChatHistory,
                  "Category": Category, "Analytics": Analytics,
-                 "AdminLog": AdminLog, "Brand": Brand}
+                 "AdminLog": AdminLog, "Brand": Brand, "OrderItem": OrderItem}
     __engine = None
     __session = None
 

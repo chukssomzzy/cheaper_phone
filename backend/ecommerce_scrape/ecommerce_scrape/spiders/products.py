@@ -3,8 +3,6 @@
 
 from uuid import uuid4
 import scrapy
-from scrapy.spiders import logging
-from scrapy.loader import ItemLoader
 import json
 
 from w3lib.html import remove_tags
@@ -12,11 +10,8 @@ from w3lib.html import remove_tags
 from ecommerce_scrape.items import (
     Brand,
     Category,
-    Comment,
     Product,
     ProductImage,
-    ProductReview,
-    User
 )
 
 

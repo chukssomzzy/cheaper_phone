@@ -11,7 +11,6 @@ from models.base_model import BaseModel
 class User(BaseModel, Base):
     """Defines users table for db storage"""
     __tablename__ = "users"
-    id = Column(String(60), primary_key=True)
     first_name = Column(String(50))
     last_name = Column(String(50))
     username = Column(String(50), nullable=False, unique=True)

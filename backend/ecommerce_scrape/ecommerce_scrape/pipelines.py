@@ -6,6 +6,7 @@
 
 # useful for handling different item types with a single interface
 from itemadapter import ItemAdapter
+from scrapy.spiders import logging
 from models import storage
 
 
@@ -38,7 +39,7 @@ class EcommerceScrapePipeline:
                 category = self.storage.create("Category", **values)
                 storage.save()
                 if category:
-                    spider.category["id"] = category.get("id")
+                    spider.category["id"] = category.id
                     self.category = category
 
         # convert price to float
@@ -74,7 +75,7 @@ class EcommerceScrapePipeline:
                     values.products.append(
                         self.storage.get("Product", product))
                 self.storage.save()
-
+        self.storage.close()
         return item
 
     def open_spider(self, spider):
@@ -83,9 +84,7 @@ class EcommerceScrapePipeline:
         categories = storage.all("Category")
         spider.categories_name = []
         for category in categories.values():
-            name = category.get("name")
-            if name:
-                spider.categories_name.append(name)
+            spider.categories_name.append(category.name)
 
     def close_spider(self, spider):
         """Close a spider"""

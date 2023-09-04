@@ -25,7 +25,6 @@ product_category = Table("product_categories", Base.metadata,
 class Product(BaseModel, Base):
     """Defines table and relationship for product table"""
     __tablename__ = "products"
-    id = Column(String(60), primary_key=True)
     name = Column(String(100), nullable=False)
     description = Column(Text)
     price = Column(Numeric(10, 2))
