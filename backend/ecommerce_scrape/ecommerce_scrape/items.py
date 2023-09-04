@@ -5,7 +5,7 @@
 
 from itemloaders.processors import Join, MapCompose
 import scrapy
-from w3lib.html import remove_tags, replace_entities
+from w3lib.html import remove_tags
 
 
 class Product(scrapy.Item):
@@ -59,6 +59,7 @@ class Category(scrapy.Item):
 
 class Brand(scrapy.Item):
     """Brand item"""
-    id = scrapy.Field()
+    id = scrapy.Field(input_processor=MapCompose(
+        remove_tags), output_processor=Join())
     name = scrapy.Field()
     products = scrapy.Field()

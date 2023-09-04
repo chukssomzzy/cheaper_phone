@@ -23,6 +23,8 @@ cloudinary.config(
 IMAGES_STORRE = f"cloudinary://{getenv('CLOUD_NAME')}:{getenv('API_KEY_CLOUD')}\
 @{getenv('CLOUD_NAME')}"
 
+IMAGES_RESULT_FIELD = "images_res"
+
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 # USER_AGENT = "ecommerce_scrape (+http://www.yourdomain.com)"
 
@@ -73,7 +75,7 @@ ROBOTSTXT_OBEY = True
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-    "scrapy.pipelines.images.ImagesPipeline": 1,
+    # "scrapy.pipelines.images.ImagesPipeline": 1,
     "ecommerce_scrape.pipelines.EcommerceScrapePipeline": 300,
 }
 

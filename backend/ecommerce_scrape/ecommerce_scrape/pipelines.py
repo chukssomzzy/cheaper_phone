@@ -10,4 +10,15 @@ from itemadapter import ItemAdapter
 
 class EcommerceScrapePipeline:
     def process_item(self, item, spider):
+        adapter = ItemAdapter(item)
+
+        if "price" in adapter:
+            value = adapter.get("price")
+            value = str(value).replace(",", "")
+            adapter["price"] = float(value)
+        # if item.__class__.__name__ == "Product":
+        #     {"name": adapter.get("price"),
+        #      "description": adapter.get("description")
+        #      "brand_id"}
+        #     storage.create("Product", )
         return item

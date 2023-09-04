@@ -7,6 +7,8 @@ from scrapy.spiders import logging
 from scrapy.loader import ItemLoader
 import json
 
+from w3lib.html import remove_tags
+
 from ecommerce_scrape.items import (
     Brand,
     Category,
@@ -163,6 +165,7 @@ class ProductsSpider(scrapy.Spider):
             self.category["name"] = response.css(
                 "._1fce2_1jxDY li:nth-child(2) a::text").get()
             self.category["id"] = str(uuid4())
+        yield self.category
         product = Product()
         product["name"] = response.css('._24849_2Ymhg::text').get()
         product["price"] = response.css('._678e4_e6nqh::text').get()
@@ -181,6 +184,7 @@ class ProductsSpider(scrapy.Spider):
                 product["images"].append(product_image["image_url"])
             else:
                 product["images"] = [product_image["image_url"]]
+            yield product_image
 
         if self.category.get("products"):
             self.category["products"].append(product["id"])
@@ -189,20 +193,19 @@ class ProductsSpider(scrapy.Spider):
             self.category["products"] = [product["id"]]
             product["category"] = self.category["id"]
 
-        comment = Comment()
-        user = User()
-        review = ProductReview()
-        brand_name = response.css("._71bb8_13C6j span::text").get()
+        brand_name = response.css("._71bb8_13C6j span").get()
         if brand_name:
             if brand_name not in self.brands:
                 brand = Brand()
-                brand["name"] = brand_name
+                brand["name"] = remove_tags(brand_name).strip()
                 brand["id"] = str(uuid4())
                 brand["products"] = [product["id"]]
                 self.brands[brand_name.strip()] = brand
                 product["brand"] = brand["id"]
+                yield brand
             else:
                 self.brands[brand_name]["products"].append(product["id"])
-                product["brand"] = self.brands["id"]
+                product["brand"] = self.brands[brand_name]["id"]
+                yield self.brands[brand_name]
 
         yield product
