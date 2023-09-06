@@ -121,18 +121,18 @@ class DBStorage:
 
     def filter(self, cls, **kwargs):
         """Filter storage by list of kwargs"""
-        obj = {}
+        obj_val = dict()
         if cls in self.__classes:
             cls = self.__classes[cls]
             filter_ses = self.session.query(cls)
             for key, val in kwargs.items():
                 key_cls = getattr(cls, key)
                 if key_cls:
-                    filter_ses.filter(key_cls == val)
+                    filter_ses = filter_ses.filter(key_cls == val)
             for obj in filter_ses.all():
                 key = obj.__class__.__name__ + "." + str(obj.id)
-                obj[key] = obj
-        return obj
+                obj_val[key] = obj
+        return obj_val
 
     def exists(self, cls, id):
         """Check if an obj with a particular ID exists"""
