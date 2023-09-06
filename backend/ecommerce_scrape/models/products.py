@@ -25,16 +25,14 @@ product_category = Table("product_categories", Base.metadata,
 class Product(BaseModel, Base):
     """Defines table and relationship for product table"""
     __tablename__ = "products"
-    name = Column(String(100), nullable=False)
+    name = Column(String(255), nullable=False)
     description = Column(Text)
     price = Column(Numeric(10, 2))
     brand_id = Column(Integer, ForeignKey('brands.id'))
-    product_images = Column(
-        String(200), ForeignKey("product_images.image_url"))
-    images = relationship("ProductImage", order_by="product_images.order",
-                          backref="product", cascade="delete, delete-orphan")
-    reviews = relationship("ProductReview", order_by="product_reviews.id",
-                           backref="product", cascade="delete, delete-orphan")
+    images = relationship("ProductImage",
+                          backref="product", cascade="all, delete")
+    reviews = relationship("ProductReview",
+                           backref="product", cascade="all, delete")
     categories = relationship(
         "Category", secondary=product_category, backref='products',
         cascade="delete")

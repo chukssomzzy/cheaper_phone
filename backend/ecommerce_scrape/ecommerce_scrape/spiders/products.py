@@ -20,8 +20,6 @@ class ProductsSpider(scrapy.Spider):
     allowed_domains = ["www.konga.com", "www.api.konga.com"]
     page = 0
     pages = 0
-    category = None
-    brands = None
 
     def start_requests(self):
         """Starting point for request"""
@@ -154,18 +152,12 @@ class ProductsSpider(scrapy.Spider):
 
     def product_parse(self, response, product_desc):
         """Parse a product"""
-        self.brands = {}
-        if not self.category:
-            self.category = Category()
-            self.category["name"] = response.css(
-                "._1fce2_1jxDY li:nth-child(2) a::text").get()
-            self.category["id"] = str(uuid4())
-        yield self.category
         product = Product()
         product["name"] = response.css('._24849_2Ymhg::text').get()
         product["price"] = response.css('._678e4_e6nqh::text').get()
         product["description"] = product_desc
         product["id"] = str(uuid4())
+        yield product
         product_images = response.css(".fd8e9_1qWnZ ._7fdb1_1W4TA").css("img")
         for i, product_info in enumerate(product_images):
             product_image = ProductImage()
@@ -173,34 +165,19 @@ class ProductsSpider(scrapy.Spider):
             product_image["alt_text"] = product_info.xpath("@alt").get()
             product_image["caption"] = product_info.xpath("@alt").get()
             product_image["order"] = i
-            if not product.get("product_image"):
-                product["product_image"] = product_image["image_url"]
-            if product.get("images"):
-                product["images"].append(product_image["image_url"])
-            else:
-                product["images"] = [product_image["image_url"]]
+            product_image["product"] = product["id"]
             yield product_image
 
-        if self.category.get("products"):
-            self.category["products"].append(product["id"])
-            product["category"] = self.category["id"]
-        else:
-            self.category["products"] = [product["id"]]
-            product["category"] = self.category["id"]
-
+        category = Category()
+        category["name"] = response.css(
+            "._1fce2_1jxDY li:nth-child(2) a::text").get()
+        category["id"] = str(uuid4())
+        category["product_id"] = product["id"]
         brand_name = response.css("._71bb8_13C6j span").get()
         if brand_name:
-            if brand_name not in self.brands:
-                brand = Brand()
-                brand["name"] = remove_tags(brand_name).strip()
-                brand["id"] = str(uuid4())
-                brand["products"] = [product["id"]]
-                self.brands[brand_name.strip()] = brand
-                product["brand"] = brand["id"]
-                yield brand
-            else:
-                self.brands[brand_name]["products"].append(product["id"])
-                product["brand"] = self.brands[brand_name]["id"]
-                yield self.brands[brand_name]
-
-        yield product
+            brand = Brand()
+            brand["name"] = remove_tags(brand_name).strip()
+            brand["id"] = str(uuid4())
+            brand["product"] = product["id"]
+            yield brand
+        yield category

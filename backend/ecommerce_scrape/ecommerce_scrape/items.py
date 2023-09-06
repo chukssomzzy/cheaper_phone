@@ -14,11 +14,6 @@ class Product(scrapy.Item):
     name = scrapy.Field()
     description = scrapy.Field()
     price = scrapy.Field()
-    product_image = scrapy.Field()
-    reviews = scrapy.Field()
-    images = scrapy.Field()
-    category = scrapy.Field()
-    brand = scrapy.Field()
 
 
 class ProductImage(scrapy.Item):
@@ -27,6 +22,7 @@ class ProductImage(scrapy.Item):
     caption = scrapy.Field()
     alt_text = scrapy.Field()
     order = scrapy.Field()
+    product = scrapy.Field()
 
 
 class ProductReview(scrapy.Item):
@@ -54,7 +50,7 @@ class Category(scrapy.Item):
     """category item"""
     name = scrapy.Field()
     id = scrapy.Field()
-    products = scrapy.Field()
+    product_id = scrapy.Field()
 
 
 class Brand(scrapy.Item):
@@ -62,4 +58,4 @@ class Brand(scrapy.Item):
     id = scrapy.Field(input_processor=MapCompose(
         remove_tags), output_processor=Join())
     name = scrapy.Field()
-    products = scrapy.Field()
+    product = scrapy.Field()

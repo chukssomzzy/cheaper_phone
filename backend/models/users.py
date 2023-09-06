@@ -2,7 +2,7 @@
 
 """Model for users table """
 
-from sqlalchemy import Column, String
+from sqlalchemy import Column, ForeignKey, String, Integer
 from sqlalchemy.orm import backref, relationship
 from models.base_model import Base
 from models.base_model import BaseModel
@@ -18,20 +18,20 @@ class User(BaseModel, Base):
     password_hash = Column(String(50))
     email = Column(String(50), unique=True)
     cart = relationship("UserCart", backref=backref(
-        "user", userList=False), cascade="delete")
+        "user", uselist=False), cascade="delete")
     shipping_address = relationship(
-        "ShippingAddress", order_by="shipping_address.id", backref="user",
-        cascade="delete, delete-orphan")
+        "ShippingAddress", backref="user",
+        cascade="all, delete")
     reviews = relationship(
-        "ProductReview", order_by="product_reviews.id", backref="user",
-        cascade="delete, delete-orphan")
-    orders = relationship("Order", order_by="orders.id",
-                          backref="user", cascade="delete, delete-orphan")
+        "ProductReview", backref="user",
+        cascade="all, delete")
+    orders = relationship("Order",
+                          backref="user", cascade="all, delete")
     chat_history = relationship(
-        "ChatHistory", order_by="chat_histories.id", backref="user",
-        cascade="delete, delete-orphan")
+        "ChatHistory", backref="user",
+        cascade="all, delete")
     analytics = relationship(
-        "Analytics", order_by="analytics.id", backref="user")
+        "Analytics", backref="user", cascade="all")
 
     def __init__(self, *args, **kwargs):
         """Pass kwargs to basemodel for parsing"""

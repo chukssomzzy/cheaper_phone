@@ -1,7 +1,7 @@
 import cloudinary
-import dotenv
+from dotenv import load_dotenv
 from os import getenv
-dotenv.load_dotenv()
+assert load_dotenv()
 # Scrapy settings for ecommerce_scrape project
 #
 # For simplicity, this file contains only settings considered important or
@@ -76,7 +76,10 @@ ROBOTSTXT_OBEY = True
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
     # "scrapy.pipelines.images.ImagesPipeline": 1,
-    "ecommerce_scrape.pipelines.EcommerceScrapePipeline": 300,
+    "ecommerce_scrape.pipelines.ProductScrapePipeline": 300,
+    "ecommerce_scrape.pipelines.ImageScrapePipeline": 400,
+    "ecommerce_scrape.pipelines.CategoryScrapePipeline": 500,
+    "ecommerce_scrape.pipelines.BrandScrapePipeline": 600
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)

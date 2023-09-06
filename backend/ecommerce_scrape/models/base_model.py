@@ -2,10 +2,10 @@
 
 """Defines base model """
 from datetime import datetime
+from uuid import uuid4
 from sqlalchemy import DateTime, Column, String
 from sqlalchemy.ext.declarative import declarative_base
 
-import uuid
 
 import models
 
@@ -16,7 +16,7 @@ Base = declarative_base()
 class BaseModel():
     """Basemodel that would define common attribute that would be shared by
     all model"""
-    id = Column(String(60), primary_key=True)
+    id = Column(String(60), primary_key=True, default=uuid4)
     created_at = Column(DateTime, default=datetime.utcnow)
     updated_at = Column(DateTime, default=datetime.utcnow)
 
@@ -38,7 +38,7 @@ class BaseModel():
             self.created_at = datetime.utcnow()
             self.updated_at = self.created_at
 
-    def __repr__(self):
+    def __str__(self):
         """String representation of model"""
         return "[%s.%s](%r)" % (
             self.__class__.__name__, self.id, self.to_dict()
@@ -56,8 +56,9 @@ class BaseModel():
 
     def update(self, *args, **kwargs):
         """update kwargs"""
+        not_key = ["id", "created_at", "updated_at"]
         for key, val in kwargs.items():
-            if key != "id" and key != "created_at" and key != "updated_at":
+            if key not in not_key:
                 setattr(self, key, val)
 
     def to_dict(self):

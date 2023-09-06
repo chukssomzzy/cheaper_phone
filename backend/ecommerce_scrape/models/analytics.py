@@ -13,6 +13,7 @@ class Analytics(BaseModel, Base):
     id = Column(Integer, Sequence('analytics_seq_id'), primary_key=True)
     user_id = Column(String(60), ForeignKey('users.id'))
     action = Column(String(50))
+    timestamp = Column(DateTime, nullable=False, default=datetime.utcnow)
 
     def __init__(self, *args, **kwargs):
         """Initialize analytic model"""

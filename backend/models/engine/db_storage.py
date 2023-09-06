@@ -2,14 +2,16 @@
 """Defines db_storage"""
 
 
+from typing import Type
 from sqlalchemy import create_engine
-from sqlalchemy.orm import scoped_session, sessionmaker
+from sqlalchemy.orm import DeclarativeBase, scoped_session, sessionmaker
 from models.admin_logs import AdminLog
 from models.analytics import Analytics
 from models.base_model import Base
 from models.categories import Category
 from models.chat_history import ChatHistory
 from models.comments import Comment
+from models.order_items import OrderItem
 from models.orders import Order
 from models.product_images import ProductImage
 from models.product_review import ProductReview
@@ -30,7 +32,7 @@ class DBStorage:
                  "ProductImage": ProductImage, "Order": Order,
                  "Comment": Comment, "ChatHistory": ChatHistory,
                  "Category": Category, "Analytics": Analytics,
-                 "AdminLog": AdminLog, "Brand": Brand}
+                 "AdminLog": AdminLog, "Brand": Brand, "OrderItem": OrderItem}
     __engine = None
     __session = None
 
@@ -54,7 +56,7 @@ class DBStorage:
             session_factory = sessionmaker(bind=self.__engine)
             Session = scoped_session(session_factory)
             self.__Session = Session
-            self.session = self.__Session()
+            self.session = Session
 
     def delete(self, obj):
         """Delete a obj from session"""
@@ -74,7 +76,7 @@ class DBStorage:
         for clss in self.__classes:
             if not cls or cls == clss or cls == self.__classes[clss]:
                 for obj in self.session.query(self.__classes[clss]).all():
-                    key = obj.__class__.__name__ + "." + obj.id
+                    key = obj.__class__.__name__ + "." + str(obj.id)
                     allObj[key] = obj
                 if cls and len(allObj):
                     return allObj
@@ -82,14 +84,19 @@ class DBStorage:
 
     def get(self, cls, id):
         """Return a cls related to an id"""
-        if cls and cls in self.__classes or cls in self.__classes.values():
-            obj = self.session.query(cls).filter_by(id=id)
-            return obj
+        if cls not in self.__classes or cls in self.__classes.values():
+            return None
+        else:
+            if cls in self.__classes:
+                cls = self.__classes[cls]
+                if self.session:
+                    return self.session.query(cls).\
+                        filter_by(id=id).one_or_none()
 
     def close(self):
         """Close the current session and request a new one"""
-        if self.__session:
-            self.__session.remove()
+        if self.session:
+            self.session.close()
 
     def count(self, cls):
         """Count rows in a specific class or all class"""
@@ -111,7 +118,6 @@ class DBStorage:
         elif cls and cls.get("__name__") in self.__classes:
             obj = cls(**kwargs)
             self.session.add(obj)
-        self.save()
 
     def exists(self, cls, id):
         """Check if an obj with a particular ID exists"""

@@ -38,8 +38,6 @@ class Order(BaseModel, Base):
     status = Column(Enum(statusEnum), default=statusEnum.pending)
     shipping_address_id = Column(Integer, ForeignKey("shipping_address.id"))
     items = relationship("OrderItem", backref="order")
-    address = relationship(
-        "ShippingAddress", order_by="shipping_address.id")
 
     def __init__(self, *args, **kwargs):
         """Intialize order with __init__ from basemodel"""
