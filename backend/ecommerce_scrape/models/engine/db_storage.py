@@ -47,8 +47,8 @@ class DBStorage:
         self.__engine = create_engine(
             "mysql+mysqldb://{}:{}@{}/{}".
             format(db_user, db_password, db_host, db_name))
-        if getenv("ECOMMERCE_ENV") != "DEV":
-            Base.metadata.dropall(self.__engine)
+        if getenv("ECOMMERCE_ENV") != "TEST":
+            Base.metadata.drop_all(self.__engine)
 
     def reload(self):
         """Reload and allocate a scoped session"""

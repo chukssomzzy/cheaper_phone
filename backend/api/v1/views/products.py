@@ -1,9 +1,12 @@
+#!/usr/bin/env -S venv/bin/python3
+
+"""Api view for products"""
+
 from flask import abort, request
 from api.v1.views import api_view
 from api.v1.utils.invalid_api_error import InvalidApiUsage
 from models import storage
 
-"""Api view for products"""
 
 
 @api_view.route("/products", strict_slashes=False)

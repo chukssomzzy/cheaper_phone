@@ -101,15 +101,14 @@ class BrandScrapePipeline:
             brand = storage.session.query(Brand).filter_by(
                 name=adapter["name"]).one_or_none()
             if not brand:
-                values = storage.create("Brand", **values)
+                brand = storage.create("Brand", **values)
                 storage.save()
-            products = adapter.get("products")
-            if brand and products:
-                for product in products:
-                    product = storage.get("Product", product)
-                    if product:
-                        brand.products.append(product)
-                        product.brand_id = brand.id
+            product_id = adapter.get("product")
+            if brand and product_id:
+                product = storage.get("Product", product_id)
+                if product:
+                    product.brand_id = brand.id
+                    brand.products.append(product)
 
         storage.save()
         storage.close()
