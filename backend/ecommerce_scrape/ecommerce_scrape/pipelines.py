@@ -102,6 +102,7 @@ class BrandScrapePipeline:
                 name=adapter["name"]).one_or_none()
             if not brand:
                 values = storage.create("Brand", **values)
+                storage.save()
             products = adapter.get("products")
             if brand and products:
                 for product in products:

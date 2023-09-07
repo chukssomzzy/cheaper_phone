@@ -2,9 +2,8 @@
 """Defines db_storage"""
 
 
-from typing import Type
 from sqlalchemy import create_engine
-from sqlalchemy.orm import DeclarativeBase, scoped_session, sessionmaker
+from sqlalchemy.orm import scoped_session, sessionmaker
 from models.admin_logs import AdminLog
 from models.analytics import Analytics
 from models.base_model import Base
@@ -34,7 +33,6 @@ class DBStorage:
                  "Category": Category, "Analytics": Analytics,
                  "AdminLog": AdminLog, "Brand": Brand, "OrderItem": OrderItem}
     __engine = None
-    __session = None
 
     def __init__(self):
         """Connects sqlalchemy to storage and creates an engine"""
@@ -56,26 +54,25 @@ class DBStorage:
             session_factory = sessionmaker(bind=self.__engine)
             Session = scoped_session(session_factory)
             self.__Session = Session
-            self.session = Session
 
     def delete(self, obj):
         """Delete a obj from session"""
-        self.session.delete(obj)
+        self.__Session.delete(obj)
 
     def new(self, obj):
         """Add a new obj to session"""
-        self.session.add(obj)
+        self.__Session.add(obj)
 
     def save(self):
         """flush update in session to db"""
-        self.session.commit()
+        self.__Session.commit()
 
-    def all(self, cls=None):
+    def all(self, cls=None, page=None, limit=None):
         """Return all object in db storage related to a cls or all obj"""
         allObj = {}
         for clss in self.__classes:
             if not cls or cls == clss or cls == self.__classes[clss]:
-                for obj in self.session.query(self.__classes[clss]).all():
+                for obj in self.__Session.query(self.__classes[clss]).all():
                     key = obj.__class__.__name__ + "." + str(obj.id)
                     allObj[key] = obj
                 if cls and len(allObj):
@@ -89,21 +86,21 @@ class DBStorage:
         else:
             if cls in self.__classes:
                 cls = self.__classes[cls]
-                if self.session:
-                    return self.session.query(cls).\
+                if self.__Session:
+                    return self.__Session.query(cls).\
                         filter_by(id=id).one_or_none()
 
     def close(self):
         """Close the current session and request a new one"""
-        if self.session:
-            self.session.close()
+        if self.__Session:
+            self.__Session.close()
 
     def count(self, cls):
         """Count rows in a specific class or all class"""
         obj_count = 0
         for clss in self.__classes:
             if not cls or cls is self.__classes[clss] or cls == clss:
-                obj_count = self.session.query(self.__classes[clss]).count()
+                obj_count = self.__Session.query(self.__classes[clss]).count()
                 if obj_count and cls:
                     return obj_count
         return obj_count
@@ -114,17 +111,17 @@ class DBStorage:
         if cls and cls in self.__classes:
             cls = self.__classes[cls]
             obj = cls(**kwargs)
-            self.session.add(obj)
+            self.__Session.add(obj)
         elif cls and cls.get("__name__") in self.__classes:
             obj = cls(**kwargs)
-            self.session.add(obj)
+            self.__Session.add(obj)
 
     def filter(self, cls, **kwargs):
         """Filter storage by list of kwargs"""
         obj_val = dict()
         if cls in self.__classes:
             cls = self.__classes[cls]
-            filter_ses = self.session.query(cls)
+            filter_ses = self.__Session.query(cls)
             for key, val in kwargs.items():
                 key_cls = getattr(cls, key)
                 if key_cls:
@@ -138,5 +135,31 @@ class DBStorage:
         """Check if an obj with a particular ID exists"""
         if cls and cls in self.__classes:
             cls = self.__classes[cls]
-            return (self.session.query(cls).filter_by(id=id).exists())
+            return (self.__Session.query(cls).filter_by(id=id).exists())
         return (False)
+
+    def page_all(self, cls="Products", page=1, limit=10):
+        """ Paginate all the data in the db based on the models class or
+        paginate the product if cls is None
+        Args:
+            page: the page number of page we are currently on
+            limit: the number of items to return per page
+        Return:
+            obj (dict->model_obj): return a dict of model or empty dict
+        """
+        obj = {}
+        startIdx = 0
+        endIdx = 0
+        if cls in self.__classes:
+            count = self.count(cls)
+            if count > (page * limit):
+                startIdx = (page - 1) * limit
+                endIdx = page * limit
+            else:
+                startIdx = 0
+                endIdx = count
+            for val in self.__Session.query(self.
+                                            __classes[cls])[startIdx:endIdx]:
+                key = str(val.__class__.__name__) + "." + str(val.id)
+                obj[key] = val
+        return obj

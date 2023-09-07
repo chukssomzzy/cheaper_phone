@@ -35,6 +35,7 @@ class DBStorage:
                  "AdminLog": AdminLog, "Brand": Brand, "OrderItem": OrderItem}
     __engine = None
     __session = None
+    session = None
 
     def __init__(self):
         """Connects sqlalchemy to storage and creates an engine"""
