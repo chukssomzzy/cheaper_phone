@@ -1,0 +1,2307 @@
+2023-09-07 21:35:24 [scrapy.utils.log] INFO: Scrapy 2.10.0 started (bot: ecommerce_scrape)
+2023-09-07 21:35:24 [scrapy.utils.log] INFO: Versions: lxml 4.9.3.0, libxml2 2.10.3, cssselect 1.2.0, parsel 1.8.1, w3lib 2.1.2, Twisted 22.10.0, Python 3.8.10 (default, May 26 2023, 14:05:08) - [GCC 9.4.0], pyOpenSSL 23.2.0 (OpenSSL 3.1.2 1 Aug 2023), cryptography 41.0.3, Platform Linux-5.4.0-156-generic-x86_64-with-glibc2.29
+2023-09-07 21:35:24 [scrapy.addons] INFO: Enabled addons:
+[]
+2023-09-07 21:35:24 [scrapy.crawler] INFO: Overridden settings:
+{'BOT_NAME': 'ecommerce_scrape',
+ 'FEED_EXPORT_ENCODING': 'utf-8',
+ 'NEWSPIDER_MODULE': 'ecommerce_scrape.spiders',
+ 'REQUEST_FINGERPRINTER_IMPLEMENTATION': '2.7',
+ 'ROBOTSTXT_OBEY': True,
+ 'SPIDER_MODULES': ['ecommerce_scrape.spiders'],
+ 'TWISTED_REACTOR': 'twisted.internet.asyncioreactor.AsyncioSelectorReactor'}
+2023-09-07 21:35:24 [asyncio] DEBUG: Using selector: EpollSelector
+2023-09-07 21:35:24 [scrapy.utils.log] DEBUG: Using reactor: twisted.internet.asyncioreactor.AsyncioSelectorReactor
+2023-09-07 21:35:24 [scrapy.utils.log] DEBUG: Using asyncio event loop: asyncio.unix_events._UnixSelectorEventLoop
+2023-09-07 21:35:24 [scrapy.extensions.telnet] INFO: Telnet Password: 6d5e67fad1a2d8fe
+2023-09-07 21:35:25 [scrapy.middleware] INFO: Enabled extensions:
+['scrapy.extensions.corestats.CoreStats',
+ 'scrapy.extensions.telnet.TelnetConsole',
+ 'scrapy.extensions.memusage.MemoryUsage',
+ 'scrapy.extensions.logstats.LogStats']
+2023-09-07 21:35:25 [scrapy.middleware] INFO: Enabled downloader middlewares:
+['scrapy.downloadermiddlewares.robotstxt.RobotsTxtMiddleware',
+ 'scrapy.downloadermiddlewares.httpauth.HttpAuthMiddleware',
+ 'scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware',
+ 'scrapy.downloadermiddlewares.defaultheaders.DefaultHeadersMiddleware',
+ 'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware',
+ 'scrapy.downloadermiddlewares.retry.RetryMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.MetaRefreshMiddleware',
+ 'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.RedirectMiddleware',
+ 'scrapy.downloadermiddlewares.cookies.CookiesMiddleware',
+ 'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware',
+ 'scrapy.downloadermiddlewares.stats.DownloaderStats']
+2023-09-07 21:35:25 [scrapy.middleware] INFO: Enabled spider middlewares:
+['scrapy.spidermiddlewares.httperror.HttpErrorMiddleware',
+ 'scrapy.spidermiddlewares.offsite.OffsiteMiddleware',
+ 'scrapy.spidermiddlewares.referer.RefererMiddleware',
+ 'scrapy.spidermiddlewares.urllength.UrlLengthMiddleware',
+ 'scrapy.spidermiddlewares.depth.DepthMiddleware']
+2023-09-07 21:35:29 [scrapy.middleware] INFO: Enabled item pipelines:
+['ecommerce_scrape.pipelines.ProductScrapePipeline',
+ 'ecommerce_scrape.pipelines.ImageScrapePipeline',
+ 'ecommerce_scrape.pipelines.CategoryScrapePipeline',
+ 'ecommerce_scrape.pipelines.BrandScrapePipeline']
+2023-09-07 21:35:29 [scrapy.core.engine] INFO: Spider opened
+2023-09-07 21:35:29 [scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+2023-09-07 21:35:29 [scrapy.extensions.telnet] INFO: Telnet console listening on 127.0.0.1:6023
+2023-09-07 21:35:30 [scrapy.core.engine] DEBUG: Crawled (404) <GET https://api.konga.com/robots.txt> (referer: None)
+2023-09-07 21:35:30 [protego] DEBUG: Rule at line 1 without any user agent to enforce it on.
+2023-09-07 21:35:38 [scrapy.core.engine] DEBUG: Crawled (200) <POST https://api.konga.com/v1/graphql> (referer: https://www.konga.com/)
+2023-09-07 21:35:40 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.konga.com/robots.txt> (referer: None)
+2023-09-07 21:35:41 [scrapy.spidermiddlewares.offsite] DEBUG: Filtered offsite request to 'api.konga.com': <POST https://api.konga.com/v1/graphql>
+2023-09-07 21:35:42 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.konga.com/product/infinix-infinix-smart-7-plus-x6517-6-6-oe-64gb-rom-3gb-ram-13-5-mp-camera-6000-mah-green-6023885> (referer: https://www.konga.com/)
+2023-09-07 21:35:42 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/infinix-infinix-smart-7-plus-x6517-6-6-oe-64gb-rom-3gb-ram-13-5-mp-camera-6000-mah-green-6023885>
+{'description': 'Infinix Smart 7 Plus 64GB-3GB\n'
+                '“Infinix Smart 7 Plus 64GB-4GB, The Ultimate Budget '
+                'Smartphone with Premium Features”. The Infinix Smart 7 boasts '
+                'a large 6.6″ HD+ display that provides a vivid and immersive '
+                'viewing experience. The 20:9 aspect ratio provides a taller '
+                'and narrower screen that’s perfect for watching videos and '
+                'browsing the web. The dot-in display design adds a touch of '
+                'elegance and sophistication to the phone’s design while still '
+                'providing a bezel-less look that maximizes the screen size.\n'
+                'Overall, the Infinix Smart 7 is an excellent choice for '
+                'anyone looking for a\xa0\xa0smartphone with good features and '
+                'performance.\n'
+                'Pro-Level Camera, Affordable Price\n'
+                'The New Smart 7 has 13MP + AI Lens back camera that provides '
+                'stunning photos, while the selfie camera is 5MP at the front '
+                'with features like AI Scene Detection, Super Night Mode, and '
+                'a dedicated macro camera, the Infinix Smart 7 allows you to '
+                'capture\xa0\xa0without breaking the bank.\n'
+                'Battery\n'
+                'Smart 7 Plus comes with a 6\xa0non-removable battery that '
+                'will keep you entertained and connected for longer. With its '
+                'sleek design and cutting-edge features,\n'
+                '\n'
+                'Dimensions 163.8 x 75.6 x 8.7 mm (6.45 x 2.98 x 0.34 in)\n'
+                'SIMs Dual SIM (Nano-SIM, dual stand-by)\n'
+                'Water & Dust No\n'
+                'DISPLAY Size 6.6 inches\n'
+                'Type TFT LCD, 500 nits\n'
+                'Resolutions 720 x 1600 pixels, 20:9 ratio PPI,267 ppi '
+                'density\n'
+                'Multi touch Yes\n'
+                'Protection No\n'
+                'NETWORKS 2G, 3G, 4G\n'
+                'CAMERA Rear Dual 13 MP, AF, 0.3 MP, (depth)\n'
+                'Features Dual-LED flash, HDR, panorama\n'
+                'Front 5 MP\n'
+                'OS Android 12\n'
+                'Chipset Mediatek MT6761 Helio A22 (12 nm)\n'
+                'CPU Quad-core (2.0GHz Cortex-A53)\n'
+                'GPU PowerVR GE8320\n'
+                'RAM 3GB\n'
+                'Storage 64GB\n'
+                'BATTERY Type Li-Ion Capacity 6000 mAh with 10W wired fast '
+                'charge\n'
+                'Fingerprint (rear-mounted), accelerometer, proximity',
+ 'id': 'afeaee44-45e6-44cd-8612-7e58857fc443',
+ 'name': 'Infinix Smart 7 Plus -x6517 - 6.6 " – 64gb Rom-3gb Ram- 13/ 5 Mp '
+         'Camera- 6000 Mah- Green',
+ 'price': 73300.0}
+2023-09-07 21:35:42 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.konga.com/product/infinix-hot-30-play-x6835b-4g-6-82-hd-90hz-display-8gb-128gb-16mp-ai-8mp-6000mah-white-6083658> (referer: https://www.konga.com/)
+2023-09-07 21:35:42 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.konga.com/product/infinix-infinix-zero-ultra-x6820-6-8-256gb-rom-8gb-ram-4500mah-genesis-noir-6083656> (referer: https://www.konga.com/)
+2023-09-07 21:35:42 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.konga.com/product/vivo-vivo-y02-6-51-32gb-rom-2gb-ram-4g-5000mah-gray-6076266> (referer: https://www.konga.com/)
+2023-09-07 21:35:42 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/infinix-infinix-smart-7-plus-x6517-6-6-oe-64gb-rom-3gb-ram-13-5-mp-camera-6000-mah-green-6023885>
+{'alt_text': 'Product image thumbnail.',
+ 'caption': 'Product image thumbnail.',
+ 'image_url': 'https://www-konga-com-res.cloudinary.com/w_auto,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/W/C/118566_1677147512.jpg',
+ 'order': 0,
+ 'product': 'afeaee44-45e6-44cd-8612-7e58857fc443'}
+2023-09-07 21:35:42 [scrapy.downloadermiddlewares.robotstxt] DEBUG: Forbidden by robots.txt: <GET https://www.konga.com/product/20w-pd-fast-usb-type-c-to-typec-charger-5685778>
+2023-09-07 21:35:42 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/infinix-infinix-smart-7-plus-x6517-6-6-oe-64gb-rom-3gb-ram-13-5-mp-camera-6000-mah-green-6023885>
+{'alt_text': 'Product image thumbnail.',
+ 'caption': 'Product image thumbnail.',
+ 'image_url': 'https://www-konga-com-res.cloudinary.com/w_auto,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/T/E/118566_1677148162.jpg',
+ 'order': 1,
+ 'product': 'afeaee44-45e6-44cd-8612-7e58857fc443'}
+2023-09-07 21:35:42 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/infinix-infinix-smart-7-plus-x6517-6-6-oe-64gb-rom-3gb-ram-13-5-mp-camera-6000-mah-green-6023885>
+{'alt_text': 'Product image thumbnail.',
+ 'caption': 'Product image thumbnail.',
+ 'image_url': 'https://www-konga-com-res.cloudinary.com/w_auto,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/F/I/118566_1677148183.jpg',
+ 'order': 2,
+ 'product': 'afeaee44-45e6-44cd-8612-7e58857fc443'}
+2023-09-07 21:35:42 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/infinix-infinix-smart-7-plus-x6517-6-6-oe-64gb-rom-3gb-ram-13-5-mp-camera-6000-mah-green-6023885>
+{'id': 'e9c994d8-a35f-437a-b74b-727036e46504',
+ 'name': 'infinix',
+ 'product': 'afeaee44-45e6-44cd-8612-7e58857fc443'}
+2023-09-07 21:35:42 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/infinix-infinix-smart-7-plus-x6517-6-6-oe-64gb-rom-3gb-ram-13-5-mp-camera-6000-mah-green-6023885>
+{'id': '1d05de3f-dcb9-442c-a369-b72bbd20e0ca',
+ 'name': 'phones and tablets',
+ 'product_id': 'afeaee44-45e6-44cd-8612-7e58857fc443'}
+2023-09-07 21:35:43 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/infinix-hot-30-play-x6835b-4g-6-82-hd-90hz-display-8gb-128gb-16mp-ai-8mp-6000mah-white-6083658>
+{'description': 'NETWORK\n'
+                '\n'
+                'BODY\n'
+                '\n'
+                '164 x 75.8 x 8.4 mm (6.46 x 2.98 x 0.33 in)\n'
+                '\n'
+                '191 g (6.74 oz)\n'
+                '\n'
+                'Glass front, plastic frame, plastic back\n'
+                '\n'
+                'Dual SIM (Nano-SIM, dual stand-by)\n'
+                '\n'
+                'DISPLAY\n'
+                '\n'
+                'IPS LCD, 90Hz, 500 nits (peak)\n'
+                '\n'
+                '6.56 inches, 103.4 cm\xa0(~83.2% screen-to-body ratio)\n'
+                '\n'
+                '720 x 1612 pixels, 20:9 ratio (~269 ppi density)\n'
+                '\n'
+                'PLATFORM\n'
+                '\n'
+                'Android 12, XOS 10.6\n'
+                '\n'
+                'Unisoc T606 (12 nm)\n'
+                '\n'
+                'Octa-core (2x1.6 GHz Cortex-A75 & 6x1.6 GHz Cortex-A55)\n'
+                '\n'
+                'Mali-G57 MP1\n'
+                '\n'
+                'MEMORY\n'
+                '\n'
+                'microSDXC (dedicated slot)\n'
+                '\n'
+                '128GB 4GB RAM\n'
+                '\n'
+                'UFS 2.2\n'
+                '\n'
+                'MAIN CAMERA\n'
+                '\n'
+                '13 MP, f/1.9, (wide), AF Secondary unspecified camera\n'
+                '\n'
+                'Dual-LED flash, HDR, panorama\n'
+                '\n'
+                '1080p@30fps\n'
+                '\n'
+                'SELFIE CAMERA\n'
+                '\n'
+                '8 MP, f/2.0, (wide)\n'
+                '\n'
+                'Dual-LED flash\n'
+                '\n'
+                '1080p@30fps\n'
+                '\n'
+                'SOUND\n'
+                '\n'
+                'Yes\n'
+                '\n'
+                'Yes\n'
+                '\n'
+                'COMMS\n'
+                '\n'
+                'Wi-Fi 802.11 a/b/g/n/ac, dual-band\n'
+                '\n'
+                'Yes\n'
+                '\n'
+                'GPS\n'
+                '\n'
+                'Yes (Hot 30i NFC only)\n'
+                '\n'
+                'FM radio\n'
+                '\n'
+                'USB Type-C 2.0, OTG\n'
+                '\n'
+                'FEATURES\n'
+                '\n'
+                'Fingerprint (side-mounted), accelerometer, proximity, '
+                'compass\n'
+                '\n'
+                'BATTERY\n'
+                '\n'
+                'Li-Po 5000 mAh, non-removable\n'
+                '\n'
+                '18W wired\n'
+                '\n'
+                'MISC\n'
+                '\n'
+                'Mirror Black, Glacier Blue, Diamond White, Marigold\n'
+                '\n'
+                'X669',
+ 'id': '8b053b3d-de7e-4693-8c0c-38dd22c12699',
+ 'name': 'Infinix HOT 30 PLAY X6835B 4G -6.82" HD+90Hz DISPLAY- 8GB+128GB- '
+         '16MP AI+ 8MP- 6000mAh- WHITE',
+ 'price': 110400.0}
+2023-09-07 21:35:43 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/infinix-infinix-zero-ultra-x6820-6-8-256gb-rom-8gb-ram-4500mah-genesis-noir-6083656>
+{'description': 'ZERO ULTRA\n'
+                'Platform BANDWIDTH BOM1: B2,B3,B5,B8 B1,B5,B8 FDD '
+                '1,3,5,7,8,20,28 - TDD: 38,40,41 sub6 FDD: n38/n40/n41/n77/n78 '
+                'sub6 FDD: n1/n3/n5/n7/n8/n20/n28 BOM2: B2,B3,B5,B8 '
+                'B1,B2,B4,B5,B8 FDD 1,2,3,4,5,7,8,20,28,66 - TDD: 38,40,41 '
+                'sub6 FDD: n38/n40/n41/n77/n78/n79 sub6 FDD: '
+                'n1/n2/n3/n5/n20/n28/n71 NETWORK: 5G/4G/3G/2G GPU: Arm '
+                'Mali-G68 MC4 CPU FREQUENCY: 2.5GHz + 2GHz THROUGHPUT: HSPA+ '
+                '42.2/11.5 (Cat7)Mbps LTE Cat: 18 300/75 Mbps NR 2.31/1.04 '
+                'Gbps\n'
+                'Data GPRS: YES EDGE: YES 3G: YES 4G: YES 5G: YES\n'
+                'CAMERA LOCATION: FRONT/REAR PIXELS: FRONT(32MP)/REAR(200MP + '
+                '13M + 2M) AF/FF32MP FF /200MP OIS + 13M AF + 2M FF FLASH '
+                'LIGHT: YES DUAL REAR FLASH AND DUAL FRONT FLASH VIDEO '
+                'RECORDING: YES VIDEO: 4K 30FPS/1080P 60FPS/ 1080P 30FPS/720P '
+                '30FPS IMAGE SIZE: FRONT CAMERA 32MP: 6528*4896, AI CAM 8MP: '
+                '3264*2448 REAR CAMERA 200MP: 16384*12288, AI CAM 12MP: '
+                '4064*3048\n'
+                'MEMORY ROM: 256GB RAM: 8GB\n'
+                "DISPLAY SIZE: 6.8'' INCH TYPE: 3D Curved AMOLED RESOLUTION: "
+                '1080*2400 MATERIAL: AMOLED\n'
+                'MULTIMEDIA AUDIO PLAYER: MP3, MIDI, AMR, WAV RINGTONE FORMAT: '
+                'MIDI,MP3 VIDEO PLAYER: 3GP,MP4,AVI PICTURE FORMAT: '
+                'PNG,JPEG,BMP,GIF\n'
+                'ENTERTAINMENT FM RADIO: YES VOICE RECORDING: YES E-BOOK '
+                'READER: NO GAME: YES\n'
+                'MESSAGE E-MAIL: YES MMS: YES\n'
+                'BATTERY CAPACITY: 4500mAh TALK TIME: 2G 65H, 3G 50H STANDBY '
+                'TIME: 336H\n'
+                'CONNECTION SIM CARD SLOT: DUAL NANO SIM + MICRO SD GPS '
+                'NAVIGATION: YES WIFI(WLAN): Wi-Fi 6 (a/b/g/n/ac/ax) '
+                'BLUETOOTH: YES USB PORT: YES, type C OTG: YES EARPHONE: YES, '
+                'type C CHARGE Output: 20V, 9A FM: YES\n'
+                'SENSORS & TOOLS G-SENSOR: YES E-COMPASS: YES GYROSCOPE: YES '
+                'LIGHT SENSOR: YES PROXIMITY SENSOR: YES FINGERPRINT: YES\n'
+                'MODEL MODEL: X6820\n'
+                'DIMENSION DIMENSION: Coslight Silver: 165.50*74.50*8.76mm / '
+                'Genesis Noir: 165.50*75.08*9.16mm\n'
+                'COLOR COLOR: Coslight Silver; Genesis Noir\n'
+                'WEIGHT WEIGHT: 213g\n'
+                'OPERATING SYSTEM OPERATING SYSTEM: Android™ 12\n'
+                'In the Box Phone * 1 Charger cable * 1 Charger * 1 SIM '
+                'Ejector Tool * 1 Earphone * 1',
+ 'id': 'e920443e-18ce-4f89-a59d-ac3397927360',
+ 'name': 'Infinix Zero Ultra X6820 - 6.8" - 256gb Rom - 8gb Ram - 4500mah - '
+         'Genesis Noir',
+ 'price': 405500.0}
+2023-09-07 21:35:43 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/vivo-vivo-y02-6-51-32gb-rom-2gb-ram-4g-5000mah-gray-6076266>
+{'description': 'Sim Slots Dual Sim Battery Capacity 5000mAh Sim Type Dual SIM '
+                'OS Android OS Warranty Period 1 Year Brand Vivo Screen size '
+                'Others Connectivity WiFi + 4G RAM 2 GB Internal Memory 32 GB '
+                'Specification Vivo Y02 2GB+32GB(4G)\n'
+                'Basic Processor: Octa-core processor RAM: 2GB Storage: 32GB '
+                'Operating System: Funtouch OS 12\n'
+                'Display Screen size: 6.51 inch Screen resolution: 1600 × 720 '
+                '(HD+) Screen type: LCD (IPS)\n'
+                'Camera Rear camera: 8 MP Rear Aperture: f/2.0 (8 MP) Front '
+                'camera: 5 MP Front Aperture: f/2.2 (5 MP) Flash: Rear flash '
+                'Additional features: Face Beauty, Photo, Video, Time-Lapse\n'
+                'Battery Battery Capacity: 5000 mAh (TYP) Fast charging: 10W\n'
+                'Body Dimensions (Length x Width x Height): 163.99 × 75.63 × '
+                '8.49 mm Weight: 186g Material: Plastic\n'
+                'Network 4G: supported\n'
+                'Connectivity Wi-Fi: 2.4 GHz / 5 GHz Bluetooth: Bluetooth 5.0 '
+                'USB: USB 2.0 GPS: Supported OTG: Supported FM: Supported\n'
+                'Media Audio Playback: WAV, MP3, MP2, M4A, OPUS, MP1, Vorbis, '
+                'FLAC Video Playback: MP4, 3GP, AVI, TS, MKV, FLV Video '
+                'Recording: MP4 Voice Recording: Supported\n'
+                'Sensors Accelerometer: Supported Proximity Sensor: Supported '
+                'Ambient Light Sensor: Supported\n'
+                'In the Box Y02, Documentation, USB Cable, USB Power Adapter, '
+                'Eject Tool, Protective Film',
+ 'id': '4a0c924c-c506-4387-8daf-c502c562aacb',
+ 'name': 'Vivo Y02 - 6.51" - 32GB Rom - 2GB Ram - 4G - 5000mAh - Gray',
+ 'price': 71300.0}
+2023-09-07 21:35:43 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.konga.com/product/samsung-samsung-galaxy-s21-fe-5g-6-4-amoled-256gb-rom-8gb-ram-dual-sim-4500mah-lavender-5579863> (referer: https://www.konga.com/)
+2023-09-07 21:35:43 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.konga.com/product/tecno-tecno-t529-gold-5645114> (referer: https://www.konga.com/)
+2023-09-07 21:35:43 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/infinix-hot-30-play-x6835b-4g-6-82-hd-90hz-display-8gb-128gb-16mp-ai-8mp-6000mah-white-6083658>
+{'alt_text': 'Product image thumbnail.',
+ 'caption': 'Product image thumbnail.',
+ 'image_url': 'https://www-konga-com-res.cloudinary.com/w_auto,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/K/B/_1680341796.jpg',
+ 'order': 0,
+ 'product': '8b053b3d-de7e-4693-8c0c-38dd22c12699'}
+2023-09-07 21:35:43 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/infinix-infinix-zero-ultra-x6820-6-8-256gb-rom-8gb-ram-4500mah-genesis-noir-6083656>
+{'alt_text': 'Product image thumbnail.',
+ 'caption': 'Product image thumbnail.',
+ 'image_url': 'https://www-konga-com-res.cloudinary.com/w_auto,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/C/C/118566_1682059486.jpg',
+ 'order': 0,
+ 'product': 'e920443e-18ce-4f89-a59d-ac3397927360'}
+2023-09-07 21:35:43 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/vivo-vivo-y02-6-51-32gb-rom-2gb-ram-4g-5000mah-gray-6076266>
+{'alt_text': 'Product image thumbnail.',
+ 'caption': 'Product image thumbnail.',
+ 'image_url': 'https://www-konga-com-res.cloudinary.com/w_auto,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/T/M/118566_1681474440.png',
+ 'order': 0,
+ 'product': '4a0c924c-c506-4387-8daf-c502c562aacb'}
+2023-09-07 21:35:43 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/infinix-hot-30-play-x6835b-4g-6-82-hd-90hz-display-8gb-128gb-16mp-ai-8mp-6000mah-white-6083658>
+{'alt_text': 'Product image thumbnail.',
+ 'caption': 'Product image thumbnail.',
+ 'image_url': 'https://www-konga-com-res.cloudinary.com/w_auto,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/A/V/118566_1681808327.jpg',
+ 'order': 1,
+ 'product': '8b053b3d-de7e-4693-8c0c-38dd22c12699'}
+2023-09-07 21:35:43 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/infinix-infinix-zero-ultra-x6820-6-8-256gb-rom-8gb-ram-4500mah-genesis-noir-6083656>
+{'alt_text': 'Product image thumbnail.',
+ 'caption': 'Product image thumbnail.',
+ 'image_url': 'https://www-konga-com-res.cloudinary.com/w_auto,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/K/I/118566_1682059495.jpg',
+ 'order': 1,
+ 'product': 'e920443e-18ce-4f89-a59d-ac3397927360'}
+2023-09-07 21:35:43 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/vivo-vivo-y02-6-51-32gb-rom-2gb-ram-4g-5000mah-gray-6076266>
+{'alt_text': 'Product image thumbnail.',
+ 'caption': 'Product image thumbnail.',
+ 'image_url': 'https://www-konga-com-res.cloudinary.com/w_auto,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/F/S/118566_1681474452.png',
+ 'order': 1,
+ 'product': '4a0c924c-c506-4387-8daf-c502c562aacb'}
+2023-09-07 21:35:43 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/vivo-vivo-y02-6-51-32gb-rom-2gb-ram-4g-5000mah-gray-6076266>
+{'alt_text': 'Product image thumbnail.',
+ 'caption': 'Product image thumbnail.',
+ 'image_url': 'https://www-konga-com-res.cloudinary.com/w_auto,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/S/Z/118566_1681474500.png',
+ 'order': 2,
+ 'product': '4a0c924c-c506-4387-8daf-c502c562aacb'}
+2023-09-07 21:35:43 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.konga.com/product/samsung-samsung-galaxy-z-fold-5-7-6-1tb-rom-12gb-ram-5g-4400mah-black-6230348> (referer: https://www.konga.com/)
+2023-09-07 21:35:43 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/infinix-hot-30-play-x6835b-4g-6-82-hd-90hz-display-8gb-128gb-16mp-ai-8mp-6000mah-white-6083658>
+{'alt_text': 'Product image thumbnail.',
+ 'caption': 'Product image thumbnail.',
+ 'image_url': 'https://www-konga-com-res.cloudinary.com/w_auto,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/F/S/118566_1681808334.jpg',
+ 'order': 2,
+ 'product': '8b053b3d-de7e-4693-8c0c-38dd22c12699'}
+2023-09-07 21:35:43 [root] DEBUG: [Product.8b053b3d-de7e-4693-8c0c-38dd22c12699]({'name': 'Infinix HOT 30 PLAY X6835B 4G -6.82" HD+90Hz DISPLAY- 8GB+128GB- 16MP AI+ 8MP- 6000mAh- WHITE', 'price': Decimal('110400.00'), 'id': '8b053b3d-de7e-4693-8c0c-38dd22c12699', 'updated_at': '2023-09-07T21:35:43', 'description': 'NETWORK\n\nBODY\n\n164 x 75.8 x 8.4 mm (6.46 x 2.98 x 0.33 in)\n\n191 g (6.74 oz)\n\nGlass front, plastic frame, plastic back\n\nDual SIM (Nano-SIM, dual stand-by)\n\nDISPLAY\n\nIPS LCD, 90Hz, 500 nits (peak)\n\n6.56 inches, 103.4 cm\xa0(~83.2what brand idcreen-to-body ratio)\n\n720 x 1612 pixels, 20:9 ratio (~269 ppi density)\n\nPLATFORM\n\nAndroid 12, XOS 10.6\n\nUnisoc T606 (12 nm)\n\nOcta-core (2x1.6 GHz Cortex-A75 & 6x1.6 GHz Cortex-A55)\n\nMali-G57 MP1\n\nMEMORY\n\nmicroSDXC (dedicated slot)\n\n128GB 4GB RAM\n\nUFS 2.2\n\nMAIN CAMERA\n\n13 MP, f/1.9, (wide), AF Secondary unspecified camera\n\nDual-LED flash, HDR, panorama\n\n1080p@30fps\n\nSELFIE CAMERA\n\n8 MP, f/2.0, (wide)\n\nDual-LED flash\n\n1080p@30fps\n\nSOUND\n\nYes\n\nYes\n\nCOMMS\n\nWi-Fi 802.11 a/b/g/n/ac, dual-band\n\nYes\n\nGPS\n\nYes (Hot 30i NFC only)\n\nFM radio\n\nUSB Type-C 2.0, OTG\n\nFEATURES\n\nFingerprint (side-mounted), accelerometer, proximity, compass\n\nBATTERY\n\nLi-Po 5000 mAh, non-removable\n\n18W wired\n\nMISC\n\nMirror Black, Glacier Blue, Diamond White, Marigold\n\nX669', 'brand_id': None, 'created_at': '2023-09-07T21:35:43', '__class__': 'Product'})
+2023-09-07 21:35:43 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/infinix-hot-30-play-x6835b-4g-6-82-hd-90hz-display-8gb-128gb-16mp-ai-8mp-6000mah-white-6083658>
+{'id': '6d6d61e4-a25a-44a3-850d-7d04a6171e6c',
+ 'name': 'infinix',
+ 'product': '8b053b3d-de7e-4693-8c0c-38dd22c12699'}
+2023-09-07 21:35:43 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/infinix-infinix-zero-ultra-x6820-6-8-256gb-rom-8gb-ram-4500mah-genesis-noir-6083656>
+{'alt_text': 'Product image thumbnail.',
+ 'caption': 'Product image thumbnail.',
+ 'image_url': 'https://www-konga-com-res.cloudinary.com/w_auto,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/D/W/118566_1682059502.jpg',
+ 'order': 2,
+ 'product': 'e920443e-18ce-4f89-a59d-ac3397927360'}
+2023-09-07 21:35:43 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/vivo-vivo-y02-6-51-32gb-rom-2gb-ram-4g-5000mah-gray-6076266>
+{'id': '044921ae-709b-40bc-8a3b-fe5c6cdc3272',
+ 'name': 'vivo',
+ 'product': '4a0c924c-c506-4387-8daf-c502c562aacb'}
+2023-09-07 21:35:43 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/infinix-hot-30-play-x6835b-4g-6-82-hd-90hz-display-8gb-128gb-16mp-ai-8mp-6000mah-white-6083658>
+{'id': '1b9a7543-6c89-4b15-a870-bbc8aaf024b1',
+ 'name': 'phones and tablets',
+ 'product_id': '8b053b3d-de7e-4693-8c0c-38dd22c12699'}
+--- Logging error ---
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/logging/__init__.py", line 1085, in emit
+    msg = self.format(record)
+  File "/usr/lib/python3.8/logging/__init__.py", line 929, in format
+    return fmt.format(record)
+  File "/usr/lib/python3.8/logging/__init__.py", line 668, in format
+    record.message = record.getMessage()
+  File "/usr/lib/python3.8/logging/__init__.py", line 373, in getMessage
+    msg = msg % self.args
+TypeError: not all arguments converted during string formatting
+Call stack:
+  File "/home/vagrant/cheaper_phone/backend/venv/bin/scrapy", line 8, in <module>
+    sys.exit(execute())
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/scrapy/cmdline.py", line 161, in execute
+    _run_print_help(parser, _run_command, cmd, args, opts)
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/scrapy/cmdline.py", line 114, in _run_print_help
+    func(*a, **kw)
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/scrapy/cmdline.py", line 169, in _run_command
+    cmd.run(args, opts)
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/scrapy/commands/crawl.py", line 30, in run
+    self.crawler_process.start()
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/scrapy/crawler.py", line 397, in start
+    reactor.run(installSignalHandlers=False)  # blocking call
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/twisted/internet/asyncioreactor.py", line 255, in run
+    self._asyncioEventloop.run_forever()
+  File "/usr/lib/python3.8/asyncio/base_events.py", line 570, in run_forever
+    self._run_once()
+  File "/usr/lib/python3.8/asyncio/base_events.py", line 1859, in _run_once
+    handle._run()
+  File "/usr/lib/python3.8/asyncio/events.py", line 81, in _run
+    self._context.run(self._callback, *self._args)
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/twisted/internet/asyncioreactor.py", line 271, in _onTimer
+    self.runUntilCurrent()
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/twisted/internet/base.py", line 994, in runUntilCurrent
+    call.func(*call.args, **call.kw)
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/twisted/internet/task.py", line 680, in _tick
+    taskObj._oneWorkUnit()
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/twisted/internet/task.py", line 526, in _oneWorkUnit
+    result = next(self._iterator)
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/scrapy/utils/defer.py", line 98, in <genexpr>
+    work = (callable(elem, *args, **named) for elem in iterable)
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/scrapy/core/scraper.py", line 295, in _process_spidermw_output
+    dfd = self.itemproc.process_item(output, spider)
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/scrapy/pipelines/__init__.py", line 31, in process_item
+    return self._process_chain("process_item", item, spider)
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/scrapy/middleware.py", line 81, in _process_chain
+    return process_chain(methods, obj, *args)
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/scrapy/utils/defer.py", line 227, in process_chain
+    d.callback(input)
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/twisted/internet/defer.py", line 696, in callback
+    self._startRunCallbacks(result)
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/twisted/internet/defer.py", line 798, in _startRunCallbacks
+    self._runCallbacks()
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/twisted/internet/defer.py", line 892, in _runCallbacks
+    current.result = callback(  # type: ignore[misc]
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/scrapy/utils/defer.py", line 324, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+  File "/home/vagrant/cheaper_phone/backend/ecommerce_scrape/ecommerce_scrape/pipelines.py", line 109, in process_item
+    logging.debug(product, "what brand id")
+Message: <models.products.Product object at 0x7f4e37c69c40>
+Arguments: ('what brand id',)
+2023-09-07 21:35:43 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/infinix-infinix-zero-ultra-x6820-6-8-256gb-rom-8gb-ram-4500mah-genesis-noir-6083656>
+{'id': 'e190e461-50cc-4039-9861-419ac8b3d686',
+ 'name': 'infinix',
+ 'product': 'e920443e-18ce-4f89-a59d-ac3397927360'}
+2023-09-07 21:35:43 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/vivo-vivo-y02-6-51-32gb-rom-2gb-ram-4g-5000mah-gray-6076266>
+{'id': 'e656785f-3239-43c5-bcbe-f46e14a013c3',
+ 'name': 'phones and tablets',
+ 'product_id': '4a0c924c-c506-4387-8daf-c502c562aacb'}
+2023-09-07 21:35:43 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/samsung-samsung-galaxy-s21-fe-5g-6-4-amoled-256gb-rom-8gb-ram-dual-sim-4500mah-lavender-5579863>
+{'description': 'Network\n'
+                '\n'
+                'SIM: Nano SIM\n'
+                '\n'
+                'Dual SIM: Single SIM (Nano-SIM and/or eSIM) or Hybrid Dual '
+                'SIM (Nano-SIM, dual stand-by)\n'
+                '\n'
+                'Connectivity\n'
+                '\n'
+                'Wi-fi: Wi-Fi 802.11 a/b/g/n/ac/6, dual-band, Wi-Fi Direct, '
+                'hotspot\n'
+                '\n'
+                'USB: USB Type-C 3.2, USB On-The-Go\n'
+                '\n'
+                'GPS: Yes, with A-GPS, GLONASS, BDS, GALILEO\n'
+                '\n'
+                'NFC: Yes\n'
+                '\n'
+                'Wireless Charging: Yes\n'
+                '\n'
+                'Headphone Jack: No\n'
+                '\n'
+                'Design\n'
+                '\n'
+                'Type: Bar\n'
+                '\n'
+                'Dimensions: 161.5 x 75.6 x 7.8 mm\n'
+                '\n'
+                'Weight: 200 Grams\n'
+                '\n'
+                'Waterproof: IP68 dust/water resistant (up to 1.5m for 30 '
+                'mins)\n'
+                '\n'
+                'Display\n'
+                '\n'
+                'Display Type: Dynamic AMOLED 2X\n'
+                '\n'
+                'Size: 6.4 inches\n'
+                '\n'
+                'Resolution: 1080 x 2400 pixels\n'
+                '\n'
+                'Display Colors: 16M\n'
+                '\n'
+                'Pixel Density: 394 PPI (pixels per inch)\n'
+                '\n'
+                'Touch Screen: Yes\n'
+                '\n'
+                'Display Protection: Corning Gorilla Glass Victus\n'
+                '\n'
+                'Features: Always-on display\n'
+                '\n'
+                'Hardware\n'
+                '\n'
+                'CPU: Octa-core (1x2.9 GHz Cortex-X1 & 3x2.80 GHz Cortex-A78 & '
+                '4x2.2 GHz Cortex-A55) - International / Octa-core (1x2.84 GHz '
+                'Kryo 680 & 3x2.42 GHz Kryo 680 & 4x1.80 GHz Kryo 680 - '
+                'USA/China\n'
+                '\n'
+                'GPU: Mali-G78 MP14 - International / Adreno 660 - USA/China\n'
+                '\n'
+                'RAM (Memory): 8 GB\n'
+                '\n'
+                'Internal Storage: 256 GB\n'
+                '\n'
+                'Memory Card Slot: No\n'
+                '\n'
+                'Sensors:\n'
+                'Fingerprint (under display, ultrasonic), accelerometer, gyro, '
+                'proximity, compass, barometer Samsung DeX, Samsung Wireless '
+                'DeX (desktop experience support) ANT+ Bixby natural language '
+                'commands and dictation Samsung Pay (Visa, MasterCard '
+                'certified) Ultra Wideband (UWB) support\n'
+                '\n'
+                'Software\n'
+                '\n'
+                'Operating System: Android 11 + One UI 3.1\n'
+                '\n'
+                'User Interface: Yes\n'
+                '\n'
+                'Camera\n'
+                '\n'
+                'Rear Camera: 12 MP (wide) + 64 MP (periscope telephoto) 1.1x '
+                'optical zoom, 3x hybrid zoom + 12 MP (ultrawide) Super Steady '
+                'video.\n'
+                '\n'
+                'Image: 4320p\n'
+                '\n'
+                'Video: 8K@24fps,\xa04K@30/60fps,\xa01080p@30/60/240fps,\xa0'
+                '720p@960fps, HDR10+, stereo sound rec., gyro-EIS\n'
+                '\n'
+                'Flash: LED flash, auto-HDR, panorama\n'
+                '\n'
+                'Front Camera: 10 MP (wide)\n'
+                '\n'
+                'Battery\n'
+                '\n'
+                'Capacity: Li-Po 4500 mAh + Fast charging 25W, 50% in 30 min '
+                '(advertised) + Fast wireless charging 15W + Reverse wireless '
+                'charging + USB Power Delivery 3.0\n'
+                '\n'
+                'Placement: Non-removable\n'
+                '\n'
+                'Media\n'
+                '\n'
+                'Video Playback: Yes\n'
+                '\n'
+                'Video Out: Yes\n'
+                '\n'
+                'FM Radio: Unspecified\n'
+                '\n'
+                'Ring Tones: Yes\n'
+                '\n'
+                'Loudspeaker: Yes\n'
+                '\n'
+                'Handsfree: Yes\n'
+                '\n'
+                'Data\n'
+                '\n'
+                '4G LTE: LTE\n'
+                '\n'
+                '5G NR Bands: SA/NSA/Sub6\n'
+                '\n'
+                'Speed: HSPA 42.2/5.76 Mbps, LTE-A (CA), 5G',
+ 'id': '8c15397c-1cb5-477f-a2f6-802aa6c3e1b4',
+ 'name': 'Samsung Galaxy S21 FE 5G - 6.4" Amoled - 256GB ROM - 8GB RAM - Dual '
+         'Sim - 4500mAh - Lavender',
+ 'price': 401130.0}
+2023-09-07 21:35:43 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/tecno-tecno-t529-gold-5645114>
+{'description': 'Model: T529\n'
+                'Operating system: Nucleus Os\n'
+                'Processor:MT6260A\n'
+                'Network: GSM\n'
+                'Band : GSM:900/1800mHz\n'
+                'Display : 2.8 LCD screen\n'
+                'Dimension: 139*59*14.1mm\n'
+                'Camera:0.08MP back camera with flash\n'
+                'Memory:16mb ROM+8mb RAM expandable micro SD card support up '
+                '32gb(sold separately)\n'
+                'Connectivity: FM radio BT\n'
+                'Resolution :240*320\n'
+                'Dimension : 139*59*14.1mm\n'
+                'Battery capacity:2500mAh\n'
+                'Lets chat\n'
+                'Opera mini\n'
+                'Voice message\n'
+                'Dual Sim',
+ 'id': '1d8998da-35a0-46d7-af8b-b365938a176f',
+ 'name': 'Tecno T529 - Gold',
+ 'price': 18200.0}
+2023-09-07 21:35:43 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.konga.com/product/infinix-hot-t20i-x665e-6-6-4gb-ram-64gb-rom-dual-sim-5000mah-gold-5944392> (referer: https://www.konga.com/)
+2023-09-07 21:35:43 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.konga.com/product/samsung-samsung-galaxy-z-fold-5-7-6-256gb-rom-12gb-ram-5g-4400mah-icy-blue-6210615> (referer: https://www.konga.com/)
+2023-09-07 21:35:43 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.konga.com/product/nokia-nokia-105-africa-edition-dual-sim-4mb-rom-4mb-ram-800mah-blue-5634231> (referer: https://www.konga.com/)
+2023-09-07 21:35:43 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/infinix-infinix-zero-ultra-x6820-6-8-256gb-rom-8gb-ram-4500mah-genesis-noir-6083656>
+{'id': '2f900d48-28ac-4b36-950f-4025c37e12e1',
+ 'name': 'phones and tablets',
+ 'product_id': 'e920443e-18ce-4f89-a59d-ac3397927360'}
+2023-09-07 21:35:43 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/samsung-samsung-galaxy-s21-fe-5g-6-4-amoled-256gb-rom-8gb-ram-dual-sim-4500mah-lavender-5579863>
+{'id': 'e692fda9-2b9b-4da2-9c1d-d8a6438ffd74',
+ 'name': 'samsung',
+ 'product': '8c15397c-1cb5-477f-a2f6-802aa6c3e1b4'}
+2023-09-07 21:35:43 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/tecno-tecno-t529-gold-5645114>
+{'alt_text': 'Product image thumbnail.',
+ 'caption': 'Product image thumbnail.',
+ 'image_url': 'https://www-konga-com-res.cloudinary.com/w_auto,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/N/F/118566_1645698434.jpg',
+ 'order': 0,
+ 'product': '1d8998da-35a0-46d7-af8b-b365938a176f'}
+2023-09-07 21:35:43 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/samsung-samsung-galaxy-s21-fe-5g-6-4-amoled-256gb-rom-8gb-ram-dual-sim-4500mah-lavender-5579863>
+{'id': '9af466b2-62bb-4178-be9b-3fb80c530b85',
+ 'name': 'phones and tablets',
+ 'product_id': '8c15397c-1cb5-477f-a2f6-802aa6c3e1b4'}
+2023-09-07 21:35:43 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/tecno-tecno-t529-gold-5645114>
+{'alt_text': 'Product image thumbnail.',
+ 'caption': 'Product image thumbnail.',
+ 'image_url': 'https://www-konga-com-res.cloudinary.com/w_auto,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/E/E/118566_1645698505.jpg',
+ 'order': 1,
+ 'product': '1d8998da-35a0-46d7-af8b-b365938a176f'}
+2023-09-07 21:35:43 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/tecno-tecno-t529-gold-5645114>
+{'alt_text': 'Product image thumbnail.',
+ 'caption': 'Product image thumbnail.',
+ 'image_url': 'https://www-konga-com-res.cloudinary.com/w_auto,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/J/G/118566_1645698516.jpg',
+ 'order': 2,
+ 'product': '1d8998da-35a0-46d7-af8b-b365938a176f'}
+2023-09-07 21:35:44 [scrapy.crawler] INFO: Received SIGINT, shutting down gracefully. Send again to force 
+2023-09-07 21:35:44 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/samsung-samsung-galaxy-z-fold-5-7-6-1tb-rom-12gb-ram-5g-4400mah-black-6230348>
+{'description': 'NETWORK Technology\n'
+                'GSM / CDMA / HSPA / EVDO / LTE / 5G\n'
+                'BODY\n'
+                'Dimensions Unfolded: 154.9 x 129.9 x 6.1 mm Folded: 154.9 x '
+                '67.1 x 13.4 mm Weight 253 g (8.92 oz) Build Glass front '
+                '(Gorilla Glass Victus 2) (folded), plastic front (unfolded), '
+                'glass back (Gorilla Glass Victus 2), aluminum frame SIM '
+                'Nano-SIM and eSIM or Dual SIM (2 Nano-SIMs and eSIM, dual '
+                'stand-by) IPX8 water resistant (up to 1.5m for 30 min) Armor '
+                'aluminum frame with tougher drop and scratch resistance '
+                '(advertised) Stylus support\n'
+                'DISPLAY\n'
+                'Type Foldable Dynamic AMOLED 2X, 120Hz, HDR10+ Size 7.6 '
+                'inches, 183.2 cm2 (~91.1% screen-to-body ratio) Resolution '
+                '1812 x 2176 pixels (~373 ppi density) Cover display: Dynamic '
+                'AMOLED 2X, 120Hz, Corning Gorilla Glass Victus 2 6.2 inches, '
+                '904 x 2316 pixels, 23.1:9 ratio\n'
+                'PLATFORM\n'
+                'OS Android 13, One UI 5.1.1 Chipset Qualcomm SM8550-AC '
+                'Snapdragon 8 Gen 2 (4 nm) CPU Octa-core (1x3.36 GHz Cortex-X3 '
+                '& 2x2.8 GHz Cortex-A715 & 2x2.8 GHz Cortex-A710 & 3x2.0 GHz '
+                'Cortex-A510) GPU Adreno 740\n'
+                'MEMORY\n'
+                'Card slot No Internal 1TB 12GB RAM UFS 4.0\n'
+                'MAIN CAMERA\n'
+                'Triple 50 MP, f/1.8, 23mm (wide), 1.0µm, Dual Pixel PDAF, OIS '
+                '10 MP, f/2.4, (telephoto), PDAF, OIS, 3x optical zoom 12 MP, '
+                'f/2.2, 123, 12mm (ultrawide), 1.12µm Features LED flash, HDR, '
+                'panorama Video 8K@24fps, 4K@60fps, 1080p@60/240fps '
+                '(gyro-EIS), 720p@960fps (gyro-EIS), HDR10+\n'
+                'SELFIE CAMERA\n'
+                'Single 4 MP, f/1.8, 26mm (wide), 2.0µm, under display Cover '
+                'camera: 10 MP, f/2.2, 24mm (wide), 1/3", 1.22µm Features HDR '
+                'Video 4K@30/60fps, 1080p@30/60fps, gyro-EIS\n'
+                'SOUND\n'
+                'Loudspeaker Yes, with stereo speakers 3.5mm jack No '
+                '32-bit/384kHz audio Tuned by AKG COMMS WLAN Wi-Fi 802.11 '
+                'a/b/g/n/ac/6e/7, tri-band, Wi-Fi Direct Bluetooth 5.3, A2DP, '
+                'LE, aptX HD Positioning GPS, GLONASS, GALILEO, BDS NFC Yes '
+                'Radio No USB USB Type-C 3.2, OTG\n'
+                'FEATURES\n'
+                'Sensors Fingerprint (side-mounted), accelerometer, gyro, '
+                'proximity, compass, barometer Bixby natural language commands '
+                'and dictation Samsung DeX (desktop experience support) '
+                'Samsung Pay (Visa, MasterCard certified) Ultra Wideband (UWB) '
+                'support\n'
+                'BATTERY\n'
+                'Type Li-Po 4400 mAh, non-removable Charging 25W wired, 50% in '
+                '30 min (advertised) 15W wireless 4.5W reverse wireless',
+ 'id': '6a55ad4c-0f5e-43e7-8383-70c069fb968f',
+ 'name': 'Samsung Galaxy Z Fold 5 - 7.6" - 1TB Rom - 12GB Ram - 5G - 4400mAh - '
+         'Black',
+ 'price': 1856000.0}
+2023-09-07 21:35:44 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/tecno-tecno-t529-gold-5645114>
+{'id': 'c9a6c283-0512-4a9a-b46e-d645bb1a640b',
+ 'name': 'tecno',
+ 'product': '1d8998da-35a0-46d7-af8b-b365938a176f'}
+2023-09-07 21:35:44 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/samsung-samsung-galaxy-z-fold-5-7-6-1tb-rom-12gb-ram-5g-4400mah-black-6230348>
+{'alt_text': 'Product image thumbnail.',
+ 'caption': 'Product image thumbnail.',
+ 'image_url': 'https://www-konga-com-res.cloudinary.com/w_auto,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/A/S/118566_1692006658.png',
+ 'order': 0,
+ 'product': '6a55ad4c-0f5e-43e7-8383-70c069fb968f'}
+2023-09-07 21:35:44 [scrapy.core.engine] INFO: Closing spider (shutdown)
+2023-09-07 21:35:44 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.konga.com/product/xiaomi-xiaomi-redmi-12-6-79-8gb-ram-256gb-rom-4g-lte-dual-sim-5000mah-silver-6196847> (referer: https://www.konga.com/)
+2023-09-07 21:35:44 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/tecno-tecno-t529-gold-5645114>
+{'id': '47d6cf91-8ca2-4d4f-b03a-21eebae92c07',
+ 'name': 'phones and tablets',
+ 'product_id': '1d8998da-35a0-46d7-af8b-b365938a176f'}
+2023-09-07 21:35:44 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/samsung-samsung-galaxy-z-fold-5-7-6-1tb-rom-12gb-ram-5g-4400mah-black-6230348>
+{'alt_text': 'Product image thumbnail.',
+ 'caption': 'Product image thumbnail.',
+ 'image_url': 'https://www-konga-com-res.cloudinary.com/w_auto,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/B/C/118566_1692006674.png',
+ 'order': 1,
+ 'product': '6a55ad4c-0f5e-43e7-8383-70c069fb968f'}
+2023-09-07 21:35:44 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/infinix-hot-t20i-x665e-6-6-4gb-ram-64gb-rom-dual-sim-5000mah-gold-5944392>
+{'description': 'NETWORK\n'
+                'Technology GSM / HSPA / LTE\n'
+                'BODY\n'
+                'Dimensions 164.8 x 76.4 x 8.8 mm (6.49 x 3.01 x 0.35 in) '
+                'Weight 195 g (6.88 oz) Build Glass front, plastic back, '
+                'plastic frame\n'
+                'SIM\n'
+                'Dual SIM (Nano-SIM, dual stand-by)\n'
+                'DISPLAY\n'
+                'Type IPS LCD, 500 nits (peak) Size 6.6 inches, 104.6 cm2 '
+                '(~83.1% screen-to-body ratio) Resolution 720 x 1612 pixels, '
+                '20:9 ratio (~267 ppi density)\n'
+                'PLATFORM\n'
+                'OS Android 12 or Android 12 (Go edition), XOS 10.6 Chipset '
+                'MediaTek MT6762G Helio G25 (12 nm) / Mediatek MT6761 Helio '
+                'A22 (12 nm) CPU Octa-core (4x2.0 GHz Cortex-A53 & 4x1.5 GHz '
+                'Cortex-A53) / Quad-core 2.0 GHz Cortex-A53 GPU PowerVR '
+                'GE8320\n'
+                'MEMORY\n'
+                'Card slot microSDXC (dedicated slot) Internal 64GB 4GB\n'
+                'MAIN CAMERA\n'
+                'Triple 13 MP, f/1.8, (wide), AF QVGA QVGA Features Dual-LED '
+                'flash Video 1080p@30fps\n'
+                'SELFIE CAMERA\n'
+                'Single 8 MP Features LED flash Video 1080p@30fps\n'
+                'SOUND\n'
+                'Loudspeaker Yes 3.5mm jack Yes COMMS WLAN Wi-Fi 802.11 '
+                'a/b/g/n/ac, dual-band\n'
+                'Bluetooth Yes Positioning GPS NFC No Radio FM radio USB '
+                'microUSB 2.0, USB On-The-Go\n'
+                'FEATURES\n'
+                'Sensors Fingerprint (rear-mounted), accelerometer, proximity\n'
+                'BATTERY\n'
+                'Type Li-Ion 5000 mAh, non-removable Charging 10W wired 5W '
+                'reverse wired Model\n'
+                'X665E',
+ 'id': '88fdd519-a06f-4612-bd37-06984039a58d',
+ 'name': 'Infinix Hot T20i X665E - 6.6" - 4GB Ram - 64GB Rom- Dual Sim - '
+         '5000mAh - Gold',
+ 'price': 84700.0}
+2023-09-07 21:35:44 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/samsung-samsung-galaxy-z-fold-5-7-6-256gb-rom-12gb-ram-5g-4400mah-icy-blue-6210615>
+{'description': 'NETWORK Technology\n'
+                'GSM / CDMA / HSPA / EVDO / LTE / 5G\n'
+                'BODY\n'
+                'Dimensions Unfolded: 154.9 x 129.9 x 6.1 mm Folded: 154.9 x '
+                '67.1 x 13.4 mm Weight 253 g (8.92 oz) Build Glass front '
+                '(Gorilla Glass Victus 2) (folded), plastic front (unfolded), '
+                'glass back (Gorilla Glass Victus 2), aluminum frame SIM '
+                'Nano-SIM and eSIM or Dual SIM (2 Nano-SIMs and eSIM, dual '
+                'stand-by) IPX8 water resistant (up to 1.5m for 30 min) Armor '
+                'aluminum frame with tougher drop and scratch resistance '
+                '(advertised) Stylus support\n'
+                'DISPLAY\n'
+                'Type Foldable Dynamic AMOLED 2X, 120Hz, HDR10+ Size 7.6 '
+                'inches, 183.2 cm2 (~91.1% screen-to-body ratio) Resolution '
+                '1812 x 2176 pixels (~373 ppi density) Cover display: Dynamic '
+                'AMOLED 2X, 120Hz, Corning Gorilla Glass Victus 2 6.2 inches, '
+                '904 x 2316 pixels, 23.1:9 ratio\n'
+                'PLATFORM\n'
+                'OS Android 13, One UI 5.1.1 Chipset Qualcomm SM8550-AC '
+                'Snapdragon 8 Gen 2 (4 nm) CPU Octa-core (1x3.36 GHz Cortex-X3 '
+                '& 2x2.8 GHz Cortex-A715 & 2x2.8 GHz Cortex-A710 & 3x2.0 GHz '
+                'Cortex-A510) GPU Adreno 740\n'
+                'MEMORY\n'
+                'Card slot No Internal\xa0256gb\xa012GB RAM UFS 4.0\n'
+                'MAIN CAMERA\n'
+                'Triple 50 MP, f/1.8, 23mm (wide), 1.0µm, Dual Pixel PDAF, OIS '
+                '10 MP, f/2.4, (telephoto), PDAF, OIS, 3x optical zoom 12 MP, '
+                'f/2.2, 123, 12mm (ultrawide), 1.12µm Features LED flash, HDR, '
+                'panorama Video 8K@24fps, 4K@60fps, 1080p@60/240fps '
+                '(gyro-EIS), 720p@960fps (gyro-EIS), HDR10+\n'
+                'SELFIE CAMERA\n'
+                'Single 4 MP, f/1.8, 26mm (wide), 2.0µm, under display Cover '
+                'camera: 10 MP, f/2.2, 24mm (wide), 1/3", 1.22µm Features HDR '
+                'Video 4K@30/60fps, 1080p@30/60fps, gyro-EIS\n'
+                'SOUND\n'
+                'Loudspeaker Yes, with stereo speakers 3.5mm jack No '
+                '32-bit/384kHz audio Tuned by AKG COMMS WLAN Wi-Fi 802.11 '
+                'a/b/g/n/ac/6e/7, tri-band, Wi-Fi Direct Bluetooth 5.3, A2DP, '
+                'LE, aptX HD Positioning GPS, GLONASS, GALILEO, BDS NFC Yes '
+                'Radio No USB USB Type-C 3.2, OTG\n'
+                'FEATURES\n'
+                'Sensors Fingerprint (side-mounted), accelerometer, gyro, '
+                'proximity, compass, barometer Bixby natural language commands '
+                'and dictation Samsung DeX (desktop experience support) '
+                'Samsung Pay (Visa, MasterCard certified) Ultra Wideband (UWB) '
+                'support\n'
+                'BATTERY\n'
+                'Type Li-Po 4400 mAh, non-removable Charging 25W wired, 50% in '
+                '30 min (advertised) 15W wireless 4.5W reverse wireless MISC '
+                'Colors Icy Blue',
+ 'id': '21bcd520-63f5-46ce-b863-bfd4a1627c18',
+ 'name': 'Samsung Galaxy Z Fold 5 - 7.6" - 256GB Rom - 12GB Ram - 5G - 4400mAh '
+         '- Icy Blue',
+ 'price': 1616000.0}
+2023-09-07 21:35:44 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/nokia-nokia-105-africa-edition-dual-sim-4mb-rom-4mb-ram-800mah-blue-5634231>
+{'description': 'Nokia 105 Africa Edition A durable phone to help you stay in '
+                'touch and stay entertained.\n'
+                'Discover the phone that’s built to be loved – with a molded '
+                'design that’s scratch and bump resistant and available in a '
+                'range of colors. An FM wireless radio lets you listen on the '
+                'move, and the all-day battery life¹ will let you talk for '
+                'hours.\n'
+                'A built-in torch will ensure you never get caught in the '
+                'dark, and there’s enough storage capacity for 2,000 contacts '
+                'and 500 SMS. Plus, 10 preloaded games – including classic '
+                'Snake – will keep you entertained.\n'
+                'Stay tuned: FM wireless radio for listening on the move Super '
+                'storage: Capacity for 2000 contacts and 500 SMS Everyday '
+                'essentials: Built-in torch and an all-day battery Classic '
+                'games: 10 pre-loaded games, including Snake A radio in your '
+                'pocket Whatever you like to listen to, an FM wireless radio '
+                'will give you the freedom to tune-in to music, sport, news '
+                'and broadcasts, wherever, whenever.\n'
+                'Battery life\n'
+                'Single charge. Plenty of talking. We all love to chat with '
+                'friends and family. That’s why Nokia 105 comes with a battery '
+                'that lets you talk for hours, on a single charge – and when '
+                'you need to recharge, there’s a handy Micro USB charger.\n'
+                'Color and contour\n'
+                'Vibrant colors, robust design The Nokia 105 is molded to fit '
+                'snugly in your hand. It’s robust too, and comes in a range of '
+                'X vibrant colors: X, Y, and Z.\n'
+                'Let’s play Who said a phone was just for staying in touch? '
+                'Unwind in style with 10 classic pre-loaded games, and let the '
+                'fun begin.\n'
+                'Built-in torch\n'
+                'Light the way Shine on with a handy built-in torch – you’ll '
+                'never get caught in the dark again.\n'
+                '\n'
+                'Colors: Charcoal, Blue\n'
+                'Display Size: 1.77 inch Resolution: QQVGA\n'
+                'Performance Approximate standby time (Dual SIM, GSM): 18 days '
+                'Approximate standby time (Single SIM, GSM): 18 days '
+                'Approximate talk time (Dual SIM, GSM): 12 h Approximate talk '
+                'time (Single SIM, GSM): 12 h\n'
+                'Connectivity Headphone jack: 3.5 mm USB connection: Micro USB '
+                '(USB 1.1)\n'
+                'Battery & charging Battery: 800 mAh, Removable Battery life: '
+                'Standby time up to 18 days/ Talk time up to 12 hours '
+                'Charging: Micro-USB (USB 1.1)\n'
+                'Memory & storage Internal storage: 4 MB RAM: 4 MB\n'
+                'Platform CPU: Unisoc 6531E\n'
+                'Operating System Operating System: S30+\n'
+                'Audio Features: FM Wireless Radio (Can listen with or without '
+                'a headset)\n'
+                'Networks Max network speed: 2G Network bands (GSM): 900/1800 '
+                '(EU) Sim size: 2FF (Mini SIM)\n'
+                'Materials Back: Polycarbonate\n'
+                'Dimensions Height: 14.3 mm Length: 115.2 mm Weight: 70 g '
+                'Width: 49.9 mm\n'
+                'In the box User Guide Micro USB Charger',
+ 'id': '52fb244d-79c0-4e06-be29-2a276c00ffe2',
+ 'name': 'Nokia 105 Africa Edition - Dual Sim - 4MB Rom - 4MB Ram - 800mAh - '
+         'Blue',
+ 'price': 8680.0}
+2023-09-07 21:35:44 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.konga.com/product/tecno-t372-gold-triple-sim-2-4-oy-screen-4mb-rom-4mb-ram-4626382> (referer: https://www.konga.com/)
+2023-09-07 21:35:44 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.konga.com/product/nokia-nokia-105-africa-edition-dual-sim-4mb-rom-4mb-ram-800mah-charcoal-5634220> (referer: https://www.konga.com/)
+2023-09-07 21:35:44 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.konga.com/product/samsung-samsung-galaxy-a24-6-5-lte-6gb-ram-128gb-rom-5000mah-lime-green-6112320> (referer: https://www.konga.com/)
+2023-09-07 21:35:44 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/samsung-samsung-galaxy-z-fold-5-7-6-1tb-rom-12gb-ram-5g-4400mah-black-6230348>
+{'alt_text': 'Product image thumbnail.',
+ 'caption': 'Product image thumbnail.',
+ 'image_url': 'https://www-konga-com-res.cloudinary.com/w_auto,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/G/M/118566_1692007128.png',
+ 'order': 2,
+ 'product': '6a55ad4c-0f5e-43e7-8383-70c069fb968f'}
+2023-09-07 21:35:44 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/infinix-hot-t20i-x665e-6-6-4gb-ram-64gb-rom-dual-sim-5000mah-gold-5944392>
+{'alt_text': 'Product image thumbnail.',
+ 'caption': 'Product image thumbnail.',
+ 'image_url': 'https://www-konga-com-res.cloudinary.com/w_auto,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/O/U/118566_1669278538.jpg',
+ 'order': 0,
+ 'product': '88fdd519-a06f-4612-bd37-06984039a58d'}
+2023-09-07 21:35:44 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/samsung-samsung-galaxy-z-fold-5-7-6-256gb-rom-12gb-ram-5g-4400mah-icy-blue-6210615>
+{'alt_text': 'Product image thumbnail.',
+ 'caption': 'Product image thumbnail.',
+ 'image_url': 'https://www-konga-com-res.cloudinary.com/w_auto,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/E/U/118566_1690386876.jpg',
+ 'order': 0,
+ 'product': '21bcd520-63f5-46ce-b863-bfd4a1627c18'}
+2023-09-07 21:35:44 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/nokia-nokia-105-africa-edition-dual-sim-4mb-rom-4mb-ram-800mah-blue-5634231>
+{'id': 'f149cfb6-cc40-4ab3-8101-61826eecda14',
+ 'name': 'nokia',
+ 'product': '52fb244d-79c0-4e06-be29-2a276c00ffe2'}
+2023-09-07 21:35:44 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.konga.com/product/infinix-infinix-smart-7-hd-6-6-hd-x6516-2-2gb-ram-64gb-rom-8mp-ai-5mp-5000mah-black-6057086> (referer: https://www.konga.com/)
+--- Logging error ---
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/logging/__init__.py", line 1085, in emit
+    msg = self.format(record)
+  File "/usr/lib/python3.8/logging/__init__.py", line 929, in format
+    return fmt.format(record)
+  File "/usr/lib/python3.8/logging/__init__.py", line 668, in format
+    record.message = record.getMessage()
+  File "/usr/lib/python3.8/logging/__init__.py", line 373, in getMessage
+    msg = msg % self.args
+TypeError: not enough arguments for format string
+Call stack:
+  File "/home/vagrant/cheaper_phone/backend/venv/bin/scrapy", line 8, in <module>
+    sys.exit(execute())
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/scrapy/cmdline.py", line 161, in execute
+    _run_print_help(parser, _run_command, cmd, args, opts)
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/scrapy/cmdline.py", line 114, in _run_print_help
+    func(*a, **kw)
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/scrapy/cmdline.py", line 169, in _run_command
+    cmd.run(args, opts)
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/scrapy/commands/crawl.py", line 30, in run
+    self.crawler_process.start()
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/scrapy/crawler.py", line 397, in start
+    reactor.run(installSignalHandlers=False)  # blocking call
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/twisted/internet/asyncioreactor.py", line 255, in run
+    self._asyncioEventloop.run_forever()
+  File "/usr/lib/python3.8/asyncio/base_events.py", line 570, in run_forever
+    self._run_once()
+  File "/usr/lib/python3.8/asyncio/base_events.py", line 1859, in _run_once
+    handle._run()
+  File "/usr/lib/python3.8/asyncio/events.py", line 81, in _run
+    self._context.run(self._callback, *self._args)
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/twisted/internet/asyncioreactor.py", line 271, in _onTimer
+    self.runUntilCurrent()
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/twisted/internet/base.py", line 994, in runUntilCurrent
+    call.func(*call.args, **call.kw)
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/twisted/internet/task.py", line 680, in _tick
+    taskObj._oneWorkUnit()
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/twisted/internet/task.py", line 526, in _oneWorkUnit
+    result = next(self._iterator)
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/scrapy/utils/defer.py", line 98, in <genexpr>
+    work = (callable(elem, *args, **named) for elem in iterable)
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/scrapy/core/scraper.py", line 295, in _process_spidermw_output
+    dfd = self.itemproc.process_item(output, spider)
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/scrapy/pipelines/__init__.py", line 31, in process_item
+    return self._process_chain("process_item", item, spider)
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/scrapy/middleware.py", line 81, in _process_chain
+    return process_chain(methods, obj, *args)
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/scrapy/utils/defer.py", line 227, in process_chain
+    d.callback(input)
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/twisted/internet/defer.py", line 696, in callback
+    self._startRunCallbacks(result)
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/twisted/internet/defer.py", line 798, in _startRunCallbacks
+    self._runCallbacks()
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/twisted/internet/defer.py", line 892, in _runCallbacks
+    current.result = callback(  # type: ignore[misc]
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/scrapy/utils/defer.py", line 324, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+  File "/home/vagrant/cheaper_phone/backend/ecommerce_scrape/ecommerce_scrape/pipelines.py", line 109, in process_item
+    logging.debug(product, "what brand id")
+Message: <models.products.Product object at 0x7f4e37b1f7c0>
+Arguments: ('what brand id',)
+2023-09-07 21:35:44 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/samsung-samsung-galaxy-z-fold-5-7-6-1tb-rom-12gb-ram-5g-4400mah-black-6230348>
+{'id': '77a4a944-c0af-4049-a8f9-e4686e62d9fa',
+ 'name': 'samsung',
+ 'product': '6a55ad4c-0f5e-43e7-8383-70c069fb968f'}
+2023-09-07 21:35:44 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/infinix-hot-t20i-x665e-6-6-4gb-ram-64gb-rom-dual-sim-5000mah-gold-5944392>
+{'alt_text': 'Product image thumbnail.',
+ 'caption': 'Product image thumbnail.',
+ 'image_url': 'https://www-konga-com-res.cloudinary.com/w_auto,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/B/S/118566_1669278631.jpg',
+ 'order': 1,
+ 'product': '88fdd519-a06f-4612-bd37-06984039a58d'}
+2023-09-07 21:35:44 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/infinix-hot-t20i-x665e-6-6-4gb-ram-64gb-rom-dual-sim-5000mah-gold-5944392>
+{'alt_text': 'Product image thumbnail.',
+ 'caption': 'Product image thumbnail.',
+ 'image_url': 'https://www-konga-com-res.cloudinary.com/w_auto,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/M/L/118566_1669278642.jpg',
+ 'order': 2,
+ 'product': '88fdd519-a06f-4612-bd37-06984039a58d'}
+2023-09-07 21:35:44 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/samsung-samsung-galaxy-z-fold-5-7-6-256gb-rom-12gb-ram-5g-4400mah-icy-blue-6210615>
+{'alt_text': 'Product image thumbnail.',
+ 'caption': 'Product image thumbnail.',
+ 'image_url': 'https://www-konga-com-res.cloudinary.com/w_auto,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/U/B/118566_1690387214.jpg',
+ 'order': 1,
+ 'product': '21bcd520-63f5-46ce-b863-bfd4a1627c18'}
+2023-09-07 21:35:44 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/nokia-nokia-105-africa-edition-dual-sim-4mb-rom-4mb-ram-800mah-blue-5634231>
+{'id': 'dd1ee9a4-4f14-4a61-972f-474ac24b1b69',
+ 'name': 'phones and tablets',
+ 'product_id': '52fb244d-79c0-4e06-be29-2a276c00ffe2'}
+2023-09-07 21:35:44 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/samsung-samsung-galaxy-z-fold-5-7-6-1tb-rom-12gb-ram-5g-4400mah-black-6230348>
+{'id': 'cb34028d-31af-47eb-87f4-de5820dcf4ff',
+ 'name': 'phones and tablets',
+ 'product_id': '6a55ad4c-0f5e-43e7-8383-70c069fb968f'}
+2023-09-07 21:35:44 [root] DEBUG: [Product.88fdd519-a06f-4612-bd37-06984039a58d]({'name': 'Infinix Hot T20i X665E - 6.6" - 4GB Ram - 64GB Rom- Dual Sim - 5000mAh - Gold', 'price': Decimal('84700.00'), 'id': '88fdd519-a06f-4612-bd37-06984039a58d', 'updated_at': '2023-09-07T21:35:44', 'description': 'NETWORK\nTechnology GSM / HSPA / LTE\nBODY\nDimensions 164.8 x 76.4 x 8.8 mm (6.49 x 3.01 x 0.35 in) Weight 195 g (6.88 oz) Build Glass front, plastic back, plastic frame\nSIM\nDual SIM (Nano-SIM, dual stand-by)\nDISPLAY\nType IPS LCD, 500 nits (peak) Size 6.6 inches, 104.6 cm2 (~83.1what brand idcreen-to-body ratio) Resolution 720 x 1612 pixels, 20:9 ratio (~267 ppi density)\nPLATFORM\nOS Android 12 or Android 12 (Go edition), XOS 10.6 Chipset MediaTek MT6762G Helio G25 (12 nm) / Mediatek MT6761 Helio A22 (12 nm) CPU Octa-core (4x2.0 GHz Cortex-A53 & 4x1.5 GHz Cortex-A53) / Quad-core 2.0 GHz Cortex-A53 GPU PowerVR GE8320\nMEMORY\nCard slot microSDXC (dedicated slot) Internal 64GB 4GB\nMAIN CAMERA\nTriple 13 MP, f/1.8, (wide), AF QVGA QVGA Features Dual-LED flash Video 1080p@30fps\nSELFIE CAMERA\nSingle 8 MP Features LED flash Video 1080p@30fps\nSOUND\nLoudspeaker Yes 3.5mm jack Yes COMMS WLAN Wi-Fi 802.11 a/b/g/n/ac, dual-band\nBluetooth Yes Positioning GPS NFC No Radio FM radio USB microUSB 2.0, USB On-The-Go\nFEATURES\nSensors Fingerprint (rear-mounted), accelerometer, proximity\nBATTERY\nType Li-Ion 5000 mAh, non-removable Charging 10W wired 5W reverse wired Model\nX665E', 'brand_id': None, 'created_at': '2023-09-07T21:35:44', '__class__': 'Product'})
+2023-09-07 21:35:44 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/infinix-hot-t20i-x665e-6-6-4gb-ram-64gb-rom-dual-sim-5000mah-gold-5944392>
+{'id': '96310cc3-cac9-47bd-a5a4-c9e103b2ae07',
+ 'name': 'infinix',
+ 'product': '88fdd519-a06f-4612-bd37-06984039a58d'}
+2023-09-07 21:35:44 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/samsung-samsung-galaxy-z-fold-5-7-6-256gb-rom-12gb-ram-5g-4400mah-icy-blue-6210615>
+{'alt_text': 'Product image thumbnail.',
+ 'caption': 'Product image thumbnail.',
+ 'image_url': 'https://www-konga-com-res.cloudinary.com/w_auto,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/D/N/118566_1690387242.jpg',
+ 'order': 2,
+ 'product': '21bcd520-63f5-46ce-b863-bfd4a1627c18'}
+2023-09-07 21:35:44 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/xiaomi-xiaomi-redmi-12-6-79-8gb-ram-256gb-rom-4g-lte-dual-sim-5000mah-silver-6196847>
+{'description': 'NETWORK Technology GSM / HSPA / LTE 2G bands GSM 850 / 900 / '
+                '1800 / 1900 - SIM 1 & SIM 2 3G bands HSDPA 850 / 900 / 2100 '
+                '4G bands 1, 3, 5, 7, 8, 20, 28, 38, 40, 41 Speed HSPA, LTE\n'
+                'BODY Dimensions 168.6 x 76.3 x 8.2 mm (6.64 x 3.00 x 0.32 in) '
+                'Weight 198.5 g (7.02 oz) Build Glass front, plastic frame, '
+                'glass back SIM Hybrid Dual SIM (Nano-SIM, dual stand-by) '
+                'IP53, dust and splash resistant\n'
+                'DISPLAY Type IPS LCD, 90Hz, 550 nits (peak) Size 6.79 inches, '
+                '109.5 cm2 (~85.1% screen-to-body ratio) Resolution 1080 x '
+                '2460 pixels (~396 ppi density)\n'
+                'PLATFORM OS Android 13, MIUI 14 Chipset Mediatek Helio G88 '
+                '(12nm) CPU Octa-core (2x2.0 GHz Cortex-A75 & 6x1.8 GHz '
+                'Cortex-A55) GPU Mali-G52 MC2\n'
+                'MEMORY Card slot microSDXC (uses shared SIM slot) '
+                'Internal\xa0 256GB 8GB RAM eMMC 5.1\n'
+                'MAIN CAMERA Triple 50 MP, f/1.8, (wide), PDAF 8 MP, f/2.2, '
+                '120 (ultrawide) 2 MP, f/2.4, (macro) Features LED flash, HDR '
+                'Video 1080p@30fps\n'
+                'SELFIE CAMERA Single 8 MP, f/2.1, (wide) Video 1080p@30fps '
+                'SOUND Loudspeaker Yes 3.5mm jack Yes\n'
+                'COMMS WLAN Wi-Fi 802.11 a/b/g/n/ac, dual-band Bluetooth 5.3, '
+                'A2DP, LE Positioning GPS, GLONASS, BDS, GALILEO NFC Yes '
+                '(market/region dependent) Infrared port Yes Radio FM radio '
+                'USB USB Type-C\n'
+                'FEATURES Sensors Fingerprint (side-mounted), accelerometer, '
+                'compass BATTERY Type Li-Po 5000 mAh, non-removable Charging '
+                '18W wired, PD',
+ 'id': '517815e1-1d6d-46ce-8c26-883cd486c9d3',
+ 'name': 'Xiaomi Redmi 12 - 6.79" - 8GB Ram - 256GB Rom - 4G Lte - Dual Sim - '
+         '5000mAh - Silver',
+ 'price': 134900.0}
+2023-09-07 21:35:44 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.konga.com/product/magnetic-wireless-charger-for-iphone-x-11-12-13-promax-5683668> (referer: https://www.konga.com/)
+2023-09-07 21:35:44 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.konga.com/product/apple-iphone-14-pro-max-5g-6-7-512gb-rom-6gb-ram-dual-sim-a16-bionic-chip-4323mah-silver-5906536> (referer: https://www.konga.com/)
+2023-09-07 21:35:44 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/infinix-hot-t20i-x665e-6-6-4gb-ram-64gb-rom-dual-sim-5000mah-gold-5944392>
+{'id': '4123f293-f96a-4892-8305-a158c2fb6dce',
+ 'name': 'five percent sale',
+ 'product_id': '88fdd519-a06f-4612-bd37-06984039a58d'}
+--- Logging error ---
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/logging/__init__.py", line 1085, in emit
+    msg = self.format(record)
+  File "/usr/lib/python3.8/logging/__init__.py", line 929, in format
+    return fmt.format(record)
+  File "/usr/lib/python3.8/logging/__init__.py", line 668, in format
+    record.message = record.getMessage()
+  File "/usr/lib/python3.8/logging/__init__.py", line 373, in getMessage
+    msg = msg % self.args
+TypeError: not enough arguments for format string
+Call stack:
+  File "/home/vagrant/cheaper_phone/backend/venv/bin/scrapy", line 8, in <module>
+    sys.exit(execute())
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/scrapy/cmdline.py", line 161, in execute
+    _run_print_help(parser, _run_command, cmd, args, opts)
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/scrapy/cmdline.py", line 114, in _run_print_help
+    func(*a, **kw)
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/scrapy/cmdline.py", line 169, in _run_command
+    cmd.run(args, opts)
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/scrapy/commands/crawl.py", line 30, in run
+    self.crawler_process.start()
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/scrapy/crawler.py", line 397, in start
+    reactor.run(installSignalHandlers=False)  # blocking call
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/twisted/internet/asyncioreactor.py", line 255, in run
+    self._asyncioEventloop.run_forever()
+  File "/usr/lib/python3.8/asyncio/base_events.py", line 570, in run_forever
+    self._run_once()
+  File "/usr/lib/python3.8/asyncio/base_events.py", line 1859, in _run_once
+    handle._run()
+  File "/usr/lib/python3.8/asyncio/events.py", line 81, in _run
+    self._context.run(self._callback, *self._args)
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/twisted/internet/asyncioreactor.py", line 271, in _onTimer
+    self.runUntilCurrent()
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/twisted/internet/base.py", line 994, in runUntilCurrent
+    call.func(*call.args, **call.kw)
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/twisted/internet/task.py", line 680, in _tick
+    taskObj._oneWorkUnit()
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/twisted/internet/task.py", line 526, in _oneWorkUnit
+    result = next(self._iterator)
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/scrapy/utils/defer.py", line 98, in <genexpr>
+    work = (callable(elem, *args, **named) for elem in iterable)
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/scrapy/core/scraper.py", line 295, in _process_spidermw_output
+    dfd = self.itemproc.process_item(output, spider)
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/scrapy/pipelines/__init__.py", line 31, in process_item
+    return self._process_chain("process_item", item, spider)
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/scrapy/middleware.py", line 81, in _process_chain
+    return process_chain(methods, obj, *args)
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/scrapy/utils/defer.py", line 227, in process_chain
+    d.callback(input)
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/twisted/internet/defer.py", line 696, in callback
+    self._startRunCallbacks(result)
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/twisted/internet/defer.py", line 798, in _startRunCallbacks
+    self._runCallbacks()
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/twisted/internet/defer.py", line 892, in _runCallbacks
+    current.result = callback(  # type: ignore[misc]
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/scrapy/utils/defer.py", line 324, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+  File "/home/vagrant/cheaper_phone/backend/ecommerce_scrape/ecommerce_scrape/pipelines.py", line 109, in process_item
+    logging.debug(product, "what brand id")
+Message: <models.products.Product object at 0x7f4e36996730>
+Arguments: ('what brand id',)
+2023-09-07 21:35:45 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/samsung-samsung-galaxy-z-fold-5-7-6-256gb-rom-12gb-ram-5g-4400mah-icy-blue-6210615>
+{'id': 'cdf7b897-a016-4242-9e4e-a0a8148724bf',
+ 'name': 'samsung',
+ 'product': '21bcd520-63f5-46ce-b863-bfd4a1627c18'}
+2023-09-07 21:35:45 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/xiaomi-xiaomi-redmi-12-6-79-8gb-ram-256gb-rom-4g-lte-dual-sim-5000mah-silver-6196847>
+{'alt_text': 'Product image thumbnail.',
+ 'caption': 'Product image thumbnail.',
+ 'image_url': 'https://www-konga-com-res.cloudinary.com/w_auto,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/E/Y/118566_1689613134.png',
+ 'order': 0,
+ 'product': '517815e1-1d6d-46ce-8c26-883cd486c9d3'}
+2023-09-07 21:35:45 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/tecno-t372-gold-triple-sim-2-4-oy-screen-4mb-rom-4mb-ram-4626382>
+{'description': 'Model: T372\n'
+                'Triple SIM\n'
+                '2.4” Screen Display\n'
+                'Memory: 4MB Rom + 4MB RAM Expandable up to 64GB\n'
+                'Back camera with Flash\n'
+                'FM Loud Speaker',
+ 'id': 'd69c817c-1b62-4941-9026-5fa57d36c356',
+ 'name': 'Tecno T372 -gold- Triple Sim - 2.4” Screen - 4mb Rom - 4mb Ram',
+ 'price': 12500.0}
+2023-09-07 21:35:45 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/nokia-nokia-105-africa-edition-dual-sim-4mb-rom-4mb-ram-800mah-charcoal-5634220>
+{'description': 'Nokia 105 Africa Edition A durable phone to help you stay in '
+                'touch and stay entertained.\n'
+                'Discover the phone that’s built to be loved – with a molded '
+                'design that’s scratch and bump resistant and available in a '
+                'range of colors. An FM wireless radio lets you listen on the '
+                'move, and the all-day battery life¹ will let you talk for '
+                'hours.\n'
+                'A built-in torch will ensure you never get caught in the '
+                'dark, and there’s enough storage capacity for 2,000 contacts '
+                'and 500 SMS. Plus, 10 preloaded games – including classic '
+                'Snake – will keep you entertained.\n'
+                'Stay tuned: FM wireless radio for listening on the move Super '
+                'storage: Capacity for 2000 contacts and 500 SMS Everyday '
+                'essentials: Built-in torch and an all-day battery Classic '
+                'games: 10 pre-loaded games, including Snake A radio in your '
+                'pocket Whatever you like to listen to, an FM wireless radio '
+                'will give you the freedom to tune-in to music, sport, news '
+                'and broadcasts, wherever, whenever.\n'
+                'Battery life\n'
+                'Single charge. Plenty of talking. We all love to chat with '
+                'friends and family. That’s why Nokia 105 comes with a battery '
+                'that lets you talk for hours, on a single charge – and when '
+                'you need to recharge, there’s a handy Micro USB charger.\n'
+                'Color and contour\n'
+                'Vibrant colors, robust design The Nokia 105 is molded to fit '
+                'snugly in your hand. It’s robust too, and comes in a range of '
+                'X vibrant colors: X, Y, and Z.\n'
+                'Let’s play Who said a phone was just for staying in touch? '
+                'Unwind in style with 10 classic pre-loaded games, and let the '
+                'fun begin.\n'
+                'Built-in torch\n'
+                'Light the way Shine on with a handy built-in torch – you’ll '
+                'never get caught in the dark again.\n'
+                '\n'
+                'Colors: Charcoal, Blue\n'
+                'Display Size: 1.77 inch Resolution: QQVGA\n'
+                'Performance Approximate standby time (Dual SIM, GSM): 18 days '
+                'Approximate standby time (Single SIM, GSM): 18 days '
+                'Approximate talk time (Dual SIM, GSM): 12 h Approximate talk '
+                'time (Single SIM, GSM): 12 h\n'
+                'Connectivity Headphone jack: 3.5 mm USB connection: Micro USB '
+                '(USB 1.1)\n'
+                'Battery & charging Battery: 800 mAh, Removable Battery life: '
+                'Standby time up to 18 days/ Talk time up to 12 hours '
+                'Charging: Micro-USB (USB 1.1)\n'
+                'Memory & storage Internal storage: 4 MB RAM: 4 MB\n'
+                'Platform CPU: Unisoc 6531E\n'
+                'Operating System Operating System: S30+\n'
+                'Audio Features: FM Wireless Radio (Can listen with or without '
+                'a headset)\n'
+                'Networks Max network speed: 2G Network bands (GSM): 900/1800 '
+                '(EU) Sim size: 2FF (Mini SIM)\n'
+                'Materials Back: Polycarbonate\n'
+                'Dimensions Height: 14.3 mm Length: 115.2 mm Weight: 70 g '
+                'Width: 49.9 mm\n'
+                'In the box User Guide Micro USB Charger',
+ 'id': '7a57334d-9a3f-45a1-869c-da09113a6f71',
+ 'name': 'Nokia 105 Africa Edition - Dual Sim - 4MB Rom - 4MB Ram - 800mAh - '
+         'Charcoal',
+ 'price': 8680.0}
+2023-09-07 21:35:45 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/samsung-samsung-galaxy-a24-6-5-lte-6gb-ram-128gb-rom-5000mah-lime-green-6112320>
+{'description': 'NETWORK - GSM / HSPA / LTE\n'
+                'BODY Dimensions 162.1 x 77.6 x 8.3 mm (6.38 x 3.06 x 0.33 '
+                'in))\n'
+                'DISPLAY Type Super AMOLED, 90Hz, 1000 nits (peak) Size 6.5 '
+                'inches, 103.7 cm2 (~82.4% screen-to-body ratio) Resolution '
+                '1080 x 2340 pixels, 19.5:9 ratio (~396 ppi density)\n'
+                'PLATFORM OS Android 13, One UI 5.1 Chipset Mediatek MT8781 '
+                'Helio G99 (6nm) CPU Octa-core (2x2.2 GHz Cortex-A76 & 6x2.0 '
+                'GHz Cortex-A55) GPU Mali-G57 MC2\n'
+                'MEMORY Card slot microSDXC (dedicated slot) Internal\xa0 '
+                '128GB 6GB RAM\n'
+                'MAIN CAMERA Triple 50 MP, f/1.8, (wide), PDAF, OIS 5 MP, '
+                'f/2.2, 123 (ultrawide), 1/5", 1.12µm 2 MP, f/2.4, (macro) '
+                'Features LED flash, panorama, HDR Video 1080p@30fps\n'
+                'SELFIE CAMERA Single 13 MP, f/2.2, (wide) Video 1080p@30fps '
+                'SOUND Loudspeaker Yes 3.5mm jack Yes\n'
+                'COMMS WLAN Wi-Fi 802.11 a/b/g/n/ac, dual-band, Wi-Fi Direct '
+                'Bluetooth 5.3, A2DP, LE Positioning GPS, GLONASS, GALILEO, '
+                'BDS, QZSS NFC Yes (market/region dependent) Radio Unspecified '
+                'USB USB Type-C 2.0\n'
+                'FEATURES Sensors Fingerprint (side-mounted), accelerometer, '
+                'gyro, compass Virtual proximity sensing\n'
+                'BATTERY Type Li-Po 5000 mAh, non-removable Charging 25W wired',
+ 'id': '8232543e-91ee-4e63-b610-51bceda67d67',
+ 'name': "Samsung Galaxy A24 - 6.5''- LTE- 6GB Ram - 128GB Rom - 5000mAh - "
+         'Lime Green',
+ 'price': 196000.0}
+2023-09-07 21:35:45 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.konga.com/product/shockproof-defender-rugged-case-for-surface-go-2-5656309> (referer: https://www.konga.com/)
+2023-09-07 21:35:45 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.konga.com/product/garmin-etrex-10-handheld-gps-navigator-5700679> (referer: https://www.konga.com/)
+2023-09-07 21:35:45 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/samsung-samsung-galaxy-z-fold-5-7-6-256gb-rom-12gb-ram-5g-4400mah-icy-blue-6210615>
+{'id': '5b93150d-22c6-401a-9cc4-160871b4cfb3',
+ 'name': 'phones and tablets',
+ 'product_id': '21bcd520-63f5-46ce-b863-bfd4a1627c18'}
+2023-09-07 21:35:45 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/xiaomi-xiaomi-redmi-12-6-79-8gb-ram-256gb-rom-4g-lte-dual-sim-5000mah-silver-6196847>
+{'alt_text': 'Product image thumbnail.',
+ 'caption': 'Product image thumbnail.',
+ 'image_url': 'https://www-konga-com-res.cloudinary.com/w_auto,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/J/B/118566_1689613189.png',
+ 'order': 1,
+ 'product': '517815e1-1d6d-46ce-8c26-883cd486c9d3'}
+--- Logging error ---
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/logging/__init__.py", line 1085, in emit
+    msg = self.format(record)
+  File "/usr/lib/python3.8/logging/__init__.py", line 929, in format
+    return fmt.format(record)
+  File "/usr/lib/python3.8/logging/__init__.py", line 668, in format
+    record.message = record.getMessage()
+  File "/usr/lib/python3.8/logging/__init__.py", line 373, in getMessage
+    msg = msg % self.args
+TypeError: not all arguments converted during string formatting
+Call stack:
+  File "/home/vagrant/cheaper_phone/backend/venv/bin/scrapy", line 8, in <module>
+    sys.exit(execute())
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/scrapy/cmdline.py", line 161, in execute
+    _run_print_help(parser, _run_command, cmd, args, opts)
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/scrapy/cmdline.py", line 114, in _run_print_help
+    func(*a, **kw)
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/scrapy/cmdline.py", line 169, in _run_command
+    cmd.run(args, opts)
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/scrapy/commands/crawl.py", line 30, in run
+    self.crawler_process.start()
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/scrapy/crawler.py", line 397, in start
+    reactor.run(installSignalHandlers=False)  # blocking call
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/twisted/internet/asyncioreactor.py", line 255, in run
+    self._asyncioEventloop.run_forever()
+  File "/usr/lib/python3.8/asyncio/base_events.py", line 570, in run_forever
+    self._run_once()
+  File "/usr/lib/python3.8/asyncio/base_events.py", line 1859, in _run_once
+    handle._run()
+  File "/usr/lib/python3.8/asyncio/events.py", line 81, in _run
+    self._context.run(self._callback, *self._args)
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/twisted/internet/asyncioreactor.py", line 271, in _onTimer
+    self.runUntilCurrent()
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/twisted/internet/base.py", line 994, in runUntilCurrent
+    call.func(*call.args, **call.kw)
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/twisted/internet/task.py", line 680, in _tick
+    taskObj._oneWorkUnit()
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/twisted/internet/task.py", line 526, in _oneWorkUnit
+    result = next(self._iterator)
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/scrapy/utils/defer.py", line 98, in <genexpr>
+    work = (callable(elem, *args, **named) for elem in iterable)
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/scrapy/core/scraper.py", line 295, in _process_spidermw_output
+    dfd = self.itemproc.process_item(output, spider)
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/scrapy/pipelines/__init__.py", line 31, in process_item
+    return self._process_chain("process_item", item, spider)
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/scrapy/middleware.py", line 81, in _process_chain
+    return process_chain(methods, obj, *args)
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/scrapy/utils/defer.py", line 227, in process_chain
+    d.callback(input)
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/twisted/internet/defer.py", line 696, in callback
+    self._startRunCallbacks(result)
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/twisted/internet/defer.py", line 798, in _startRunCallbacks
+    self._runCallbacks()
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/twisted/internet/defer.py", line 892, in _runCallbacks
+    current.result = callback(  # type: ignore[misc]
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/scrapy/utils/defer.py", line 324, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+  File "/home/vagrant/cheaper_phone/backend/ecommerce_scrape/ecommerce_scrape/pipelines.py", line 109, in process_item
+    logging.debug(product, "what brand id")
+Message: <models.products.Product object at 0x7f4e37b6f5e0>
+Arguments: ('what brand id',)
+2023-09-07 21:35:45 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/tecno-t372-gold-triple-sim-2-4-oy-screen-4mb-rom-4mb-ram-4626382>
+{'id': '803b6207-361a-4a3d-b04d-f498af81a9df',
+ 'name': 'tecno',
+ 'product': 'd69c817c-1b62-4941-9026-5fa57d36c356'}
+2023-09-07 21:35:45 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/nokia-nokia-105-africa-edition-dual-sim-4mb-rom-4mb-ram-800mah-charcoal-5634220>
+{'alt_text': 'Product image thumbnail.',
+ 'caption': 'Product image thumbnail.',
+ 'image_url': 'https://www-konga-com-res.cloudinary.com/w_auto,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/Y/K/118566_1644935745.jpg',
+ 'order': 0,
+ 'product': '7a57334d-9a3f-45a1-869c-da09113a6f71'}
+2023-09-07 21:35:45 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/samsung-samsung-galaxy-a24-6-5-lte-6gb-ram-128gb-rom-5000mah-lime-green-6112320>
+{'alt_text': 'Product image thumbnail.',
+ 'caption': 'Product image thumbnail.',
+ 'image_url': 'https://www-konga-com-res.cloudinary.com/w_auto,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/T/C/118566_1682004981.png',
+ 'order': 0,
+ 'product': '8232543e-91ee-4e63-b610-51bceda67d67'}
+2023-09-07 21:35:45 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/infinix-infinix-smart-7-hd-6-6-hd-x6516-2-2gb-ram-64gb-rom-8mp-ai-5mp-5000mah-black-6057086>
+{'description': 'Smart t HD\n'
+                'Full view and power\n'
+                'With 500mAh Big Battery that can last for four days\n'
+                'With the large 5000mAh battery and intelligent power saving '
+                'technology you can enjoy your entertainment all day long '
+                'without power worries.\n'
+                '6.6 inches HD water drop sunlight Display\n'
+                'Waterdrop sunlight displaymore view for what you doA wide 6.6 '
+                'HD beautifulvibrant screen provides a clear and broader view '
+                'for a better mobile experience.\n'
+                '5MP FF Selfie Camera with Single Flash Perfect selfies every '
+                'timethe 8MP front camera features automatic retouching to '
+                'deliver perfect photo With Selfie focus and dual flash\xa0you '
+                'get a gentle background blur that makes you the star of the '
+                'picture\n'
+                'Bring out Your Unique Beauty Smart 7 HD front camera equipped '
+                'with the new intelligent algorithm to make every selfie photo '
+                'impeccableIt brings more intelligent ways to customize your '
+                'own beauty style such as 3D face improvement and identifies '
+                'different skin tones and intelligently adapts to the optimal '
+                'skin tone to make selfie photos more natural and unique 8MP '
+                'ALLEN Dual Rear Camera with Flash Dazzling photography with '
+                'dual camera. Capture clear, beautiful photos in sunlight or '
+                'low light with Infinix SMART 6s bright 8MP dual rear camera. '
+                'It offers real time Recognition of 18 Categories and Scene '
+                'specific Parameter Application. 64GB ROM + 2GB RAM Save your '
+                'memories The internal 64GB ROM of storage provides more space '
+                'for your musicphotos and Apps. You can keep what you want and '
+                'collect your memories with greater storage. Fingerprint & '
+                'Face Unlock Smart keys for double security. You will '
+                'experience the most convenience unlocking the phone with your '
+                'face as your password. Secure all the information in your '
+                'device by locking your device via fingerprint and face unlock '
+                'technology. ANDROID 12 Delight in Smart Life Easy Exclusive '
+                'Exceeding.Android 12 brings revolutionary changes with its '
+                'new exciting features. Customize your phone to your taste, '
+                'avail of the latest features such as Dark Theme and Android '
+                '10 Gesture Navigation.',
+ 'id': '81914255-da09-446c-868b-bd8aa0e14998',
+ 'name': 'Infinix INFINIX SMART 7 HD - 6.6" HD- X6516- 2+ 2GB RAM+64GB ROM - '
+         '8MP + AI+ 5MP - 5000mAh- BLACK',
+ 'price': 65000.0}
+2023-09-07 21:35:45 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.konga.com/product/idino-note-book-3-10-1-4g-lte-hybrid-2-in-1-64gb-rom-4gb-ram-android-10-4000mah-5745615> (referer: https://www.konga.com/)
+2023-09-07 21:35:45 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/xiaomi-xiaomi-redmi-12-6-79-8gb-ram-256gb-rom-4g-lte-dual-sim-5000mah-silver-6196847>
+{'alt_text': 'Product image thumbnail.',
+ 'caption': 'Product image thumbnail.',
+ 'image_url': 'https://www-konga-com-res.cloudinary.com/w_auto,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/X/E/118566_1689613202.png',
+ 'order': 2,
+ 'product': '517815e1-1d6d-46ce-8c26-883cd486c9d3'}
+2023-09-07 21:35:45 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/tecno-t372-gold-triple-sim-2-4-oy-screen-4mb-rom-4mb-ram-4626382>
+{'id': 'bc1f5d31-24be-4bec-9897-5d4888fadf5e',
+ 'name': 'phones and tablets',
+ 'product_id': 'd69c817c-1b62-4941-9026-5fa57d36c356'}
+2023-09-07 21:35:45 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/nokia-nokia-105-africa-edition-dual-sim-4mb-rom-4mb-ram-800mah-charcoal-5634220>
+{'alt_text': 'Product image thumbnail.',
+ 'caption': 'Product image thumbnail.',
+ 'image_url': 'https://www-konga-com-res.cloudinary.com/w_auto,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/L/O/_1646146089.jpg',
+ 'order': 1,
+ 'product': '7a57334d-9a3f-45a1-869c-da09113a6f71'}
+2023-09-07 21:35:46 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/samsung-samsung-galaxy-a24-6-5-lte-6gb-ram-128gb-rom-5000mah-lime-green-6112320>
+{'alt_text': 'Product image thumbnail.',
+ 'caption': 'Product image thumbnail.',
+ 'image_url': 'https://www-konga-com-res.cloudinary.com/w_auto,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/O/T/118566_1682005005.png',
+ 'order': 1,
+ 'product': '8232543e-91ee-4e63-b610-51bceda67d67'}
+2023-09-07 21:35:46 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/infinix-infinix-smart-7-hd-6-6-hd-x6516-2-2gb-ram-64gb-rom-8mp-ai-5mp-5000mah-black-6057086>
+{'alt_text': 'Product image thumbnail.',
+ 'caption': 'Product image thumbnail.',
+ 'image_url': 'https://www-konga-com-res.cloudinary.com/w_auto,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/Y/X/118566_1679666031.jpg',
+ 'order': 0,
+ 'product': '81914255-da09-446c-868b-bd8aa0e14998'}
+2023-09-07 21:35:46 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.konga.com/product/ring-light-tripod-stand-210cm-5750384> (referer: https://www.konga.com/)
+2023-09-07 21:35:46 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.konga.com/product/apple-iphone-xr-128gb-rom-3gb-ram-12mp-6-1-blue-free-case-and-screen-guide-5767799> (referer: https://www.konga.com/)
+2023-09-07 21:35:46 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.konga.com/product/ldnio-4-usb-charger-port-wall-charger-5721762> (referer: https://www.konga.com/)
+2023-09-07 21:35:46 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.konga.com/product/screen-protector-for-samsung-tab-a8-10-5-inch-2021-sm-x200-sm-x205-5772011> (referer: https://www.konga.com/)
+2023-09-07 21:35:46 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.konga.com/product/swoosh-suede-for-iphone-13-pro-max-case-brown-5775648> (referer: https://www.konga.com/)
+2023-09-07 21:35:46 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/xiaomi-xiaomi-redmi-12-6-79-8gb-ram-256gb-rom-4g-lte-dual-sim-5000mah-silver-6196847>
+{'id': '566f0007-31f2-4ceb-b9ba-bba4f5d9164d',
+ 'name': 'xiaomi',
+ 'product': '517815e1-1d6d-46ce-8c26-883cd486c9d3'}
+2023-09-07 21:35:46 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/nokia-nokia-105-africa-edition-dual-sim-4mb-rom-4mb-ram-800mah-charcoal-5634220>
+{'alt_text': 'Product image thumbnail.',
+ 'caption': 'Product image thumbnail.',
+ 'image_url': 'https://www-konga-com-res.cloudinary.com/w_auto,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/D/P/_1646146096.jpg',
+ 'order': 2,
+ 'product': '7a57334d-9a3f-45a1-869c-da09113a6f71'}
+2023-09-07 21:35:46 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/samsung-samsung-galaxy-a24-6-5-lte-6gb-ram-128gb-rom-5000mah-lime-green-6112320>
+{'alt_text': 'Product image thumbnail.',
+ 'caption': 'Product image thumbnail.',
+ 'image_url': 'https://www-konga-com-res.cloudinary.com/w_auto,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/X/U/118566_1682005091.png',
+ 'order': 2,
+ 'product': '8232543e-91ee-4e63-b610-51bceda67d67'}
+2023-09-07 21:35:46 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/infinix-infinix-smart-7-hd-6-6-hd-x6516-2-2gb-ram-64gb-rom-8mp-ai-5mp-5000mah-black-6057086>
+{'alt_text': 'Product image thumbnail.',
+ 'caption': 'Product image thumbnail.',
+ 'image_url': 'https://www-konga-com-res.cloudinary.com/w_auto,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/R/E/118566_1679666203.jpg',
+ 'order': 1,
+ 'product': '81914255-da09-446c-868b-bd8aa0e14998'}
+2023-09-07 21:35:46 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/magnetic-wireless-charger-for-iphone-x-11-12-13-promax-5683668>
+{'description': 'Intelligent and safe wireless charging, care of the battery '
+                'is none other than one-time charging, no need to wait. The '
+                '6MM production process presents a more user-friendly design, '
+                'which is more stunning in texture, more convenient to carry, '
+                'and more convenient to use. It independently thickens the '
+                'coil to build an intelligent chip, which has high stability '
+                'performance. It creates a large independent coil to make the '
+                'power more concentrated, which not only improves In addition '
+                'to charging efficiency, it is safe and does not hurt the '
+                'mobile phone battery. Intelligent identification and '
+                'induction, support QI wireless charging protocol, the mobile '
+                'phone can be automatically charged when placed, regardless of '
+                'any angle.\n'
+                'Intelligent and safe wireless charging, care of the battery '
+                'is none other than one-time charging, no need to wait. The '
+                '6MM production process presents a more user-friendly design, '
+                'which is more stunning in texture, more convenient to carry, '
+                'and more convenient to use. It independently thickens the '
+                'coil to build an intelligent chip, which has high stability '
+                'performance. It creates a large independent coil to make the '
+                'power more concentrated, which not only improves In addition '
+                'to charging efficiency, it is safe and does not hurt the '
+                'mobile phone battery. Intelligent identification and '
+                'induction, support QI wireless charging protocol, the mobile '
+                'phone can be automatically charged when placed, regardless of '
+                'any angle.\n'
+                'Intelligent and safe wireless charging, care of the battery '
+                'is none other than one-time charging, no need to wait. The '
+                '6MM production process presents a more user-friendly design, '
+                'which is more stunning in texture, more convenient to carry, '
+                'and more convenient to use. It independently thickens the '
+                'coil to build an intelligent chip, which has high stability '
+                'performance. It creates a large independent coil to make the '
+                'power more concentrated, which not only improves In addition '
+                'to charging efficiency, it is safe and does not hurt the '
+                'mobile phone battery. Intelligent identification and '
+                'induction, support QI wireless charging protocol, the mobile '
+                'phone can be automatically charged when placed, regardless of '
+                'any angle.',
+ 'id': '14f8f205-2d32-45b4-ae9d-4f2c379d9724',
+ 'name': 'Magnetic Wireless Charger For iPhone X + 11 + 12 + 13 Promax',
+ 'price': 9000.0}
+2023-09-07 21:35:46 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/apple-iphone-14-pro-max-5g-6-7-512gb-rom-6gb-ram-dual-sim-a16-bionic-chip-4323mah-silver-5906536>
+{'description': 'Apple iPhone 14 Pro Max, Dual SIM, 6.7 screen, 48 Mpx camera, '
+                '512GB capacity and designed to resist\n'
+                '6.7 OLED screen - Adaptive lock screen - 48 Mpx camera - A16 '
+                'Bionic processor - 512GB capacity - Ceramic Shield - Accident '
+                'detection - Up to 29 hours on a single charge - iOS 16\n'
+                'Technical specifications Apple iPhone 14 Pro Max 512GB - Dual '
+                'SIM\n'
+                'Display Display diagonal: 17 cm (6.7") Screen shape: Flat '
+                'Display type: OLED Display glass type: Ceramic Shield Display '
+                'resolution 2796 x 1290 pixels High Dynamic Range (HDR) '
+                'supported: Yes High Dynamic Range (HDR) technology: Extreme '
+                'Dynamic Range (XDR) Touchscreen type: Capacitive Pixel '
+                'density: 460 ppi Oleophobic coating: Yes Brand specific '
+                'technologies: Always-on display, Dynamic Island, Haptic '
+                'touch, ProMotion, True Tone, Wide color (P3) Fingerprint '
+                'resistant: Yes Rounded display corners: Yes\n'
+                'Processor Processor family: Apple Processor model: A16 '
+                'Processor cores: 6 Coprocessor: Yes Coprocessor model: Neural '
+                'Engine Coprocessor cores: 16\n'
+                'Storage Internal storage capacity: 512 GB Compatible memory '
+                'cards: Not supported\n'
+                'Camera Rear camera resolution (numeric): 48 MP Second rear '
+                'camera resolution (numeric): 12 MP Third rear camera '
+                'resolution (numeric): 12 MP Rear camera aperture number: 1.78 '
+                'Second rear camera aperture number: 2.2 Third rear camera '
+                'aperture number: 2.8 Rear camera focal length: 2.4 cm Second '
+                'rear camera focal length: 1.3 cm Third rear camera focal '
+                'length: 7.7 cm Rear camera lens elements: 7-element lens '
+                'Second rear camera lens elements: 6-element lens Third rear '
+                'camera lens elements: 6-element lens Front camera lens '
+                'elements: 6-element lens Lens cover material: Sapphire '
+                'crystal Optical zoom: 6x Optical zoom in: 3x Optical zoom '
+                'out: 2x Digital zoom: 15x Front camera type: Single camera '
+                'Front camera resolution (numeric): 12 MP Front camera '
+                'aperture number: 1.9 Rear camera flash: Yes Video capture '
+                'resolution (max): 3840 x 2160 pixels Maximum frame rate: 60 '
+                'fps Resolution at capture speed: 1280x720@30fps, '
+                '1920x1080@25fps, 1920x1080@30fps, 1920x1080@60fps, '
+                '3840x2160@24fps, 3840x2160@25fps, 3840x2160@30fps, '
+                '3840x2160@60fps Video recording modes: 720p, 1080p, 2160p '
+                'Rear camera type: Triple camera Auto focus,\xa0Face '
+                'detection,\xa0Time lapse mode,\xa0Video stabilizer,\xa0Image '
+                'stabilizer Image stabilizer type: Optical Image Stabilization '
+                '(OIS) Geotagging,\xa0Night mode,\xa0Panorama,\xa0Portrait '
+                'mode,\xa0Macro photography,\xa0Red-eye correction,\xa0'
+                'Continuous shooting mode Camera image formats supported: DNG, '
+                'HEIF, JPEG Camera video formats supported: H.264, HEVC, '
+                'ProRes Audio zoom: Yes\n'
+                'Network SIM card capability: Dual SIM Mobile network '
+                'generation: 5G SIM card type: Dual NanoSIM 3G standards: '
+                'DC-HSDPA, HSPA+, UMTS 4G standard: TD-LTE & FDD-LTE 5G '
+                'standard: NR, NR mmWave Voice over LTE (VoLTE) supported: Yes '
+                'Wi-Fi: Yes Wi-Fi standards: Wi-Fi 6 (802.11ax) Bluetooth: Yes '
+                'Bluetooth version: 5.3 Frequency band: Penta-band 3G bands '
+                'supported: 850,900,1700,1900,2100 MHz AirPlay: Yes iBeacon: '
+                'Yes MIMO: Yes Near Field Communication (NFC): Yes\n'
+                'Ports & interfaces USB port: No Headphone connectivity: '
+                'Lightning Lightning connector: Yes\n'
+                'Messaging Short Message Service (SMS) Multimedia Messaging '
+                'Service (MMS) E-mail\n'
+                'Design Form factor: Bar Protection features: Dust resistant, '
+                'Splash proof, Water resistant Waterproof up to: 6 m Housing '
+                'material: Glass, Stainless steel\n'
+                'Performance Video call,\xa0Fast charging,\xa0Wireless '
+                'charging: Yes Graphics card cores: 5 Emergency SOS '
+                '(satellite),\xa0Crash detection,\xa0Face recognition: Yes '
+                'Accessibility features: AssistiveTouch, Back Tap, Closed '
+                'Captions, Magnifier, Real-time text (RTT), Siri and '
+                'Dictation, Spoken Content, Switch Control, Teletype (TTY), '
+                'Type to Siri, Voice Control, VoiceOver, Zoom Speakerphone, '
+                'Voice dialling, Voice commands, Hearing aid compatibility, '
+                'Vibrating alert\n'
+                'Navigation GPS (satellite), GLONASS, BeiDou, Galileo, '
+                'Quasi-Zenith Satellite System (QZSS), Electronic compass, '
+                'Position location, Wi-Fi positioning\n'
+                'Multimedia Speakers: Stereo Audio formats supported: AAC, '
+                'ALAC, FLAC, MP3 Video formats supported: H.264, HEVC, ProRes '
+                'Image formats supported: GIF, JPG, TIFF Document formats '
+                'supported: DOC, DOCX, HTM, HTML, ICS, Key, PDF, PPT, PPTX, '
+                'RTF, TXT, VCF, XLS, XLSX Archive formats supported: Zip\n'
+                'Software Platform: iOS Operating system installed: iOS 16 App '
+                'distribution platform: Apple App Store Virtual assistant: '
+                'Apple Siri Windows operating systems supported: Yes Mac '
+                'compatibility: Yes Mac operating systems supported: Yes '
+                'Bundled software: Camera, Photos, Health, Messages, Phone, '
+                'FaceTime Mail, Music, Wallet, Safari, Maps, Siri, Calendar, '
+                'iTunes Store, AppStore, Notes, News, Contacts, Books, Home, '
+                'Weather, Reminders, Clock, TV, Stocks, Calculator, Voice '
+                'Memos, Compass, Podcasts, Watch, Tips, Find My, Settings, '
+                'Files, Measure, Magnifier, Shortcuts, Translate\n'
+                'Battery Battery technology: Lithium-Ion (Li-Ion) Continuous '
+                'audio playback time: 95 h Continuous video playback time: 29 '
+                'h\n'
+                'Sensors Proximity sensor Accelerometer Ambient light sensor '
+                'Gyroscope Barometer LiDAR sensor\n'
+                'Packaging contents Quick start guide Cables included USB '
+                'Type-C to Lightning',
+ 'id': 'fc89aba2-beb9-4e5e-ba84-c2ea837e2374',
+ 'name': 'Apple iPhone 14 Pro Max 5G - 6.7" - 512GB ROM - 6GB RAM - Dual SIM - '
+         'A16 Bionic Chip - 4323mAh - Silver',
+ 'price': 1500000.0}
+2023-09-07 21:35:46 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.konga.com/product/ldnio-4-usb-charger-port-wall-charger-5779483> (referer: https://www.konga.com/)
+2023-09-07 21:35:46 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/xiaomi-xiaomi-redmi-12-6-79-8gb-ram-256gb-rom-4g-lte-dual-sim-5000mah-silver-6196847>
+{'id': 'a33b08ee-b2f4-48bb-bf67-520853400f6e',
+ 'name': 'phones and tablets',
+ 'product_id': '517815e1-1d6d-46ce-8c26-883cd486c9d3'}
+2023-09-07 21:35:46 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/nokia-nokia-105-africa-edition-dual-sim-4mb-rom-4mb-ram-800mah-charcoal-5634220>
+{'alt_text': 'Product image thumbnail.',
+ 'caption': 'Product image thumbnail.',
+ 'image_url': 'https://www-konga-com-res.cloudinary.com/w_auto,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/U/M/_1646146102.jpg',
+ 'order': 3,
+ 'product': '7a57334d-9a3f-45a1-869c-da09113a6f71'}
+2023-09-07 21:35:46 [root] DEBUG: [Product.8232543e-91ee-4e63-b610-51bceda67d67]({'name': "Samsung Galaxy A24 - 6.5''- LTE- 6GB Ram - 128GB Rom - 5000mAh - Lime Green", 'price': Decimal('196000.00'), 'id': '8232543e-91ee-4e63-b610-51bceda67d67', 'updated_at': '2023-09-07T21:35:45', 'description': 'NETWORK - GSM / HSPA / LTE\nBODY Dimensions 162.1 x 77.6 x 8.3 mm (6.38 x 3.06 x 0.33 in))\nDISPLAY Type Super AMOLED, 90Hz, 1000 nits (peak) Size 6.5 inches, 103.7 cm2 (~82.4what brand idcreen-to-body ratio) Resolution 1080 x 2340 pixels, 19.5:9 ratio (~396 ppi density)\nPLATFORM OS Android 13, One UI 5.1 Chipset Mediatek MT8781 Helio G99 (6nm) CPU Octa-core (2x2.2 GHz Cortex-A76 & 6x2.0 GHz Cortex-A55) GPU Mali-G57 MC2\nMEMORY Card slot microSDXC (dedicated slot) Internal\xa0 128GB 6GB RAM\nMAIN CAMERA Triple 50 MP, f/1.8, (wide), PDAF, OIS 5 MP, f/2.2, 123 (ultrawide), 1/5", 1.12µm 2 MP, f/2.4, (macro) Features LED flash, panorama, HDR Video 1080p@30fps\nSELFIE CAMERA Single 13 MP, f/2.2, (wide) Video 1080p@30fps SOUND Loudspeaker Yes 3.5mm jack Yes\nCOMMS WLAN Wi-Fi 802.11 a/b/g/n/ac, dual-band, Wi-Fi Direct Bluetooth 5.3, A2DP, LE Positioning GPS, GLONASS, GALILEO, BDS, QZSS NFC Yes (market/region dependent) Radio Unspecified USB USB Type-C 2.0\nFEATURES Sensors Fingerprint (side-mounted), accelerometer, gyro, compass Virtual proximity sensing\nBATTERY Type Li-Po 5000 mAh, non-removable Charging 25W wired', 'brand_id': None, 'created_at': '2023-09-07T21:35:45', '__class__': 'Product'})
+2023-09-07 21:35:46 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/samsung-samsung-galaxy-a24-6-5-lte-6gb-ram-128gb-rom-5000mah-lime-green-6112320>
+{'id': '6de6c1d0-84ee-4ab1-a4fa-a5fa6b32ab0d',
+ 'name': 'samsung',
+ 'product': '8232543e-91ee-4e63-b610-51bceda67d67'}
+2023-09-07 21:35:46 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/infinix-infinix-smart-7-hd-6-6-hd-x6516-2-2gb-ram-64gb-rom-8mp-ai-5mp-5000mah-black-6057086>
+{'alt_text': 'Product image thumbnail.',
+ 'caption': 'Product image thumbnail.',
+ 'image_url': 'https://www-konga-com-res.cloudinary.com/w_auto,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/G/L/118566_1679666228.jpg',
+ 'order': 2,
+ 'product': '81914255-da09-446c-868b-bd8aa0e14998'}
+2023-09-07 21:35:46 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/magnetic-wireless-charger-for-iphone-x-11-12-13-promax-5683668>
+{'alt_text': 'Product image thumbnail.',
+ 'caption': 'Product image thumbnail.',
+ 'image_url': 'https://www-konga-com-res.cloudinary.com/w_auto,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/Z/Y/188582_1644766065.jpg',
+ 'order': 0,
+ 'product': '14f8f205-2d32-45b4-ae9d-4f2c379d9724'}
+2023-09-07 21:35:47 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/apple-iphone-14-pro-max-5g-6-7-512gb-rom-6gb-ram-dual-sim-a16-bionic-chip-4323mah-silver-5906536>
+{'alt_text': 'Product image thumbnail.',
+ 'caption': 'Product image thumbnail.',
+ 'image_url': 'https://www-konga-com-res.cloudinary.com/w_auto,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/D/U/174909_1663481850.jpg',
+ 'order': 0,
+ 'product': 'fc89aba2-beb9-4e5e-ba84-c2ea837e2374'}
+2023-09-07 21:35:47 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/shockproof-defender-rugged-case-for-surface-go-2-5656309>
+{'description': 'Premium soft TPU and strong polycarbonate offer superb '
+                'protection against daily use.\n'
+                'Built-in Silicone Hand Strap for conveniently carrying.\n'
+                'Come with Surface Pen Holder that allows you to keep pen '
+                'securely in place!\n'
+                'For easily attaching and detaching of keyboard without taking '
+                'off the case.\n'
+                'Non-Slip Elastic Strap keeps your type cover folded and '
+                'secure on the go.\n'
+                'Raised Bezel protect your precious device from drops, bumps, '
+                'scratches.\n'
+                '[model Number 1824]',
+ 'id': '6bd3ce90-7f6c-4600-bcc5-be94c8fd78c3',
+ 'name': 'Shockproof Defender Rugged Case For Surface Go 2',
+ 'price': 18000.0}
+2023-09-07 21:35:47 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/garmin-etrex-10-handheld-gps-navigator-5700679>
+{'description': 'Garmin eTrex 10 Outdoor Handheld GPS Unit\n'
+                '2.2-Inch monochrome display that’s easy to read in any '
+                'lighting situation Durable and waterproof, eTrex® 10 is built '
+                'to withstand the elements Easy to use interface Supports '
+                'geocaching GPX files for downloading geocaches and details '
+                'straight to your unit High-sensitivity, Egnos-enabled GPS '
+                'receiver and HotFix satellite prediction to locate your '
+                'position quick',
+ 'id': 'd432634c-cefd-49f7-addf-2615e3f5b40a',
+ 'name': 'Garmin Etrex 10 - Handheld Gps Navigator',
+ 'price': 145000.0}
+--- Logging error ---
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/logging/__init__.py", line 1085, in emit
+    msg = self.format(record)
+  File "/usr/lib/python3.8/logging/__init__.py", line 929, in format
+    return fmt.format(record)
+  File "/usr/lib/python3.8/logging/__init__.py", line 668, in format
+    record.message = record.getMessage()
+  File "/usr/lib/python3.8/logging/__init__.py", line 373, in getMessage
+    msg = msg % self.args
+TypeError: not all arguments converted during string formatting
+Call stack:
+  File "/home/vagrant/cheaper_phone/backend/venv/bin/scrapy", line 8, in <module>
+    sys.exit(execute())
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/scrapy/cmdline.py", line 161, in execute
+    _run_print_help(parser, _run_command, cmd, args, opts)
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/scrapy/cmdline.py", line 114, in _run_print_help
+    func(*a, **kw)
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/scrapy/cmdline.py", line 169, in _run_command
+    cmd.run(args, opts)
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/scrapy/commands/crawl.py", line 30, in run
+    self.crawler_process.start()
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/scrapy/crawler.py", line 397, in start
+    reactor.run(installSignalHandlers=False)  # blocking call
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/twisted/internet/asyncioreactor.py", line 255, in run
+    self._asyncioEventloop.run_forever()
+  File "/usr/lib/python3.8/asyncio/base_events.py", line 570, in run_forever
+    self._run_once()
+  File "/usr/lib/python3.8/asyncio/base_events.py", line 1859, in _run_once
+    handle._run()
+  File "/usr/lib/python3.8/asyncio/events.py", line 81, in _run
+    self._context.run(self._callback, *self._args)
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/twisted/internet/asyncioreactor.py", line 271, in _onTimer
+    self.runUntilCurrent()
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/twisted/internet/base.py", line 994, in runUntilCurrent
+    call.func(*call.args, **call.kw)
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/twisted/internet/task.py", line 680, in _tick
+    taskObj._oneWorkUnit()
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/twisted/internet/task.py", line 526, in _oneWorkUnit
+    result = next(self._iterator)
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/scrapy/utils/defer.py", line 98, in <genexpr>
+    work = (callable(elem, *args, **named) for elem in iterable)
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/scrapy/core/scraper.py", line 295, in _process_spidermw_output
+    dfd = self.itemproc.process_item(output, spider)
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/scrapy/pipelines/__init__.py", line 31, in process_item
+    return self._process_chain("process_item", item, spider)
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/scrapy/middleware.py", line 81, in _process_chain
+    return process_chain(methods, obj, *args)
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/scrapy/utils/defer.py", line 227, in process_chain
+    d.callback(input)
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/twisted/internet/defer.py", line 696, in callback
+    self._startRunCallbacks(result)
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/twisted/internet/defer.py", line 798, in _startRunCallbacks
+    self._runCallbacks()
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/twisted/internet/defer.py", line 892, in _runCallbacks
+    current.result = callback(  # type: ignore[misc]
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/scrapy/utils/defer.py", line 324, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+  File "/home/vagrant/cheaper_phone/backend/ecommerce_scrape/ecommerce_scrape/pipelines.py", line 109, in process_item
+    logging.debug(product, "what brand id")
+Message: <models.products.Product object at 0x7f4e37cbbc70>
+Arguments: ('what brand id',)
+2023-09-07 21:35:47 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/nokia-nokia-105-africa-edition-dual-sim-4mb-rom-4mb-ram-800mah-charcoal-5634220>
+{'id': '35865ad3-30a7-4149-90f3-a15afd04875d',
+ 'name': 'nokia',
+ 'product': '7a57334d-9a3f-45a1-869c-da09113a6f71'}
+2023-09-07 21:35:47 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/samsung-samsung-galaxy-a24-6-5-lte-6gb-ram-128gb-rom-5000mah-lime-green-6112320>
+{'id': 'd94993b3-272c-4253-8b9d-4ebabf5c2a4f',
+ 'name': 'phones and tablets',
+ 'product_id': '8232543e-91ee-4e63-b610-51bceda67d67'}
+--- Logging error ---
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/logging/__init__.py", line 1085, in emit
+    msg = self.format(record)
+  File "/usr/lib/python3.8/logging/__init__.py", line 929, in format
+    return fmt.format(record)
+  File "/usr/lib/python3.8/logging/__init__.py", line 668, in format
+    record.message = record.getMessage()
+  File "/usr/lib/python3.8/logging/__init__.py", line 373, in getMessage
+    msg = msg % self.args
+TypeError: not all arguments converted during string formatting
+Call stack:
+  File "/home/vagrant/cheaper_phone/backend/venv/bin/scrapy", line 8, in <module>
+    sys.exit(execute())
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/scrapy/cmdline.py", line 161, in execute
+    _run_print_help(parser, _run_command, cmd, args, opts)
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/scrapy/cmdline.py", line 114, in _run_print_help
+    func(*a, **kw)
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/scrapy/cmdline.py", line 169, in _run_command
+    cmd.run(args, opts)
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/scrapy/commands/crawl.py", line 30, in run
+    self.crawler_process.start()
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/scrapy/crawler.py", line 397, in start
+    reactor.run(installSignalHandlers=False)  # blocking call
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/twisted/internet/asyncioreactor.py", line 255, in run
+    self._asyncioEventloop.run_forever()
+  File "/usr/lib/python3.8/asyncio/base_events.py", line 570, in run_forever
+    self._run_once()
+  File "/usr/lib/python3.8/asyncio/base_events.py", line 1859, in _run_once
+    handle._run()
+  File "/usr/lib/python3.8/asyncio/events.py", line 81, in _run
+    self._context.run(self._callback, *self._args)
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/twisted/internet/asyncioreactor.py", line 271, in _onTimer
+    self.runUntilCurrent()
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/twisted/internet/base.py", line 994, in runUntilCurrent
+    call.func(*call.args, **call.kw)
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/twisted/internet/task.py", line 680, in _tick
+    taskObj._oneWorkUnit()
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/twisted/internet/task.py", line 526, in _oneWorkUnit
+    result = next(self._iterator)
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/scrapy/utils/defer.py", line 98, in <genexpr>
+    work = (callable(elem, *args, **named) for elem in iterable)
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/scrapy/core/scraper.py", line 295, in _process_spidermw_output
+    dfd = self.itemproc.process_item(output, spider)
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/scrapy/pipelines/__init__.py", line 31, in process_item
+    return self._process_chain("process_item", item, spider)
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/scrapy/middleware.py", line 81, in _process_chain
+    return process_chain(methods, obj, *args)
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/scrapy/utils/defer.py", line 227, in process_chain
+    d.callback(input)
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/twisted/internet/defer.py", line 696, in callback
+    self._startRunCallbacks(result)
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/twisted/internet/defer.py", line 798, in _startRunCallbacks
+    self._runCallbacks()
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/twisted/internet/defer.py", line 892, in _runCallbacks
+    current.result = callback(  # type: ignore[misc]
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/scrapy/utils/defer.py", line 324, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+  File "/home/vagrant/cheaper_phone/backend/ecommerce_scrape/ecommerce_scrape/pipelines.py", line 109, in process_item
+    logging.debug(product, "what brand id")
+Message: <models.products.Product object at 0x7f4e37cbb610>
+Arguments: ('what brand id',)
+2023-09-07 21:35:47 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/infinix-infinix-smart-7-hd-6-6-hd-x6516-2-2gb-ram-64gb-rom-8mp-ai-5mp-5000mah-black-6057086>
+{'id': 'bafa1bc7-edc1-48c4-8c8e-84c07d837e7b',
+ 'name': 'infinix',
+ 'product': '81914255-da09-446c-868b-bd8aa0e14998'}
+2023-09-07 21:35:47 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/magnetic-wireless-charger-for-iphone-x-11-12-13-promax-5683668>
+{'alt_text': 'Product image thumbnail.',
+ 'caption': 'Product image thumbnail.',
+ 'image_url': 'https://www-konga-com-res.cloudinary.com/w_auto,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/Y/Q/188582_1644766078.jpg',
+ 'order': 1,
+ 'product': '14f8f205-2d32-45b4-ae9d-4f2c379d9724'}
+2023-09-07 21:35:47 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/apple-iphone-14-pro-max-5g-6-7-512gb-rom-6gb-ram-dual-sim-a16-bionic-chip-4323mah-silver-5906536>
+{'alt_text': 'Product image thumbnail.',
+ 'caption': 'Product image thumbnail.',
+ 'image_url': 'https://www-konga-com-res.cloudinary.com/w_auto,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/H/D/174909_1663481855.jpg',
+ 'order': 1,
+ 'product': 'fc89aba2-beb9-4e5e-ba84-c2ea837e2374'}
+2023-09-07 21:35:47 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/apple-iphone-14-pro-max-5g-6-7-512gb-rom-6gb-ram-dual-sim-a16-bionic-chip-4323mah-silver-5906536>
+{'alt_text': 'Product image thumbnail.',
+ 'caption': 'Product image thumbnail.',
+ 'image_url': 'https://www-konga-com-res.cloudinary.com/w_auto,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/E/O/174909_1663481860.jpg',
+ 'order': 2,
+ 'product': 'fc89aba2-beb9-4e5e-ba84-c2ea837e2374'}
+2023-09-07 21:35:47 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/shockproof-defender-rugged-case-for-surface-go-2-5656309>
+{'alt_text': 'Product image thumbnail.',
+ 'caption': 'Product image thumbnail.',
+ 'image_url': 'https://www-konga-com-res.cloudinary.com/w_auto,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/Y/L/153015_1646665126.jpg',
+ 'order': 0,
+ 'product': '6bd3ce90-7f6c-4600-bcc5-be94c8fd78c3'}
+2023-09-07 21:35:47 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/garmin-etrex-10-handheld-gps-navigator-5700679>
+{'alt_text': 'Product image thumbnail.',
+ 'caption': 'Product image thumbnail.',
+ 'image_url': 'https://www-konga-com-res.cloudinary.com/w_auto,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/L/S/192230_1650623397.jpg',
+ 'order': 0,
+ 'product': 'd432634c-cefd-49f7-addf-2615e3f5b40a'}
+2023-09-07 21:35:47 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/idino-note-book-3-10-1-4g-lte-hybrid-2-in-1-64gb-rom-4gb-ram-android-10-4000mah-5745615>
+{'description': 'IDINO Notebook 3 comes with 4gb 64gb internal memory 4G '
+                'Android 10.1 strong battery life 4000mAh dual sim and 10.1 '
+                'sizes. The Idino Notebook 3 is a very powerful tablet that '
+                'has 64GB internal storage. It has a 4GB RAM and a powerful '
+                '4000mah battery that charges quickly and keeps the tablet '
+                'running for a long time. This is a Dual SIM tablet that has a '
+                '10.1 inches touchscreen that makes viewing images and other '
+                'content extremely easy. Flaunts a 10.1-inch display that '
+                'offers bright visuals in great details. Top-notch Octa- core '
+                'processor offers smooth and proficient functioning. Display: '
+                '10.1″ inches Memory: 64GB Internal storage 4GB RAM Camera: '
+                '13MP Back 5MP Front plus a flashlight, 4G network support '
+                'slim design The IDino NoteBook 3 tablet is a 10.1 inch, '
+                'Android 10, 64 GB, 4GB DDR3 tablet with a 4G Network, Wifi '
+                'connection, and Octa-core processor. It comes in dual sim, a '
+                'dual camera as well. Brand: idino model: notebook3 Operating '
+                'system: Android Os version: 10 Screen size: 10.1 inches '
+                'Screen type: IPS LCD Sim support: Dual sim Sim Type: Regular '
+                'Sim data: 4G / LTE Connectivity: Wifi, Internal storage:64GB '
+                'Ram:4GB Processor Type: Octa-core MTK6592 Camera: Dual-camera '
+                '(front/back) Camera type: Primary secondary Media ports: '
+                'Memory card MicroSD, up to 256 GB USB: Micro-USB 2.0',
+ 'id': '0d081aed-887a-457a-8e48-0a45f9f918f4',
+ 'name': 'Idino - Note Book 3 - 10.1"- 4G Lte- Hybrid 2 In 1 - 64GB ROM + 4GB '
+         'RAM - Android 10-4000mAh',
+ 'price': 65999.0}
+2023-09-07 21:35:47 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/ring-light-tripod-stand-210cm-5750384>
+{'description': 'Live broadcasting self-timer video light supplement: '
+                'multi-platform powder absorber\n'
+                '2. Microblog Master Photo: Product Photography Suitable for '
+                'Self-timer Photo Film\n'
+                '3. Beauty and Hair Modeling and Light Supplementary: '
+                'Applicable to Barber Shop Beauty and Makeup Shop Effective '
+                'Light Supplementary Photography\n'
+                '\n'
+                'Descriptions:\n'
+                '1. Stylish and beautiful\n'
+                '2. Portable and compact\n'
+                '3. Superior material delicate touch\n'
+                '\n'
+                'Specifications:\n'
+                'Color: black\n'
+                'Material: Environmentally friendly soft rubber ABS aluminum '
+                'substrate metal hose\n'
+                'Light: cool and warm white light\n'
+                'Gear position: three-speed lighting adjustment. can adjust '
+                'the brightness\n'
+                'Lamp power: 5W-18W\n'
+                'Working temperature: less than 45 °C no hot spots safe to '
+                'touch.',
+ 'id': '9c50a9e0-2ce3-4cf5-9a60-f0a84e7a2767',
+ 'name': 'Ring Light Tripod Stand - 210cm',
+ 'price': 7999.0}
+2023-09-07 21:35:47 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/apple-iphone-xr-128gb-rom-3gb-ram-12mp-6-1-blue-free-case-and-screen-guide-5767799>
+{'description': 'Iphone Xr - 3gb Ram, 128gb Rom Ios 12, 12mp+7mp Screen size '
+                '6.1 inches Connectivity WiFi + 4G Sim Type Nano SIM OS iOS '
+                'Sim Slots Single Sim Battery Capacity 1000mAh - 3000mAh '
+                'MEMORY Card slot No NETWORK Technology GSM / CDMA / HSPA / '
+                'EVDO / LTE LAUNCH AnnounceD 2018, September Status Available. '
+                'Released 2018, October BODY Dimensions 150.9 x 75.7 x 8.3 mm '
+                '(5.94 x 2.98 x 0.33 in) Weight 194 g (6.84 oz) Build '
+                'Front/back glass, aluminum frame (7000 series) SIM Single SIM '
+                '(Nano-SIM) or Dual SIM (Nano-SIM, dual stand-by) - for China '
+                'IP67 dust/water resistant (up to 1m for 30 mins) Apple Pay '
+                '(Visa, MasterCard, AMEX certified) DISPLAY Type IPS LCD '
+                'capacitive touchscreen, 16M colors Size 6.1 inches, 90.3 cm2 '
+                '(~79.0% screen-to-body ratio) ResolutioN 828 x 1792 pixels, '
+                '19.5:9 ratio (~326 ppi density) Protection Scratch-resistant '
+                'glass, oleophobic coating True-tone Wide color gamut 120 Hz '
+                'touch-sensing PLATFORM OS iOS 12, upgradable to iOS 12.2 '
+                'Chipset Apple A12 Bionic (7 nm) CPU Hexa-core (2x2.5 GHz '
+                'Vortex + 4x1.6 GHz Tempest) GPU Apple GPU (4-core graphics) '
+                'NETWORK LAUNCH\xa0\xa0 \xa0 \xa0\xa0 \xa02018, September 12 '
+                'Available. Released 2018, October 26 '
+                'BODY\xa0\xa0 \xa0 \xa0\xa0 \xa0150.9 x 75.7 x 8.3 mm (5.94 x '
+                '2.98 x 0.33 in) 194 g (6.84 oz) Glass front (Gorilla Glass), '
+                'glass back (Gorilla Glass), aluminum frame (7000 series) '
+                'Single SIM (Nano-SIM and/or eSIM) or Dual SIM (Nano-SIM, dual '
+                'stand-by) - for China IP67 dust/water resistant (up to 1m for '
+                '30 mins) Apple Pay (Visa, MasterCard, AMEX certified) '
+                'DISPLAY\xa0\xa0 \xa0 \xa0\xa0 \xa0Liquid Retina IPS LCD, 625 '
+                'nits (typ) 6.1 inches, 90.3 cm (~79.0% screen-to-body ratio) '
+                '828 x 1792 pixels, 19.5:9 ratio (~326 ppi density) '
+                'Scratch-resistant glass, oleophobic coating True-tone Wide '
+                'color gamut PLATFORM\xa0\xa0 \xa0 \xa0\xa0 \xa0iOS 12, '
+                'upgradable to iOS 14.7 Apple A12 Bionic (7 nm) Hexa-core '
+                '(2x2.5 GHz Vortex + 4x1.6 GHz Tempest) Apple GPU (4-core '
+                'graphics) MAIN CAMERA\xa0\xa0 \xa0 \xa0\xa0 \xa012 MP, f/1.8, '
+                '26mm (wide), 1/2.55", 1.4µm, PDAF, OIS Quad-LED dual-tone '
+                'flash, HDR (photo/panorama) 4K@24/30/60fps, '
+                '1080p@30/60/120/240fps, HDR, stereo sound rec. SELFIE '
+                'CAMERA\xa0\xa0 \xa0 \xa0\xa0 \xa07 MP, f/2.2, 32mm (standard) '
+                'SL 3D, (depth/biometrics sensor) HDR 1080p@60fps '
+                'SOUND\xa0\xa0 \xa0 \xa0\xa0 \xa0Yes, with stereo speakers No '
+                'COMMS\xa0\xa0 \xa0 \xa0\xa0 \xa0Wi-Fi 802.11 a/b/g/n/ac, '
+                'dual-band, hotspot 5.0, A2DP, LE Yes, with A-GPS, GLONASS, '
+                'GALILEO, QZSS Yes No Lightning, USB 2.0 '
+                'FEATURES\xa0\xa0 \xa0 \xa0\xa0 \xa0Face ID, accelerometer, '
+                'gyro, proximity, compass, barometer Siri natural language '
+                'commands and dictation BATTERY\xa0\xa0 \xa0 \xa0\xa0 \xa0'
+                'Li-Ion 2942 mAh, non-removable (11.16 Wh) Fast charging 15W, '
+                '50% in 30 min (advertised) USB Power Delivery 2.0 Qi wireless '
+                'charging Up to 16 h (multimedia) Up to 65 h '
+                'MISC\xa0\xa0 \xa0 \xa0\xa0 \xa0Black, Red, Yellow, Blue, '
+                'Coral, White A2105, A1984, A2107, A2108, A2106, iPhone11,8 '
+                '1.13 W/kg (head)\xa0\xa0\xa0\xa0 1.16 W/kg (body) 0.99 W/kg '
+                '(head)\xa0\xa0\xa0\xa0 0.99 W/kg (body) '
+                'TESTS\xa0\xa0 \xa0 \xa0\xa0 \xa0AnTuTu: 341196 (v7), 422465 '
+                '(v8) GeekBench: 11437 (v4.4), 2690 (v5.1) GFXBench: 58fps (ES '
+                '3.1 Product Features: * Retina HD display. * 6.1-inch '
+                'all-screen LCD Multi-touch display. * A12 Bionic '
+                'chip+Second-generation Neural engine. * 12MP wide camera+7MP '
+                'TrueDepth Camera. * Premium material and exquisite '
+                'craftsmanship. * Upgraded Face ID function. * 2942mAh '
+                'lithium-ion battery.',
+ 'id': '6196120a-bb9c-41c0-9e67-5bf08e8523ee',
+ 'name': 'Apple iPhone XR- 128GB ROM + 3GB RAM- 12MP -6.1"- Blue - Free Case & '
+         'Screen Guide',
+ 'price': 260000.0}
+2023-09-07 21:35:47 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/nokia-nokia-105-africa-edition-dual-sim-4mb-rom-4mb-ram-800mah-charcoal-5634220>
+{'id': 'e9e759ef-b89a-449e-84ff-ae899a7a8087',
+ 'name': 'phones and tablets',
+ 'product_id': '7a57334d-9a3f-45a1-869c-da09113a6f71'}
+2023-09-07 21:35:47 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/infinix-infinix-smart-7-hd-6-6-hd-x6516-2-2gb-ram-64gb-rom-8mp-ai-5mp-5000mah-black-6057086>
+{'id': '11589e45-ce5a-4039-a87e-58c75c2c1569',
+ 'name': 'phones and tablets',
+ 'product_id': '81914255-da09-446c-868b-bd8aa0e14998'}
+2023-09-07 21:35:47 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/magnetic-wireless-charger-for-iphone-x-11-12-13-promax-5683668>
+{'alt_text': 'Product image thumbnail.',
+ 'caption': 'Product image thumbnail.',
+ 'image_url': 'https://www-konga-com-res.cloudinary.com/w_auto,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/T/O/188582_1644766094.jpg',
+ 'order': 2,
+ 'product': '14f8f205-2d32-45b4-ae9d-4f2c379d9724'}
+2023-09-07 21:35:47 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/magnetic-wireless-charger-for-iphone-x-11-12-13-promax-5683668>
+{'alt_text': 'Product image thumbnail.',
+ 'caption': 'Product image thumbnail.',
+ 'image_url': 'https://www-konga-com-res.cloudinary.com/w_auto,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/E/T/188582_1644766103.jpg',
+ 'order': 3,
+ 'product': '14f8f205-2d32-45b4-ae9d-4f2c379d9724'}
+2023-09-07 21:35:47 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/apple-iphone-14-pro-max-5g-6-7-512gb-rom-6gb-ram-dual-sim-a16-bionic-chip-4323mah-silver-5906536>
+{'alt_text': 'Product image thumbnail.',
+ 'caption': 'Product image thumbnail.',
+ 'image_url': 'https://www-konga-com-res.cloudinary.com/w_auto,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/C/T/174909_1663481866.jpg',
+ 'order': 3,
+ 'product': 'fc89aba2-beb9-4e5e-ba84-c2ea837e2374'}
+2023-09-07 21:35:47 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/apple-iphone-14-pro-max-5g-6-7-512gb-rom-6gb-ram-dual-sim-a16-bionic-chip-4323mah-silver-5906536>
+{'id': '1627f3de-5db3-4eec-90c8-a2c736b08636',
+ 'name': 'apple',
+ 'product': 'fc89aba2-beb9-4e5e-ba84-c2ea837e2374'}
+2023-09-07 21:35:47 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/shockproof-defender-rugged-case-for-surface-go-2-5656309>
+{'alt_text': 'Product image thumbnail.',
+ 'caption': 'Product image thumbnail.',
+ 'image_url': 'https://www-konga-com-res.cloudinary.com/w_auto,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/C/Q/153015_1646665133.jpg',
+ 'order': 1,
+ 'product': '6bd3ce90-7f6c-4600-bcc5-be94c8fd78c3'}
+2023-09-07 21:35:47 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/shockproof-defender-rugged-case-for-surface-go-2-5656309>
+{'alt_text': 'Product image thumbnail.',
+ 'caption': 'Product image thumbnail.',
+ 'image_url': 'https://www-konga-com-res.cloudinary.com/w_auto,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/T/G/153015_1646665142.jpg',
+ 'order': 2,
+ 'product': '6bd3ce90-7f6c-4600-bcc5-be94c8fd78c3'}
+2023-09-07 21:35:47 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/garmin-etrex-10-handheld-gps-navigator-5700679>
+{'alt_text': 'Product image thumbnail.',
+ 'caption': 'Product image thumbnail.',
+ 'image_url': 'https://www-konga-com-res.cloudinary.com/w_auto,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/O/W/192230_1650623439.jpg',
+ 'order': 1,
+ 'product': 'd432634c-cefd-49f7-addf-2615e3f5b40a'}
+2023-09-07 21:35:47 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/idino-note-book-3-10-1-4g-lte-hybrid-2-in-1-64gb-rom-4gb-ram-android-10-4000mah-5745615>
+{'alt_text': 'Product image thumbnail.',
+ 'caption': 'Product image thumbnail.',
+ 'image_url': 'https://www-konga-com-res.cloudinary.com/w_auto,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/B/H/197813_1657874359.jpg',
+ 'order': 0,
+ 'product': '0d081aed-887a-457a-8e48-0a45f9f918f4'}
+2023-09-07 21:35:47 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/ring-light-tripod-stand-210cm-5750384>
+{'alt_text': 'Product image thumbnail.',
+ 'caption': 'Product image thumbnail.',
+ 'image_url': 'https://www-konga-com-res.cloudinary.com/w_auto,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/N/P/164518_1654777022.jpg',
+ 'order': 0,
+ 'product': '9c50a9e0-2ce3-4cf5-9a60-f0a84e7a2767'}
+2023-09-07 21:35:47 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/apple-iphone-xr-128gb-rom-3gb-ram-12mp-6-1-blue-free-case-and-screen-guide-5767799>
+{'alt_text': 'Product image thumbnail.',
+ 'caption': 'Product image thumbnail.',
+ 'image_url': 'https://www-konga-com-res.cloudinary.com/w_auto,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/S/D/113628_1655745862.jpg',
+ 'order': 0,
+ 'product': '6196120a-bb9c-41c0-9e67-5bf08e8523ee'}
+2023-09-07 21:35:47 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/ldnio-4-usb-charger-port-wall-charger-5721762>
+{'description': '4 USB ports! Able to control brightness for nighlight!! Touch '
+                'sensor!!!! Best bedside plug ever!!!!\n'
+                '\n'
+                'Features: 1. With LED light button switch, you can charge '
+                'your devices at dark environment and without turn on the '
+                'light.\n'
+                '2. 4 USB Ports design, you can charge more different digital '
+                'devices in a same time, like smartphone, iPad, home '
+                'appliances etc.\n'
+                '3. Lightweight and easy carry, especially for daily travel or '
+                'business trip or use for home and office, save room and '
+                'elegant.\n'
+                '4. High efficiency, low energy consumption, circuit '
+                'protection, provides a safe charging performance.\n'
+                'Specification: Brand: LDNIO Model: A4405 USB Port: 4-Port '
+                'Input: AC100-240V Output: DC5V-4.4A (Auto Max)',
+ 'id': '0029ea7e-9e78-40f6-8c7b-16845f15bab5',
+ 'name': 'LDNIO 4 USB Charger Port Wall Charger',
+ 'price': 6000.0}
+2023-09-07 21:35:47 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/screen-protector-for-samsung-tab-a8-10-5-inch-2021-sm-x200-sm-x205-5772011>
+{'description': 'Screen Protector For Samsung Tab A8 10.5 Inch 2021 '
+                'Sm-x200/sm-x205\n'
+                'This screen protector helps to maintain the shape and design '
+                'of this device screen and also protects its screen from '
+                'unsightly scratches. It offers you the convenient and secure '
+                'online shopping, nationwide delivery, guaranteed products and '
+                'competitive pricing.',
+ 'id': 'c01f93cc-4393-495c-9608-444975a4287e',
+ 'name': 'Screen Protector For Samsung Tab A8 10.5 Inch 2021 Sm-x200/sm-x205',
+ 'price': 2900.0}
+2023-09-07 21:35:47 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/swoosh-suede-for-iphone-13-pro-max-case-brown-5775648>
+{'description': 'This is a Swoosh Suede iPhone Casing. It is made of both '
+                'Silicone and Suede. Has a great grip. It Also Protects your '
+                'Camera in a situation when your phone falls and avoids '
+                'scratches.',
+ 'id': 'cdf020d1-b50c-4423-9724-b2b99d2c977c',
+ 'name': 'Swoosh Suede For iPhone 13 Pro Max Case - Brown',
+ 'price': 3000.0}
+2023-09-07 21:35:48 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/magnetic-wireless-charger-for-iphone-x-11-12-13-promax-5683668>
+{'id': '296bf1fb-b15d-44b9-b1e9-1985b010927c',
+ 'name': 'phones and tablets',
+ 'product_id': '14f8f205-2d32-45b4-ae9d-4f2c379d9724'}
+2023-09-07 21:35:48 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/apple-iphone-14-pro-max-5g-6-7-512gb-rom-6gb-ram-dual-sim-a16-bionic-chip-4323mah-silver-5906536>
+{'id': '959050db-067d-418d-95b2-22680b879d53',
+ 'name': 'phones and tablets',
+ 'product_id': 'fc89aba2-beb9-4e5e-ba84-c2ea837e2374'}
+2023-09-07 21:35:48 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/shockproof-defender-rugged-case-for-surface-go-2-5656309>
+{'alt_text': 'Product image thumbnail.',
+ 'caption': 'Product image thumbnail.',
+ 'image_url': 'https://www-konga-com-res.cloudinary.com/w_auto,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/U/L/153015_1646665150.jpg',
+ 'order': 3,
+ 'product': '6bd3ce90-7f6c-4600-bcc5-be94c8fd78c3'}
+2023-09-07 21:35:48 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/garmin-etrex-10-handheld-gps-navigator-5700679>
+{'alt_text': 'Product image thumbnail.',
+ 'caption': 'Product image thumbnail.',
+ 'image_url': 'https://www-konga-com-res.cloudinary.com/w_auto,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/T/Z/192230_1650623477.jpg',
+ 'order': 2,
+ 'product': 'd432634c-cefd-49f7-addf-2615e3f5b40a'}
+2023-09-07 21:35:48 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/idino-note-book-3-10-1-4g-lte-hybrid-2-in-1-64gb-rom-4gb-ram-android-10-4000mah-5745615>
+{'alt_text': 'Product image thumbnail.',
+ 'caption': 'Product image thumbnail.',
+ 'image_url': 'https://www-konga-com-res.cloudinary.com/w_auto,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/Q/S/197813_1657874319.jpg',
+ 'order': 1,
+ 'product': '0d081aed-887a-457a-8e48-0a45f9f918f4'}
+2023-09-07 21:35:48 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/ring-light-tripod-stand-210cm-5750384>
+{'alt_text': 'Product image thumbnail.',
+ 'caption': 'Product image thumbnail.',
+ 'image_url': 'https://www-konga-com-res.cloudinary.com/w_auto,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/G/U/164518_1654777095.jpg',
+ 'order': 1,
+ 'product': '9c50a9e0-2ce3-4cf5-9a60-f0a84e7a2767'}
+2023-09-07 21:35:48 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/apple-iphone-xr-128gb-rom-3gb-ram-12mp-6-1-blue-free-case-and-screen-guide-5767799>
+{'alt_text': 'Product image thumbnail.',
+ 'caption': 'Product image thumbnail.',
+ 'image_url': 'https://www-konga-com-res.cloudinary.com/w_auto,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/V/V/113628_1655745884.jpg',
+ 'order': 1,
+ 'product': '6196120a-bb9c-41c0-9e67-5bf08e8523ee'}
+2023-09-07 21:35:48 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/ldnio-4-usb-charger-port-wall-charger-5721762>
+{'alt_text': 'Product image thumbnail.',
+ 'caption': 'Product image thumbnail.',
+ 'image_url': 'https://www-konga-com-res.cloudinary.com/w_auto,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/F/R/202025_1652467784.jpg',
+ 'order': 0,
+ 'product': '0029ea7e-9e78-40f6-8c7b-16845f15bab5'}
+2023-09-07 21:35:48 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/screen-protector-for-samsung-tab-a8-10-5-inch-2021-sm-x200-sm-x205-5772011>
+{'alt_text': 'Product image thumbnail.',
+ 'caption': 'Product image thumbnail.',
+ 'image_url': 'https://www-konga-com-res.cloudinary.com/w_auto,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/B/F/189011_1656403868.jpg',
+ 'order': 0,
+ 'product': 'c01f93cc-4393-495c-9608-444975a4287e'}
+2023-09-07 21:35:48 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/swoosh-suede-for-iphone-13-pro-max-case-brown-5775648>
+{'alt_text': 'Product image thumbnail.',
+ 'caption': 'Product image thumbnail.',
+ 'image_url': 'https://www-konga-com-res.cloudinary.com/w_auto,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/L/P/163185_1656506877.jpg',
+ 'order': 0,
+ 'product': 'cdf020d1-b50c-4423-9724-b2b99d2c977c'}
+2023-09-07 21:35:48 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/ldnio-4-usb-charger-port-wall-charger-5779483>
+{'description': 'Specification:\n'
+                '\n'
+                'Brand: LDNIO Model: A4405\n'
+                'USB Port: 4-Port Plug: UK plug\n'
+                'Input: AC100-240V\n'
+                'Output: DC5V-4.4A(Auto Max)\n'
+                '\n'
+                'Supports simultaneous charging of up to 4 mobile devices. '
+                'Good for energy saving. The material is fire-proof and good '
+                'for high temperatures. Compatible with smartphones, tablets, '
+                'and other USB devices.4-Ports USB Auto-ID with LED touch '
+                'lamp, Intelligent identification, wide voltage adaptation, '
+                'multiple protection\n'
+                'Features: 1. With an LED light button switch, you can charge '
+                'your devices at dark environment and without turn on the '
+                'light.\n'
+                '2. 4 USB Ports design,you can charge more different digital '
+                'devices at a same time,like smartphone,iPad,home appliances '
+                'etc.\n'
+                '3. Lightweight and easy to carry, especially for daily travel '
+                'or business trip or use for home and office, save room and '
+                'elegant.\n'
+                '4. High efficiency, low energy consumption, and circuit '
+                'protection provide a safe charging performance.',
+ 'id': '8aaca06c-23a5-45d6-bb5c-07d3ee4f6337',
+ 'name': 'LDNIO 4 Usb Charger Port Wall Charger',
+ 'price': 7500.0}
+2023-09-07 21:35:48 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/shockproof-defender-rugged-case-for-surface-go-2-5656309>
+{'id': '47752e93-5f7e-44ca-b42b-bcf0d03db947',
+ 'name': 'phones and tablets',
+ 'product_id': '6bd3ce90-7f6c-4600-bcc5-be94c8fd78c3'}
+2023-09-07 21:35:48 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/garmin-etrex-10-handheld-gps-navigator-5700679>
+{'id': '2d106a63-63c6-425f-848e-77a4d6b3ea9d',
+ 'name': 'garmin',
+ 'product': 'd432634c-cefd-49f7-addf-2615e3f5b40a'}
+2023-09-07 21:35:48 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/idino-note-book-3-10-1-4g-lte-hybrid-2-in-1-64gb-rom-4gb-ram-android-10-4000mah-5745615>
+{'alt_text': 'Product image thumbnail.',
+ 'caption': 'Product image thumbnail.',
+ 'image_url': 'https://www-konga-com-res.cloudinary.com/w_auto,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/R/J/197813_1657874334.jpg',
+ 'order': 2,
+ 'product': '0d081aed-887a-457a-8e48-0a45f9f918f4'}
+2023-09-07 21:35:48 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/ring-light-tripod-stand-210cm-5750384>
+{'alt_text': 'Product image thumbnail.',
+ 'caption': 'Product image thumbnail.',
+ 'image_url': 'https://www-konga-com-res.cloudinary.com/w_auto,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/J/F/164518_1654777124.jpg',
+ 'order': 2,
+ 'product': '9c50a9e0-2ce3-4cf5-9a60-f0a84e7a2767'}
+2023-09-07 21:35:48 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/apple-iphone-xr-128gb-rom-3gb-ram-12mp-6-1-blue-free-case-and-screen-guide-5767799>
+{'alt_text': 'Product image thumbnail.',
+ 'caption': 'Product image thumbnail.',
+ 'image_url': 'https://www-konga-com-res.cloudinary.com/w_auto,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/D/R/113628_1655745900.jpg',
+ 'order': 2,
+ 'product': '6196120a-bb9c-41c0-9e67-5bf08e8523ee'}
+2023-09-07 21:35:48 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/ldnio-4-usb-charger-port-wall-charger-5721762>
+{'alt_text': 'Product image thumbnail.',
+ 'caption': 'Product image thumbnail.',
+ 'image_url': 'https://www-konga-com-res.cloudinary.com/w_auto,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/K/B/202025_1652467770.jpg',
+ 'order': 1,
+ 'product': '0029ea7e-9e78-40f6-8c7b-16845f15bab5'}
+2023-09-07 21:35:48 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/screen-protector-for-samsung-tab-a8-10-5-inch-2021-sm-x200-sm-x205-5772011>
+{'alt_text': 'Product image thumbnail.',
+ 'caption': 'Product image thumbnail.',
+ 'image_url': 'https://www-konga-com-res.cloudinary.com/w_auto,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/X/S/189011_1656403836.jpg',
+ 'order': 1,
+ 'product': 'c01f93cc-4393-495c-9608-444975a4287e'}
+2023-09-07 21:35:48 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/swoosh-suede-for-iphone-13-pro-max-case-brown-5775648>
+{'alt_text': 'Product image thumbnail.',
+ 'caption': 'Product image thumbnail.',
+ 'image_url': 'https://www-konga-com-res.cloudinary.com/w_auto,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/V/Q/163185_1656506869.jpg',
+ 'order': 1,
+ 'product': 'cdf020d1-b50c-4423-9724-b2b99d2c977c'}
+2023-09-07 21:35:48 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/ldnio-4-usb-charger-port-wall-charger-5779483>
+{'alt_text': 'Product image thumbnail.',
+ 'caption': 'Product image thumbnail.',
+ 'image_url': 'https://www-konga-com-res.cloudinary.com/w_auto,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/E/G/191666_1656970756.jpg',
+ 'order': 0,
+ 'product': '8aaca06c-23a5-45d6-bb5c-07d3ee4f6337'}
+2023-09-07 21:35:48 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/garmin-etrex-10-handheld-gps-navigator-5700679>
+{'id': '63fe408a-d7c1-4e3d-bdcf-22d9d8ab20d0',
+ 'name': 'phones and tablets',
+ 'product_id': 'd432634c-cefd-49f7-addf-2615e3f5b40a'}
+2023-09-07 21:35:48 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/idino-note-book-3-10-1-4g-lte-hybrid-2-in-1-64gb-rom-4gb-ram-android-10-4000mah-5745615>
+{'alt_text': 'Product image thumbnail.',
+ 'caption': 'Product image thumbnail.',
+ 'image_url': 'https://www-konga-com-res.cloudinary.com/w_auto,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/X/N/197813_1657874346.jpg',
+ 'order': 3,
+ 'product': '0d081aed-887a-457a-8e48-0a45f9f918f4'}
+2023-09-07 21:35:48 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/ring-light-tripod-stand-210cm-5750384>
+{'alt_text': 'Product image thumbnail.',
+ 'caption': 'Product image thumbnail.',
+ 'image_url': 'https://www-konga-com-res.cloudinary.com/w_auto,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/J/X/164518_1673441377.jpg',
+ 'order': 3,
+ 'product': '9c50a9e0-2ce3-4cf5-9a60-f0a84e7a2767'}
+--- Logging error ---
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/logging/__init__.py", line 1085, in emit
+    msg = self.format(record)
+  File "/usr/lib/python3.8/logging/__init__.py", line 929, in format
+    return fmt.format(record)
+  File "/usr/lib/python3.8/logging/__init__.py", line 668, in format
+    record.message = record.getMessage()
+  File "/usr/lib/python3.8/logging/__init__.py", line 373, in getMessage
+    msg = msg % self.args
+TypeError: not enough arguments for format string
+Call stack:
+  File "/home/vagrant/cheaper_phone/backend/venv/bin/scrapy", line 8, in <module>
+    sys.exit(execute())
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/scrapy/cmdline.py", line 161, in execute
+    _run_print_help(parser, _run_command, cmd, args, opts)
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/scrapy/cmdline.py", line 114, in _run_print_help
+    func(*a, **kw)
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/scrapy/cmdline.py", line 169, in _run_command
+    cmd.run(args, opts)
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/scrapy/commands/crawl.py", line 30, in run
+    self.crawler_process.start()
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/scrapy/crawler.py", line 397, in start
+    reactor.run(installSignalHandlers=False)  # blocking call
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/twisted/internet/asyncioreactor.py", line 255, in run
+    self._asyncioEventloop.run_forever()
+  File "/usr/lib/python3.8/asyncio/base_events.py", line 570, in run_forever
+    self._run_once()
+  File "/usr/lib/python3.8/asyncio/base_events.py", line 1859, in _run_once
+    handle._run()
+  File "/usr/lib/python3.8/asyncio/events.py", line 81, in _run
+    self._context.run(self._callback, *self._args)
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/twisted/internet/asyncioreactor.py", line 271, in _onTimer
+    self.runUntilCurrent()
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/twisted/internet/base.py", line 994, in runUntilCurrent
+    call.func(*call.args, **call.kw)
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/twisted/internet/task.py", line 680, in _tick
+    taskObj._oneWorkUnit()
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/twisted/internet/task.py", line 526, in _oneWorkUnit
+    result = next(self._iterator)
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/scrapy/utils/defer.py", line 98, in <genexpr>
+    work = (callable(elem, *args, **named) for elem in iterable)
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/scrapy/core/scraper.py", line 295, in _process_spidermw_output
+    dfd = self.itemproc.process_item(output, spider)
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/scrapy/pipelines/__init__.py", line 31, in process_item
+    return self._process_chain("process_item", item, spider)
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/scrapy/middleware.py", line 81, in _process_chain
+    return process_chain(methods, obj, *args)
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/scrapy/utils/defer.py", line 227, in process_chain
+    d.callback(input)
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/twisted/internet/defer.py", line 696, in callback
+    self._startRunCallbacks(result)
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/twisted/internet/defer.py", line 798, in _startRunCallbacks
+    self._runCallbacks()
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/twisted/internet/defer.py", line 892, in _runCallbacks
+    current.result = callback(  # type: ignore[misc]
+  File "/home/vagrant/cheaper_phone/backend/venv/lib/python3.8/site-packages/scrapy/utils/defer.py", line 324, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+  File "/home/vagrant/cheaper_phone/backend/ecommerce_scrape/ecommerce_scrape/pipelines.py", line 109, in process_item
+    logging.debug(product, "what brand id")
+Message: <models.products.Product object at 0x7f4e37aa69d0>
+Arguments: ('what brand id',)
+2023-09-07 21:35:48 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/apple-iphone-xr-128gb-rom-3gb-ram-12mp-6-1-blue-free-case-and-screen-guide-5767799>
+{'id': '7521b1d8-6670-4bb0-9df3-6853825f2d4c',
+ 'name': 'apple',
+ 'product': '6196120a-bb9c-41c0-9e67-5bf08e8523ee'}
+2023-09-07 21:35:48 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/ldnio-4-usb-charger-port-wall-charger-5721762>
+{'alt_text': 'Product image thumbnail.',
+ 'caption': 'Product image thumbnail.',
+ 'image_url': 'https://www-konga-com-res.cloudinary.com/w_auto,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/K/L/202025_1652467799.jpg',
+ 'order': 2,
+ 'product': '0029ea7e-9e78-40f6-8c7b-16845f15bab5'}
+2023-09-07 21:35:48 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/screen-protector-for-samsung-tab-a8-10-5-inch-2021-sm-x200-sm-x205-5772011>
+{'alt_text': 'Product image thumbnail.',
+ 'caption': 'Product image thumbnail.',
+ 'image_url': 'https://www-konga-com-res.cloudinary.com/w_auto,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/V/E/189011_1656403852.jpg',
+ 'order': 2,
+ 'product': 'c01f93cc-4393-495c-9608-444975a4287e'}
+2023-09-07 21:35:48 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/swoosh-suede-for-iphone-13-pro-max-case-brown-5775648>
+{'alt_text': 'Product image thumbnail.',
+ 'caption': 'Product image thumbnail.',
+ 'image_url': 'https://www-konga-com-res.cloudinary.com/w_auto,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/O/R/163185_1656506885.jpg',
+ 'order': 2,
+ 'product': 'cdf020d1-b50c-4423-9724-b2b99d2c977c'}
+2023-09-07 21:35:48 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/ldnio-4-usb-charger-port-wall-charger-5779483>
+{'alt_text': 'Product image thumbnail.',
+ 'caption': 'Product image thumbnail.',
+ 'image_url': 'https://www-konga-com-res.cloudinary.com/w_auto,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/S/W/191666_1656970682.jpg',
+ 'order': 1,
+ 'product': '8aaca06c-23a5-45d6-bb5c-07d3ee4f6337'}
+2023-09-07 21:35:48 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/idino-note-book-3-10-1-4g-lte-hybrid-2-in-1-64gb-rom-4gb-ram-android-10-4000mah-5745615>
+{'id': '963ee186-feab-4d36-919b-ab1d666a7606',
+ 'name': 'phones and tablets',
+ 'product_id': '0d081aed-887a-457a-8e48-0a45f9f918f4'}
+2023-09-07 21:35:48 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/ring-light-tripod-stand-210cm-5750384>
+{'alt_text': 'Product image thumbnail.',
+ 'caption': 'Product image thumbnail.',
+ 'image_url': 'https://www-konga-com-res.cloudinary.com/w_auto,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/E/Y/164518_1673441402.jpg',
+ 'order': 4,
+ 'product': '9c50a9e0-2ce3-4cf5-9a60-f0a84e7a2767'}
+2023-09-07 21:35:48 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/apple-iphone-xr-128gb-rom-3gb-ram-12mp-6-1-blue-free-case-and-screen-guide-5767799>
+{'id': '21969aeb-f386-4df1-a0e1-05fee4c5ea8b',
+ 'name': 'phones and tablets',
+ 'product_id': '6196120a-bb9c-41c0-9e67-5bf08e8523ee'}
+2023-09-07 21:35:48 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/ldnio-4-usb-charger-port-wall-charger-5721762>
+{'id': 'a14c076b-44f4-43cb-9f2a-e6627be330de',
+ 'name': 'phones and tablets',
+ 'product_id': '0029ea7e-9e78-40f6-8c7b-16845f15bab5'}
+2023-09-07 21:35:48 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/screen-protector-for-samsung-tab-a8-10-5-inch-2021-sm-x200-sm-x205-5772011>
+{'id': 'de4b0ccb-7239-49b8-a4a7-5b8df8863f5b',
+ 'name': 'phones and tablets',
+ 'product_id': 'c01f93cc-4393-495c-9608-444975a4287e'}
+2023-09-07 21:35:48 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/swoosh-suede-for-iphone-13-pro-max-case-brown-5775648>
+{'id': '673f31aa-cfdc-4d50-8ed7-d9c42e0e03a6',
+ 'name': 'phones and tablets',
+ 'product_id': 'cdf020d1-b50c-4423-9724-b2b99d2c977c'}
+2023-09-07 21:35:48 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/ldnio-4-usb-charger-port-wall-charger-5779483>
+{'alt_text': 'Product image thumbnail.',
+ 'caption': 'Product image thumbnail.',
+ 'image_url': 'https://www-konga-com-res.cloudinary.com/w_auto,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/L/I/191666_1656970713.jpg',
+ 'order': 2,
+ 'product': '8aaca06c-23a5-45d6-bb5c-07d3ee4f6337'}
+2023-09-07 21:35:48 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/ldnio-4-usb-charger-port-wall-charger-5779483>
+{'id': '3ff5a6e5-83db-4290-8847-8d906c4f11eb',
+ 'name': 'ldnio',
+ 'product': '8aaca06c-23a5-45d6-bb5c-07d3ee4f6337'}
+2023-09-07 21:35:48 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/ring-light-tripod-stand-210cm-5750384>
+{'id': '2447cbdf-2523-4163-be26-ef97e120616b',
+ 'name': 'phones and tablets',
+ 'product_id': '9c50a9e0-2ce3-4cf5-9a60-f0a84e7a2767'}
+2023-09-07 21:35:48 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.konga.com/product/ldnio-4-usb-charger-port-wall-charger-5779483>
+{'id': '20a663c0-fd23-48f5-ad5f-49d386444c30',
+ 'name': 'phones and tablets',
+ 'product_id': '8aaca06c-23a5-45d6-bb5c-07d3ee4f6337'}
+2023-09-07 21:35:48 [scrapy.statscollectors] INFO: Dumping Scrapy stats:
+{'downloader/exception_count': 1,
+ 'downloader/exception_type_count/scrapy.exceptions.IgnoreRequest': 1,
+ 'downloader/request_bytes': 24239,
+ 'downloader/request_count': 29,
+ 'downloader/request_method_count/GET': 28,
+ 'downloader/request_method_count/POST': 1,
+ 'downloader/response_bytes': 3801993,
+ 'downloader/response_count': 29,
+ 'downloader/response_status_count/200': 28,
+ 'downloader/response_status_count/404': 1,
+ 'elapsed_time_seconds': 19.408401,
+ 'finish_reason': 'shutdown',
+ 'finish_time': datetime.datetime(2023, 9, 7, 21, 35, 48, 890068),
+ 'httpcompression/response_bytes': 8844537,
+ 'httpcompression/response_count': 27,
+ 'item_scraped_count': 147,
+ 'log_count/DEBUG': 192,
+ 'log_count/INFO': 11,
+ 'memusage/max': 81690624,
+ 'memusage/startup': 81690624,
+ 'offsite/domains': 1,
+ 'offsite/filtered': 1,
+ 'request_depth_max': 1,
+ 'response_received_count': 29,
+ 'robotstxt/forbidden': 1,
+ 'robotstxt/request_count': 2,
+ 'robotstxt/response_count': 2,
+ 'robotstxt/response_status_count/200': 1,
+ 'robotstxt/response_status_count/404': 1,
+ 'scheduler/dequeued': 28,
+ 'scheduler/dequeued/memory': 28,
+ 'scheduler/enqueued': 1001,
+ 'scheduler/enqueued/memory': 1001,
+ 'start_time': datetime.datetime(2023, 9, 7, 21, 35, 29, 481667)}
+2023-09-07 21:35:48 [scrapy.core.engine] INFO: Spider closed (shutdown)
