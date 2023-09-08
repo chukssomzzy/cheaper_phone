@@ -47,7 +47,7 @@ class DBStorage:
         self.__engine = create_engine(
             "mysql+mysqldb://{}:{}@{}/{}".
             format(db_user, db_password, db_host, db_name))
-        if getenv("ECOMMERCE_ENV") != "TEST":
+        if getenv("ECOMMERCE_ENV") == "TEST":
             Base.metadata.drop_all(self.__engine)
 
     def reload(self):

@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "/schemas/product_schema.json",
+  "type": "object",
+
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 5,
+      "maxLength": 255
+    },
+    "description": {
+      "type": "string"
+    },
+    "price": {
+      "type": "number"
+    },
+    "brand_id": {
+      "type": "integer"
+    }
+  },
+  "additionalProperties": false,
+  "required":  ["price", "name"]
+}

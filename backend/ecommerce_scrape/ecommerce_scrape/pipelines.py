@@ -107,7 +107,7 @@ class BrandScrapePipeline:
             if brand and product_id:
                 product = storage.get("Product", product_id)
                 if product:
-                    product.brand_id = brand.id
+                    product.update(brand_id=brand.id)
                     brand.products.append(product)
 
         storage.save()

@@ -81,14 +81,13 @@ class DBStorage:
 
     def get(self, cls, id):
         """Return a cls related to an id"""
-        if cls not in self.__classes or cls in self.__classes.values():
+        if cls not in self.__classes and cls not in self.__classes.values():
             return None
-        else:
-            if cls in self.__classes:
-                cls = self.__classes[cls]
-                if self.__Session:
-                    return self.__Session.query(cls).\
-                        filter_by(id=id).one_or_none()
+        if cls in self.__classes:
+            cls = self.__classes[cls]
+        if self.__Session:
+            return self.__Session.query(cls).\
+                filter_by(id=id).one_or_none()
 
     def close(self):
         """Close the current session and request a new one"""
@@ -138,7 +137,7 @@ class DBStorage:
             return (self.__Session.query(cls).filter_by(id=id).exists())
         return (False)
 
-    def page_all(self, cls="Products", page=1, limit=10):
+    def page_all(self, cls="Product", page=1, limit=10, order_by="created_at"):
         """ Paginate all the data in the db based on the models class or
         paginate the product if cls is None
         Args:
@@ -158,8 +157,9 @@ class DBStorage:
             else:
                 startIdx = 0
                 endIdx = count
-            for val in self.__Session.query(self.
-                                            __classes[cls])[startIdx:endIdx]:
+            cls = self.__classes[cls]
+            query = self.__Session.query(cls).order_by(getattr(cls, order_by))[startIdx:endIdx]
+            for val in query:
                 key = str(val.__class__.__name__) + "." + str(val.id)
                 obj[key] = val
         return obj

@@ -1,7 +1,7 @@
 from os import getenv
 from flask import Flask, make_response
 from werkzeug import exceptions
-from api.v1.utils.invalid_api_error import InvalidApiUsage
+from api.v1.utils.error_handles.invalid_api_error import InvalidApiUsage
 from models import storage
 from api.v1.views import api_view
 """Defines app context for views"""
