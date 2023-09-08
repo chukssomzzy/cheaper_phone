@@ -12,9 +12,9 @@ def isvalid(uri_ref):
     """checks if the request object of a particular
     request has the correct decorator
     """
-    def decorator_isvalid(f)
-      @wraps(f)
-       def decorated_function(*args, **kwargs):
+    def decorator_isvalid(f):
+        @wraps(f)
+        def wrapper_function(*args, **kwargs):
             body = request.get_json()
             validator = Draft202012Validator(
                 {"type": "object",
@@ -24,4 +24,4 @@ def isvalid(uri_ref):
             )
             validator.validate(body)
             return f(*args, **kwargs)
-        return decorated_function
+        return wrapper_function
