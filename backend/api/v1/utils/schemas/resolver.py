@@ -4,19 +4,17 @@
 from pathlib import Path
 import json
 
-from refrencing import Registry, Resource
-from refrencing.exception import NoSuchResource
+from referencing import Registry, Resource
+from referencing.exceptions import NoSuchResource
 
-SCHEMAS = Path(".")
+SCHEMAS = Path(__file__).parent
 
 
 def retrieve_from_dir(uri: str):
     """Retrieve a json schema from filesystem"""
-    if not uri.startwith("http://localhost/"):
-        raise NoSuchResource(ref=uri)
-    path = SCHEMAS / Path(uri.removeprefix("http://localhost/"))
-    content = json.load(path)
-    Resource.from_content(content)
+    schema_path = SCHEMAS / uri
+    content = json.loads(schema_path.read_text())
+    return Resource.from_contents(content)
 
 
 registry = Registry(retrieve=retrieve_from_dir)

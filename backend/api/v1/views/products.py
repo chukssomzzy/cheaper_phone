@@ -3,8 +3,9 @@
 """Api view for products"""
 
 from flask import abort, request, url_for
+from api.v1.utils.schemas.is_valid import isvalid
 from api.v1.views import api_view
-from api.v1.utils.invalid_api_error import InvalidApiUsage
+from api.v1.utils.error_handles.invalid_api_error import InvalidApiUsage
 from models import storage
 
 
@@ -95,4 +96,6 @@ def get_product_by_id(product_id):
     return product_return
 
 
-@api_view.route("/product_id", )
+@api_view.route("/product_id", methods=["POST"], strict_slashes=False)
+@isvalid("products_schema")
+def post_products()

@@ -5,7 +5,8 @@ from flask import request
 
 from functools import wraps
 from jsonschema import Draft202012Validator
-from api.v1.utils.schema.resolver import register
+from api.v1.utils.error_handles.invalid_api_error import InvalidApiUsage
+from api.v1.utils.schemas.resolver import registry
 
 
 def isvalid(uri_ref):
@@ -16,12 +17,19 @@ def isvalid(uri_ref):
         @wraps(f)
         def wrapper_function(*args, **kwargs):
             body = request.get_json()
-            validator = Draft202012Validator(
-                {"type": "object",
-                 "additionalProperties": {"$ref": f"{uri_ref}"}
-                 },
-                registry=register
+            v = Draft202012Validator({
+                "type": "object",
+                "additionalProperties": {"$ref": f"{uri_ref}"}
+            },
+                registry=registry,
             )
-            validator.validate(body)
-            return f(*args, **kwargs)
+            errors = sorted(v.iter_errors({"instance": body}), key=str)
+            validation_errors = {}
+            if errors:
+                for i, error in enumerate(errors):
+                    validation_errors[str(i)] = error.message
+                raise InvalidApiUsage(
+                    "Your schema had some errors", payload=validation_errors)
+
         return wrapper_function
+    return decorator_isvalid
