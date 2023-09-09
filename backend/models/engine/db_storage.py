@@ -54,6 +54,7 @@ class DBStorage:
             session_factory = sessionmaker(bind=self.__engine)
             Session = scoped_session(session_factory)
             self.__Session = Session
+            self.session = self.__Session
 
     def delete(self, obj):
         """Delete a obj from session"""

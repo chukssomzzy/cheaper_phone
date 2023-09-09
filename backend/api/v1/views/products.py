@@ -12,7 +12,7 @@ from models.base_model import BaseModel
 
 
 @api_view.route("/products", strict_slashes=False)
-def get_prducts():
+def get_products():
     """Get all product data and pages the product to a limit of 40 by default
     Request_args:
         page (int): product page to return
