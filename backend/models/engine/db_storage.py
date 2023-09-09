@@ -111,9 +111,10 @@ class DBStorage:
             cls = self.__classes[cls]
             obj = cls(**kwargs)
             self.__Session.add(obj)
-        elif cls and cls.get("__name__") in self.__classes:
+        elif cls and cls in self.__classes.values():
             obj = cls(**kwargs)
             self.__Session.add(obj)
+        return (obj)
 
     def filter(self, cls, **kwargs):
         """Filter storage by list of kwargs"""
@@ -158,7 +159,8 @@ class DBStorage:
                 startIdx = 0
                 endIdx = count
             cls = self.__classes[cls]
-            query = self.__Session.query(cls).order_by(getattr(cls, order_by))[startIdx:endIdx]
+            query = self.__Session.query(cls).order_by(
+                getattr(cls, order_by))[startIdx:endIdx]
             for val in query:
                 key = str(val.__class__.__name__) + "." + str(val.id)
                 obj[key] = val

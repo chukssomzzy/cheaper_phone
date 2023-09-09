@@ -30,6 +30,6 @@ def isvalid(uri_ref):
                     validation_errors[str(i)] = error.message
                 raise InvalidApiUsage(
                     "Your schema had some errors", payload=validation_errors)
-
+            return f(*args, **kwargs)
         return wrapper_function
     return decorator_isvalid

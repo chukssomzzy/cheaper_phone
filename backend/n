@@ -1,0 +1,239 @@
+{
+  "actions": {
+    "order_by": [
+      "created_at",
+      "name",
+      "price",
+      "update_at"
+    ]
+  },
+  "paginate": {
+    "limit": 10,
+    "page": 1,
+    "pages": 97
+  },
+  "products": [
+    {
+      "__class__": "Product",
+      "created_at": "2023-09-08T07:19:12",
+      "description": "Infinix Smart 7 Plus 64GB-3GB\n\u201cInfinix Smart 7 Plus 64GB-4GB, The Ultimate Budget Smartphone with Premium Features\u201d. The Infinix Smart 7 boasts a large 6.6\u2033 HD+ display that provides a vivid and immersive viewing experience. The 20:9 aspect ratio provides a taller and narrower screen that\u2019s perfect for watching videos and browsing the web. The dot-in display design adds a touch of elegance and sophistication to the phone\u2019s design while still providing a bezel-less look that maximizes the screen size.\nOverall, the Infinix Smart 7 is an excellent choice for anyone looking for a\u00a0\u00a0smartphone with good features and performance.\nPro-Level Camera, Affordable Price\nThe New Smart 7 has 13MP + AI Lens back camera that provides stunning photos, while the selfie camera is 5MP at the front with features like AI Scene Detection, Super Night Mode, and a dedicated macro camera, the Infinix Smart 7 allows you to capture\u00a0\u00a0without breaking the bank.\nBattery\nSmart 7 Plus comes with a 6\u00a0non-removable battery that will keep you entertained and connected for longer. With its sleek design and cutting-edge features,\n\nDimensions 163.8 x 75.6 x 8.7 mm (6.45 x 2.98 x 0.34 in)\nSIMs Dual SIM (Nano-SIM, dual stand-by)\nWater & Dust No\nDISPLAY Size 6.6 inches\nType TFT LCD, 500 nits\nResolutions 720 x 1600 pixels, 20:9 ratio PPI,267 ppi density\nMulti touch Yes\nProtection No\nNETWORKS 2G, 3G, 4G\nCAMERA Rear Dual 13 MP, AF, 0.3 MP, (depth)\nFeatures Dual-LED flash, HDR, panorama\nFront 5 MP\nOS Android 12\nChipset Mediatek MT6761 Helio A22 (12 nm)\nCPU Quad-core (2.0GHz Cortex-A53)\nGPU PowerVR GE8320\nRAM 3GB\nStorage 64GB\nBATTERY Type Li-Ion Capacity 6000 mAh with 10W wired fast charge\nFingerprint (rear-mounted), accelerometer, proximity",
+      "id": "d297330a-673a-4b16-9286-27121eef21b6",
+      "image_url": "https://www-konga-com-res.cloudinary.com/w_auto,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/F/I/118566_1677148183.jpg",
+      "name": "Infinix Smart 7 Plus -x6517 - 6.6 \" \u2013 64gb Rom-3gb Ram- 13/ 5 Mp Camera- 6000 Mah- Green",
+      "price": "73300.00",
+      "updated_at": "2023-09-08T07:19:12",
+      "url_key": "http://0:5000/api/v1/products/d297330a-673a-4b16-9286-27121eef21b6"
+    },
+    {
+      "__class__": "Product",
+      "categories": [
+        {
+          "__class__": "Category",
+          "created_at": "2023-09-08T07:19:12",
+          "id": 1,
+          "name": "phones and tablets",
+          "updated_at": "2023-09-08T07:19:12"
+        }
+      ],
+      "created_at": "2023-09-08T07:19:12",
+      "description": "Model: T529\nOperating system: Nucleus Os\nProcessor:MT6260A\nNetwork: GSM\nBand : GSM:900/1800mHz\nDisplay : 2.8 LCD screen\nDimension: 139*59*14.1mm\nCamera:0.08MP back camera with flash\nMemory:16mb ROM+8mb RAM expandable micro SD card support up 32gb(sold separately)\nConnectivity: FM radio BT\nResolution :240*320\nDimension : 139*59*14.1mm\nBattery capacity:2500mAh\nLets chat\nOpera mini\nVoice message\nDual Sim",
+      "id": "edbb140a-761a-4881-b3c1-c12b6be6449d",
+      "image_url": "https://www-konga-com-res.cloudinary.com/w_auto,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/E/E/118566_1645698505.jpg",
+      "name": "Tecno T529 - Gold",
+      "price": "18200.00",
+      "updated_at": "2023-09-08T07:19:12",
+      "url_key": "http://0:5000/api/v1/products/edbb140a-761a-4881-b3c1-c12b6be6449d"
+    },
+    {
+      "__class__": "Product",
+      "brand": {
+        "__class__": "Brand",
+        "created_at": "2023-09-08T07:19:13",
+        "id": 4,
+        "name": "samsung",
+        "updated_at": "2023-09-08T07:19:13"
+      },
+      "categories": [
+        {
+          "__class__": "Category",
+          "created_at": "2023-09-08T07:19:12",
+          "id": 1,
+          "name": "phones and tablets",
+          "updated_at": "2023-09-08T07:19:12"
+        }
+      ],
+      "created_at": "2023-09-08T07:19:12",
+      "description": "NETWORK Technology\nGSM / CDMA / HSPA / EVDO / LTE / 5G\nBODY\nDimensions Unfolded: 154.9 x 129.9 x 6.1 mm Folded: 154.9 x 67.1 x 13.4 mm Weight 253 g (8.92 oz) Build Glass front (Gorilla Glass Victus 2) (folded), plastic front (unfolded), glass back (Gorilla Glass Victus 2), aluminum frame SIM Nano-SIM and eSIM or Dual SIM (2 Nano-SIMs and eSIM, dual stand-by) IPX8 water resistant (up to 1.5m for 30 min) Armor aluminum frame with tougher drop and scratch resistance (advertised) Stylus support\nDISPLAY\nType Foldable Dynamic AMOLED 2X, 120Hz, HDR10+ Size 7.6 inches, 183.2 cm2 (~91.1% screen-to-body ratio) Resolution 1812 x 2176 pixels (~373 ppi density) Cover display: Dynamic AMOLED 2X, 120Hz, Corning Gorilla Glass Victus 2 6.2 inches, 904 x 2316 pixels, 23.1:9 ratio\nPLATFORM\nOS Android 13, One UI 5.1.1 Chipset Qualcomm SM8550-AC Snapdragon 8 Gen 2 (4 nm) CPU Octa-core (1x3.36 GHz Cortex-X3 & 2x2.8 GHz Cortex-A715 & 2x2.8 GHz Cortex-A710 & 3x2.0 GHz Cortex-A510) GPU Adreno 740\nMEMORY\nCard slot No Internal 1TB 12GB RAM UFS 4.0\nMAIN CAMERA\nTriple 50 MP, f/1.8, 23mm (wide), 1.0\u00b5m, Dual Pixel PDAF, OIS 10 MP, f/2.4, (telephoto), PDAF, OIS, 3x optical zoom 12 MP, f/2.2, 123, 12mm (ultrawide), 1.12\u00b5m Features LED flash, HDR, panorama Video 8K@24fps, 4K@60fps, 1080p@60/240fps (gyro-EIS), 720p@960fps (gyro-EIS), HDR10+\nSELFIE CAMERA\nSingle 4 MP, f/1.8, 26mm (wide), 2.0\u00b5m, under display Cover camera: 10 MP, f/2.2, 24mm (wide), 1/3\", 1.22\u00b5m Features HDR Video 4K@30/60fps, 1080p@30/60fps, gyro-EIS\nSOUND\nLoudspeaker Yes, with stereo speakers 3.5mm jack No 32-bit/384kHz audio Tuned by AKG COMMS WLAN Wi-Fi 802.11 a/b/g/n/ac/6e/7, tri-band, Wi-Fi Direct Bluetooth 5.3, A2DP, LE, aptX HD Positioning GPS, GLONASS, GALILEO, BDS NFC Yes Radio No USB USB Type-C 3.2, OTG\nFEATURES\nSensors Fingerprint (side-mounted), accelerometer, gyro, proximity, compass, barometer Bixby natural language commands and dictation Samsung DeX (desktop experience support) Samsung Pay (Visa, MasterCard certified) Ultra Wideband (UWB) support\nBATTERY\nType Li-Po 4400 mAh, non-removable Charging 25W wired, 50% in 30 min (advertised) 15W wireless 4.5W reverse wireless",
+      "id": "28aedabd-2f15-4502-b5ce-b8cd795f09e5",
+      "image_url": "https://www-konga-com-res.cloudinary.com/w_auto,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/B/C/118566_1692006674.png",
+      "name": "Samsung Galaxy Z Fold 5 - 7.6\" - 1TB Rom - 12GB Ram - 5G - 4400mAh - Black",
+      "price": "1856000.00",
+      "updated_at": "2023-09-08T07:19:12",
+      "url_key": "http://0:5000/api/v1/products/28aedabd-2f15-4502-b5ce-b8cd795f09e5"
+    },
+    {
+      "__class__": "Product",
+      "categories": [
+        {
+          "__class__": "Category",
+          "created_at": "2023-09-08T07:19:12",
+          "id": 1,
+          "name": "phones and tablets",
+          "updated_at": "2023-09-08T07:19:12"
+        }
+      ],
+      "created_at": "2023-09-08T07:19:12",
+      "description": "BRAND NAME Xiaomi\nModels Redmi Note 10S\nBODY Dimensions 160.5 x 74.5 x 8.3 mm Weight 178.8 g Colors Onyx Gray, Pebble White, Ocean Blue SIM Dual SIM (Nano-SIM, dual stand-by) IP53, dust and splash protection\nDISPLAY Type AMOLED, 450 nits (typ), 1100 nits (peak) Size 6.43 inches, (~83.5% screen-to-body ratio) Resolution 1080 x 2400 pixels, 20:9 ratio (~409 ppi density) Protection Corning Gorilla Glass 3\nNETWORK Technology LTE / HSPA / GSM Speed HSPA 42.2/5.76 Mbps, LTE-A 4G bands 1, 2, 3, 4, 5, 7, 8, 20, 28, 38, 40, 41 3G bands HSDPA 850 / 900 / 1700(AWS) / 1900 / 2100 2G bands GSM 850 / 900 / 1800 / 1900 \u2013 SIM 1 & SIM 2\nMEMORY RAM 6GB ROM\u00a0 128GB Card slot Yes, via micro SD card (uses a dedicated slot)\nPLATFORM OS Android 11, MIUI 12 Chipset Mediatek Helio G95 (12 nm) CPU Octa-core (2\u00d72.05 GHz Cortex-A76 & 6\u00d72.0 GHz Cortex-A55) GPU Mali-G76 MC4\nMAIN CAMERA - Quad 64 MP, f/1.8, 26mm (wide), PDAF 8 MP, f/2.2, (ultrawide) 2 MP, f/2.4, (macro) 2 MP, f/2.4, (depth) Features LED flash, HDR, panorama Video 4K@30fps, 1080p@30/60/120fps, 720p@960fps\nSELFIE CAMERA - Single 13 MP, f/2.5, (wide) Features: HDR Video: 1080p@30fps\nBATTERY Type: Non- removable Capacity: Li-Po 5000 mAh Fast charging: 33W\nSOUND Loudspeaker: Yes, with stereo speakers 3.5mm jack: Yes 24-bit/192kHz: audio\nFEATURES Sensors: Fingerprint (side-mounted), accelerometer, compass, gyro, proximity\nCONNECTIVITY WLAN: Wi-Fi 802.11 a/b/g/n/ac, dual-band, hotspot, Wi-Fi Direct NFC: Yes (market/region dependent) FM Radio: Unspecified USB: USB Type-C 2.0 Infrared port: Yes GPS: Yes, with A-GPS, GLONASS, BDS, GALILEO Bluetooth: 5.1, A2DP, LE",
+      "id": "0c584d28-b930-4d3e-8136-cde34c1c13f0",
+      "name": "Xiaomi Note 10s - 6gb - 128gb - Gray - Smartphone",
+      "price": "124670.00",
+      "updated_at": "2023-09-08T07:19:12"
+    },
+    {
+      "__class__": "Product",
+      "categories": [
+        {
+          "__class__": "Category",
+          "created_at": "2023-09-08T07:19:12",
+          "id": 1,
+          "name": "phones and tablets",
+          "updated_at": "2023-09-08T07:19:12"
+        }
+      ],
+      "created_at": "2023-09-08T07:19:12",
+      "description": "Network\n\nSIM: Nano SIM\n\nDual SIM: Single SIM (Nano-SIM and/or eSIM) or Hybrid Dual SIM (Nano-SIM, dual stand-by)\n\nConnectivity\n\nWi-fi: Wi-Fi 802.11 a/b/g/n/ac/6, dual-band, Wi-Fi Direct, hotspot\n\nUSB: USB Type-C 3.2, USB On-The-Go\n\nGPS: Yes, with A-GPS, GLONASS, BDS, GALILEO\n\nNFC: Yes\n\nWireless Charging: Yes\n\nHeadphone Jack: No\n\nDesign\n\nType: Bar\n\nDimensions: 161.5 x 75.6 x 7.8 mm\n\nWeight: 200 Grams\n\nWaterproof: IP68 dust/water resistant (up to 1.5m for 30 mins)\n\nDisplay\n\nDisplay Type: Dynamic AMOLED 2X\n\nSize: 6.4 inches\n\nResolution: 1080 x 2400 pixels\n\nDisplay Colors: 16M\n\nPixel Density: 394 PPI (pixels per inch)\n\nTouch Screen: Yes\n\nDisplay Protection: Corning Gorilla Glass Victus\n\nFeatures: Always-on display\n\nHardware\n\nCPU: Octa-core (1x2.9 GHz Cortex-X1 & 3x2.80 GHz Cortex-A78 & 4x2.2 GHz Cortex-A55) - International / Octa-core (1x2.84 GHz Kryo 680 & 3x2.42 GHz Kryo 680 & 4x1.80 GHz Kryo 680 - USA/China\n\nGPU: Mali-G78 MP14 - International / Adreno 660 - USA/China\n\nRAM (Memory): 8 GB\n\nInternal Storage: 256 GB\n\nMemory Card Slot: No\n\nSensors:\nFingerprint (under display, ultrasonic), accelerometer, gyro, proximity, compass, barometer Samsung DeX, Samsung Wireless DeX (desktop experience support) ANT+ Bixby natural language commands and dictation Samsung Pay (Visa, MasterCard certified) Ultra Wideband (UWB) support\n\nSoftware\n\nOperating System: Android 11 + One UI 3.1\n\nUser Interface: Yes\n\nCamera\n\nRear Camera: 12 MP (wide) + 64 MP (periscope telephoto) 1.1x optical zoom, 3x hybrid zoom + 12 MP (ultrawide) Super Steady video.\n\nImage: 4320p\n\nVideo: 8K@24fps,\u00a04K@30/60fps,\u00a01080p@30/60/240fps,\u00a0720p@960fps, HDR10+, stereo sound rec., gyro-EIS\n\nFlash: LED flash, auto-HDR, panorama\n\nFront Camera: 10 MP (wide)\n\nBattery\n\nCapacity: Li-Po 4500 mAh + Fast charging 25W, 50% in 30 min (advertised) + Fast wireless charging 15W + Reverse wireless charging + USB Power Delivery 3.0\n\nPlacement: Non-removable\n\nMedia\n\nVideo Playback: Yes\n\nVideo Out: Yes\n\nFM Radio: Unspecified\n\nRing Tones: Yes\n\nLoudspeaker: Yes\n\nHandsfree: Yes\n\nData\n\n4G LTE: LTE\n\n5G NR Bands: SA/NSA/Sub6\n\nSpeed: HSPA 42.2/5.76 Mbps, LTE-A (CA), 5G",
+      "id": "1de51a0a-7ebe-41a3-b11a-0f3396a22926",
+      "name": "Samsung Galaxy S21 FE 5G - 6.4\" Amoled - 256GB ROM - 8GB RAM - Dual Sim - 4500mAh - Lavender",
+      "price": "401130.00",
+      "updated_at": "2023-09-08T07:19:12"
+    },
+    {
+      "__class__": "Product",
+      "brand": {
+        "__class__": "Brand",
+        "created_at": "2023-09-08T07:19:12",
+        "id": 2,
+        "name": "tecno",
+        "updated_at": "2023-09-08T07:19:12"
+      },
+      "categories": [
+        {
+          "__class__": "Category",
+          "created_at": "2023-09-08T07:19:12",
+          "id": 1,
+          "name": "phones and tablets",
+          "updated_at": "2023-09-08T07:19:12"
+        }
+      ],
+      "created_at": "2023-09-08T07:19:12",
+      "description": "Connectivity\nWiFi + 4G\n\nSim Type\nNano SIM\n\nOS\nAndroid OS\n\nSim Slots\nDual Sim\n\nBattery Capacity\n5000mAh\n\nRAM\n8 GB\n\nInternal Memory\n128 GB\n\nWarranty Period\n1 Year\n\nColour\nWhite\n\nBrand\n\nScreen size\nOthers\n\nSummary Starry Black/Pearl White 32MP Ultra Clear Glowing Selfie G88 Gaming Processor Hard-wearing Starry Glass 256GB ROM + 16GB RAM (extended 8GB RAM) 50MP Ultra Clear Rear Camera 5000mAh Super Battery+18W Fast Charge 6.8\" FHD+ 90Hz Refresh Rate Android13 + HiOS 12.6\nSpecification Height: 168.41mm Width: 76.21mm Thickness: 8.46mm 6.8\" FHD+90Hz 1080*2460 Resolution Helio G88, Octa-core 256GB ROM + 8GB RAM (Expandable to 16GB RAM) 5000mAh(typ)+18W Android\u2122 T\nNetwork & Connectivity\n\n2G, 3G, 4G\nGPS\nWIFI\nBluetooth\nFM\nOTG\nNFC\n\nCamera & Interface 32MP Front Camera with Dual Flash 50MP AI Triple Rear Camera with Dual Flash\nSensor G-Sensor E-compass Ambient Light Sensor Proximity Sensor Side Fingerprint Sensor\nIn the Box Phone * 1 Charger cable * 1 Charger * 1\n\nWhats in the box\n\nMobile phone\nCharger Cable\nCharger (Head and cord)\nEarpiece\nWarranty Card\nSim Ejector Tool\nFree case",
+      "id": "c028ded7-8590-47fa-afd9-6294b5322e31",
+      "image_url": "https://www-konga-com-res.cloudinary.com/w_auto,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/F/F/118566_1680012522.jpg",
+      "name": "Tecno Spark 10 Pro -ki7-6.8\"-128gb Rom- 8gb Ram (upto 16gb Ram) - 4g Dual Sim - 5000mah - White",
+      "price": "120900.00",
+      "updated_at": "2023-09-08T07:19:12",
+      "url_key": "http://0:5000/api/v1/products/c028ded7-8590-47fa-afd9-6294b5322e31"
+    },
+    {
+      "__class__": "Product",
+      "brand": {
+        "__class__": "Brand",
+        "created_at": "2023-09-08T07:19:13",
+        "id": 4,
+        "name": "samsung",
+        "updated_at": "2023-09-08T07:19:13"
+      },
+      "categories": [
+        {
+          "__class__": "Category",
+          "created_at": "2023-09-08T07:19:12",
+          "id": 1,
+          "name": "phones and tablets",
+          "updated_at": "2023-09-08T07:19:12"
+        }
+      ],
+      "created_at": "2023-09-08T07:19:13",
+      "description": "NETWORK Technology\nGSM / CDMA / HSPA / EVDO / LTE / 5G\nBODY\nDimensions Unfolded: 154.9 x 129.9 x 6.1 mm Folded: 154.9 x 67.1 x 13.4 mm Weight 253 g (8.92 oz) Build Glass front (Gorilla Glass Victus 2) (folded), plastic front (unfolded), glass back (Gorilla Glass Victus 2), aluminum frame SIM Nano-SIM and eSIM or Dual SIM (2 Nano-SIMs and eSIM, dual stand-by) IPX8 water resistant (up to 1.5m for 30 min) Armor aluminum frame with tougher drop and scratch resistance (advertised) Stylus support\nDISPLAY\nType Foldable Dynamic AMOLED 2X, 120Hz, HDR10+ Size 7.6 inches, 183.2 cm2 (~91.1% screen-to-body ratio) Resolution 1812 x 2176 pixels (~373 ppi density) Cover display: Dynamic AMOLED 2X, 120Hz, Corning Gorilla Glass Victus 2 6.2 inches, 904 x 2316 pixels, 23.1:9 ratio\nPLATFORM\nOS Android 13, One UI 5.1.1 Chipset Qualcomm SM8550-AC Snapdragon 8 Gen 2 (4 nm) CPU Octa-core (1x3.36 GHz Cortex-X3 & 2x2.8 GHz Cortex-A715 & 2x2.8 GHz Cortex-A710 & 3x2.0 GHz Cortex-A510) GPU Adreno 740\nMEMORY\nCard slot No Internal\u00a0256gb\u00a012GB RAM UFS 4.0\nMAIN CAMERA\nTriple 50 MP, f/1.8, 23mm (wide), 1.0\u00b5m, Dual Pixel PDAF, OIS 10 MP, f/2.4, (telephoto), PDAF, OIS, 3x optical zoom 12 MP, f/2.2, 123, 12mm (ultrawide), 1.12\u00b5m Features LED flash, HDR, panorama Video 8K@24fps, 4K@60fps, 1080p@60/240fps (gyro-EIS), 720p@960fps (gyro-EIS), HDR10+\nSELFIE CAMERA\nSingle 4 MP, f/1.8, 26mm (wide), 2.0\u00b5m, under display Cover camera: 10 MP, f/2.2, 24mm (wide), 1/3\", 1.22\u00b5m Features HDR Video 4K@30/60fps, 1080p@30/60fps, gyro-EIS\nSOUND\nLoudspeaker Yes, with stereo speakers 3.5mm jack No 32-bit/384kHz audio Tuned by AKG COMMS WLAN Wi-Fi 802.11 a/b/g/n/ac/6e/7, tri-band, Wi-Fi Direct Bluetooth 5.3, A2DP, LE, aptX HD Positioning GPS, GLONASS, GALILEO, BDS NFC Yes Radio No USB USB Type-C 3.2, OTG\nFEATURES\nSensors Fingerprint (side-mounted), accelerometer, gyro, proximity, compass, barometer Bixby natural language commands and dictation Samsung DeX (desktop experience support) Samsung Pay (Visa, MasterCard certified) Ultra Wideband (UWB) support\nBATTERY\nType Li-Po 4400 mAh, non-removable Charging 25W wired, 50% in 30 min (advertised) 15W wireless 4.5W reverse wireless MISC Colors Icy Blue",
+      "id": "d0db2363-a924-4ccc-9937-e26ce08592a3",
+      "image_url": "https://www-konga-com-res.cloudinary.com/w_auto,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/U/B/118566_1690387214.jpg",
+      "name": "Samsung Galaxy Z Fold 5 - 7.6\" - 256GB Rom - 12GB Ram - 5G - 4400mAh - Icy Blue",
+      "price": "1616000.00",
+      "updated_at": "2023-09-08T07:19:13",
+      "url_key": "http://0:5000/api/v1/products/d0db2363-a924-4ccc-9937-e26ce08592a3"
+    },
+    {
+      "__class__": "Product",
+      "brand": {
+        "__class__": "Brand",
+        "created_at": "2023-09-08T07:19:12",
+        "id": 1,
+        "name": "infinix",
+        "updated_at": "2023-09-08T07:19:12"
+      },
+      "categories": [
+        {
+          "__class__": "Category",
+          "created_at": "2023-09-08T07:19:12",
+          "id": 1,
+          "name": "phones and tablets",
+          "updated_at": "2023-09-08T07:19:12"
+        }
+      ],
+      "created_at": "2023-09-08T07:19:13",
+      "description": "ZERO ULTRA\nPlatform BANDWIDTH BOM1: B2,B3,B5,B8 B1,B5,B8 FDD 1,3,5,7,8,20,28 - TDD: 38,40,41 sub6 FDD: n38/n40/n41/n77/n78 sub6 FDD: n1/n3/n5/n7/n8/n20/n28 BOM2: B2,B3,B5,B8 B1,B2,B4,B5,B8 FDD 1,2,3,4,5,7,8,20,28,66 - TDD: 38,40,41 sub6 FDD: n38/n40/n41/n77/n78/n79 sub6 FDD: n1/n2/n3/n5/n20/n28/n71 NETWORK: 5G/4G/3G/2G GPU: Arm Mali-G68 MC4 CPU FREQUENCY: 2.5GHz + 2GHz THROUGHPUT: HSPA+ 42.2/11.5 (Cat7)Mbps LTE Cat: 18 300/75 Mbps NR 2.31/1.04 Gbps\nData GPRS: YES EDGE: YES 3G: YES 4G: YES 5G: YES\nCAMERA LOCATION: FRONT/REAR PIXELS: FRONT(32MP)/REAR(200MP + 13M + 2M) AF/FF32MP FF /200MP OIS + 13M AF + 2M FF FLASH LIGHT: YES DUAL REAR FLASH AND DUAL FRONT FLASH VIDEO RECORDING: YES VIDEO: 4K 30FPS/1080P 60FPS/ 1080P 30FPS/720P 30FPS IMAGE SIZE: FRONT CAMERA 32MP: 6528*4896, AI CAM 8MP: 3264*2448 REAR CAMERA 200MP: 16384*12288, AI CAM 12MP: 4064*3048\nMEMORY ROM: 256GB RAM: 8GB\nDISPLAY SIZE: 6.8'' INCH TYPE: 3D Curved AMOLED RESOLUTION: 1080*2400 MATERIAL: AMOLED\nMULTIMEDIA AUDIO PLAYER: MP3, MIDI, AMR, WAV RINGTONE FORMAT: MIDI,MP3 VIDEO PLAYER: 3GP,MP4,AVI PICTURE FORMAT: PNG,JPEG,BMP,GIF\nENTERTAINMENT FM RADIO: YES VOICE RECORDING: YES E-BOOK READER: NO GAME: YES\nMESSAGE E-MAIL: YES MMS: YES\nBATTERY CAPACITY: 4500mAh TALK TIME: 2G 65H, 3G 50H STANDBY TIME: 336H\nCONNECTION SIM CARD SLOT: DUAL NANO SIM + MICRO SD GPS NAVIGATION: YES WIFI(WLAN): Wi-Fi 6 (a/b/g/n/ac/ax) BLUETOOTH: YES USB PORT: YES, type C OTG: YES EARPHONE: YES, type C CHARGE Output: 20V, 9A FM: YES\nSENSORS & TOOLS G-SENSOR: YES E-COMPASS: YES GYROSCOPE: YES LIGHT SENSOR: YES PROXIMITY SENSOR: YES FINGERPRINT: YES\nMODEL MODEL: X6820\nDIMENSION DIMENSION: Coslight Silver: 165.50*74.50*8.76mm / Genesis Noir: 165.50*75.08*9.16mm\nCOLOR COLOR: Coslight Silver; Genesis Noir\nWEIGHT WEIGHT: 213g\nOPERATING SYSTEM OPERATING SYSTEM: Android\u2122 12\nIn the Box Phone * 1 Charger cable * 1 Charger * 1 SIM Ejector Tool * 1 Earphone * 1",
+      "id": "f6f6cdff-8c44-430a-a7dd-79b8d6b2d9a3",
+      "image_url": "https://www-konga-com-res.cloudinary.com/w_auto,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/D/W/118566_1682059502.jpg",
+      "name": "Infinix Zero Ultra X6820 - 6.8\" - 256gb Rom - 8gb Ram - 4500mah - Genesis Noir",
+      "price": "405500.00",
+      "updated_at": "2023-09-08T07:19:13",
+      "url_key": "http://0:5000/api/v1/products/f6f6cdff-8c44-430a-a7dd-79b8d6b2d9a3"
+    },
+    {
+      "__class__": "Product",
+      "brand": {
+        "__class__": "Brand",
+        "created_at": "2023-09-08T07:19:13",
+        "id": 4,
+        "name": "samsung",
+        "updated_at": "2023-09-08T07:19:13"
+      },
+      "categories": [
+        {
+          "__class__": "Category",
+          "created_at": "2023-09-08T07:19:12",
+          "id": 1,
+          "name": "phones and tablets",
+          "updated_at": "2023-09-08T07:19:12"
+        }
+      ],
+      "created_at": "2023-09-08T07:19:13",
+      "description": "NETWORK - GSM / HSPA / LTE\nBODY Dimensions 162.1 x 77.6 x 8.3 mm (6.38 x 3.06 x 0.33 in))\nDISPLAY Type Super AMOLED, 90Hz, 1000 nits (peak) Size 6.5 inches, 103.7 cm2 (~82.4% screen-to-body ratio) Resolution 1080 x 2340 pixels, 19.5:9 ratio (~396 ppi density)\nPLATFORM OS Android 13, One UI 5.1 Chipset Mediatek MT8781 Helio G99 (6nm) CPU Octa-core (2x2.2 GHz Cortex-A76 & 6x2.0 GHz Cortex-A55) GPU Mali-G57 MC2\nMEMORY Card slot microSDXC (dedicated slot) Internal\u00a0 128GB 6GB RAM\nMAIN CAMERA Triple 50 MP, f/1.8, (wide), PDAF, OIS 5 MP, f/2.2, 123 (ultrawide), 1/5\", 1.12\u00b5m 2 MP, f/2.4, (macro) Features LED flash, panorama, HDR Video 1080p@30fps\nSELFIE CAMERA Single 13 MP, f/2.2, (wide) Video 1080p@30fps SOUND Loudspeaker Yes 3.5mm jack Yes\nCOMMS WLAN Wi-Fi 802.11 a/b/g/n/ac, dual-band, Wi-Fi Direct Bluetooth 5.3, A2DP, LE Positioning GPS, GLONASS, GALILEO, BDS, QZSS NFC Yes (market/region dependent) Radio Unspecified USB USB Type-C 2.0\nFEATURES Sensors Fingerprint (side-mounted), accelerometer, gyro, compass Virtual proximity sensing\nBATTERY Type Li-Po 5000 mAh, non-removable Charging 25W wired",
+      "id": "f0e3514e-95bb-411b-9f2f-6fc70baa2852",
+      "image_url": "https://www-konga-com-res.cloudinary.com/w_auto,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/T/C/118566_1682004981.png",
+      "name": "Samsung Galaxy A24 - 6.5''- LTE- 6GB Ram - 128GB Rom - 5000mAh - Lime Green",
+      "price": "196000.00",
+      "updated_at": "2023-09-08T07:19:13",
+      "url_key": "http://0:5000/api/v1/products/f0e3514e-95bb-411b-9f2f-6fc70baa2852"
+    },
+    {
+      "__class__": "Product",
+      "categories": [
+        {
+          "__class__": "Category",
+          "created_at": "2023-09-08T07:19:12",
+          "id": 1,
+          "name": "phones and tablets",
+          "updated_at": "2023-09-08T07:19:12"
+        }
+      ],
+      "created_at": "2023-09-08T07:19:13",
+      "description": "Sim Slots Dual Sim Battery Capacity 5000mAh Sim Type Dual SIM OS Android OS Warranty Period 1 Year Brand Vivo Screen size Others Connectivity WiFi + 4G RAM 2 GB Internal Memory 32 GB Specification Vivo Y02 2GB+32GB(4G)\nBasic Processor: Octa-core processor RAM: 2GB Storage: 32GB Operating System: Funtouch OS 12\nDisplay Screen size: 6.51 inch Screen resolution: 1600 \u00d7 720 (HD+) Screen type: LCD (IPS)\nCamera Rear camera: 8 MP Rear Aperture: f/2.0 (8 MP) Front camera: 5 MP Front Aperture: f/2.2 (5 MP) Flash: Rear flash Additional features: Face Beauty, Photo, Video, Time-Lapse\nBattery Battery Capacity: 5000 mAh (TYP) Fast charging: 10W\nBody Dimensions (Length x Width x Height): 163.99 \u00d7 75.63 \u00d7 8.49 mm Weight: 186g Material: Plastic\nNetwork 4G: supported\nConnectivity Wi-Fi: 2.4 GHz / 5 GHz Bluetooth: Bluetooth 5.0 USB: USB 2.0 GPS: Supported OTG: Supported FM: Supported\nMedia Audio Playback: WAV, MP3, MP2, M4A, OPUS, MP1, Vorbis, FLAC Video Playback: MP4, 3GP, AVI, TS, MKV, FLV Video Recording: MP4 Voice Recording: Supported\nSensors Accelerometer: Supported Proximity Sensor: Supported Ambient Light Sensor: Supported\nIn the Box Y02, Documentation, USB Cable, USB Power Adapter, Eject Tool, Protective Film",
+      "id": "279d7c60-0f18-46ab-8305-99ab8540ca43",
+      "image_url": "https://www-konga-com-res.cloudinary.com/w_auto,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/T/M/118566_1681474440.png",
+      "name": "Vivo Y02 - 6.51\" - 32GB Rom - 2GB Ram - 4G - 5000mAh - Gray",
+      "price": "71300.00",
+      "updated_at": "2023-09-08T07:19:13",
+      "url_key": "http://0:5000/api/v1/products/279d7c60-0f18-46ab-8305-99ab8540ca43"
+    }
+  ]
+}

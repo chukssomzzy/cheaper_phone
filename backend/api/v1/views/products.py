@@ -2,11 +2,13 @@
 
 """Api view for products"""
 
-from flask import abort, request, url_for
+from flask import abort, make_response, request, url_for
+from flask.json import jsonify
 from api.v1.utils.schemas.is_valid import isvalid
 from api.v1.views import api_view
 from api.v1.utils.error_handles.invalid_api_error import InvalidApiUsage
 from models import storage
+from models.base_model import BaseModel
 
 
 @api_view.route("/products", strict_slashes=False)
@@ -82,7 +84,7 @@ def get_product_by_id(product_id):
     product_return = {}
     product = storage.get("Product", str(product_id))
     if not product:
-        abort(404)
+        abort(404, "product not found")
     product_return = product.to_dict()
     del product_return["brand_id"]
     if product.brand:
@@ -96,6 +98,67 @@ def get_product_by_id(product_id):
     return product_return
 
 
-@api_view.route("/product_id", methods=["POST"], strict_slashes=False)
-@isvalid("products_schema")
-def post_products()
+@api_view.route("/products", methods=["POST"], strict_slashes=False)
+@isvalid("products_schema.json")
+def post_products():
+    """Post a product to the database
+    Response:
+        product_dict: json_dict of a product
+    Raises:
+        400 bad request
+        401 unauthorized user
+    """
+    body = request.get_json()
+    product = storage.create("Product", **body)
+    if not isinstance(product, BaseModel):
+        InvalidApiUsage("Product Not Created")
+    storage.save()
+    return {"product": str(product.id)}, 201
+
+
+@api_view.route("/products/<uuid:product_id>", methods=["PUT"],
+                strict_slashes=False)
+@isvalid("product_update_schema.json")
+def update_product(product_id):
+    """update a product
+    Args:
+        product_id: unique identifier for a product
+    body:
+        what to update (name, price, brand, description)
+    "
+    Response:
+        product: dict
+    Raises:
+        404: if product not in database
+        400: wrong format for product
+        401: unauthorized user
+        """
+    product = storage.get("Product",  str(product_id))
+    if not product:
+        abort(404, "product doesn't exits")
+    body = request.get_json()
+    product.update(**body)
+    product.save()
+    return product.to_dict()
+
+
+@api_view.route("/products/<uuid:product_id>",
+                methods=['DELETE'], strict_slashes=False)
+def delete_products(product_id):
+    """Delete a product from the database
+    Args:
+        product_id: uuid for the product
+    args:
+        no args
+    Response:
+        no content
+    Raises:
+        404: products doesn't exits
+        401: unauthorized access
+    """
+    products = storage.get("Product", str(product_id))
+    if not products:
+        abort(404, "Product not found")
+    storage.delete(products)
+    storage.save()
+    return {}, 204
