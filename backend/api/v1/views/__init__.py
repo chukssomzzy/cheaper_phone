@@ -7,3 +7,4 @@ api_view = Blueprint("api_view", __name__,
 from api.v1.views.index import *
 from api.v1.views.products import *
 from api.v1.views.categories import *
+from api.v1.views.customers import *

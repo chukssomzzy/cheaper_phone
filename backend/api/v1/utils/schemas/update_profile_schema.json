@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "updata_profile_schema.json",
+  "type": "object",
+  "properties": {
+    "first_name": {
+      "type": "string",
+      "minLength": 2, 
+      "maxLength": 50
+    },
+    "last_name": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 50
+    }, 
+    "username": {
+      "type": "string", 
+      "minLength": 2,
+      "maxLength": 50 
+    }, 
+    "password": {
+      "type": "string",
+      "pattern": "^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*()_+\\-=\\[\\]{};':\",.<>?])(?=.{8,})",
+      "errorMessage": "Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, one digit, and one special character."
+    }, 
+    "email": {
+      "type": "string",
+      "pattern": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$",
+      "errorMessage": "Invalid email address format."
+    },  
+    "shipping_address": {
+      "$ref": "shipping_address.json"
+    }
+  },
+  "additionalProperties": false
+}

@@ -29,6 +29,7 @@ class Product(BaseModel, Base):
     description = Column(Text)
     price = Column(Numeric(10, 2))
     brand_id = Column(Integer, ForeignKey('brands.id'))
+    cart_id = Column(Integer, ForeignKey('user_cart.id'))
     images = relationship("ProductImage",
                           backref="product", cascade="all, delete")
     reviews = relationship("ProductReview",

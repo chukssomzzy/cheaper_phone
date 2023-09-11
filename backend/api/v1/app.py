@@ -1,14 +1,49 @@
+from datetime import timedelta
 from os import getenv
+
 from flask import Flask, make_response
+from flask_jwt_extended import JWTManager
 from werkzeug import exceptions
+
 from api.v1.utils.error_handles.invalid_api_error import InvalidApiUsage
-from models import storage
 from api.v1.views import api_view
+from models import storage
+
 """Defines app context for views"""
 
 
 app = Flask(__name__)
+app.config["JWT_SECRET_KEY"] = getenv("APP_SECRET_KEY")
+app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(hours=1)
+app.config["JWT_REFRESH_TOKEN_EXPIRES"] = timedelta(days=30)
+jwt = JWTManager(app)
+
 app.register_blueprint(api_view)
+
+
+@jwt.user_identity_loader
+def user_identity_lookup(user):
+    """Takes what passed to create jwt identity and
+    return a seriliazabe version that can be used to lookup
+    the user
+    Args:
+        User: sqlalchemy obj of user
+    Returns:
+        user's id
+    """
+    return user.id
+
+
+@jwt.user_lookup_loader
+def user_lookup_callback(_jwt_header, jwt_data):
+    """A callback that lookup a particular user based on
+    jwt_data
+    Args:
+        _jwt_header: contains jwt byte
+        jwt_data: contains data contain in jwt
+    """
+    id = jwt_data["sub"]
+    return storage.get("User", id)
 
 
 @app.teardown_appcontext

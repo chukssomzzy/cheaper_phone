@@ -166,3 +166,39 @@ class DBStorage:
                 key = str(val.__class__.__name__) + "." + str(val.id)
                 obj[key] = val
         return obj
+
+    def page_join(self, cls, secCls, id, action="page", page=1, limit=10,
+                  order_by="created_at"):
+        """ Paginate a or count a joined models
+
+        Args:
+            cls: parent cls to paginate
+            secCls: child class to join
+            actions: to perform count or page
+            page: if page what the current page
+            limit: no of items per page
+            order_by: key to order by
+        Return:
+            Count or dict
+        """
+        if cls not in self.__classes or secCls not in self.__classes:
+            return None
+        cls = self.__classes[cls]
+        secCls = self.__classes[secCls]
+        count = self.__Session.query(cls).join(
+            getattr(cls, secCls.__name__)).filter(getattr(cls, "id") == id)\
+            .count()
+        endIdx = 0
+        obj = {}
+
+        if action == "count":
+            return count
+        endIdx = (page + 1) * limit if (page + 1) * limit < count else count
+        startIdx = (page - 1) * limit if (page - 1) * limit < endIdx else 0
+        if action == "page":
+            for item in self.__Session.query(cls).join(getattr(cls, secCls))\
+                    .filter(getattr(cls, "id") == id)\
+                    .order_by(getattr(secCls, order_by))[startIdx:endIdx]:
+                key = str(item.__class__.__name__) + "." + item.id
+                obj[key] = item
+        return obj

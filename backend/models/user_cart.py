@@ -9,7 +9,6 @@ class UserCart(BaseModel, Base):
     """ DEfines usercart for in db_storage"""
     __tablename__ = "user_cart"
     user_id = Column(String(60), ForeignKey("users.id"))
-    product_id = Column(String(60), ForeignKey("products.id"))
     quantity = Column(Integer)
     items = relationship("Product", backref="cart")
 

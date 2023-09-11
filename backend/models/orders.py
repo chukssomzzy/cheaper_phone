@@ -2,11 +2,14 @@
 """Define order table for db_storage"""
 
 
-from datetime import datetime
 import enum
-from sqlalchemy import Column, DateTime, Enum, ForeignKey, ForeignKeyConstraint, Numeric, Sequence, String, Integer
+from datetime import datetime
+
+from sqlalchemy import (Column, DateTime, Enum, ForeignKey, Integer, Numeric,
+                        Sequence, String)
 from sqlalchemy.orm import relationship
-from models.base_model import BaseModel, Base
+
+from models.base_model import Base, BaseModel
 
 
 class statusEnum(enum.Enum):
@@ -33,7 +36,6 @@ class Order(BaseModel, Base):
     __tablename__ = "orders"
     id = Column(Integer, Sequence('order_seq_id'), primary_key=True)
     user_id = Column(String(60), ForeignKey("users.id"))
-    order_date = Column(DateTime, default=datetime.utcnow)
     total_amount = Column(Numeric(10, 2), nullable=False, default=0.00)
     status = Column(Enum(statusEnum), default=statusEnum.pending)
     shipping_address_id = Column(Integer, ForeignKey("shipping_address.id"))

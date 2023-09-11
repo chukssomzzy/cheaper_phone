@@ -4,6 +4,8 @@
 
 from flask import abort, make_response, request, url_for
 from flask.json import jsonify
+from flask_jwt_extended import jwt_required
+from api.v1.utils.jwt.is_admin import is_admin
 from api.v1.utils.schemas.is_valid import isvalid
 from api.v1.views import api_view
 from api.v1.utils.error_handles.invalid_api_error import InvalidApiUsage
@@ -37,7 +39,8 @@ def get_products():
         products = []
         count = storage.count("Product")
         for product in storage.page_all("Product", limit=int(limit),
-                                        page=int(page), order_by=order_by).values():
+                                        page=int(page), order_by=order_by)\
+                .values():
             product_dict = product.to_dict()
             if product.brand:
                 product_dict["brand"] = product.brand.to_dict()
@@ -100,6 +103,8 @@ def get_product_by_id(product_id):
 
 @api_view.route("/products", methods=["POST"], strict_slashes=False)
 @isvalid("products_schema.json")
+@jwt_required()
+@is_admin
 def post_products():
     """Post a product to the database
     Response:
@@ -119,6 +124,8 @@ def post_products():
 @api_view.route("/products/<uuid:product_id>", methods=["PUT"],
                 strict_slashes=False)
 @isvalid("product_update_schema.json")
+@jwt_required()
+@is_admin
 def update_product(product_id):
     """update a product
     Args:
@@ -132,7 +139,7 @@ def update_product(product_id):
         404: if product not in database
         400: wrong format for product
         401: unauthorized user
-        """
+    """
     product = storage.get("Product",  str(product_id))
     if not product:
         abort(404, "product doesn't exits")
@@ -144,6 +151,8 @@ def update_product(product_id):
 
 @api_view.route("/products/<uuid:product_id>",
                 methods=['DELETE'], strict_slashes=False)
+@jwt_required()
+@is_admin
 def delete_products(product_id):
     """Delete a product from the database
     Args:
