@@ -2,6 +2,7 @@
 """Order_items model """
 
 from sqlalchemy import ForeignKey, Integer, String, Column
+from sqlalchemy.orm import relationship
 from models.base_model import BaseModel, Base
 
 
@@ -11,7 +12,7 @@ class OrderItem(BaseModel, Base):
     order_id = Column(Integer, ForeignKey("orders.id"), primary_key=True)
     product_id = Column(String(60), ForeignKey(
         "products.id"), primary_key=True)
-    quantity = Column(Integer)
+    product = relationship("Product")
 
     def __init__(self, *args, **kwargs):
         """Initialized order_items"""

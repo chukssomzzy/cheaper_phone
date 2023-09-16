@@ -76,9 +76,11 @@ def get_profile():
     """
     customer = current_user
     address = []
-    for address in current_user.shipping_address.values():
-        address_dict = address.to_dict()
-        address.append(address_dict)
+    print(current_user)
+    if current_user.shipping_address:
+        for address in current_user.shipping_address.values():
+            address_dict = address.to_dict()
+            address.append(address_dict)
     customer_dict = customer.to_dict()
     customer_dict["role"] = str(customer.role)
     customer_dict["shipping_address"] = address
@@ -86,7 +88,7 @@ def get_profile():
     actions.append({"editUser": url_for(".edit_customer", _external=True)})
     actions.append({"changePassword": url_for(
         ".change_password", _external=True)})
-    actions.append({"ViewOrder": url_for(".user_orders", _external=True)})
+    actions.append({"ViewOrder": url_for(".get_user_orders", _external=True)})
     actions.append({"UserCart": url_for(".get_cart", _external=True)})
     res_dict = {"customer": customer_dict, "actions": actions}
     return res_dict

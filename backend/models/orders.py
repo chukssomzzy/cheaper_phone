@@ -7,7 +7,7 @@ from datetime import datetime
 
 from sqlalchemy import (Column, DateTime, Enum, ForeignKey, Integer, Numeric,
                         Sequence, String)
-from sqlalchemy.orm import relationship
+from sqlalchemy.orm import backref, relationship
 
 from models.base_model import Base, BaseModel
 
@@ -40,6 +40,8 @@ class Order(BaseModel, Base):
     status = Column(Enum(statusEnum), default=statusEnum.pending)
     shipping_address_id = Column(Integer, ForeignKey("shipping_address.id"))
     items = relationship("OrderItem", backref="order")
+    address = relationship(
+        "ShippingAddress", backref=backref("order", uselist=False))
 
     def __init__(self, *args, **kwargs):
         """Intialize order with __init__ from basemodel"""

@@ -18,6 +18,7 @@ from models.products import Product
 from models.promotions import Promotion
 from models.shipping_address import ShippingAddress
 from models.user_cart import UserCart
+from models.user_cart_products import UserCartProduct
 from models.users import User
 from models.brands import Brand
 from os import getenv
@@ -31,8 +32,10 @@ class DBStorage:
                  "ProductImage": ProductImage, "Order": Order,
                  "Comment": Comment, "ChatHistory": ChatHistory,
                  "Category": Category, "Analytics": Analytics,
-                 "AdminLog": AdminLog, "Brand": Brand, "OrderItem": OrderItem}
+                 "AdminLog": AdminLog, "Brand": Brand, "OrderItem": OrderItem,
+                 "UserCartProduct": UserCartProduct}
     __engine = None
+    __SecClses = ["orders", "users"]
 
     def __init__(self):
         """Connects sqlalchemy to storage and creates an engine"""
@@ -184,9 +187,10 @@ class DBStorage:
         if cls not in self.__classes or secCls not in self.__classes:
             return None
         cls = self.__classes[cls]
-        secCls = self.__classes[secCls]
+        if secCls not in self.__SecClses:
+            return {}
         count = self.__Session.query(cls).join(
-            getattr(cls, secCls.__name__)).filter(getattr(cls, "id") == id)\
+            getattr(cls, secCls)).filter(getattr(cls, "id") == id)\
             .count()
         endIdx = 0
         obj = {}

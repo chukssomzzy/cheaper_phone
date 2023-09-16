@@ -6,8 +6,13 @@ from api.v1.utils.error_handles.invalid_api_error import InvalidApiUsage
 from api.v1.views import api_view
 from models import storage
 
+# todos
+# add an order
+# cancle an order
+# delete an order
 
-@api_view.route("/user/orders", strict_slashes=False)
+
+@api_view.route("/customer/orders", strict_slashes=False)
 @jwt_required()
 def get_user_orders():
     """Get all orders that have been placed by a user
@@ -34,22 +39,26 @@ def get_user_orders():
         pages = 0
 
         count = storage.page_join(
-            "User", "Order", customer.id, action="count")
+            "User", "orders", customer.id, action="count")
         if isinstance(count, int):
             pages = int(count / limit)
         orders = []
-        for order in storage.page_join("User", "Order", customer.id,
-                                       limit=limit, page=page,
-                                       order_by=order_by).values():
-            order_dict = order.to_dict()
-            order_dict["status"] = str(order_dict["status"])
-            items = []
-            for order in order.items:
+        if len(customer.orders):
+            for order in storage.page_join("User", "orders", customer.id,
+                                           limit=limit, page=page,
+                                           order_by=order_by).values():
                 order_dict = order.to_dict()
-                order_dict["product"] = order.product.to_dict()
-                items.append(order_dict)
-            order_dict["items"] = items
-            orders.append(order_dict)
+                order_dict["status"] = str(order_dict["status"])
+                order_dict["order_items"] = []
+                for item in order.items:
+                    item_dict = item.to_dict()
+                    if item.product:
+                        item_dict["product"] = item.product.to_dict()
+                    order_dict["order_items"].append(item_dict)
+                if order.address:
+                    order_dict["address"] = order.address.to_dict()
+
+                orders.append(order_dict)
         res_dict = {}
         res_dict["pagination"] = {'pages': pages, 'limit': limit, 'page': page}
         res_dict["actions"] = []

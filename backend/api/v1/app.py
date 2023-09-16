@@ -1,3 +1,6 @@
+#!/usr/bin/env -S venv/bin/python3
+
+"""Defines app context for views"""
 from datetime import timedelta
 from os import getenv
 
@@ -8,8 +11,6 @@ from werkzeug import exceptions
 from api.v1.utils.error_handles.invalid_api_error import InvalidApiUsage
 from api.v1.views import api_view
 from models import storage
-
-"""Defines app context for views"""
 
 
 app = Flask(__name__)

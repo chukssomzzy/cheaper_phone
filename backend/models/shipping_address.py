@@ -28,7 +28,6 @@ class ShippingAddress(BaseModel, Base):
     phone_number = Column(String(20), nullable=False)
     address_type = Column(Enum(AddressTypeEnum),
                           nullable=False, default=AddressTypeEnum.residential)
-    orders = relationship("Order", backref="address", cascade="all")
 
     def __init__(self, *args, **kwargs):
         """Initialize shipping address"""

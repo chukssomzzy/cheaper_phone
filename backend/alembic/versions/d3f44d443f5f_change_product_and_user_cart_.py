@@ -22,7 +22,6 @@ def upgrade() -> None:
     op.drop_constraint('user_cart_ibfk_2', 'user_cart', type_="foreignkey")
     op.drop_column('user_cart', 'product_id')
     op.drop_column('user_cart', 'quantity')
-
     op.create_table('user_cart_products',
                     sa.Column('user_cart_id', sa.String(60),
                               nullable=False, primary_key=True),
@@ -30,19 +29,23 @@ def upgrade() -> None:
                               nullable=False, primary_key=True),
                     sa.Column('quantity', sa.Integer)
                     )
-    op.create_foreign_key("user_cart_idfk_2", "user_cart_product", "user_cart", [
-                          "user_cart_id"], ["user_cart.id"], ondelete="CASCADE")
-    op.create_foreign_key("product_cart_idfk_2", "product_id", "products", [
-                          "product_id"], ["products.id"], onupdate="CASCADE")
+    op.create_foreign_key("fk_user_cart_product", "user_cart_products",
+                          "user_cart", ["user_cart_id"], ["id"],
+                          ondelete="CASCADE")
+    op.create_foreign_key("product_cart_idfk_2", "user_cart_products",
+                          "products", ["product_id"], ["id"],
+                          onupdate="CASCADE")
     pass
 
 
 def downgrade() -> None:
-    op.drop_constraint("user_cart_products", "user_cart_idfk_2")
-    op.drop_constraint("user_cart_products", "product_cart_idfk_2")
+    op.drop_constraint("fk_user_cart_product",
+                       "user_cart_products", type_="foreignkey")
+    op.drop_constraint("product_cart_idfk_2",
+                       "user_cart_products", type_="foreignkey")
     op.drop_table('user_cart_products')
     op.add_column('user_cart', sa.Column('product_id', sa.String(60)))
-    op.create_foreign_key('user_cart_ibfk_2', 'product',
-                          'user_cart', ['product_id'], ['id'])
+    op.create_foreign_key('user_cart_ibfk_2', 'user_cart',
+                          'products', ['product_id'], ['id'])
     op.add_column('user_cart', sa.Column('quantity', sa.Integer))
     pass

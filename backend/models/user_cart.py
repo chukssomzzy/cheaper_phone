@@ -9,7 +9,7 @@ class UserCart(BaseModel, Base):
     """ DEfines usercart for in db_storage"""
     __tablename__ = "user_cart"
     user_id = Column(String(60), ForeignKey("users.id"))
-    items = relationship("Product", backref="cart")
+    items = relationship("UserCartProduct")
 
     def __init__(self, *args, **kwargs):
         """Initialized usercart with __init__ defined in basemodel"""
