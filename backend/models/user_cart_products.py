@@ -15,5 +15,17 @@ class UserCartProduct(BaseModel, Base):
         "user_cart.id"), primary_key=True)
     product_id = Column(String(60), ForeignKey(
         "products.id"), primary_key=True)
-    quantity = Column(Integer, default=0)
-    products = relationship("Product")
+    quantity = Column(Integer, default=1)
+    product = relationship("Product", backref=backref(
+        "cart_product", uselist=False))
+
+    def increase_quantity(self):
+        """increase the quantity of a product"""
+        self.quantity = self.quantity + 1
+
+    def decrease_quantity(self):
+        """Decrease quantity of a product"""
+        if int(self.quantity) > 1:
+            self.quantity = self.quantity - 1
+        else:
+            self.delete()

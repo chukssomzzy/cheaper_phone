@@ -1,7 +1,7 @@
 #!/usr/bin/env -S venv/bin/python3
 """user_cart model for db_storage"""
 from sqlalchemy import Column, ForeignKey, Integer, String
-from sqlalchemy.orm import relationship
+from sqlalchemy.orm import backref, relationship
 from models.base_model import BaseModel, Base
 
 
@@ -10,6 +10,8 @@ class UserCart(BaseModel, Base):
     __tablename__ = "user_cart"
     user_id = Column(String(60), ForeignKey("users.id"))
     items = relationship("UserCartProduct")
+    user = relationship("User", backref=backref(
+        "cart", uselist=False), cascade="delete")
 
     def __init__(self, *args, **kwargs):
         """Initialized usercart with __init__ defined in basemodel"""

@@ -49,7 +49,7 @@ class BaseModel():
         self.update_at = datetime.utcnow()
         models.storage.save()
 
-    def deletes(self):
+    def delete(self):
         """Delete this model from storage"""
         models.storage.delete(self)
 

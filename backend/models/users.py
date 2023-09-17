@@ -7,7 +7,7 @@ import hashlib
 import secrets
 
 from sqlalchemy import Column, Enum, String
-from sqlalchemy.orm import backref, relationship
+from sqlalchemy.orm import relationship
 
 from models.base_model import Base, BaseModel
 
@@ -29,8 +29,7 @@ class User(BaseModel, Base):
     _salt = Column(String(32), nullable=False, server_default="")
     role = Column(Enum(RoleEnum),
                   nullable=False, server_default="customer")
-    cart = relationship("UserCart", backref=backref(
-        "user", uselist=False), cascade="delete")
+
     shipping_address = relationship(
         "ShippingAddress", backref="user",
         cascade="all, delete")
