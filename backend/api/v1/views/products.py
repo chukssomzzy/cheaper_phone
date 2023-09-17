@@ -4,7 +4,7 @@
 
 from flask import abort, make_response, request, url_for
 from flask.json import jsonify
-from flask_jwt_extended import jwt_required
+from flask_jwt_extended import current_user, jwt_required
 from api.v1.utils.jwt.is_admin import is_admin
 from api.v1.utils.schemas.is_valid import isvalid
 from api.v1.views import api_view
@@ -12,8 +12,13 @@ from api.v1.utils.error_handles.invalid_api_error import InvalidApiUsage
 from models import storage
 from models.base_model import BaseModel
 
+# add to cart
+# remove from cart
+# reduce quantity of an item in cart
+
 
 @api_view.route("/products", strict_slashes=False)
+@jwt_required(optional=True)
 def get_products():
     """Get all product data and pages the product to a limit of 40 by default
     Request_args:
@@ -56,6 +61,11 @@ def get_products():
                 product_dict["url_key"] = url_for(
                     ".get_product_by_id",
                     product_id=product.id, _external=True)
+            if current_user:
+                product_dict["actions"] = []
+                product_dict["actions"].append({"add_to_cart": url_for(
+                    ".add_product_to_cart", product_id=product.id, _external=True)})
+
             products.append(product_dict)
         if not products:
             abort(404, "Products table is empty")
@@ -67,6 +77,7 @@ def get_products():
 
 
 @api_view.route('/products/<uuid:product_id>', strict_slashes=False)
+@jwt_required(optional=True)
 def get_product_by_id(product_id):
     """Get a product by an id
 
@@ -98,6 +109,11 @@ def get_product_by_id(product_id):
     product_return["images"] = []
     for image in product.images:
         product_return['images'].append(image.image_url)
+    if current_user:
+        product_return["actions"] = []
+        product_return["actions"].append({"add_to_cart": url_for(
+            ".add_product_to_cart", product_id=product.id, _external=True),
+            "methods": ["PUT"]})
     return product_return
 
 
