@@ -40,3 +40,10 @@ class Product(BaseModel, Base):
     def __init__(self, *args, **kwargs):
         """Intialized product table with basemodel __init__"""
         return super().__init__(*args, **kwargs)
+
+    @property
+    def rating(self):
+        """Return average rating for a product"""
+        rating = [review.rating for review in self.reviews]
+        rating = sum(rating) / len(rating)
+        return rating

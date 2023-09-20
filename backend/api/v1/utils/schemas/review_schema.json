@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.json/draft/2020-12/schma",
+  "$draft": "review_schema.json",
+  "type": "object", 
+  "properties": {
+    "rating": {
+      "type": "number",
+      "maximum": 5, 
+      "minmum": 0
+    }
+  },
+  "additionalProperties": false, 
+  "required": ["rating"]
+}

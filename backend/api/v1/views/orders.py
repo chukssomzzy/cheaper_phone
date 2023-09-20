@@ -10,9 +10,6 @@ from models.order_items import OrderItem
 from models.orders import Order
 
 # todos
-# create an order
-# cancel an order
-# delete an order
 
 
 @api_view.route("/customer/orders", strict_slashes=False)
@@ -130,6 +127,38 @@ def create_order(cart_id):
     order_dict = order.to_dict()
     order_dict["id"] = order.id
     return order_dict, 201
+
+
+@api_view.route("/customer/orders/<int:order_id>",
+                strict_slashes=False)
+@jwt_required()
+def get_order_by_id(order_id):
+    """Get order by id
+    Args
+        order_id (int): identifies an order
+    args
+        None
+    Response
+        dict representation of an order and actions
+    Raises
+        404: order not found
+        401: unauthorized access
+        400: bad request
+    """
+    customer = current_user
+    order = storage.filter("Order", id=int(
+        order_id), user_id=customer.id)
+    if not order:
+        raise InvalidApiUsage(
+            f"order identified by {order_id} doesn't exit", status_code=404)
+    order_key = "Order" + "." + str(order_id)
+    order = order[order_key]
+    order_dict = order.to_dict()
+    order_dict["status"] = str(order.status)
+    order_dict["actions"] = []
+    order_dict["actions"].append({"cancelOrder": url_for(
+        ".cancel_order", order_id=order.id, _external=True)})
+    return order_dict
 
 
 @api_view.route("/customer/orders/<int:order_id>/cancel",
