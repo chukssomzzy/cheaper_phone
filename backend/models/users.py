@@ -67,3 +67,10 @@ class User(BaseModel, Base):
         salted_pwd = self._salt + password
         hashed_pwd = hashlib.sha256(salted_pwd.encode()).hexdigest()
         return self._pwd_hash == hashed_pwd
+
+    def get_default_address(self):
+        """ get default address for the current user"""
+        for address in self.addresses:
+            if address.default:
+                return address
+        return None

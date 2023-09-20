@@ -45,4 +45,4 @@ class Order(BaseModel, Base):
 
     def __init__(self, *args, **kwargs):
         """Intialize order with __init__ from basemodel"""
-        return self().__init__(*args, **kwargs)
+        return super().__init__(*args, **kwargs)

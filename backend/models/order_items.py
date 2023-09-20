@@ -9,6 +9,7 @@ from models.base_model import BaseModel, Base
 class OrderItem(BaseModel, Base):
     """Define order_items model"""
     __tablename__ = "order_items"
+    id = None
     order_id = Column(Integer, ForeignKey("orders.id"), primary_key=True)
     product_id = Column(String(60), ForeignKey(
         "products.id"), primary_key=True)

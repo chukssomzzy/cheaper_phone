@@ -5,6 +5,8 @@ from flask_jwt_extended import current_user, jwt_required
 from api.v1.utils.error_handles.invalid_api_error import InvalidApiUsage
 from api.v1.views import api_view
 from models import storage
+from models.order_items import OrderItem
+from models.orders import Order
 
 # todos
 # create an order
@@ -71,8 +73,8 @@ def get_user_orders():
         InvalidApiUsage('integer must be greater than 0')
 
 
-@api_view.route("/customer/orders/cart/<int:cart_id>",
-                method=["POST"], strict_slashes=False)
+@api_view.route("/customer/orders/cart/<uuid:cart_id>",
+                methods=["POST"], strict_slashes=False)
 @jwt_required()
 def create_order(cart_id):
     """Takes a cart_id and create a new order with every items
@@ -90,17 +92,17 @@ def create_order(cart_id):
         404: cart doesn't exist
     """
     customer = current_user
-    cart = storage.filter("userCart", user_id=customer.id, id=cart_id)
-
+    cart = storage.filter("UserCart", user_id=customer.id, id=str(cart_id))
     if not cart:
         raise InvalidApiUsage(
             f"usercart doesn't exist for {cart_id}", status_code=404)
-
+    cart_key = "UserCart" + "." + str(cart_id)
+    cart = cart[cart_key]
     user_cart_products = storage.filter(
-        "userCartProduct", user_cart_id=cart_id)
+        "UserCartProduct", user_cart_id=cart.id)
     if not user_cart_products:
         raise InvalidApiUsage("no products in cart", status_code=404)
-    address = customer.addresses
+    address = customer.get_default_address()
     if not address:
         raise InvalidApiUsage("current customer does not have shipping \
                               address", status_code=404,
@@ -108,7 +110,19 @@ def create_order(cart_id):
                                        url_for(".post_address",
                                                _external=True)})
     total_amount = 0
+    product_ids = []
     for user_product in user_cart_products.values():
         product = user_product.product
+        product_ids.append(product.id)
         total_amount = total_amount + \
             (product.price * user_product.quantity)
+    order = Order(user_id=customer.id,
+                  total_amount=total_amount,
+                  shipping_address_id=address.id)
+    storage.save()
+    order_id = order.id
+    for product_id in product_ids:
+        OrderItem(order_id=order_id, product_id=product_id)
+    storage.save()
+    order_dict = order.to_dict()
+    return order_dict, 201
