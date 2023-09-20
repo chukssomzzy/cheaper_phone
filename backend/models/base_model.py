@@ -47,6 +47,7 @@ class BaseModel():
     def save(self):
         """Save the current model to database"""
         self.update_at = datetime.utcnow()
+        models.storage.new(self)
         models.storage.save()
 
     def delete(self):

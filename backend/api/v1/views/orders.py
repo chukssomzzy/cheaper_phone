@@ -3,6 +3,7 @@
 from flask import request, url_for
 from flask_jwt_extended import current_user, jwt_required
 from api.v1.utils.error_handles.invalid_api_error import InvalidApiUsage
+from api.v1.utils.jwt.is_admin import is_admin
 from api.v1.views import api_view
 from models import storage
 from models.order_items import OrderItem
@@ -68,9 +69,9 @@ def get_user_orders():
         res_dict["orders"] = orders
         return res_dict
     except TypeError:
-        InvalidApiUsage("wrong type must by a integer")
+        raise InvalidApiUsage("wrong type must by a integer")
     except ZeroDivisionError:
-        InvalidApiUsage('integer must be greater than 0')
+        raise InvalidApiUsage('integer must be greater than 0')
 
 
 @api_view.route("/customer/orders/cart/<uuid:cart_id>",
@@ -110,19 +111,411 @@ def create_order(cart_id):
                                        url_for(".post_address",
                                                _external=True)})
     total_amount = 0
-    product_ids = []
     for user_product in user_cart_products.values():
         product = user_product.product
-        product_ids.append(product.id)
         total_amount = total_amount + \
             (product.price * user_product.quantity)
     order = Order(user_id=customer.id,
                   total_amount=total_amount,
                   shipping_address_id=address.id)
-    storage.save()
+    order.save()
     order_id = order.id
-    for product_id in product_ids:
-        OrderItem(order_id=order_id, product_id=product_id)
+    for user_product in user_cart_products.values():
+        order_item = OrderItem(
+            order_id=order_id, product_id=user_product.product_id,
+            quantity=user_product.quantity)
+        order_item.save()
+        storage.delete(user_product)
     storage.save()
     order_dict = order.to_dict()
+    order_dict["id"] = order.id
     return order_dict, 201
+
+
+@api_view.route("/customer/orders/<int:order_id>/cancel",
+                methods=["PUT"], strict_slashes=False)
+@jwt_required()
+def cancel_order(order_id):
+    """cancel an order
+    Args
+        order_id (int): identifies the order_id
+    args
+        None
+    Response
+        dict representation of order
+    Raises
+        401: unauthorised access
+        400: bad request
+        404: order not found
+    """
+    customer = current_user
+    order = storage.filter("Order", user_id=customer.id, id=int(order_id))
+    if not len(order):
+        raise InvalidApiUsage("order doesn't exit", status_code=404)
+    order_key = "Order" + "." + str(order_id)
+    order = order[order_key]
+    order.status = order.status.cancelled
+    storage.save()
+    order_dict = order.to_dict()
+    order_dict["status"] = str(order.status)
+    return order_dict
+
+
+@api_view.route("/order/<int:order_id>/user/<uuid:user_id>/process",
+                methods=["PUT"], strict_slashes=False)
+@jwt_required()
+@is_admin
+def process_order(order_id, user_id):
+    """Process an order
+    Args
+        order_id (int): identifies the order_id
+    args
+        None
+    Response
+        dict representation of order
+    Raises
+        401: unauthorised access
+        400: bad request
+        404: order not found
+
+    """
+    order = storage.filter("Order", user_id=str(user_id), id=int(order_id))
+    if not len(order):
+        raise InvalidApiUsage("order doesn't exit", status_code=404)
+    order_key = "Order" + "." + str(order_id)
+    order = order[order_key]
+    order.status = order.status.processing
+    order_dict = order.to_dict()
+    storage.save()
+    order_dict["status"] = str(order.status)
+    return order_dict
+
+
+@api_view.route("/order/<int:order_id>/user/<uuid:user_id>/ship",
+                methods=["PUT"], strict_slashes=False)
+@jwt_required()
+@is_admin
+def ship_order(order_id, user_id):
+    """ship an order
+    Args
+        order_id (int): identifies the order_id
+    args
+        None
+    Response
+        dict representation of order
+    Raises
+        401: unauthorised access
+        400: bad request
+        404: order not found
+
+    """
+    order = storage.filter("Order", user_id=str(user_id), id=int(order_id))
+    if not len(order):
+        raise InvalidApiUsage("order doesn't exit", status_code=404)
+    order_key = "Order" + "." + str(order_id)
+    order = order[order_key]
+    order.status = order.status.shipped
+    order_dict = order.to_dict()
+    storage.save()
+    order_dict["status"] = str(order.status)
+    return order_dict
+
+
+@api_view.route("/order/<int:order_id>/user/<uuid:user_id>/deliver",
+                methods=["PUT"], strict_slashes=False)
+@jwt_required()
+@is_admin
+def deliver_order(order_id, user_id):
+    """deliver an order
+    Args
+        order_id (int): identifies the order_id
+    args
+        None
+    Response
+        dict representation of order
+    Raises
+        401: unauthorised access
+        400: bad request
+        404: order not found
+
+    """
+    order = storage.filter("Order", user_id=str(user_id), id=int(order_id))
+    if not len(order):
+        raise InvalidApiUsage("order doesn't exit", status_code=404)
+    order_key = "Order" + "." + str(order_id)
+    order = order[order_key]
+    order.status = order.status.delivered
+    order_dict = order.to_dict()
+    storage.save()
+    order_dict["status"] = str(order.status)
+    return order_dict
+
+
+@api_view.route("/order/<int:order_id>/user/<uuid:user_id>/return",
+                methods=["PUT"], strict_slashes=False)
+@jwt_required()
+@is_admin
+def return_order(order_id, user_id):
+    """return an order
+    Args
+        order_id (int): identifies the order_id
+    args
+        None
+    Response
+        dict representation of order
+    Raises
+        401: unauthorised access
+        400: bad request
+        404: order not found
+
+    """
+    order = storage.filter("Order", user_id=str(user_id), id=int(order_id))
+    if not len(order):
+        raise InvalidApiUsage("order doesn't exit", status_code=404)
+    order_key = "Order" + "." + str(order_id)
+    order = order[order_key]
+    order.status = order.status.returned
+    order_dict = order.to_dict()
+    storage.save()
+    order_dict["status"] = str(order.status)
+    return order_dict
+
+
+@api_view.route("/order/<int:order_id>/user/<uuid:user_id>/refund",
+                methods=["PUT"], strict_slashes=False)
+@jwt_required()
+@is_admin
+def refund_order(order_id, user_id):
+    """refund an order
+    Args
+        order_id (int): identifies the order_id
+    args
+        None
+    Response
+        dict representation of order
+    Raises
+        401: unauthorised access
+        400: bad request
+        404: order not found
+
+    """
+    order = storage.filter("Order", user_id=str(user_id), id=int(order_id))
+    if not len(order):
+        raise InvalidApiUsage("order doesn't exit", status_code=404)
+    order_key = "Order" + "." + str(order_id)
+    order = order[order_key]
+    order.status = order.status.refunded
+    order_dict = order.to_dict()
+    storage.save()
+    order_dict["status"] = str(order.status)
+    return order_dict
+
+
+@api_view.route("/order/<int:order_id>/user/<uuid:user_id>/hold",
+                methods=["PUT"], strict_slashes=False)
+@jwt_required()
+@is_admin
+def hold_order(order_id, user_id):
+    """hold an order
+    Args
+        order_id (int): identifies the order_id
+    args
+        None
+    Response
+        dict representation of order
+    Raises
+        401: unauthorised access
+        400: bad request
+        404: order not found
+
+    """
+    order = storage.filter("Order", user_id=str(user_id), id=int(order_id))
+    if not len(order):
+        raise InvalidApiUsage("order doesn't exit", status_code=404)
+    order_key = "Order" + "." + str(order_id)
+    order = order[order_key]
+    order.status = order.status.on_hold
+    order_dict = order.to_dict()
+    storage.save()
+    order_dict["status"] = str(order.status)
+    return order_dict
+
+
+@api_view.route("/order/<int:order_id>/user/<uuid:user_id>/ready_for_pickup",
+                methods=["PUT"], strict_slashes=False)
+@jwt_required()
+@is_admin
+def pickup_order(order_id, user_id):
+    """pickup status an order
+    Args
+        order_id (int): identifies the order_id
+    args
+        None
+    Response
+        dict representation of order
+    Raises
+        401: unauthorised access
+        400: bad request
+        404: order not found
+
+    """
+    order = storage.filter("Order", user_id=str(user_id), id=int(order_id))
+    if not len(order):
+        raise InvalidApiUsage("order doesn't exit", status_code=404)
+    order_key = "Order" + "." + str(order_id)
+    order = order[order_key]
+    order.status = order.status.ready_for_pickup
+    order_dict = order.to_dict()
+    storage.save()
+    order_dict["status"] = str(order.status)
+    return order_dict
+
+
+@api_view.route("/order/<int:order_id>/user/<uuid:user_id>/backorder",
+                methods=["PUT"], strict_slashes=False)
+@jwt_required()
+@is_admin
+def back_order(order_id, user_id):
+    """backorder an order
+    Args
+        order_id (int): identifies the order_id
+    args
+        None
+    Response
+        dict representation of order
+    Raises
+        401: unauthorised access
+        400: bad request
+        404: order not found
+
+    """
+    order = storage.filter("Order", user_id=str(user_id), id=int(order_id))
+    if not len(order):
+        raise InvalidApiUsage("order doesn't exit", status_code=404)
+    order_key = "Order" + "." + str(order_id)
+    order = order[order_key]
+    order.status = order.status.backordered
+    order_dict = order.to_dict()
+    storage.save()
+    order_dict["status"] = str(order.status)
+    return order_dict
+
+
+@api_view.route("/order/<int:order_id>/user/<uuid:user_id>/partial_ship",
+                methods=["PUT"], strict_slashes=False)
+@jwt_required()
+@is_admin
+def partial_ship_order(order_id, user_id):
+    """partial ship  an order
+    Args
+        order_id (int): identifies the order_id
+    args
+        None
+    Response
+        dict representation of order
+    Raises
+        401: unauthorised access
+        400: bad request
+        404: order not found
+
+    """
+    order = storage.filter("Order", user_id=str(user_id), id=int(order_id))
+    if not len(order):
+        raise InvalidApiUsage("order doesn't exit", status_code=404)
+    order_key = "Order" + "." + str(order_id)
+    order = order[order_key]
+    order.status = order.status.partial_shipment
+    order_dict = order.to_dict()
+    storage.save()
+    order_dict["status"] = str(order.status)
+    return order_dict
+
+
+@api_view.route("/order/<int:order_id>/user/<uuid:user_id>/process_delay",
+                methods=["PUT"], strict_slashes=False)
+@jwt_required()
+@is_admin
+def delay_order(order_id, user_id):
+    """delay  an order
+    Args
+        order_id (int): identifies the order_id
+    args
+        None
+    Response
+        dict representation of order
+    Raises
+        401: unauthorised access
+        400: bad request
+        404: order not found
+
+    """
+    order = storage.filter("Order", user_id=str(user_id), id=int(order_id))
+    if not len(order):
+        raise InvalidApiUsage("order doesn't exit", status_code=404)
+    order_key = "Order" + "." + str(order_id)
+    order = order[order_key]
+    order.status = order.status.process_delay
+    order_dict = order.to_dict()
+    storage.save()
+    order_dict["status"] = str(order.status)
+    return order_dict
+
+
+@api_view.route("/order/<int:order_id>/user/<uuid:user_id>/payment_pending",
+                methods=["PUT"], strict_slashes=False)
+@jwt_required()
+@is_admin
+def payment_pending(order_id, user_id):
+    """payment pending for an order
+    Args
+        order_id (int): identifies the order_id
+    args
+        None
+    Response
+        dict representation of order
+    Raises
+        401: unauthorised access
+        400: bad request
+        404: order not found
+
+    """
+    order = storage.filter("Order", user_id=str(user_id), id=int(order_id))
+    if not len(order):
+        raise InvalidApiUsage("order doesn't exit", status_code=404)
+    order_key = "Order" + "." + str(order_id)
+    order = order[order_key]
+    order.status = order.status.payment_pending
+    order_dict = order.to_dict()
+    storage.save()
+    order_dict["status"] = str(order.status)
+    return order_dict
+
+
+@api_view.route("/order/<int:order_id>/user/<uuid:user_id>/payment_failed",
+                methods=["PUT"], strict_slashes=False)
+@jwt_required()
+@is_admin
+def payment_failed(order_id, user_id):
+    """payment failed for an order
+    Args
+        order_id (int): identifies the order_id
+    args
+        None
+    Response
+        dict representation of order
+    Raises
+        401: unauthorised access
+        400: bad request
+        404: order not found
+
+    """
+    order = storage.filter("Order", user_id=str(user_id), id=int(order_id))
+    if not len(order):
+        raise InvalidApiUsage("order doesn't exit", status_code=404)
+    order_key = "Order" + "." + str(order_id)
+    order = order[order_key]
+    order.status = order.status.payment_failed
+    order_dict = order.to_dict()
+    storage.save()
+    order_dict["status"] = str(order.status)
+    return order_dict
