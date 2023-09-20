@@ -32,6 +32,8 @@ def user_identity_lookup(user):
     Returns:
         user's id
     """
+    if isinstance(user, str):
+        return user
     return user.id
 
 

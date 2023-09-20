@@ -3,7 +3,6 @@
 
 
 import enum
-from datetime import datetime
 
 from sqlalchemy import (Column, DateTime, Enum, ForeignKey, Integer, Numeric,
                         Sequence, String)
@@ -42,6 +41,7 @@ class Order(BaseModel, Base):
     items = relationship("OrderItem", backref="order")
     address = relationship(
         "ShippingAddress", backref=backref("order", uselist=False))
+    customer = relationship("User", backref="orders")
 
     def __init__(self, *args, **kwargs):
         """Intialize order with __init__ from basemodel"""

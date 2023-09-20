@@ -151,7 +151,7 @@ def remove_product_from_cart(product_id):
 @api_view.route("/customer/cart/<uuid:product_id>",
                 methods=["DELETE"], strict_slashes=False)
 @jwt_required()
-def remove_from_cart(product_id):
+def delete_from_cart(product_id):
     """Remove a product from cart
     Args:
         product_id (str): unique identifies the product to remove from cart

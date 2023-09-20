@@ -113,7 +113,13 @@ def get_product_by_id(product_id):
         product_return["actions"] = []
         product_return["actions"].append({"add_to_cart": url_for(
             ".add_product_to_cart", product_id=product.id, _external=True),
-            "methods": ["PUT"]})
+            "methods": ["POST"]})
+        product_return["actions"].append({"remove_from_cart": url_for(
+            ".remove_product_from_cart", product_id=product.id, _external=True
+        ), "methods": ["PUT"]})
+        product_return["actions"].append({"delete_from_cart": url_for(
+            ".delete_from_cart", product_id=product.id, _external=True
+        ), "methods": ["DELETE"]})
     return product_return
 
 

@@ -5,7 +5,6 @@ from pathlib import Path
 import json
 
 from referencing import Registry, Resource
-from referencing.exceptions import NoSuchResource
 
 SCHEMAS = Path(__file__).parent
 

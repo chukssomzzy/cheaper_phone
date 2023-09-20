@@ -30,14 +30,10 @@ class User(BaseModel, Base):
     role = Column(Enum(RoleEnum),
                   nullable=False, server_default="customer")
 
-    shipping_address = relationship(
-        "ShippingAddress", backref="user",
-        cascade="all, delete")
     reviews = relationship(
         "ProductReview", backref="user",
         cascade="all, delete")
-    orders = relationship("Order",
-                          backref="user", cascade="all, delete")
+
     chat_history = relationship(
         "ChatHistory", backref="user",
         cascade="all, delete")

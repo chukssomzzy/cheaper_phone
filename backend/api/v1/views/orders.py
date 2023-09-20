@@ -1,14 +1,14 @@
 #!/usr/bin/env -S venv/bin/python3
 """Orders endpoint"""
-from flask import request
+from flask import request, url_for
 from flask_jwt_extended import current_user, jwt_required
 from api.v1.utils.error_handles.invalid_api_error import InvalidApiUsage
 from api.v1.views import api_view
 from models import storage
 
 # todos
-# add an order
-# cancle an order
+# create an order
+# cancel an order
 # delete an order
 
 
@@ -69,3 +69,46 @@ def get_user_orders():
         InvalidApiUsage("wrong type must by a integer")
     except ZeroDivisionError:
         InvalidApiUsage('integer must be greater than 0')
+
+
+@api_view.route("/customer/orders/cart/<int:cart_id>",
+                method=["POST"], strict_slashes=False)
+@jwt_required()
+def create_order(cart_id):
+    """Takes a cart_id and create a new order with every items
+    in the cart remove all items from the cart once order has been successfully
+    created
+    Args
+        cart_id (int): identifies the cart to create order  from
+    args
+        None
+    Response
+        json representation of the newly created order
+    Raises
+        400: bad request
+        401: unauthorised access
+        404: cart doesn't exist
+    """
+    customer = current_user
+    cart = storage.filter("userCart", user_id=customer.id, id=cart_id)
+
+    if not cart:
+        raise InvalidApiUsage(
+            f"usercart doesn't exist for {cart_id}", status_code=404)
+
+    user_cart_products = storage.filter(
+        "userCartProduct", user_cart_id=cart_id)
+    if not user_cart_products:
+        raise InvalidApiUsage("no products in cart", status_code=404)
+    address = customer.addresses
+    if not address:
+        raise InvalidApiUsage("current customer does not have shipping \
+                              address", status_code=404,
+                              payload={"createShippingAddress":
+                                       url_for(".post_address",
+                                               _external=True)})
+    total_amount = 0
+    for user_product in user_cart_products.values():
+        product = user_product.product
+        total_amount = total_amount + \
+            (product.price * user_product.quantity)
