@@ -74,3 +74,9 @@ class User(BaseModel, Base):
             if address.default:
                 return address
         return None
+
+    def to_dict(self):
+        """dictionary representation of object"""
+        new_dict = super().to_dict()
+        if "role" in new_dict:
+            new_dict["role"] = str(self.role.value)

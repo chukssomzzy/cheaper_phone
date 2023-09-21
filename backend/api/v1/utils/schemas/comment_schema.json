@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "comment_schema.json",
+  "type": "object", 
+  "properties": {
+    "content": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false, 
+  "required": ["content"]
+}

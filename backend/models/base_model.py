@@ -70,5 +70,6 @@ class BaseModel():
             new_dict["updated_at"] = datetime.isoformat(new_dict["updated_at"])
         if "_sa_instance_state" in new_dict:
             del new_dict["_sa_instance_state"]
+
         new_dict["__class__"] = self.__class__.__name__
         return new_dict

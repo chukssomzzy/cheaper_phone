@@ -82,7 +82,6 @@ def get_profile():
             address_dict = address.to_dict()
             address.append(address_dict)
     customer_dict = customer.to_dict()
-    customer_dict["role"] = str(customer.role)
     customer_dict["shipping_address"] = address
     actions = []
     actions.append({"editUser": url_for(".edit_customer", _external=True)})
@@ -121,7 +120,6 @@ def edit_customer():
     customer.update(**body)
     storage.save()
     customer_dict = customer.to_dict()
-    customer_dict["role"] = str(customer.role)
     return customer_dict
 
 

@@ -46,3 +46,9 @@ class Order(BaseModel, Base):
     def __init__(self, *args, **kwargs):
         """Intialize order with __init__ from basemodel"""
         return super().__init__(*args, **kwargs)
+
+    def to_dict(self):
+        """serializable representation of obj"""
+        new_dict = super().to_dict()
+        if "status" in new_dict:
+            new_dict["status"] = str(self.status.value)
