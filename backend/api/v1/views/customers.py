@@ -39,12 +39,16 @@ def register_customer():
 @api_view.route("/customer/login", methods=["POST"], strict_slashes=False)
 def login():
     body = request.get_json()
-
-    user = storage.session.query(User).filter_by(
-        username=body["username"]).one_or_none()
+    user = None
+    if "username" in body:
+        user = storage.session.query(User).filter_by(
+            username=body["username"]).one_or_none()
+    if "email" in body:
+        user = storage.session.query(User).filter_by(
+            email=body["email"]).one_or_none()
     if not user:
         raise InvalidApiUsage("username is not correct")
-    elif not user.check_password(body["password"]):
+    elif not bool(user.check_password(body["password"])):
         raise InvalidApiUsage("password not correct")
     access_token = create_access_token(identity=user)
     refresh_token = create_refresh_token(identity=user)

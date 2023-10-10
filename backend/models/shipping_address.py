@@ -36,6 +36,13 @@ class ShippingAddress(BaseModel, Base):
         """Initialize shipping address"""
         return super().__init__(self, *args, **kwargs)
 
+    def to_dict(self):
+        """serializes address"""
+        new_dict = super().to_dict()
+        if "address_type" in new_dict:
+            new_dict["address_type"] = self.address_type.value
+        return new_dict
+
     @classmethod
     def change_default(cls, user_id):
         """Find all previous default address and change them"""

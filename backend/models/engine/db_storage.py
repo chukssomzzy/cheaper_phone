@@ -35,7 +35,6 @@ class DBStorage:
                  "AdminLog": AdminLog, "Brand": Brand, "OrderItem": OrderItem,
                  "UserCartProduct": UserCartProduct}
     __engine = None
-    __SecClses = ["orders", "users"]
 
     def __init__(self):
         """Connects sqlalchemy to storage and creates an engine"""
@@ -170,39 +169,50 @@ class DBStorage:
                 obj[key] = val
         return obj
 
-    def page_join(self, cls, secCls, id, action="page", page=1, limit=10,
+    def page_join(self, cls, secCls, id, page=1, limit=10,
                   order_by="created_at"):
-        """ Paginate a or count a joined models
+        """ Paginate obj
 
         Args:
             cls: parent cls to paginate
             secCls: child class to join
-            actions: to perform count or page
+            secColumn: foreign key in sec class
             page: if page what the current page
             limit: no of items per page
             order_by: key to order by
         Return:
-            Count or dict
+            dict
         """
         if cls not in self.__classes or secCls not in self.__classes:
-            return None
+            return ({})
         cls = self.__classes[cls]
-        if secCls not in self.__SecClses:
-            return {}
-        count = self.__Session.query(cls).join(
-            getattr(cls, secCls)).filter(getattr(cls, "id") == id)\
-            .count()
-        endIdx = 0
-        obj = {}
+        secCls = self.__classes[secCls]
+        obj_count = self.__Session.query(secCls).join(
+            cls).filter(getattr(cls, "id") == id).count()
+        endIdx = page * limit if (page * limit) <= obj_count else obj_count
+        startIdx = ((page - 1) * limit) if ((page - 1)
+                                            * limit) < obj_count else 0
+        obj_dict = {}
+        for obj in self.__Session.query(secCls).join(cls).\
+                filter(getattr(cls, "id") == id).\
+                order_by(getattr(secCls, order_by))[startIdx:endIdx]:
+            key = obj.__class__.__name__ + "." + str(obj.id)
+            obj_dict[key] = obj
+        return (obj_dict)
 
-        if action == "count":
-            return count
-        endIdx = (page + 1) * limit if (page + 1) * limit < count else count
-        startIdx = (page - 1) * limit if (page - 1) * limit < endIdx else 0
-        if action == "page":
-            for item in self.__Session.query(cls).join(getattr(cls, secCls))\
-                    .filter(getattr(cls, "id") == id)\
-                    .order_by(getattr(secCls, order_by))[startIdx:endIdx]:
-                key = str(item.__class__.__name__) + "." + item.id
-                obj[key] = item
-        return obj
+    def sec_count(self, cls, secCls, id):
+        """Count an object secondary objects
+
+        Args:
+            cls: string name of model class
+            secCls: string name of model class
+            secColumn: name of referent table column foreign key
+            id: referent column table id
+        """
+        if cls not in self.__classes or secCls not in self.__classes:
+            return (0)
+        cls = self.__classes[cls]
+        secCls = self.__classes[secCls]
+        count = self.__Session.query(secCls).join(
+            cls).filter(getattr(cls, "id") == id).count()
+        return count

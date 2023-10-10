@@ -6,6 +6,7 @@ from api.v1.utils.error_handles.invalid_api_error import InvalidApiUsage
 from api.v1.utils.schemas.is_valid import isvalid
 from api.v1.views import api_view
 from models import storage
+from models.comments import Comment
 from models.products import Product
 
 
@@ -45,8 +46,9 @@ def get_comments(product_id):
         comment_count = int(comment_count)
         comment_count = int(comment_count / limit)
         comments_list = []
-        for comment in storage.page_join("Product", "Comment", id=product_id,
-                                         limit=limit, page=page, order_by=order_by).values():
+        for comment in storage.page_join("Product", "Comment",
+                                         product_id, limit=limit,
+                                         order_by=order_by).values():
             comment_dict = comment.to_dict()
             comment_dict["user"] = comment.user.to_dict()
             comments_list.append(comment_dict)
@@ -84,7 +86,7 @@ def post_comment(product_id):
     if not product:
         raise InvalidApiUsage("product not found", status_code=404)
     comment_body = request.get_json()
-    comment = storage.create("Comment", **comment_body)
+    comment = Comment(**comment_body)
     if not comment:
         InvalidApiUsage(
             f"Couldn't create comment for product {product_id}",

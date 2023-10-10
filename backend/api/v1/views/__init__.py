@@ -13,3 +13,4 @@ from api.v1.views.cart import *
 from api.v1.views.shipping_address import *
 from api.v1.views.orders import *
 from api.v1.views.comments import *
+from api.v1.views.promotions import *

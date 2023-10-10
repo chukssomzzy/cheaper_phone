@@ -38,13 +38,13 @@ def get_user_orders():
         customer = current_user
         pages = 0
 
-        count = storage.page_join(
-            "User", "orders", customer.id, action="count")
+        count = storage.sec_count(
+            "User", "Order", customer.id)
         if isinstance(count, int):
             pages = int(count / limit)
         orders = []
         if len(customer.orders):
-            for order in storage.page_join("User", "orders", customer.id,
+            for order in storage.page_join("User", "Order", customer.id,
                                            limit=limit, page=page,
                                            order_by=order_by).values():
                 order_dict = order.to_dict()

@@ -52,3 +52,4 @@ class Order(BaseModel, Base):
         new_dict = super().to_dict()
         if "status" in new_dict:
             new_dict["status"] = str(self.status.value)
+        return new_dict

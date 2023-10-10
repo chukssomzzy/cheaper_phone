@@ -16,7 +16,7 @@ from models.shipping_address import ShippingAddress
 # make default address
 
 
-@api_view.route("/customer/address", methods=["Post"], strict_slashes=False)
+@api_view.route("/customer/address", methods=["POST"], strict_slashes=False)
 @jwt_required()
 @isvalid("shipping_address_schema.json")
 def post_address():
@@ -44,7 +44,6 @@ def post_address():
     addresses = []
     for address in customer.addresses:
         address_dict = address.to_dict()
-        address_dict["address_type"] = str(address.address_type)
         addresses.append(address_dict)
     return {"addresses": addresses}
 
@@ -68,7 +67,6 @@ def get_all_address():
 
     for address in customer.addresses:
         address_dict = address.to_dict()
-        address_dict["address_type"] = str(address.address_type)
         addresses.append(address_dict)
     return {"addresses": addresses}
 

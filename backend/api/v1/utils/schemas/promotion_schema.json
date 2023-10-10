@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "promotion_schema.json",
+  "type": "object",
+  "title": "promotion schema for post",
+  "properties": {
+    "name": {
+      "description": "Name of the promotion",
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 10
+    },
+    "discount": {
+      "description": "Number representing the percentage discount to be applied to the product",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "duration": {
+      "description": "A timedelta applied to the start date to determine if promotional period has passed",
+      "type": "string",
+      "pattern": "^(?:\\d+ days, )?(?:(?:\\d+):)?\\d+:\\d+(?:\\.\\d{1,6})?",
+      "errorMessage": "duration must be in the format '30 days, 00:00:00.000000' where '30 days' and '00:00:00 time' '000000 microseconds'"
+    },
+    "start_date": {
+      "description": "date to start the promotion",
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}$",
+      "errorMessage": "start date must be a string"
+    }
+  },
+  "required": ["name", "discount", "duration"],
+  "additionalProperties": false
+}
