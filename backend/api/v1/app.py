@@ -11,15 +11,13 @@ from werkzeug import exceptions
 from api.v1.utils.error_handles.invalid_api_error import InvalidApiUsage
 from api.v1.views import api_view
 from models import storage
-import stripe
 
 
 app = Flask(__name__)
 app.config["JWT_SECRET_KEY"] = getenv("APP_SECRET_KEY")
 app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(hours=1)
 app.config["JWT_REFRESH_TOKEN_EXPIRES"] = timedelta(days=30)
-stripe.api_key = getenv("STRIPE_SECRET_KEY")
-stripe_obj = stripe
+
 
 jwt = JWTManager(app)
 

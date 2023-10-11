@@ -1,16 +1,20 @@
 #!/usr/bin/env -S venv/bin/python3
 """Contains all users related endpoints"""
+from os import getenv
 from flask import jsonify, request, url_for
+from flask.helpers import abort
 from flask_jwt_extended import (create_access_token, create_refresh_token,
                                 get_jwt_identity, jwt_required, current_user)
 from sqlalchemy.exc import IntegrityError
+import stripe
 
 from api.v1.utils.error_handles.invalid_api_error import InvalidApiUsage
 from api.v1.utils.schemas.is_valid import isvalid
 from api.v1.views import api_view
 from models import storage
 from models.users import User
-from app import stripe_obj
+
+stripe.api_key = getenv("STRIPE_SECRET_KEY")
 
 
 @api_view.route("/customer/register", methods=["POST"])
@@ -28,6 +32,16 @@ def register_customer():
     """
     try:
         customer_data = request.get_json()
+        stripe_customer_data = {}
+        if "first_name" in customer_data and "last_name" in customer_data:
+            stripe_customer_data["name"] = customer_data["first_name"] + \
+                " " + customer_data["last_name"]
+        if "phone" in customer_data:
+            stripe_customer_data["phone"] = customer_data["phone"]
+        idempotent_key = customer_data["username"]
+        stripe_customer = stripe.Customer.create(
+            idempotency_key=idempotent_key, **stripe_customer_data)
+        customer_data["stripe_customer_id"] = stripe_customer["id"]
         customer = User(**customer_data)
         storage.new(customer)
         storage.save()
@@ -35,6 +49,14 @@ def register_customer():
     except IntegrityError:
         raise InvalidApiUsage(
             "Username or email is already taken pick another one")
+    except stripe.error.InvalidRequestError as e:
+        raise InvalidApiUsage(
+            "your did not pass the right parameters", payload=e)
+    except stripe.error.AuthenticationError as e:
+        raise InvalidApiUsage(
+            "you are using a wrong api secret", payload=e, status_code=500)
+    except Exception as e:
+        abort(400)
 
 
 @api_view.route("/customer/login", methods=["POST"], strict_slashes=False)

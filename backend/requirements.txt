@@ -83,6 +83,7 @@ six==1.16.0
 SQLAlchemy==2.0.20
 stack-data==0.6.2
 storage==0.0.4.3
+stripe==6.7.0
 tldextract==3.4.4
 tornado==6.3.3
 traitlets==5.9.0

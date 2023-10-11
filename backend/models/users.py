@@ -30,6 +30,7 @@ class User(BaseModel, Base):
     role = Column(Enum(RoleEnum),
                   nullable=False, server_default="customer")
     stripe_customer_id = Column(String(50), nullable=False)
+    phone = Column(String(20))
 
     reviews = relationship(
         "ProductReview", backref="user",
