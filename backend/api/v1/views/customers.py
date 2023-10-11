@@ -10,6 +10,7 @@ from api.v1.utils.schemas.is_valid import isvalid
 from api.v1.views import api_view
 from models import storage
 from models.users import User
+from app import stripe_obj
 
 
 @api_view.route("/customer/register", methods=["POST"])

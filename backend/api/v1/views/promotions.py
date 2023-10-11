@@ -33,8 +33,11 @@ def get_product_promotions(product_id):
         InvalidApiUsage("product not found", status_code=404)
     promotions_dict = []
     for promotion in product.promotions:
-        if not promotion.is_expired:
+        if not promotion.is_expired():
             promotions_dict.append(promotion.to_dict())
+        else:
+            promotion.update(isexpired=True)
+            storage.save()
 
     return {"promotions": promotions_dict}
 
@@ -216,3 +219,42 @@ def add_promotions_product(promotion_id, product_id):
     Return:
         status, 200
     """
+    promotion = storage.get("Promotion", int(promotion_id))
+    if not promotion:
+        raise InvalidApiUsage("promotion not found", status_code=404)
+    product = storage.get("Product", str(product_id))
+    if not product:
+        raise InvalidApiUsage("product not found", status_code=404)
+    promotion.products.append(product)
+    storage.save()
+    return {}, 200
+
+
+@api_view.route("/promotions/<int:promotion_id>/products/<uuid:product_id>",
+                methods=["DELETE"], strict_slashes=False)
+@jwt_required()
+@is_admin
+def delete_promotions_product(promotion_id, product_id):
+    """Delete a promotion and product id from product_promotions table
+
+    args:
+        None
+    Args:
+        promotion_id (int): identifies the promotion to unlink
+        product_id (str): identifies the product to unlink
+    Raises:
+        401: unauthorised access to route
+        400: bad request
+        404: product or promotion not found
+    Return:
+        No response
+    """
+    promotion = storage.get("Promotion", int(product_id))
+    if not promotion:
+        raise InvalidApiUsage("promotion not found", status_code=404)
+    product = storage.get("Product", str(product_id))
+    if not product:
+        raise InvalidApiUsage("product not found", status_code=404)
+    promotion.products.remove(product)
+    storage.save()
+    return {}, 204

@@ -42,7 +42,7 @@ class Promotion(BaseModel, Base):
     start_date = Column(DateTime, nullable=False,
                         default=datetime.datetime.now())
     isexpired = Column(Boolean, nullable=False, default=False)
-    product = relationship(
+    products = relationship(
         "Product", secondary=product_promotions, backref="promotions")
 
     def __init__(self, *args, **kwargs):
