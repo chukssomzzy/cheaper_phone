@@ -29,3 +29,10 @@ class UserCartProduct(BaseModel, Base):
             self.quantity = self.quantity - 1
         else:
             self.delete()
+
+    def to_dict(self):
+        """update user cart product serializer"""
+        new_dict = super().to_dict()
+        if "product" in new_dict:
+            new_dict["product"] = new_dict["product"].to_dict()
+        return new_dict

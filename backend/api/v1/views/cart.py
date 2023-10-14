@@ -19,14 +19,14 @@ from models.user_cart_products import UserCartProduct
 @jwt_required()
 def get_cart():
     """Get all cartItems
-    Args
-    None
-    args
-    None
-    Response
-    dict representaion of cart items
-    Raises
-    """
+    Args:
+        None
+    args:
+        None
+    Response:
+        dict representaion of cart items
+    Raises:
+        """
     customer = storage.get("User", current_user.id)
     if not customer:
         return {}, 204

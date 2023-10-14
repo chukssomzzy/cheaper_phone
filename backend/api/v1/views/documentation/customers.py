@@ -79,6 +79,7 @@ refresh_spec = {
             "in": "header",
             "description": "authorization header",
             "required": True,
+            "format": "byte",
             "name": "Authorization",
             "type": "string",
         },
@@ -113,6 +114,7 @@ profile_specs = {
             "name": "Authorization",
             "in": "header",
             "type": "string",
+            "format": "byte",
             "required": True,
             "description": "authorizaton header token for customer only route"
         }
@@ -171,6 +173,7 @@ update_customer_spec = {
             "name": "Authorization",
             "in": "header",
             "type": "string",
+            "format": "byte",
             "required": True,
             "description": "authorizaton header token for customer only route"
         },
@@ -201,6 +204,7 @@ change_password_spec = {
             "name": "Authorization",
             "in": "header",
             "type": "string",
+            "format": "byte",
             "required": True,
             "description": "authorizaton header token for customer only route"
         },

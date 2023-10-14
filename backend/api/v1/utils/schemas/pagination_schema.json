@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "pagination_schema.json",
+  "type": "object",
+  "properties": {
+    "page": {
+      "description": "current page in db based on limit",
+      "type": "number",
+      "minimum": 0
+    },
+    "limit": {
+      "description": "Maximum number of obj per page",
+      "type": "number",
+      "minimum": 0
+    },
+    "pages": {
+      "description": "number of page by limit",
+      "type": "number",
+      "minimum": 0
+    }
+  },
+  "required": ["page", "limit"],
+  "additionalProperties": false
+}

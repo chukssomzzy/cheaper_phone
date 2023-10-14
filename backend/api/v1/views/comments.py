@@ -1,17 +1,22 @@
 #!/usr/bin/env venv/bin/python3
 """comments endpoints"""
+from flasgger import swag_from
 from flask import request
 from flask_jwt_extended import jwt_required
-from api.v1.utils.error_handles.invalid_api_error import InvalidApiUsage
-from api.v1.utils.schemas.is_valid import isvalid
-from api.v1.views import api_view
 from models import storage
 from models.comments import Comment
 from models.products import Product
 
+from api.v1.utils.error_handles.invalid_api_error import InvalidApiUsage
+from api.v1.utils.schemas.is_valid import isvalid
+from api.v1.views import api_view
+from api.v1.views.documentation.comments import (get_comments_spec,
+                                                 post_comment_spec)
+
 
 @api_view.route("/reviews/products/<uuid:product_id>/comments",
                 strict_slashes=False)
+@swag_from(get_comments_spec)
 def get_comments(product_id):
     """Returns all comment made on a product
 
@@ -49,7 +54,8 @@ def get_comments(product_id):
         for comment in storage.page_join("Product", "Comment",
                                          product_id, limit=limit,
                                          order_by=order_by).values():
-            comment_dict = comment.to_dict()
+            comment_dict = {}
+            comment_dict["data"] = comment.to_dict()
             comment_dict["user"] = comment.user.to_dict()
             comments_list.append(comment_dict)
         comments_dict = {}
@@ -67,6 +73,7 @@ def get_comments(product_id):
                 methods=["POST"], strict_slashes=False)
 @isvalid("comment_schema.json")
 @jwt_required()
+@swag_from(post_comment_spec)
 def post_comment(product_id):
     """post a comment for a product
 

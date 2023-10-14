@@ -52,4 +52,10 @@ class Order(BaseModel, Base):
         new_dict = super().to_dict()
         if "status" in new_dict:
             new_dict["status"] = str(self.status.value)
+        if "address" in new_dict:
+            new_dict["address"] = new_dict["address"].to_dict()
+        if "customer" in new_dict:
+            new_dict["customer"] = new_dict["customer"].to_dict()
+        if "address" in new_dict:
+            new_dict["address"] = new_dict["address"].to_dict()
         return new_dict

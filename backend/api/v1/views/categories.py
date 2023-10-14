@@ -1,16 +1,23 @@
 #!/usr/bin/env -S venv/bin/python3
 """endpoints for categories"""
+from flasgger import swag_from
 from flask import abort, request, url_for
-from sqlalchemy.exc import IntegrityError
-from api.v1.utils.error_handles.invalid_api_error import InvalidApiUsage
-from api.v1.utils.schemas.is_valid import isvalid
-from api.v1.views import api_view
-
+from flask_jwt_extended import jwt_required
 from models import storage
 from models.categories import Category
+from sqlalchemy.exc import IntegrityError
+
+from api.v1.utils.error_handles.invalid_api_error import InvalidApiUsage
+from api.v1.utils.jwt.is_admin import is_admin
+from api.v1.utils.schemas.is_valid import isvalid
+from api.v1.views import api_view
+from api.v1.views.documentation.categories import (delete_category_spec,
+                                                   get_categories_schema,
+                                                   post_category_spec)
 
 
 @api_view.route("/categories", strict_slashes=False)
+@swag_from(get_categories_schema)
 def get_categories():
     """Get all categories in the db
     Args:
@@ -35,7 +42,8 @@ def get_categories():
         categories = []
         for category in storage.page_all("Category", limit=limit, page=page,
                                          order_by=order_by).values():
-            category_dict = category.to_dict()
+            category_dict = {}
+            category_dict["data"] = category.to_dict()
             category_dict["actions"] = [{"fetch_related_product": url_for(
                 ".get_category_products", _external=True,
                 category_id=category.id)}]
@@ -45,8 +53,8 @@ def get_categories():
 
     except TypeError:
         raise InvalidApiUsage("wrong args types")
-    return {"paginate": {"page": page, "limit": limit, "pages": no_pages},
-            "products": categories, "actions":
+    return {"pagination": {"page": page, "limit": limit, "pages": no_pages},
+            "categories": categories, "actions":
             {"order_by": order}}
 
 
@@ -102,7 +110,10 @@ def get_category_products(category_id):
 
 
 @api_view.route("/category", methods=["POST"], strict_slashes=False)
+@jwt_required()
+@is_admin
 @isvalid("category_schema.json")
+@swag_from(post_category_spec)
 def post_category():
     """Post to a category if category user is admin
     Args:
@@ -131,6 +142,9 @@ def post_category():
 
 @api_view.route("/category/<int:category_id>", methods=["DELETE"],
                 strict_slashes=False)
+@jwt_required()
+@is_admin
+@swag_from(delete_category_spec)
 def delete_category(category_id):
     """Delete a category from database
     Args:

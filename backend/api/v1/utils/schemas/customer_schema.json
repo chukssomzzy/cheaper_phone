@@ -25,13 +25,14 @@
     "password": {
       "description": "strong password",
       "type": "string",
+      "format": "password",
       "pattern": "^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*()_+\\-=\\[\\]{};':\",.<>?])(?=.{8,})",
       "errorMessage": "Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, one digit, and one special character."
     }, 
     "email": {
       "description": "email address of customer",
       "type": "string",
-      "pattern": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$",
+      "format": "email",
       "errorMessage": "Invalid email address format."
     },
     "phone": {

@@ -18,3 +18,10 @@ class OrderItem(BaseModel, Base):
     def __init__(self, *args, **kwargs):
         """Initialized order_items"""
         return super().__init__(*args, **kwargs)
+
+    def to_dict(self):
+        """serialize orderItem"""
+        new_dict = super().to_dict()
+        if "product" in new_dict:
+            new_dict["product"] = new_dict["product"].to_dict()
+        return new_dict

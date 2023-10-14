@@ -30,7 +30,7 @@ class ShippingAddress(BaseModel, Base):
     phone_number = Column(String(20), nullable=False)
     address_type = Column(Enum(AddressTypeEnum),
                           nullable=False, default=AddressTypeEnum.residential)
-    user = relationship("User", backref="addresses")
+    customer = relationship("User", backref="addresses")
 
     def __init__(self, *args, **kwargs):
         """Initialize shipping address"""
@@ -41,6 +41,10 @@ class ShippingAddress(BaseModel, Base):
         new_dict = super().to_dict()
         if "address_type" in new_dict:
             new_dict["address_type"] = self.address_type.value
+        if "order" in new_dict:
+            new_dict["address"] = new_dict["address"].to_dict()
+        if "customer" in new_dict:
+            new_dict["customer"] = new_dict["customer"].to_dict()
         return new_dict
 
     @classmethod

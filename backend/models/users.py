@@ -7,7 +7,6 @@ import hashlib
 import secrets
 
 from sqlalchemy import Column, Enum, String
-from sqlalchemy.orm import relationship
 
 from models.base_model import Base, BaseModel
 
@@ -31,16 +30,6 @@ class User(BaseModel, Base):
                   nullable=False, server_default="customer")
     stripe_customer_id = Column(String(50), nullable=False)
     phone = Column(String(20))
-
-    reviews = relationship(
-        "ProductReview", backref="user",
-        cascade="all, delete")
-
-    chat_history = relationship(
-        "ChatHistory", backref="user",
-        cascade="all, delete")
-    analytics = relationship(
-        "Analytics", backref="user", cascade="all")
 
     def __init__(self, *args, **kwargs):
         """Pass kwargs to basemodel for parsing"""
@@ -82,3 +71,18 @@ class User(BaseModel, Base):
         new_dict = super().to_dict()
         if "role" in new_dict:
             new_dict["role"] = str(self.role.value)
+        if "reviews" in new_dict:
+            for review in new_dict["reviews"]:
+                new_dict["reviews"].append(review.to_dict())
+        if "chat_histories" in new_dict:
+            for chat_history in new_dict["chat_histories"]:
+                new_dict["chat_histories"].append(chat_history.to_dict())
+        if 'analytics' in new_dict:
+            for analytics in new_dict["analytics"]:
+                new_dict["analytics"].append(analytics.to_dict())
+        if "orders" in new_dict:
+            for order in new_dict["orders"]:
+                new_dict["orders"].apppend(order.to_dict())
+        if "cart" in new_dict:
+            new_dict["cart"] = new_dict["cart"].to_dict()
+        return new_dict

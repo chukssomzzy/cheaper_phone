@@ -11,9 +11,15 @@ class Brand(BaseModel, Base):
     __tablename__ = 'brands'
     id = Column(Integer, Sequence('brand_id_seq'), primary_key=True)
     name = Column(String(255), unique=True, nullable=False)
-    products = relationship("Product", backref="brand",
-                            cascade="delete, delete-orphan")
 
     def __init__(self, *args, **kwargs):
         """Initialize brands table"""
         return super().__init__(*args, **kwargs)
+
+    def to_dict(self):
+        """serialize brand"""
+        new_dict = super().to_dict()
+        if "products" in new_dict:
+            for product in new_dict["products"]:
+                new_dict["products"].append(product.to_dict())
+        return new_dict

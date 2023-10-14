@@ -64,6 +64,9 @@ class Promotion(BaseModel, Base):
             new_dict["duration"] = str(new_dict["duration"])
         if "discount" in new_dict:
             new_dict["discount"] = str(new_dict["discount"]) + "%"
+        if "products" in new_dict:
+            for product in new_dict["products"]:
+                new_dict["products"].append(product.to_dict())
         return new_dict
 
     def parse_delta(self, delta):

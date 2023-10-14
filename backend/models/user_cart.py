@@ -10,9 +10,16 @@ class UserCart(BaseModel, Base):
     __tablename__ = "user_cart"
     user_id = Column(String(60), ForeignKey("users.id"))
     items = relationship("UserCartProduct")
-    user = relationship("User", backref=backref(
+    customer = relationship("User", backref=backref(
         "cart", uselist=False), cascade="delete")
 
     def __init__(self, *args, **kwargs):
         """Initialized usercart with __init__ defined in basemodel"""
         return super().__init__(*args, **kwargs)
+
+    def to_dict(self):
+        """serialize usercart"""
+        new_dict = super().to_dict()
+        if "customer" in new_dict:
+            new_dict["customer"] = new_dict["customer"].to_dict()
+        return new_dict
