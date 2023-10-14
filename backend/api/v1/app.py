@@ -4,6 +4,7 @@
 from datetime import timedelta
 from os import getenv
 
+from flasgger import Swagger
 from flask import Flask, make_response
 from flask_jwt_extended import JWTManager
 from werkzeug import exceptions
@@ -11,7 +12,6 @@ from werkzeug import exceptions
 from api.v1.utils.error_handles.invalid_api_error import InvalidApiUsage
 from api.v1.views import api_view
 from models import storage
-
 
 app = Flask(__name__)
 app.config["JWT_SECRET_KEY"] = getenv("APP_SECRET_KEY")
@@ -22,6 +22,8 @@ app.config["JWT_REFRESH_TOKEN_EXPIRES"] = timedelta(days=30)
 jwt = JWTManager(app)
 
 app.register_blueprint(api_view)
+
+swagger = Swagger(app)
 
 
 @jwt.user_identity_loader

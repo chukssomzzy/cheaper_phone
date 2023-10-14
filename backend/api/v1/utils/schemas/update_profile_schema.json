@@ -27,10 +27,33 @@
       "type": "string",
       "pattern": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$",
       "errorMessage": "Invalid email address format."
-    },  
+    },
+    "phone": {
+      "description": "phone number of customer",
+      "type": "string", 
+      "maxLength": 20,
+      "minLength": 7
+    }, 
     "shipping_address": {
-      "$ref": "shipping_address.json"
+      "$ref": "shipping_address_schema.json"
     }
   },
-  "additionalProperties": false
+  "unevaluatedProperties": false,
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "shipping_address": {"type": "object"}
+        }
+      },
+      "then": {
+        "required": ["shipping_address"],
+        "properties": {
+          "shipping_address": {
+            "required": ["id"]
+          }
+        }
+      }
+    }
+  ]
 }

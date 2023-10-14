@@ -44,3 +44,4 @@
   "additionalProperties": false, 
   "required": ["username", "password", "email"]
 }
+

@@ -1,10 +1,13 @@
+from flasgger import swag_from
 from api.v1.views import api_view
 from models import storage
+from api.v1.views.documentation.index import status_specs, stats_specs
 
 """Defines api to get status and stats"""
 
 
 @api_view.route("/status", strict_slashes=False)
+@swag_from(status_specs)
 def get_api_status():
     """Returns the api status
     Args:
@@ -16,6 +19,7 @@ def get_api_status():
 
 
 @api_view.route("/stats")
+@swag_from(stats_specs)
 def get_api_stats():
     """Return number rows in each public table in
     the database

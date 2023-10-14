@@ -17,3 +17,10 @@ def retrieve_from_dir(uri: str):
 
 
 registry = Registry(retrieve=retrieve_from_dir)
+
+
+def get_schema(uri: str):
+    """Get a schema from registry"""
+    resolver = registry.resolver()
+    resolved = resolver.lookup(uri)
+    return (resolved.contents)

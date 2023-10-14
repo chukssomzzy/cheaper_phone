@@ -1,16 +1,23 @@
 #!/usr/bin/env -S venv/bin/python3
 """Contains all users related endpoints"""
 from os import getenv
+
+import stripe
+from flasgger import swag_from
 from flask import jsonify, request, url_for
 from flask.helpers import abort
 from flask_jwt_extended import (create_access_token, create_refresh_token,
-                                get_jwt_identity, jwt_required, current_user)
+                                current_user, get_jwt_identity, jwt_required)
 from sqlalchemy.exc import IntegrityError
-import stripe
 
 from api.v1.utils.error_handles.invalid_api_error import InvalidApiUsage
 from api.v1.utils.schemas.is_valid import isvalid
 from api.v1.views import api_view
+from api.v1.views.documentation.customers import (change_password_spec,
+                                                  create_customer_specs,
+                                                  customer_login_specs,
+                                                  profile_specs, refresh_spec,
+                                                  update_customer_spec)
 from models import storage
 from models.users import User
 
@@ -18,6 +25,7 @@ stripe.api_key = getenv("STRIPE_SECRET_KEY")
 
 
 @api_view.route("/customer/register", methods=["POST"])
+@swag_from(create_customer_specs)
 @isvalid("customer_schema.json")
 def register_customer():
     """Register a customer to the db
@@ -60,6 +68,7 @@ def register_customer():
 
 
 @api_view.route("/customer/login", methods=["POST"], strict_slashes=False)
+@swag_from(customer_login_specs)
 def login():
     body = request.get_json()
     user = None
@@ -80,6 +89,7 @@ def login():
 
 @api_view.route("/refresh", methods=["POST"])
 @jwt_required(refresh=True)
+@swag_from(refresh_spec)
 def refresh():
     """Get a new access token if the refresh token hasn't expired"""
     identity = get_jwt_identity()
@@ -89,6 +99,7 @@ def refresh():
 
 @api_view.route("/customer/profile", strict_slashes=False)
 @jwt_required()
+@swag_from(profile_specs)
 def get_profile():
     """Get the profile for the current authenticated user
     Args:
@@ -103,26 +114,27 @@ def get_profile():
     """
     customer = current_user
     address = []
-    print(current_user)
+    customer_dict = {}
     if current_user.shipping_address:
         for address in current_user.shipping_address.values():
             address_dict = address.to_dict()
             address.append(address_dict)
-    customer_dict = customer.to_dict()
+    customer_dict["data"] = customer.to_dict()
     customer_dict["shipping_address"] = address
     actions = []
     actions.append({"editUser": url_for(".edit_customer", _external=True)})
     actions.append({"changePassword": url_for(
         ".change_password", _external=True)})
-    actions.append({"ViewOrder": url_for(".get_user_orders", _external=True)})
-    actions.append({"UserCart": url_for(".get_cart", _external=True)})
+    actions.append({"viewOrder": url_for(".get_user_orders", _external=True)})
+    actions.append({"getUserCart": url_for(".get_cart", _external=True)})
     res_dict = {"customer": customer_dict, "actions": actions}
     return res_dict
 
 
-@api_view.route("/user/profile/edit", methods=["PUT"])
+@api_view.route("/user/profile", methods=["PUT"])
 @jwt_required()
 @isvalid("update_profile_schema.json")
+@swag_from(update_customer_spec)
 def edit_customer():
     """Edit any profile information
     Args:
@@ -139,20 +151,30 @@ def edit_customer():
     customer = current_user
     body = request.get_json()
     address = {}
+    address_obj = None
     if "shipping_address" in body:
         address = body["shipping_address"]
+        id = address["id"]
+        address_obj = storage.get("ShippingAddress", id)
         address["user_id"] = str(current_user.id)
-        address = storage.create("Address", **address)
+        if not address_obj:
+            address_obj = storage.create("Address", **address)
+        else:
+            address_obj.update(**address)
         del body["shipping_adress"]
     customer.update(**body)
     storage.save()
+    customer_dict = {}
     customer_dict = customer.to_dict()
+    if address_obj:
+        customer_dict["shipping_address"] = address_obj.to_dict()
     return customer_dict
 
 
 @api_view.route("/user/change_password", methods=["PUT"])
 @jwt_required()
 @isvalid("change_password_schema.json")
+@swag_from(change_password_spec)
 def change_password():
     """Change the current user password
     Args:

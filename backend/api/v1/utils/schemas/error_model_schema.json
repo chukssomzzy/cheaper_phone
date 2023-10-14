@@ -1,0 +1,13 @@
+{
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "error schema",
+  "properties": {
+    "message": {
+      "type": "string"
+    },
+    "payload": {
+      "type": "object"
+    }
+  }
+}
