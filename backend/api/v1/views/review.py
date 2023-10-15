@@ -1,16 +1,23 @@
 #!/usr/bin/env venv/bin/python3
 """review endpoint"""
+from flasgger import swag_from
 from flask import abort, request, url_for
 from flask_jwt_extended import jwt_required
+from models import storage
 from sqlalchemy.sql.functions import current_user
+
 from api.v1.utils.error_handles.invalid_api_error import InvalidApiUsage
 from api.v1.utils.schemas.is_valid import isvalid
 from api.v1.views import api_view
-from models import storage
+from api.v1.views.documentation.reviews import (delete_review_spec,
+                                                get_all_review_spec,
+                                                get_product_review_spec,
+                                                post_product_review_spec)
 
 
 @api_view.route("/review/user/<uuid:user_id>/products/<uuid:product_id>",
                 strict_slashes=False)
+@swag_from(get_product_review_spec)
 def get_product_review(user_id, product_id):
     """Get a review for a particular product
 
@@ -42,7 +49,8 @@ def get_product_review(user_id, product_id):
                 strict_slashes=False)
 @jwt_required()
 @isvalid("review_schema.json")
-def post_product(product_id):
+@swag_from(post_product_review_spec)
+def post_product_review(product_id):
     """post a product review
     Args
         product_id (int): product uuid
@@ -74,6 +82,7 @@ def post_product(product_id):
 
 @api_view.route("customer/review/products/<uuid:product_id>",
                 strict_slashes=False)
+@swag_from(get_all_review_spec)
 def get_all_review(product_id):
     """Get all review for a product and take it average
     Args:
@@ -92,20 +101,21 @@ def get_all_review(product_id):
     reviews = product.reviews
     reviews_dict = []
     for review in reviews:
-        review_dict = review.to_dict()
+        review_dict = {}
+        review_dict["data"] = review.to_dict()
         review_dict["user"] = review.user.to_dict()
-        review_dict["user"]["role"] = str(review.user.role)
         if review_dict.get("product"):
             del review_dict["product"]
         reviews_dict.append(review_dict)
     rating = product.rating
-    review = {"rating": rating, "reviews": reviews_dict}
-    return review
+    reviews = {"rating": rating, "reviews": reviews_dict}
+    return reviews
 
 
 @api_view.route("customer/review/<int:review_id>",
                 methods=["DELETE"], strict_slashes=False)
 @jwt_required()
+@swag_from(delete_review_spec)
 def delete_review(review_id):
     """Delete a review
     Args:

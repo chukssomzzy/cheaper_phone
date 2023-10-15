@@ -1,10 +1,15 @@
 #!/usr/bin/env -S venv/bin/python3
 """Orders endpoint"""
+from flasgger import swag_from
 from flask import request, url_for
 from flask_jwt_extended import current_user, jwt_required
+
 from api.v1.utils.error_handles.invalid_api_error import InvalidApiUsage
 from api.v1.utils.jwt.is_admin import is_admin
 from api.v1.views import api_view
+from api.v1.views.documentation.orders import (create_order_spec,
+                                               get_order_by_id_spec,
+                                               get_user_orders_spec, return_order_spec)
 from models import storage
 from models.order_items import OrderItem
 from models.orders import Order
@@ -14,6 +19,7 @@ from models.orders import Order
 
 @api_view.route("/customer/orders", strict_slashes=False)
 @jwt_required()
+@swag_from(get_user_orders_spec)
 def get_user_orders():
     """Get all orders that have been placed by a user
     Args:
@@ -47,16 +53,17 @@ def get_user_orders():
             for order in storage.page_join("User", "Order", customer.id,
                                            limit=limit, page=page,
                                            order_by=order_by).values():
-                order_dict = order.to_dict()
-                order_dict["status"] = str(order_dict["status"])
-                order_dict["order_items"] = []
+                order_dict = {}
+                order_dict["order"]["data"] = order.to_dict()
+                order_dict["order"]["items"] = []
                 for item in order.items:
-                    item_dict = item.to_dict()
+                    item_dict = {}
+                    item_dict["data"] = item.to_dict()
                     if item.product:
                         item_dict["product"] = item.product.to_dict()
-                    order_dict["order_items"].append(item_dict)
+                    order_dict["order"]["items"].append(item_dict)
                 if order.address:
-                    order_dict["address"] = order.address.to_dict()
+                    order_dict["order"]["address"] = order.address.to_dict()
 
                 orders.append(order_dict)
         res_dict = {}
@@ -74,6 +81,7 @@ def get_user_orders():
 @api_view.route("/customer/orders/cart/<uuid:cart_id>",
                 methods=["POST"], strict_slashes=False)
 @jwt_required()
+@swag_from(create_order_spec)
 def create_order(cart_id):
     """Takes a cart_id and create a new order with every items
     in the cart remove all items from the cart once order has been successfully
@@ -125,13 +133,14 @@ def create_order(cart_id):
         storage.delete(user_product)
     storage.save()
     order_dict = order.to_dict()
-    order_dict["id"] = order.id
+    order_dict["order"] = order.id
     return order_dict, 201
 
 
 @api_view.route("/customer/orders/<int:order_id>",
                 strict_slashes=False)
 @jwt_required()
+@swag_from(get_order_by_id_spec)
 def get_order_by_id(order_id):
     """Get order by id
     Args
@@ -153,7 +162,8 @@ def get_order_by_id(order_id):
             f"order identified by {order_id} doesn't exit", status_code=404)
     order_key = "Order" + "." + str(order_id)
     order = order[order_key]
-    order_dict = order.to_dict()
+    order_dict = {}
+    order_dict["data"] = order.to_dict()
     order_dict["status"] = str(order.status)
     order_dict["actions"] = []
     order_dict["actions"].append({"cancelOrder": url_for(
@@ -164,6 +174,7 @@ def get_order_by_id(order_id):
 @api_view.route("/customer/orders/<int:order_id>/cancel",
                 methods=["PUT"], strict_slashes=False)
 @jwt_required()
+@swag_from(return_order_spec("cancel an order"))
 def cancel_order(order_id):
     """cancel an order
     Args
@@ -185,15 +196,14 @@ def cancel_order(order_id):
     order = order[order_key]
     order.status = order.status.cancelled
     storage.save()
-    order_dict = order.to_dict()
-    order_dict["status"] = str(order.status)
-    return order_dict
+    return order.to_dict()
 
 
 @api_view.route("/order/<int:order_id>/user/<uuid:user_id>/process",
                 methods=["PUT"], strict_slashes=False)
 @jwt_required()
 @is_admin
+@swag_from(return_order_spec("process an order"))
 def process_order(order_id, user_id):
     """Process an order
     Args
@@ -224,6 +234,7 @@ def process_order(order_id, user_id):
                 methods=["PUT"], strict_slashes=False)
 @jwt_required()
 @is_admin
+@swag_from(return_order_spec("ship an order"))
 def ship_order(order_id, user_id):
     """ship an order
     Args
@@ -250,10 +261,11 @@ def ship_order(order_id, user_id):
     return order_dict
 
 
-@api_view.route("/order/<int:order_id>/user/<uuid:user_id>/deliver",
-                methods=["PUT"], strict_slashes=False)
-@jwt_required()
-@is_admin
+@ api_view.route("/order/<int:order_id>/user/<uuid:user_id>/deliver",
+                 methods=["PUT"], strict_slashes=False)
+@ jwt_required()
+@ is_admin
+@swag_from(return_order_spec("deliver an order"))
 def deliver_order(order_id, user_id):
     """deliver an order
     Args
@@ -280,10 +292,11 @@ def deliver_order(order_id, user_id):
     return order_dict
 
 
-@api_view.route("/order/<int:order_id>/user/<uuid:user_id>/return",
-                methods=["PUT"], strict_slashes=False)
-@jwt_required()
-@is_admin
+@ api_view.route("/order/<int:order_id>/user/<uuid:user_id>/return",
+                 methods=["PUT"], strict_slashes=False)
+@ jwt_required()
+@ is_admin
+@swag_from(return_order_spec("return an order"))
 def return_order(order_id, user_id):
     """return an order
     Args
@@ -310,10 +323,11 @@ def return_order(order_id, user_id):
     return order_dict
 
 
-@api_view.route("/order/<int:order_id>/user/<uuid:user_id>/refund",
-                methods=["PUT"], strict_slashes=False)
-@jwt_required()
-@is_admin
+@ api_view.route("/order/<int:order_id>/user/<uuid:user_id>/refund",
+                 methods=["PUT"], strict_slashes=False)
+@ jwt_required()
+@ is_admin
+@swag_from(return_order_spec("refund an order"))
 def refund_order(order_id, user_id):
     """refund an order
     Args
@@ -340,10 +354,11 @@ def refund_order(order_id, user_id):
     return order_dict
 
 
-@api_view.route("/order/<int:order_id>/user/<uuid:user_id>/hold",
-                methods=["PUT"], strict_slashes=False)
-@jwt_required()
-@is_admin
+@ api_view.route("/order/<int:order_id>/user/<uuid:user_id>/hold",
+                 methods=["PUT"], strict_slashes=False)
+@ jwt_required()
+@ is_admin
+@swag_from(return_order_spec("Hold an order"))
 def hold_order(order_id, user_id):
     """hold an order
     Args
@@ -370,10 +385,11 @@ def hold_order(order_id, user_id):
     return order_dict
 
 
-@api_view.route("/order/<int:order_id>/user/<uuid:user_id>/ready_for_pickup",
-                methods=["PUT"], strict_slashes=False)
-@jwt_required()
-@is_admin
+@ api_view.route("/order/<int:order_id>/user/<uuid:user_id>/ready_for_pickup",
+                 methods=["PUT"], strict_slashes=False)
+@ jwt_required()
+@ is_admin
+@swag_from(return_order_spec("pickup an order"))
 def pickup_order(order_id, user_id):
     """pickup status an order
     Args
@@ -400,10 +416,11 @@ def pickup_order(order_id, user_id):
     return order_dict
 
 
-@api_view.route("/order/<int:order_id>/user/<uuid:user_id>/backorder",
-                methods=["PUT"], strict_slashes=False)
-@jwt_required()
-@is_admin
+@ api_view.route("/order/<int:order_id>/user/<uuid:user_id>/backorder",
+                 methods=["PUT"], strict_slashes=False)
+@ jwt_required()
+@ is_admin
+@swag_from(return_order_spec("back_order"))
 def back_order(order_id, user_id):
     """backorder an order
     Args
@@ -430,10 +447,11 @@ def back_order(order_id, user_id):
     return order_dict
 
 
-@api_view.route("/order/<int:order_id>/user/<uuid:user_id>/partial_ship",
-                methods=["PUT"], strict_slashes=False)
-@jwt_required()
-@is_admin
+@ api_view.route("/order/<int:order_id>/user/<uuid:user_id>/partial_ship",
+                 methods=["PUT"], strict_slashes=False)
+@ jwt_required()
+@ is_admin
+@swag_from(return_order_spec("partially ship an order"))
 def partial_ship_order(order_id, user_id):
     """partial ship  an order
     Args
@@ -460,10 +478,11 @@ def partial_ship_order(order_id, user_id):
     return order_dict
 
 
-@api_view.route("/order/<int:order_id>/user/<uuid:user_id>/process_delay",
-                methods=["PUT"], strict_slashes=False)
-@jwt_required()
-@is_admin
+@ api_view.route("/order/<int:order_id>/user/<uuid:user_id>/process_delay",
+                 methods=["PUT"], strict_slashes=False)
+@ jwt_required()
+@ is_admin
+@swag_from(return_order_spec("delay an order"))
 def delay_order(order_id, user_id):
     """delay  an order
     Args
@@ -490,10 +509,11 @@ def delay_order(order_id, user_id):
     return order_dict
 
 
-@api_view.route("/order/<int:order_id>/user/<uuid:user_id>/payment_pending",
-                methods=["PUT"], strict_slashes=False)
-@jwt_required()
-@is_admin
+@ api_view.route("/order/<int:order_id>/user/<uuid:user_id>/payment_pending",
+                 methods=["PUT"], strict_slashes=False)
+@ jwt_required()
+@ is_admin
+@swag_from(return_order_spec("payment pending"))
 def payment_pending(order_id, user_id):
     """payment pending for an order
     Args
@@ -520,10 +540,11 @@ def payment_pending(order_id, user_id):
     return order_dict
 
 
-@api_view.route("/order/<int:order_id>/user/<uuid:user_id>/payment_failed",
-                methods=["PUT"], strict_slashes=False)
-@jwt_required()
-@is_admin
+@ api_view.route("/order/<int:order_id>/user/<uuid:user_id>/payment_failed",
+                 methods=["PUT"], strict_slashes=False)
+@ jwt_required()
+@ is_admin
+@swag_from(return_order_spec("payment failed"))
 def payment_failed(order_id, user_id):
     """payment failed for an order
     Args

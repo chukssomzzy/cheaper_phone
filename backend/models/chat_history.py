@@ -24,7 +24,7 @@ class ChatHistory(BaseModel, Base):
     message = Column(Text)
     timestamp = Column(DateTime, default=datetime.timestamp)
     customer = relationship(
-        "ChatHistory", backref="chat_histories",
+        "User", backref="chat_histories",
         cascade="all, delete")
 
     def __init__(self, *args, **kwargs):

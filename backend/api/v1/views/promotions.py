@@ -1,6 +1,7 @@
 #!/usr/bin/env venv/bin/python3
 """promotions endpoints"""
 
+from flasgger import swag_from
 from flask import abort, request, url_for
 from flask_jwt_extended import jwt_required
 from models import storage
@@ -11,9 +12,15 @@ from api.v1.utils.error_handles.invalid_api_error import InvalidApiUsage
 from api.v1.utils.jwt.is_admin import is_admin
 from api.v1.utils.schemas.is_valid import isvalid
 from api.v1.views import api_view
+from api.v1.views.documentation.promotions import (
+    add_promotion_product_spec, delete_promotion_product_spec,
+    delete_promotion_spec, get_product_promotions_spec, get_promotions_spec,
+    post_promotions_spec, update_promotion_spec)
+from api.v1.views.orders import back_order
 
 
 @api_view.route("/products/<uuid:product_id>/promotions", strict_slashes=False)
+@swag_from(get_product_promotions_spec)
 def get_product_promotions(product_id):
     """Get promotions for a product that is yet to expire
 
@@ -46,6 +53,7 @@ def get_product_promotions(product_id):
 @jwt_required()
 @is_admin
 @isvalid("promotion_schema.json")
+@swag_from(post_promotions_spec)
 def post_promotions():
     """Post a promotions
     args:
@@ -72,7 +80,8 @@ def post_promotions():
                 strict_slashes=False)
 @jwt_required()
 @is_admin
-def delete_promotions(promotion_id):
+@swag_from(delete_promotion_spec)
+def delete_promotion(promotion_id):
     """Delete a promotions
     args:
         None
@@ -93,6 +102,7 @@ def delete_promotions(promotion_id):
 
 
 @api_view.route('/promotions/<int:promotion_id>/products', strict_slashes=False)
+@swag_from(get_product_promotions_spec)
 def get_product_by_promotions(promotion_id):
     """Get all product with promotion
 
@@ -131,8 +141,8 @@ def get_product_by_promotions(promotion_id):
                 order_by(getattr(Product, order_by))[startIdx:endIdx]:
             product_dict = product.to_dict()
             products_dict.append(product_dict)
-        paginate = {"paginate": {"page": page, "limit": limit,
-                                 "pages": pages, "order_by": order_bys}}
+        paginate = {"page": page, "limit": limit,
+                    "pages": pages, "order_by": order_bys}
         return ({"pagination": paginate, "products": products_dict})
 
     except ZeroDivisionError:
@@ -144,6 +154,7 @@ def get_product_by_promotions(promotion_id):
 
 
 @api_view.route("/promotions", strict_slashes=False)
+@swag_from(get_promotions_spec)
 def get_promotions():
     """Get all promotions in a db that has not expired
 
@@ -176,7 +187,8 @@ def get_promotions():
                 .filter_by(isexpired=False)\
                 .order_by(getattr(Promotion, order_by))[startIdx:endIdx]:
             if not promotion.is_expired():
-                promotion_dict = promotion.to_dict()
+                promotion_dict = {}
+                promotion_dict["data"] = promotion.to_dict()
                 promotion_dict["actions"] = []
                 promotion_dict["actions"].append(
                     {"getProduct": url_for(".get_product_by_promotions",
@@ -204,7 +216,8 @@ respectively")
                 methods=["POST"], strict_slashes=False)
 @jwt_required()
 @is_admin
-def add_promotions_product(promotion_id, product_id):
+@swag_from(add_promotion_product_spec)
+def add_promotion_product(promotion_id, product_id):
     """add a promotion to a product
 
     args:
@@ -234,7 +247,8 @@ def add_promotions_product(promotion_id, product_id):
                 methods=["DELETE"], strict_slashes=False)
 @jwt_required()
 @is_admin
-def delete_promotions_product(promotion_id, product_id):
+@swag_from(delete_promotion_product_spec)
+def delete_promotion_product(promotion_id, product_id):
     """Delete a promotion and product id from product_promotions table
 
     args:
@@ -258,3 +272,31 @@ def delete_promotions_product(promotion_id, product_id):
     promotion.products.remove(product)
     storage.save()
     return {}, 204
+
+
+@api_view.route("/promotions/<int:promotion_id>", methods=["PUT"], strict_slashes=True)
+@jwt_required()
+@is_admin
+@isvalid("update_promotion_schema.json")
+@swag_from(update_promotion_spec)
+def update_promotion(promotion_id):
+    """Update promotion if admin
+    Args:
+        promotion_id (int): identifies the promotion to delete
+    args:
+        None
+    Raises:
+        404: promotion not found
+        401: unauthorised access to route
+        400: bad request
+    Response:
+        new update promotions
+    """
+    promotion = storage.get("Promotion", int(promotion_id))
+    if not promotion:
+        raise InvalidApiUsage("promotion not found", status_code=404)
+    body = request.get_json
+    if body:
+        promotion.update(**body)
+    promotion.save()
+    return promotion.to_dict()

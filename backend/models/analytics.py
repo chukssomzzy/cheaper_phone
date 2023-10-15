@@ -16,7 +16,7 @@ class Analytics(BaseModel, Base):
     action = Column(String(50))
     timestamp = Column(DateTime, nullable=False, default=datetime.utcnow)
     customer = relationship(
-        "Analytics", backref="analytics", cascade="all")
+        "User", backref="analytics", cascade="all")
 
     def __init__(self, *args, **kwargs):
         """Initialize analytic model"""
@@ -25,5 +25,6 @@ class Analytics(BaseModel, Base):
     def to_dict(self):
         """Serialize analytics"""
         new_dict = super().to_dict()
-        if "customer" in new_dict:
+        if "user" in new_dict:
             new_dict["customer"] = new_dict["customer"].to_dict()
+        return new_dict

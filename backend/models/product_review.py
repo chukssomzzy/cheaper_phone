@@ -16,9 +16,9 @@ class ProductReview(BaseModel, Base):
     product_id = Column(String(60), ForeignKey("products.id"))
     rating = Column(Integer)
     customer = relationship(
-        "ProductReview", backref="reviews",
+        "User", backref="reviews",
         cascade="all, delete")
-    product = relationship("ProductReview",
+    product = relationship("Product",
                            backref="reviews", cascade="all, delete")
 
     def __init__(self, *args, **kwargs):

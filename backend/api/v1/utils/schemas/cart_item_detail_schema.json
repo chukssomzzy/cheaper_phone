@@ -1,0 +1,21 @@
+{
+    "type": "object",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "cart_item_detail_schema.json",
+    "title": "cart detail schema",
+    "properties": {
+        "user_cart_id": {
+          "type": "number",
+          "minimum": 0
+        },      
+        "product_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "quantity": {
+          "type": "number",
+          "minimum": 1
+        }
+    },
+    "additionalProperties": false
+}

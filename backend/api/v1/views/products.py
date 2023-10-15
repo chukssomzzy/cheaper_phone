@@ -2,15 +2,21 @@
 
 """Api view for products"""
 
-from flask import abort, make_response, request, url_for
-from flask.json import jsonify
+from flasgger import swag_from
+from flask import abort, request, url_for
 from flask_jwt_extended import current_user, jwt_required
+from models import storage
+from models.base_model import BaseModel
+
+from api.v1.utils.error_handles.invalid_api_error import InvalidApiUsage
 from api.v1.utils.jwt.is_admin import is_admin
 from api.v1.utils.schemas.is_valid import isvalid
 from api.v1.views import api_view
-from api.v1.utils.error_handles.invalid_api_error import InvalidApiUsage
-from models import storage
-from models.base_model import BaseModel
+from api.v1.views.documentation.products import (get_product_by_id_spec,
+                                                 get_products_spec,
+                                                 post_product_spec,
+                                                 update_product_spec,
+                                                 delete_product_spec)
 
 # add to cart
 # remove from cart
@@ -19,6 +25,7 @@ from models.base_model import BaseModel
 
 @api_view.route("/products", strict_slashes=False)
 @jwt_required(optional=True)
+@swag_from(get_products_spec)
 def get_products():
     """Get all product data and pages the product to a limit of 40 by default
     Request_args:
@@ -46,25 +53,37 @@ def get_products():
         for product in storage.page_all("Product", limit=int(limit),
                                         page=int(page), order_by=order_by)\
                 .values():
-            product_dict = product.to_dict()
+            product_dict = {}
+            product_dict["data"] = product.to_dict()
             if product.brand:
                 product_dict["brand"] = product.brand.to_dict()
-            del product_dict["brand_id"]
+            del product_dict["data"]["brand_id"]
             if product.categories:
                 product_dict["categories"] = []
                 for category in product.categories:
                     product_dict["categories"].append(category.to_dict())
             if product.images:
                 image_url = product.images[0]
-                product_dict["image_url"] = image_url.to_dict().get(
+                product_dict["data"]["image_url"] = image_url.to_dict().get(
                     "image_url")
-                product_dict["url_key"] = url_for(
+                product_dict["data"]["url_key"] = url_for(
                     ".get_product_by_id",
                     product_id=product.id, _external=True)
+
+            product_dict["actions"] = []
             if current_user:
-                product_dict["actions"] = []
                 product_dict["actions"].append({"add_to_cart": url_for(
-                    ".add_product_to_cart", product_id=product.id, _external=True)})
+                    ".add_product_to_cart", product_id=product.id,
+                    _external=True), "methods": ["GET"]})
+                product_dict["actions"].append({"remove_from_cart": url_for(
+                    ".remove_product_from_cart", product_id=product.id, _external=True
+                ), "methods": ["PUT"]})
+                product_dict["actions"].append({"delete_from_cart": url_for(
+                    ".delete_from_cart", product_id=product.id, _external=True
+                ), "methods": ["DELETE"]})
+            product_dict["actions"].append({"get_product_by_id": url_for(
+                ".get_product_by_id", product_id=product.id, _external=True),
+                "methods": ["GET"]})
 
             products.append(product_dict)
         if not products:
@@ -72,12 +91,13 @@ def get_products():
         no_pages = int(count / limit)
     except TypeError:
         raise InvalidApiUsage("wrong args types")
-    return {"paginate": {"page": page, "limit": limit, "pages": no_pages},
+    return {"pagination": {"page": page, "limit": limit, "pages": no_pages},
             "products": products, "actions": {"order_by": order}}
 
 
 @api_view.route('/products/<uuid:product_id>', strict_slashes=False)
 @jwt_required(optional=True)
+@swag_from(get_product_by_id_spec)
 def get_product_by_id(product_id):
     """Get a product by an id
 
@@ -99,7 +119,8 @@ def get_product_by_id(product_id):
     product = storage.get("Product", str(product_id))
     if not product:
         abort(404, "product not found")
-    product_return = product.to_dict()
+    product_return = {}
+    product_return["data"] = product.to_dict()
     del product_return["brand_id"]
     if product.brand:
         product_return["brand"] = product.brand.to_dict()
@@ -108,7 +129,7 @@ def get_product_by_id(product_id):
         product_return["categories"].append(category.to_dict())
     product_return["images"] = []
     for image in product.images:
-        product_return['images'].append(image.image_url)
+        product_return["data"]['images'].append(image.image_url)
     if current_user:
         product_return["actions"] = []
         product_return["actions"].append({"add_to_cart": url_for(
@@ -127,6 +148,7 @@ def get_product_by_id(product_id):
 @isvalid("products_schema.json")
 @jwt_required()
 @is_admin
+@swag_from(post_product_spec)
 def post_products():
     """Post a product to the database
     Response:
@@ -148,6 +170,7 @@ def post_products():
 @isvalid("product_update_schema.json")
 @jwt_required()
 @is_admin
+@swag_from(update_product_spec)
 def update_product(product_id):
     """update a product
     Args:
@@ -175,7 +198,8 @@ def update_product(product_id):
                 methods=['DELETE'], strict_slashes=False)
 @jwt_required()
 @is_admin
-def delete_products(product_id):
+@swag_from(delete_product_spec)
+def delete_product(product_id):
     """Delete a product from the database
     Args:
         product_id: uuid for the product

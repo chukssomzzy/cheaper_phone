@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "order_schema.json",
+  "type": "object",
+  "title": "order schema",
+  "properties": {
+    "id": {
+      "type": "number",
+      "minimum": 0
+    },
+    "user_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "total_amount": {
+        "type": "number",
+        "minimum": 0
+    },
+    "status": {
+        "type": "string"
+    },
+    "shipping_address_id": {
+      "type": "number",
+      "minimum": 0
+    }
+  },
+  "required": ["user_id", "shipping_address_id"],
+  "addtionalProperties": false
+}

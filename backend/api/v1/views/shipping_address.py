@@ -1,13 +1,17 @@
 #!/usr/bin/env venv/bin/activate
 """Add a shipping_address for a user"""
+from flasgger import swag_from
 from flask import abort, request, url_for
 from flask_jwt_extended import current_user, jwt_required
+from models import storage
+from models.shipping_address import ShippingAddress
 
 from api.v1.utils.error_handles.invalid_api_error import InvalidApiUsage
 from api.v1.utils.schemas.is_valid import isvalid
 from api.v1.views import api_view
-from models import storage
-from models.shipping_address import ShippingAddress
+from api.v1.views.documentation.shipping_address import (
+    delete_address_spec, get_address_by_id_spec, get_all_address_spec,
+    post_address_spec, update_address_spec)
 
 # Todo
 # add a shipping address
@@ -19,13 +23,14 @@ from models.shipping_address import ShippingAddress
 @api_view.route("/customer/address", methods=["POST"], strict_slashes=False)
 @jwt_required()
 @isvalid("shipping_address_schema.json")
+@swag_from(post_address_spec)
 def post_address():
     """
     add a shipping address to user
-    Args
-    None
-    args
-    None
+    Args:
+        None
+    args:
+        None
     Response:
         array of all address in the user object
     Raises:
@@ -45,11 +50,12 @@ def post_address():
     for address in customer.addresses:
         address_dict = address.to_dict()
         addresses.append(address_dict)
-    return {"addresses": addresses}
+    return ({"addresses": addresses}), 201
 
 
 @api_view.route("/customer/addresses", methods=["GET"], strict_slashes=False)
 @jwt_required()
+@swag_from(get_all_address_spec)
 def get_all_address():
     """Get all shipping address
     Args:
@@ -74,17 +80,18 @@ def get_all_address():
 @api_view.route("/customer/addresses/<int:address_id>", methods=["DELETE"],
                 strict_slashes=False)
 @jwt_required()
+@swag_from(delete_address_spec)
 def delete_address(address_id):
     """Delete address from a user
     Args
-        address_id (int): identifies the user
+    address_id (int): identifies the user
     args
-        None
+    None
     Response
-        No response and 204 status code
+    No response and 204 status code
     Raises
-        404: add doesn't exit
-        401: authorized access
+    404: add doesn't exit
+    401: authorized access
     """
     customer = current_user
     address = storage.filter(
@@ -101,18 +108,19 @@ def delete_address(address_id):
                 strict_slashes=False)
 @jwt_required()
 @isvalid("update_shipping_address_schema.json")
+@swag_from(update_address_spec)
 def update_address(address_id):
     """update a user address
     Args
-        address_id identify the shipping address table to update
+    address_id identify the shipping address table to update
     args:
         None
     Response
-        the dict representation of the updated adddress
+    the dict representation of the updated adddress
     Raises
-        400: no request content
-        404: No address is identified with the address_id
-        401: unauthorized access to route
+    400: no request content
+    404: No address is identified with the address_id
+    401: unauthorized access to route
     """
     customer = current_user
     address = storage.filter(
@@ -134,18 +142,19 @@ def update_address(address_id):
 @api_view.route("/customer/addresses/<int:address_id>", methods=["GET"],
                 strict_slashes=False)
 @jwt_required()
+@swag_from(get_address_by_id_spec)
 def get_address_by_id(address_id):
     """Get a single address by id
     Args
-        address_id (str): uniquely identifies the address
+    address_id (str): uniquely identifies the address
     args
-        none
+    none
     Response
-        address obj dict representation
+    address obj dict representation
     Raises
-        401: unauthorized access to route
-        400: bad request
-        404: address doesn't exit with the uuid
+    401: unauthorized access to route
+    400: bad request
+    404: address doesn't exit with the uuid
     """
     customer = current_user
     address = storage.filter(

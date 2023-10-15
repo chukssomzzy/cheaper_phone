@@ -30,9 +30,8 @@ class Product(BaseModel, Base):
     price = Column(Numeric(10, 2))
     brand_id = Column(Integer, ForeignKey('brands.id'))
 
-    brand = relationship("Product", backref="products",
-                         cascade="delete, delete-orphan")
-
+    brand = relationship("Brand", backref="products",
+                         cascade="delete")
     categories = relationship(
         "Category", secondary=product_category, backref='products',
         cascade="delete")
@@ -44,8 +43,11 @@ class Product(BaseModel, Base):
     @property
     def rating(self):
         """Return average rating for a product"""
-        rating = [review.rating for review in self.reviews]
-        rating = sum(rating) / len(rating)
+        if self.reviews:
+            rating = [review.rating for review in self.reviews]
+            rating = sum(rating) / len(rating)
+        else:
+            rating = 0
         return rating
 
     def to_dict(self):
@@ -69,4 +71,7 @@ class Product(BaseModel, Base):
         if "promotions" in new_dict:
             for promotion in new_dict["promotions"]:
                 new_dict["promotions"].append(promotion.to_dict())
+        if "cart_product" in new_dict:
+            for promotion in new_dict["promotions"]:
+                new_dict["cart_product"] = new_dict["cart_product"].to_dict()
         return new_dict

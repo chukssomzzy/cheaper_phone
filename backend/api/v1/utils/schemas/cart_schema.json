@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "cart_schema.json",
+  "type": "object",
+  "title": "cart schema",
+  "properties": {
+    "user_id": {
+        "type": "string",
+        "format": "uuid"
+    }
+  }
+}

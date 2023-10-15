@@ -22,4 +22,7 @@ class UserCart(BaseModel, Base):
         new_dict = super().to_dict()
         if "customer" in new_dict:
             new_dict["customer"] = new_dict["customer"].to_dict()
+        if "items" in new_dict:
+            for item in new_dict["items"]:
+                new_dict["items"].append(item.to_dict())
         return new_dict

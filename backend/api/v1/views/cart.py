@@ -1,12 +1,17 @@
 #!/usr/bin/env -S venv/bin/python3
 
 """Api endpoints related to cart"""
+from flasgger import swag_from
 from flask import url_for
-from flask_jwt_extended import jwt_required, current_user
+from flask_jwt_extended import current_user, jwt_required
+
 from api.v1.utils.error_handles.invalid_api_error import InvalidApiUsage
 from api.v1.views import api_view
-from models.user_cart import UserCart
+from api.v1.views.documentation.cart import (add_product_to_cart_spec,
+                                             get_cart_spec,
+                                             remove_product_from_cart_spec, delete_from_cart_spec)
 from models import storage
+from models.user_cart import UserCart
 from models.user_cart_products import UserCartProduct
 
 # Todos
@@ -17,6 +22,7 @@ from models.user_cart_products import UserCartProduct
 
 @api_view.route("/customer/cart", strict_slashes=False)
 @jwt_required()
+@swag_from(get_cart_spec)
 def get_cart():
     """Get all cartItems
     Args:
@@ -31,14 +37,17 @@ def get_cart():
     if not customer:
         return {}, 204
     cart = customer.cart
+    cart_dict = {}
     if cart:
-        cart_dict = cart.to_dict()
+        cart_dict["data"] = cart.to_dict()
     else:
-        cart_dict = {}
+        raise InvalidApiUsage(
+            "customer needs to first create a cart", status_code=404)
     cart_dict["items"] = []
     if cart:
         for productDetail in cart.items:
-            item_dict = productDetail.to_dict()
+            item_dict = {}
+            item_dict["data"] = productDetail.to_dict()
             if productDetail.product:
                 item_dict["product"] = productDetail.product.to_dict()
             cart_dict["items"].append(item_dict)
@@ -48,8 +57,9 @@ def get_cart():
 @ api_view.route("/customer/cart/<uuid:product_id>",
                  methods=["POST"], strict_slashes=False)
 @ jwt_required()
+@swag_from(add_product_to_cart_spec)
 def add_product_to_cart(product_id):
-    """Takes a uuid a uuuid and add the item identifies by it to cart
+    """Takes a uuid and add the item identified  to cart
     Args:
         product_id (str): identifies the product to add to cart
     args:
@@ -84,8 +94,9 @@ def add_product_to_cart(product_id):
     else:
         user_cart_product.increase_quantity()
     storage.save()
-    customer_dict = customer.to_dict()
-    customer_dict["cart"] = user_cart.to_dict()
+    customer_dict = {}
+    customer_dict["customer"] = customer.to_dict()
+    customer_dict["cart"]["data"] = user_cart.to_dict()
     product_items = []
     for item in customer.cart.items:
         product_dict = item.to_dict()
@@ -98,8 +109,9 @@ def add_product_to_cart(product_id):
 @api_view.route("/customer/cart/<uuid:product_id>",
                 methods=["PUT"], strict_slashes=False)
 @jwt_required()
+@swag_from(remove_product_from_cart_spec)
 def remove_product_from_cart(product_id):
-    """Takes a product id and removed the identified item from
+    """Takes a product id and remove the identified item from
     cart
     Args:
         product_id: identifies a product in cart
@@ -137,8 +149,9 @@ def remove_product_from_cart(product_id):
                 "methods": ["POST"]})
     user_cart_product.decrease_quantity()
     storage.save()
-    customer_dict = customer.to_dict()
-    customer_dict["cart"] = user_cart.to_dict()
+    customer_dict = {}
+    customer_dict['customer'] = customer.to_dict()
+    customer_dict["cart"]["data"] = user_cart.to_dict()
     product_items = []
     for item in customer.cart.items:
         product_dict = item.to_dict()
@@ -151,8 +164,9 @@ def remove_product_from_cart(product_id):
 @api_view.route("/customer/cart/<uuid:product_id>",
                 methods=["DELETE"], strict_slashes=False)
 @jwt_required()
+@swag_from(delete_from_cart_spec)
 def delete_from_cart(product_id):
-    """Remove a product from cart
+    """delete a product from cart
     Args:
         product_id (str): unique identifies the product to remove from cart
     args:

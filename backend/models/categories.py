@@ -22,4 +22,4 @@ class Category(BaseModel, Base):
         if "products" in "new_dict":
             for product in new_dict["products"]:
                 new_dict["products"].append(product.to_dict())
-            return new_dict
+        return new_dict

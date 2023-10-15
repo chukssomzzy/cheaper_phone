@@ -16,7 +16,7 @@ class ProductImage(BaseModel, Base):
     alt_text = Column(String(200))
     order = Column(Integer)
     product_id = Column(String(60), ForeignKey("products.id"), nullable=False)
-    product = relationship("ProductImage",
+    product = relationship("Product",
                            backref="images", cascade="all, delete")
 
     def __init__(self, *args, **kwargs):

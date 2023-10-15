@@ -1,0 +1,16 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "brand_schema.json",
+    "type": "object",
+    "properties": {
+      "id": {
+            "type": "number",
+            "minimum": 0
+      },
+      "name": {
+          "type": "string"
+      }
+    },
+    "required": ["name"],
+    "additonalProperties": false
+}
