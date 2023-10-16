@@ -6,6 +6,7 @@ from api.v1.utils.schemas.resolver import get_schema
 
 
 create_customer_specs = {
+    "tags": ["customer"],
     "parameters": [
         {
             "name": "customer data",
@@ -43,6 +44,7 @@ create_customer_specs = {
 }
 
 customer_login_specs = {
+    "tags": ["customer"],
     "parameters": [],
     "definitions": {
         "login_token": {
@@ -74,6 +76,7 @@ customer_login_specs = {
 
 
 refresh_spec = {
+    "tags": ["customer"],
     "parameters": [
         {
             "in": "header",
@@ -109,6 +112,7 @@ refresh_spec = {
 }
 
 profile_specs = {
+    "tags": ["customer"],
     "parameters": [
         {
             "name": "Authorization",
@@ -168,6 +172,7 @@ profile_specs = {
 
 
 update_customer_spec = {
+    "tags": ["customer"],
     "parameters": [
         {
             "name": "Authorization",
@@ -199,6 +204,7 @@ update_customer_spec = {
 }
 
 change_password_spec = {
+    "tags": ["customer"],
     "parameters": [
         {
             "name": "Authorization",

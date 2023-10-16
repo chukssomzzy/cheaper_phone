@@ -4,6 +4,7 @@ from api.v1.utils.schemas.resolver import get_schema
 
 
 get_user_orders_spec = {
+    "tags": ["order"],
     "parameters": [
         {
             "in": "header",
@@ -107,6 +108,7 @@ get_user_orders_spec = {
 }
 
 create_order_spec = {
+    "tags": ["order"],
     "summary": "create an order from cart content",
     "parameters": [
         {
@@ -148,6 +150,7 @@ create_order_spec = {
 }
 
 get_order_by_id_spec = {
+    "tags": ["order"],
     "summary": "get an order by its id",
     "parameters": [
         {
@@ -208,7 +211,8 @@ def return_order_spec(summary):
 
     return (
         {
-            "summary": "summary",
+            "tags": ["order"],
+            "summary": summary,
             "parameters": [
                 {
                     "in": "header",

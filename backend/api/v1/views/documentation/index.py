@@ -25,7 +25,6 @@ status_specs = {
         }
     }
 }
-
 stats_specs = {
     "parameters": [],
     "definitions": {

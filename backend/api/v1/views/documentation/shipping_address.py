@@ -4,6 +4,7 @@
 from api.v1.utils.schemas.resolver import get_schema
 
 post_address_spec = {
+    "tags": ["shipping address"],
     "summary": "Post a shipping address for a user",
     "parameters": [
         {
@@ -37,6 +38,7 @@ post_address_spec = {
 }
 
 get_all_address_spec = {
+    "tags": ["shipping address"],
     "summary": "Get all shipping address for a user",
     "parameters": [
         {
@@ -71,6 +73,7 @@ get_all_address_spec = {
 
 
 delete_address_spec = {
+    "tags": ["shipping address"],
     "summary": "delete a address",
     "parameters": [
         {
@@ -104,6 +107,7 @@ delete_address_spec = {
 
 
 update_address_spec = {
+    "tags": ["shipping address"],
     "summary": "update a customer address",
     "parameters": [
         {
@@ -144,6 +148,7 @@ update_address_spec = {
 }
 
 get_address_by_id_spec = {
+    "tags": ["shipping address"],
     "summary": "Get a shipping address",
     "parameters": [
         {

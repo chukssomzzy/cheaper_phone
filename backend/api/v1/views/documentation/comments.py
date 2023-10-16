@@ -5,6 +5,7 @@ from api.v1.utils.schemas.resolver import get_schema
 
 
 get_comments_spec = {
+    "tags": ["comment"],
     "parameters": [
         {
             "name": "order_by",
@@ -98,6 +99,7 @@ get_comments_spec = {
 }
 
 post_comment_spec = {
+    "tags": ["comment"],
     "parameters": [
         {
             "name": "Authorization",
@@ -139,6 +141,7 @@ post_comment_spec = {
 
 
 delete_comment_spec = {
+    "tags": ["comment"],
     "parameters": [
         {
             "name": "Authorization",

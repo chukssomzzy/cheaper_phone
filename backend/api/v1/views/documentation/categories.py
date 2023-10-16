@@ -5,6 +5,7 @@ from api.v1.utils.schemas.resolver import get_schema
 
 
 get_categories_schema = {
+    "tags": ["categories"],
     "parameters": [
         {
             "name": "order_by",
@@ -90,6 +91,7 @@ get_categories_schema = {
 
 
 get_product_by_category_spec = {
+    "tags": ["categories"],
     "parameters": [
         {
             "name": "order_by",
@@ -142,6 +144,7 @@ get_product_by_category_spec = {
 }
 
 post_category_spec = {
+    "tags": ["categories"],
     "parameters": [
         {
             "name": "Authorization",
@@ -182,6 +185,7 @@ post_category_spec = {
 }
 
 delete_category_spec = {
+    "tags": ["categories"],
     "parameters": [
         {
             "name": "category_id",

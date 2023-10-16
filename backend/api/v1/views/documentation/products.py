@@ -1,8 +1,9 @@
 #!/usr/bin/env venv/bin/python3
 """product endpoints"""
-from sqlalchemy.orm import properties
 from api.v1.utils.schemas.resolver import get_schema
+
 get_products_spec = {
+    "tags": ["product"],
     "summary": "paginate products",
     "parameters": [
         {
@@ -112,6 +113,7 @@ get_products_spec = {
 }
 
 get_product_by_id_spec = {
+    "tags": ["product"],
     "summary": "Get a product by id",
     "parameters": [{
         "name": "Authorization",
@@ -174,6 +176,7 @@ get_product_by_id_spec = {
 
 
 post_product_spec = {
+    "tags": ["product"],
     "summary": "post a product (role)",
     "parameters": [{
         "name": "Authorization",
@@ -212,6 +215,7 @@ post_product_spec = {
 }
 
 update_product_spec = {
+    "tags": ["product"],
     "summary": "update a product (role)",
     "parameters": [{
         "name": "Authorization",
@@ -242,6 +246,7 @@ update_product_spec = {
 }
 
 delete_product_spec = {
+    "tags": ["product"],
     "summary": "delete a product (role)",
     "parameters": [{
         "name": "Authorization",

@@ -4,6 +4,7 @@ from api.v1.utils.schemas.resolver import get_schema
 
 
 get_cart_spec = {
+    "tags": ["cart"],
     "summary": "Get a cart linked to the login customer",
     "parameters": [
         {
@@ -51,6 +52,7 @@ get_cart_spec = {
 }
 
 add_product_to_cart_spec = {
+    "tags": ["cart"],
     "summary": "add product to cart",
     "parameters": [
         {
@@ -102,6 +104,7 @@ add_product_to_cart_spec = {
 
 
 remove_product_from_cart_spec = {
+    "tags": ["cart"],
     "summary": "Remove a product from cart",
     "parameters": [
         {
@@ -152,6 +155,7 @@ remove_product_from_cart_spec = {
 }
 
 delete_from_cart_spec = {
+    "tags": ["cart"],
     "summary": "deletes a product from cart if exits",
     "parameters": [
         {

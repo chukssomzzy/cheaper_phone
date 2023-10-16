@@ -5,6 +5,7 @@ from api.v1.utils.schemas.resolver import get_schema
 
 
 get_product_review_spec = {
+    "tags": ["review"],
     "summary": "get review for a product",
     "parameters": [
         {
@@ -47,6 +48,7 @@ get_product_review_spec = {
 }
 
 post_product_review_spec = {
+    "tags": ["review"],
     "summary": "post a review for a product",
     "parameters": [
         {
@@ -95,6 +97,7 @@ post_product_review_spec = {
 }
 
 get_all_review_spec = {
+    "tags": ["review"],
     "summary": "get all reviews for a product",
     "parameters": [{
         "type": "string",
@@ -144,6 +147,7 @@ get_all_review_spec = {
 
 
 delete_review_spec = {
+    "tags": ["review"],
     "summary": "delete a review by id",
     "parameters": [
         {

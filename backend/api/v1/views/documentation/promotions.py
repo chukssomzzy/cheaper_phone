@@ -4,6 +4,7 @@
 from api.v1.utils.schemas.resolver import get_schema
 
 get_product_promotions_spec = {
+    "tags": ["promotion"],
     "summary": 'get all product promotions',
     "parameters": [
         {
@@ -32,6 +33,7 @@ get_product_promotions_spec = {
 }
 
 post_promotions_spec = {
+    "tags": ["promotion"],
     "summary": "post a promotion",
     "parameters": [
         {
@@ -64,6 +66,7 @@ post_promotions_spec = {
 }
 
 delete_promotion_spec = {
+    "tags": ["promotion"],
     "summary": "delete a promotions",
     "parameters": [{
         "name": "Authorization",
@@ -86,6 +89,7 @@ delete_promotion_spec = {
 }
 
 get_product_by_promotions = {
+    "tags": ["promotion"],
     "summary": "get a promotion products",
     "parameters": [{
         "in": "header",
@@ -143,6 +147,7 @@ get_product_by_promotions = {
 }
 
 get_promotions_spec = {
+    "tags": ["promotion"],
     "summary": "get all promotions paginating them",
     "parameters": [{
         "name": "order_by",
@@ -205,6 +210,7 @@ get_promotions_spec = {
 }
 
 add_promotion_product_spec = {
+    "tags": ["promotion"],
     "summary": "add a promotion to a product",
     "parameters": [
         {
@@ -245,6 +251,7 @@ add_promotion_product_spec = {
 }
 
 delete_promotion_product_spec = {
+    "tags": ["promotion"],
     "summary": "remove a promotion from a product",
     "parameters": [
         {
@@ -285,6 +292,7 @@ delete_promotion_product_spec = {
 }
 
 update_promotion_spec = {
+    "tags": ["promotion"],
     "summary": "update a promotion",
     "parameters": [{
         "in": "header",
