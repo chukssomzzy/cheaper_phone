@@ -4,8 +4,8 @@
 from datetime import timedelta
 from os import getenv
 
-from flasgger import LazyJSONEncoder, LazyString, Swagger
-from flask import Flask, make_response, request
+from flasgger import Swagger
+from flask import Flask, make_response
 from flask_jwt_extended import JWTManager
 from werkzeug import exceptions
 
@@ -111,9 +111,9 @@ def handle_not_found(e):
 
 
 if __name__ == "__main__":
-    port = int(getenv("ECOMMERCE_PORT", 5000))
-    host = getenv("ECOMMERCE_HOST", "0.0.0.0")
-    threaded = getenv("ECOMMERCE_THREAD", False)
+    port = int(getenv("ECOMMERCE_API_PORT", 5000))
+    host = getenv("ECOMMERCE_API_HOST", "0.0.0.0")
+    threaded = getenv("ECOMMERCE_API_THREAD", False)
     debug = False
     if getenv("ECOMMERCE_ENV") == "DEV":
         debug = True
