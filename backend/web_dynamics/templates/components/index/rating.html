@@ -1,0 +1,99 @@
+<div class="rating">
+  {% if product.rating|int == 0 %}
+  <svg>
+    <use xlink:href="/static/images/sprite.svg#icon-star-empty"></use>
+  </svg>
+  <svg>
+    <use xlink:href="/static/images/sprite.svg#icon-star-empty"></use>
+  </svg>
+  <svg>
+    <use xlink:href="/static/images/sprite.svg#icon-star-empty"></use>
+  </svg>
+  <svg>
+    <use xlink:href="/static/images/sprite.svg#icon-star-empty"></use>
+  </svg>
+  <svg>
+    <use xlink:href="/static/images/sprite.svg#icon-star-empty"></use>
+  </svg>
+  {% elif product.rating|int == 1 %}
+  <svg>
+    <use xlink:href="/static/images/sprite.svg#icon-star-full"></use>
+  </svg>
+  <svg>
+    <use xlink:href="/static/images/sprite.svg#icon-star-empty"></use>
+  </svg>
+  <svg>
+    <use xlink:href="/static/images/sprite.svg#icon-star-empty"></use>
+  </svg>
+  <svg>
+    <use xlink:href="/static/images/sprite.svg#icon-star-empty"></use>
+  </svg>
+  <svg>
+    <use xlink:href="/static/images/sprite.svg#icon-star-empty"></use>
+  </svg>
+  {% elif product.rating|int == 2 %}
+  <svg>
+    <use xlink:href="/static/images/sprite.svg#icon-star-full"></use>
+  </svg>
+  <svg>
+    <use xlink:href="/static/images/sprite.svg#icon-star-full"></use>
+  </svg>
+  <svg>
+    <use xlink:href="/static/images/sprite.svg#icon-star-empty"></use>
+  </svg>
+  <svg>
+    <use xlink:href="/static/images/sprite.svg#icon-star-empty"></use>
+  </svg>
+  <svg>
+    <use xlink:href="/static/images/sprite.svg#icon-star-empty"></use>
+  </svg>
+  {% elif product.rating|int == 3 %}
+  <svg>
+    <use xlink:href="/static/images/sprite.svg#icon-star-full"></use>
+  </svg>
+  <svg>
+    <use xlink:href="/static/images/sprite.svg#icon-star-full"></use>
+  </svg>
+  <svg>
+    <use xlink:href="/static/images/sprite.svg#icon-star-full"></use>
+  </svg>
+  <svg>
+    <use xlink:href="/static/images/sprite.svg#icon-star-empty"></use>
+  </svg>
+  <svg>
+    <use xlink:href="/static/images/sprite.svg#icon-star-empty"></use>
+  </svg>
+  {% elif product.rating|int == 4 %}
+  <svg>
+    <use xlink:href="/static/images/sprite.svg#icon-star-full"></use>
+  </svg>
+  <svg>
+    <use xlink:href="/static/images/sprite.svg#icon-star-full"></use>
+  </svg>
+  <svg>
+    <use xlink:href="/static/images/sprite.svg#icon-star-full"></use>
+  </svg>
+  <svg>
+    <use xlink:href="/static/images/sprite.svg#icon-star-full"></use>
+  </svg>
+  <svg>
+    <use xlink:href="/static/images/sprite.svg#icon-star-empty"></use>
+  </svg>
+  {% elif product.rating|int == 3 %}
+  <svg>
+    <use xlink:href="/static/images/sprite.svg#icon-star-full"></use>
+  </svg>
+  <svg>
+    <use xlink:href="/static/images/sprite.svg#icon-star-full"></use>
+  </svg>
+  <svg>
+    <use xlink:href="/static/images/sprite.svg#icon-star-full"></use>
+  </svg>
+  <svg>
+    <use xlink:href="/static/images/sprite.svg#icon-star-full"></use>
+  </svg>
+  <svg>
+    <use xlink:href="/static/images/sprite.svg#icon-star-full"></use>
+  </svg>
+  {% endif %}
+</div>

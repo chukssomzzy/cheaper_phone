@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="shortcut icon"
+      href="/static/images/favicon.ico?{{ cache_id }}"
+      type="image/x-icon"
+    />
+
+    <!-- Carousel -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/Glide.js/3.4.1/css/glide.core.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/Glide.js/3.4.1/css/glide.theme.min.css"
+    />
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+    <!-- Custom StyleSheet -->
+    <link rel="stylesheet" href="/static/styles/styles.css?{{ cache_id }}" />
+
+    <title>{% block title %}{% endblock %} - Cheaper Phone</title>
+  </head>
+  <body>
+    {% include "components/index/header.html" %} {% block main %} {% endblock %}
+    {% include "components/index/footer.html" %}
+    <!-- Jquery CDN -->
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
+    <!-- Glide Carousel Script -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Glide.js/3.4.1/glide.min.js"></script>
+    <!-- Animate On Scroll -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    {% block custom_js %}
+    <script src="/static/scripts/slider.js?{{ cache_id }}"></script>
+    {% endblock %}
+    <script type="text/javascript">
+      var csrf_token = "{{ csrf_token() }}";
+
+      $.ajaxSetup({
+        beforeSend: function (xhr, settings) {
+          if (
+            !/^(GET|HEAD|OPTIONS|TRACE|POST|PUT)$/i.test(settings.type) &&
+            !this.crossDomain
+          ) {
+            xhr.setRequestHeader("X-CSRFToken", csrf_token);
+          }
+        },
+      });
+    </script>
+  </body>
+</html>

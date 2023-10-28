@@ -2,15 +2,35 @@
 """Render web dynamics for the application"""
 
 from os import getenv
-from flask import Flask, render_template
+
+from flask import Flask
+from flask_login import LoginManager
+from models import storage
+from flask_wtf.csrf import CSRFProtect
+
+from web_dynamics.views import web_dynamics
 
 app = Flask(__name__)
+app.secret_key = getenv("APP_SECRET_KEY")
+login_manager = LoginManager()
+csrf = CSRFProtect(app)
+login_manager.init_app(app)
+app.jinja_env.trim_blocks = True
+app.jinja_env.lstrip_blocks = True
+
+app.register_blueprint(web_dynamics)
 
 
-@app.route("/", methods=["GET"], strict_slashes=False)
-def get_home():
-    """Renders the index route"""
-    return render_template('index.html')
+@login_manager.user_loader
+def load_user(user_id):
+    """Loads user from the db"""
+    return storage.get("User", user_id)
+
+
+@app.teardown_appcontext
+def tear_down(error):
+    """Get a new session from session factory"""
+    storage.close()
 
 
 if __name__ == "__main__":
@@ -20,4 +40,4 @@ if __name__ == "__main__":
     debug = False
     if getenv("ECOMMERCE_ENV") == "DEV":
         debug = True
-    app.run(host=host, port=port, threaded=threaded, debug=True)
+    app.run(host=host, port=port, threaded=threaded, debug=debug)

@@ -50,6 +50,12 @@ class Product(BaseModel, Base):
             rating = 0
         return rating
 
+    @property
+    def image(self):
+        """Return product first image"""
+        if self.images:
+            return self.images[0]
+
     def to_dict(self):
         """serialize related object"""
         new_dict = super().to_dict()

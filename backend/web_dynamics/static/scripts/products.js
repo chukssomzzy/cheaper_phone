@@ -1,7 +1,8 @@
 const getProducts = async () => {
   try {
-    const results = await fetch("./data/products.json");
+    const results = await fetch("http://localhost:5000/api/v1/products");
     const data = await results.json();
+    console.log(data)
     const products = data.products;
     return products;
   } catch (err) {
@@ -29,7 +30,7 @@ const displayProductItems = items => {
                       <img src=${product.image} alt="product">
                     </div>
                     <div class="product__footer">
-                      <h3>${product.title}</h3>
+                      <h3>${product.name}</h3>
                       <div class="rating">
                         <svg>
                           <use xlink:href="./images/sprite.svg#icon-star-full"></use>

@@ -9,6 +9,7 @@ import secrets
 from sqlalchemy import Column, Enum, String
 
 from models.base_model import Base, BaseModel
+from flask_login import UserMixin
 
 
 class RoleEnum(enum.Enum):
@@ -17,7 +18,7 @@ class RoleEnum(enum.Enum):
     admin = "admin"
 
 
-class User(BaseModel, Base):
+class User(BaseModel, Base, UserMixin):
     """Defines users table for db storage"""
     __tablename__ = "users"
     first_name = Column(String(50))
@@ -86,3 +87,7 @@ class User(BaseModel, Base):
         if "cart" in new_dict:
             new_dict["cart"] = new_dict["cart"].to_dict()
         return new_dict
+
+    def get_id(self):
+        """Returns userid"""
+        return str(self.id)

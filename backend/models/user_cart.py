@@ -1,6 +1,6 @@
 #!/usr/bin/env -S venv/bin/python3
 """user_cart model for db_storage"""
-from sqlalchemy import Column, ForeignKey, Integer, String
+from sqlalchemy import Column, ForeignKey, String
 from sqlalchemy.orm import backref, relationship
 from models.base_model import BaseModel, Base
 

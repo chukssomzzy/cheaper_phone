@@ -2,7 +2,6 @@
 """Define brand for each product"""
 
 from sqlalchemy import Column, Integer, Sequence, String
-from sqlalchemy.orm import relationship
 from models.base_model import Base, BaseModel
 
 
