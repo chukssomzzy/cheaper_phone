@@ -5,7 +5,7 @@ Register User
 {% endblock title %} {% block main %}
 <main id="main">
     <section class="section register__container">
-        <form action="/customer/register" class="register__form">
+        <form method="POST" action="/register" class="register__form">
             {{ form.csrf_token }}
             <h3>Create Account</h3>
             <div class="container__input">
@@ -22,13 +22,32 @@ Register User
                     </div>
                 </div>
                 <div>
-                    {{ form.password.label }}
+                    ,{{ form.password.label }}
                     <div class="container__form">
 
                         {{ form.password(class="box", placeholder="password") }}
                         <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M144 144v48H304V144c0-44.2-35.8-80-80-80s-80 35.8-80 80zM80 192V144C80 64.5 144.5 0 224 0s144 64.5 144 144v48h16c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V256c0-35.3 28.7-64 64-64H80z"/></svg>
                     </div>
                 </div>
+                {% if form.email.errors %}
+                    <ul class="errors">
+                        {% for error in form.email.errors %}
+                        <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% elif form.username.errors %}
+                    <ul class="errors">
+                        {% for error in form.username.errors %}
+                        <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% elif form.password.errors %}
+                    <ul class="errors">
+                        {% for error in form.password.errors %}
+                        <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
             <input type="submit" value="Sign Up" class="btn" />
             </div>
         </form>

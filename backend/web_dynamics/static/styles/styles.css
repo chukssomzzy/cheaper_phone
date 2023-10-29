@@ -2619,7 +2619,7 @@ Cart Area Media Query
 ===================== 
 Register Center 
 ===================== 
- */ 
+ */
 .register__container {
     height: 80vh;
     /* border: 1px solid red; */
@@ -2673,5 +2673,9 @@ Register Center
 .container__input > input {
     margin-top: 2rem;
     background: var(--secondaryColor);
-    color: var(--white)
+    color: var(--white);
+}
+
+.errors {
+    color: var(--orange);
 }

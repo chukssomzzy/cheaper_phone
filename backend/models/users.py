@@ -11,6 +11,8 @@ from sqlalchemy import Column, Enum, String
 from models.base_model import Base, BaseModel
 from flask_login import UserMixin
 
+from models.user_cart import UserCart
+
 
 class RoleEnum(enum.Enum):
     """Defines users roles"""
@@ -91,3 +93,13 @@ class User(BaseModel, Base, UserMixin):
     def get_id(self):
         """Returns userid"""
         return str(self.id)
+
+    @property
+    def cart(self):
+        from models import storage
+        """Create a cart if not exist"""
+        if not self.cart:
+            user_cart = UserCart(user_id=self.id)
+            storage.save()
+            return user_cart
+        return self.cart

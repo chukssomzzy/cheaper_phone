@@ -26,3 +26,18 @@ class UserCart(BaseModel, Base):
             for item in new_dict["items"]:
                 new_dict["items"].append(item.to_dict())
         return new_dict
+
+    @property
+    def items_no(self):
+        """Return number of items in cart"""
+        if self.items:
+            return len(self.items)
+        return 0
+
+    @property
+    def total_items(self):
+        """Return subtotal"""
+        total = 0
+        if self.items:
+            total = sum(item.price * item.quantity for item in self.items)
+        return total

@@ -63,7 +63,7 @@ def register_customer():
     except stripe.error.AuthenticationError as e:
         raise InvalidApiUsage(
             "you are using a wrong api secret", payload=e, status_code=500)
-    except Exception as e:
+    except Exception:
         abort(400)
 
 
