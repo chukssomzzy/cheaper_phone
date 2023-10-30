@@ -1438,7 +1438,7 @@ Testimonial
 
 .testimonial {
     position: relative;
-    background: url("./images/testimonial.jpg") center/cover no-repeat;
+    background: url("/static/images/testimonial.jpg") center/cover no-repeat;
     height: 50rem;
     padding: 5rem 0;
     z-index: 1;
@@ -2458,6 +2458,16 @@ Cart Area
     color: var(--black);
     text-transform: none;
 }
+
+.auth .login-form .btn {
+    border: 1px solid #eee;
+    border-radius: 5px;
+    text-transform: capitalize;
+    padding: .5rem;
+    box-shadow: none;
+    background: var(--black);
+    color: var(--white);
+}
 .auth .login-form p{
     font-size: 1.4rem;
     padding: .5rem 0;
@@ -2659,6 +2669,7 @@ Register Center
 }
 
 .register__form .container__input input {
+    padding: 1rem;
     border: 1px solid var(--black);
     height: 35px;
     border-radius: 5px;
@@ -2672,7 +2683,7 @@ Register Center
 }
 .container__input > input {
     margin-top: 2rem;
-    background: var(--secondaryColor);
+    background: var(--black);
     color: var(--white);
 }
 

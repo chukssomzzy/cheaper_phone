@@ -46,7 +46,7 @@
             </svg>
           </a>
           {% else %}
-          <p>{{ current_user.username }}</p>
+          <a href="/logout" class="icon__item">logout</a>
           {% endif %}
           <a href="#" class="icon__item" id="search-btn">
             <svg class="icon__search">
@@ -186,10 +186,22 @@
   </div>
   {% endif %} {% if not current_user.is_authenticated %}
   <div class="auth">
-    <form action="/login" class="login-form">
+    <form class="login-form" id="form-login">
       <h3>Login Now</h3>
-      <input type="email" placeholder="your email" class="box" />
-      <input type="password" placeholder="your password" class="box" />
+      <input
+        type="email"
+        placeholder="your email"
+        class="box login__email"
+        value=""
+        required
+      />
+      <input
+        type="password"
+        placeholder="your password"
+        class="box login__password"
+        value=""
+        required
+      />
       <p>forget your password <a href="#">Click Here</a></p>
       <p>don't have an account <a href="/register">Create now</a></p>
       <input type="submit" value="Login now" class="btn" />
@@ -204,7 +216,7 @@
   </div>
   {% if current_user.is_authenticated %}
   <div class="shopping-cart">
-    {% for item in current_user.cart.items %}
+    {% if current_user.cart %} {% for item in current_user.cart.items %}
     <div class="box">
       <i class="fas fa-trash"></i>
       <img src="images/products/iPhone/iphone1.jpeg" />
@@ -214,9 +226,11 @@
         <span class="quantity">qty : {{ item.quantity}}</span>
       </div>
     </div>
-    {% endfor %}
+    {% endfor %} {% endif %}
     <div class="total">
-      Total : ₦{{ "{:,.2f}".format(current_user.cart.total_items) }}/-
+      {% if current_user.cart %} Total : ₦{{
+      "{:,.2f}".format(current_user.cart.total_items) }}/- {% else %} Total : ₦
+      0 /- {% endif %}
     </div>
     <a href="#" class="btn">Check out</a>
   </div>

@@ -9,9 +9,9 @@ from wtforms import (Form, PasswordField, StringField, ValidationError,
 
 def is_user_pass(form, field):
     """confirm the  input password"""
-    if form.data["username"]:
+    if form.email.data:
         user = storage.session.query(User).filter_by(
-            username=form.username).one_or_none()
+            email=form.email.data).one_or_none()
         if not user:
             raise ValidationError("Incorrect Username or Password")
         elif not bool(user.check_password(field.data)):
@@ -20,8 +20,8 @@ def is_user_pass(form, field):
 
 class LoginUserForm(Form):
     """Login form"""
-    username = StringField(
-        "Username", [validators.InputRequired(message="username required")])
+    email = StringField(
+        "Email Address", [validators.InputRequired(message="email required")])
     password = PasswordField(
         "Password", [validators.InputRequired(message="password required"),
                      is_user_pass])
