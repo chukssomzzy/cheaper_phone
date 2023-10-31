@@ -1,15 +1,16 @@
 $(document).ready(function() {
+    const emailRe = /.*?@.*?[.].{2,6}/
     const loc = document.location;
     if (loc.hash === "#login-btn") {
         $(".login-form").toggleClass('active');
         $(".shopping-cart").removeClass('active');
     }
 
-    /*
-        =============
-        PopUp
-        =============
-        */
+/*
+=============
+PopUp
+=============
+*/
 
         $(".popup__close").on("click", () => {
             $(".popup").addClass("hide__popup");
@@ -21,15 +22,20 @@ $(document).ready(function() {
         }, 500);
     }
 
-    /*
-        =============
-        login a user
-        =============
-        */
-        $("#form-login").on("submit", function(e) {
+/*
+=============
+login a user
+=============
+*/
+
+$("#form-login").on("submit", function(e) {
             const formData = {
-                email: $(".login__email").val(),
                 password: $(".login__password").val()
+            }
+            if ($(".login__email").val().match(emailRe)){
+                formData["email"] = $(".login__email").val()
+            } else {
+                formData["username"] = $(".login__email").val()
             }
 
             $.ajax({
@@ -44,6 +50,6 @@ $(document).ready(function() {
             })
             $(this).removeClass("active");
             e.preventDefault()
-        })
+})
 
 })

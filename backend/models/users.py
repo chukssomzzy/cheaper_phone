@@ -6,11 +6,11 @@ import enum
 import hashlib
 import secrets
 
+from flask_login import UserMixin
 from sqlalchemy import Column, Enum, String
 
+import models
 from models.base_model import Base, BaseModel
-from flask_login import UserMixin
-
 from models.user_cart import UserCart
 
 
@@ -72,21 +72,21 @@ class User(BaseModel, Base, UserMixin):
     def to_dict(self):
         """dictionary representation of object"""
         new_dict = super().to_dict()
-        if "role" in new_dict:
+        if new_dict.get("role"):
             new_dict["role"] = str(self.role.value)
-        if "reviews" in new_dict:
+        if new_dict.get("reviews"):
             for review in new_dict["reviews"]:
                 new_dict["reviews"].append(review.to_dict())
-        if "chat_histories" in new_dict:
+        if new_dict.get("chat_histories"):
             for chat_history in new_dict["chat_histories"]:
                 new_dict["chat_histories"].append(chat_history.to_dict())
-        if 'analytics' in new_dict:
+        if new_dict.get('analytics'):
             for analytics in new_dict["analytics"]:
                 new_dict["analytics"].append(analytics.to_dict())
-        if "orders" in new_dict:
+        if new_dict.get("orders"):
             for order in new_dict["orders"]:
                 new_dict["orders"].apppend(order.to_dict())
-        if "cart" in new_dict:
+        if new_dict.get("cart"):
             new_dict["cart"] = new_dict["cart"].to_dict()
         return new_dict
 
@@ -94,12 +94,16 @@ class User(BaseModel, Base, UserMixin):
         """Returns userid"""
         return str(self.id)
 
-    @property
-    def cart(self):
-        from models import storage
+    def create_cart(self):
         """Create a cart if not exist"""
         if not self.cart:
             user_cart = UserCart(user_id=self.id)
-            storage.save()
+            user_cart.save()
             return user_cart
         return self.cart
+
+    def delete_cart(self):
+        """Delete a cart if it exits"""
+        if self.cart:
+            self.cart.delete()
+            models.storage.save()

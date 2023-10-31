@@ -15,9 +15,13 @@ def login():
     """login user"""
     form = LoginUserForm(formdata=request.form)
     if form.validate():
-        user = storage.session.query(User).filter_by(
-            email=form.email.data).one_or_none()
-        print(user, form.email.data)
+        user = None
+        if form.email.data:
+            user = storage.session.query(User).filter_by(
+                email=form.email.data).one_or_none()
+        elif form.username.data:
+            user = storage.session.query(User).filter_by(
+                username=form.username.data).one_or_none()
         if user and bool(user.check_password(form.password.data)):
             login_user(user)
             return make_response(jsonify({"login": "success"}), 200)

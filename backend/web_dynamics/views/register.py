@@ -26,8 +26,9 @@ def register_customer():
                 idempotency_key=form.data["username"])
             customer_data = form.data.copy()
             customer_data["stripe_customer_id"] = customer["id"]
-            storage.create("User", **customer_data)
+            user = storage.create("User", **customer_data)
             storage.save()
+            user.create_cart()
             return redirect("/")
     return render_template("pages/register.html", form=form,
                            register="register")
