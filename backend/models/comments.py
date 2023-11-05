@@ -22,6 +22,6 @@ class Comment(BaseModel, Base):
     def to_dict(self):
         """Returns serializable representation of object"""
         new_dict = super().to_dict()
-        if "product" in new_dict:
+        if new_dict.get("product"):
             new_dict["product"] = self.product.to_dict()
         return new_dict

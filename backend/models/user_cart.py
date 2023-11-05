@@ -20,11 +20,13 @@ class UserCart(BaseModel, Base):
     def to_dict(self):
         """serialize usercart"""
         new_dict = super().to_dict()
-        if "customer" in new_dict:
+        if new_dict.get("customer"):
             new_dict["customer"] = new_dict["customer"].to_dict()
-        if "items" in new_dict:
+        if new_dict.get("items"):
+            item_list = []
             for item in new_dict["items"]:
-                new_dict["items"].append(item.to_dict())
+                item_list.append(item.to_dict())
+            new_dict["items"] = item_list
         return new_dict
 
     @property

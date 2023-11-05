@@ -59,9 +59,43 @@
           ) {
             xhr.setRequestHeader("X-CSRFToken", csrf_token);
           }
+          if (settings.url.indexOf("/api/v1") != -1) {
+            const auth = `Bearer ${localStorage.getItem("accessToken")}`;
+            xhr.setRequestHeader("Authorization", auth);
+          }
+        },
+        error: function (xhr, testStatus, errorThrown) {
+          if (
+            xhr.responseJSON &&
+            "msg" in xhr.responseJSON &&
+            xhr.responseJSON.msg === "Token has expired"
+          ) {
+            console.log(xhr, xhr.responseJSON, "in error");
+            let accessToken = "";
+            const refreshToken = localStorage.getItem("refreshToken");
+            $.ajax({
+              type: "POST",
+              beforeSend: function (xhr) {
+                xhr.setRequestHeader("Authorization", `Bearer ${refreshToken}`);
+              },
+              contentType: "application/json",
+              url: "http://localhost:5000/api/v1/refresh",
+            }).done(
+              function (data) {
+                accessToken = data.access_token;
+                localStorage.setItem("accessToken", accessToken);
+                xhr.setRequestHeader("Authorization", `Bearer ${accessToken}`);
+                $.ajax(this);
+              }.bind(this),
+            );
+          }
         },
       });
     </script>
-    <script src="/static/scripts/ajaxrequest.js?{{ cache_id }}"></script>
+
+    <script src="/static/scripts/index.js"></script>
+    <script src="/static/scripts/global.js?{{ cache_id }}"></script>
+    <script src="/static/scripts/auth.js?{{ cache_id }}"></script>
+    <script src="/static/scripts/cart.js?{{ cache_id }}"></script>
   </body>
 </html>

@@ -17,7 +17,32 @@ class UserCartProduct(BaseModel, Base):
         "products.id"), primary_key=True)
     quantity = Column(Integer, default=1)
     product = relationship("Product", backref=backref(
-        "cart_product", uselist=False))
+        "cart_products", uselist=False))
+
+    @property
+    def image(self):
+        """Return product image"""
+        if self.product:
+            return self.product.image
+
+    @property
+    def name(self):
+        """Returns product name"""
+        if self.product:
+            return self.product.name
+        return ""
+
+    @property
+    def price(self):
+        """Returns product price"""
+        if self.product:
+            return self.product.price
+        return 0
+
+    @property
+    def total(self):
+        """Get total price"""
+        return self.quantity * self.price
 
     def increase_quantity(self):
         """increase the quantity of a product"""
@@ -33,6 +58,12 @@ class UserCartProduct(BaseModel, Base):
     def to_dict(self):
         """update user cart product serializer"""
         new_dict = super().to_dict()
-        if "product" in new_dict:
+        if new_dict.get("product"):
             new_dict["product"] = new_dict["product"].to_dict()
         return new_dict
+
+    def augment_quantity(self, quantity):
+        """Inc quantity by"""
+        self.quantity = self.quantity + quantity
+        self.save()
+        return self.quantity

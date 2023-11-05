@@ -99,6 +99,24 @@ Navigation
     height: 7rem;
     padding: 0 1rem;
 }
+.nav .nav__logout {
+    margin: 1rem .5rem; 
+}
+
+.nav .nav__logout div { 
+    text-transform: capitalize;
+    border-radius: 5px;
+    border: 1px solid var(--black);
+}
+
+.nav .nav_logout div:hover {
+    background: var(--yellow);
+    color: var(--white);
+}
+.nav .nav__logout div p {
+    padding: .8rem;
+    color: var(--black);
+}
 
 .fix__nav {
     position: fixed;

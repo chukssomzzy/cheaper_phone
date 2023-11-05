@@ -12,11 +12,13 @@ from werkzeug import exceptions
 from api.v1.utils.error_handles.invalid_api_error import InvalidApiUsage
 from api.v1.views import api_view
 from models import storage
+from flask_cors import CORS
 
 app = Flask(__name__)
 app.config["JWT_SECRET_KEY"] = getenv("APP_SECRET_KEY")
-app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(hours=244)
+app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(minutes=30)
 app.config["JWT_REFRESH_TOKEN_EXPIRES"] = timedelta(days=30)
+cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
 
 
 jwt = JWTManager(app)

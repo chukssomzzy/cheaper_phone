@@ -50,12 +50,12 @@ class Order(BaseModel, Base):
     def to_dict(self):
         """serializable representation of obj"""
         new_dict = super().to_dict()
-        if "status" in new_dict:
+        if new_dict.get("status"):
             new_dict["status"] = str(self.status.value)
-        if "address" in new_dict:
+        if new_dict.get("address"):
             new_dict["address"] = new_dict["address"].to_dict()
-        if "customer" in new_dict:
+        if new_dict.get("customer"):
             new_dict["customer"] = new_dict["customer"].to_dict()
-        if "address" in new_dict:
+        if new_dict.get("address"):
             new_dict["address"] = new_dict["address"].to_dict()
         return new_dict

@@ -25,6 +25,6 @@ class Analytics(BaseModel, Base):
     def to_dict(self):
         """Serialize analytics"""
         new_dict = super().to_dict()
-        if "user" in new_dict:
+        if new_dict.get("user"):
             new_dict["customer"] = new_dict["customer"].to_dict()
         return new_dict

@@ -1,13 +1,13 @@
 #!venv/bin/python3
 
 """Defines base model """
+import copy
 from datetime import datetime
 from uuid import uuid4
-from sqlalchemy import DateTime, Column, String
-from sqlalchemy.ext.declarative import declarative_base
-
 
 import models
+from sqlalchemy import Column, DateTime, String
+from sqlalchemy.ext.declarative import declarative_base
 
 time = "%Y-%m-%dT%H:%M:%S.%f"
 Base = declarative_base()
@@ -63,7 +63,7 @@ class BaseModel():
 
     def to_dict(self):
         """Return a dictionary representation of the current object"""
-        new_dict = self.__dict__.copy()
+        new_dict = copy.deepcopy(self.__dict__)
         if "created_at" in new_dict:
             new_dict['created_at'] = datetime.isoformat(new_dict["created_at"])
         if "updated_at" in new_dict:

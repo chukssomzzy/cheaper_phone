@@ -60,18 +60,20 @@ class Promotion(BaseModel, Base):
     def to_dict(self):
         """serializes duration"""
         new_dict = super().to_dict()
-        if "duration" in new_dict:
+        if new_dict.get("duration"):
             new_dict["duration"] = str(new_dict["duration"])
-        if "discount" in new_dict:
+        if new_dict.get("discount"):
             new_dict["discount"] = str(new_dict["discount"]) + "%"
-        if "products" in new_dict:
+        if new_dict.get("products"):
+            products_dict = []
             for product in new_dict["products"]:
-                new_dict["products"].append(product.to_dict())
+                products_dict.append(product.to_dict())
+            new_dict["products"] = products_dict
         return new_dict
 
     def parse_delta(self, delta):
         """Parse delta"""
-        if type(delta) != str:
+        if type(delta) is str:
             raise TypeError("must be a str")
         days = delta.split(",")[0].strip() or 0
         days = int(str(days).split()[0])

@@ -96,11 +96,16 @@ def add_product_to_cart(product_id):
     storage.save()
     customer_dict = {}
     customer_dict["customer"] = customer.to_dict()
+    customer_dict["cart"] = {}
+    user_cart.id
     customer_dict["cart"]["data"] = user_cart.to_dict()
+    customer_dict["cart"]["data"]["total_price"] = user_cart.total_items
     product_items = []
     for item in customer.cart.items:
+        item.product
         product_dict = item.to_dict()
-        product_dict["product"] = item.product.to_dict()
+        if item.product.image:
+            product_dict["product"]["image"] = item.product.image.to_dict()
         product_items.append(product_dict)
     customer_dict["cart"]["items"] = product_items
     return customer_dict, 200

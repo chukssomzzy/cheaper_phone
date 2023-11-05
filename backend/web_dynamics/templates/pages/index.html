@@ -46,8 +46,8 @@
                     <div class="glide__track" data-glide-el="track">
                         <ul class="glide__slides latest-center">
                             {% for product in products.values() if product.image %}
-                            <li class="glide__slide" data-id="{{ product.id }}">
-                                <div class="product">
+                            <li class="glide__slide">
+                                <div class="product" data-id="{{ product.id }}">
                                     <div class="product__header">
                                         <img src="{{ product.image.image_url }}" alt="{{ product.image.alt_text }}">
                                     </div>
@@ -183,6 +183,5 @@
 {% endblock main %}
 <!-- Custom JavaScript -->
 {% block custom_js %}
-<script src="/static/scripts/index.js"></script>
 {{ super() }}
 {% endblock custom_js %}

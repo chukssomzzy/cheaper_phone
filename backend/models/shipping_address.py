@@ -39,11 +39,11 @@ class ShippingAddress(BaseModel, Base):
     def to_dict(self):
         """serializes address"""
         new_dict = super().to_dict()
-        if "address_type" in new_dict:
+        if new_dict.get("address_type"):
             new_dict["address_type"] = self.address_type.value
-        if "order" in new_dict:
+        if new_dict.get("order"):
             new_dict["address"] = new_dict["address"].to_dict()
-        if "customer" in new_dict:
+        if new_dict.get("customer"):
             new_dict["customer"] = new_dict["customer"].to_dict()
         return new_dict
 

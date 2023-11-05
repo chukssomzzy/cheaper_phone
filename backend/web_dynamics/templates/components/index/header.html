@@ -37,7 +37,13 @@
             </li>
           </ul>
         </div>
-
+        <div id="logout__section">
+          {% if current_user.is_authenticated %}
+          <a href="/logout" class="nav__logout">
+            <div><p>logout</p></div>
+          </a>
+          {% endif %}
+        </div>
         <div class="nav__icons">
           {% if not current_user.is_authenticated %}
           <a href="/#login-btn" class="icon__item" id="login-btn">
@@ -45,8 +51,6 @@
               <use xlink:href="/static/images/sprite.svg#icon-user"></use>
             </svg>
           </a>
-          {% else %}
-          <a href="/logout" class="icon__item">logout</a>
           {% endif %}
           <a href="#" class="icon__item" id="search-btn">
             <svg class="icon__search">
@@ -54,13 +58,22 @@
             </svg>
           </a>
           {% if current_user.is_authenticated %}
-          <a href="#" class="icon__item" id="cart-btn">
+          <a class="icon__item" id="cart-btn">
             <svg class="icon__cart">
               <use
                 xlink:href="/static/images/sprite.svg#icon-shopping-basket"
               ></use>
             </svg>
-            <span id="cart__total">{{ current_user.cart.items_no }}</span>
+            <span id="cart__total">{{ current_user.cart.items_no or 0 }}</span>
+          </a>
+          {% else %}
+          <a href="#" class="icon__item anonymous" id="cart-btn">
+            <svg class="icon__cart">
+              <use
+                xlink:href="/static/images/sprite.svg#icon-shopping-basket"
+              ></use>
+            </svg>
+            <span id="cart__total">0</span>
           </a>
           {% endif %}
         </div>
@@ -215,11 +228,11 @@
     </form>
   </div>
   {% if current_user.is_authenticated %}
-  <div class="shopping-cart">
+  <div id="shopping-cart-id" class="shopping-cart">
     {% if current_user.cart %} {% for item in current_user.cart.items %}
     <div class="box">
       <i class="fas fa-trash"></i>
-      <img src="images/products/iPhone/iphone1.jpeg" />
+      <img src="{{ item.image.image_url }}" alt="{{ item.image.alt_text }}" />
       <div class="content">
         <h3>{{ item.product.name }}</h3>
         <span class="price">₦{{ "{:,.2f}".format(item.product.price) }}/-</span>
@@ -229,8 +242,7 @@
     {% endfor %} {% endif %}
     <div class="total">
       {% if current_user.cart %} Total : ₦{{
-      "{:,.2f}".format(current_user.cart.total_items) }}/- {% else %} Total : ₦
-      0 /- {% endif %}
+      "{:,.2f}".format(current_user.cart.total_items) or 0 }}/- {% endif %}
     </div>
     <a href="#" class="btn">Check out</a>
   </div>

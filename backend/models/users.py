@@ -75,17 +75,27 @@ class User(BaseModel, Base, UserMixin):
         if new_dict.get("role"):
             new_dict["role"] = str(self.role.value)
         if new_dict.get("reviews"):
+            review_list = []
             for review in new_dict["reviews"]:
-                new_dict["reviews"].append(review.to_dict())
+                review_list.append(review.to_dict())
+            new_dict["reviews"] = review_list
         if new_dict.get("chat_histories"):
+            chat_histories_list = []
             for chat_history in new_dict["chat_histories"]:
-                new_dict["chat_histories"].append(chat_history.to_dict())
+                chat_histories_list.append(chat_history.to_dict())
+            new_dict["chat_histories"] = chat_histories_list
+
         if new_dict.get('analytics'):
+            analytics_list = []
             for analytics in new_dict["analytics"]:
-                new_dict["analytics"].append(analytics.to_dict())
+                analytics_list.append(analytics.to_dict())
+            new_dict["analytics"] = analytics_list
+
         if new_dict.get("orders"):
+            orders_list = []
             for order in new_dict["orders"]:
-                new_dict["orders"].apppend(order.to_dict())
+                orders_list.append(order.to_dict())
+            new_dict["orders"] = orders_list
         if new_dict.get("cart"):
             new_dict["cart"] = new_dict["cart"].to_dict()
         return new_dict

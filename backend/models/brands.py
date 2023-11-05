@@ -18,7 +18,9 @@ class Brand(BaseModel, Base):
     def to_dict(self):
         """serialize brand"""
         new_dict = super().to_dict()
-        if "products" in new_dict:
+        if new_dict.get("products"):
+            product_list = []
             for product in new_dict["products"]:
-                new_dict["products"].append(product.to_dict())
+                product_list.append(product.to_dict())
+            new_dict["products"] = product_list
         return new_dict

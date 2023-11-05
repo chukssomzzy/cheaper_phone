@@ -59,25 +59,35 @@ class Product(BaseModel, Base):
     def to_dict(self):
         """serialize related object"""
         new_dict = super().to_dict()
-        if "reviews" in new_dict:
+        if new_dict.get("reviews"):
+            reviews_list = []
             for review in new_dict["reviews"]:
-                new_dict["reviews"].append(review.to_dict())
-        if "images" in new_dict:
+                reviews_list.append(review.to_dict())
+            new_dict["reviews"] = reviews_list
+        if new_dict.get("images"):
+            images_list = []
             for image in new_dict["images"]:
-                new_dict["images"].append(image.to_dict())
-        if "categories" in new_dict:
+                images_list.append(image.to_dict())
+            new_dict["images"] = images_list
+        if new_dict.get("categories"):
+            categories_list = []
             for category in new_dict["categories"]:
-                new_dict["categories"].append(category.to_dict())
-        if "brand" in new_dict:
+                categories_list.append(category.to_dict())
+            new_dict["categories"] = categories_list
+
+        if new_dict.get("brand"):
             new_dict["brand"] = new_dict["brand"].to_dict()
 
-        if "comments" in new_dict:
+        if new_dict.get("comments"):
+            comments_list = []
             for comment in new_dict["comments"]:
-                new_dict["comments"].append(comment.to_dict())
-        if "promotions" in new_dict:
+                comments_list.append(comment.to_dict())
+            new_dict["comments"] = comments_list
+        if new_dict.get("promotions"):
+            promotions_list = []
             for promotion in new_dict["promotions"]:
-                new_dict["promotions"].append(promotion.to_dict())
-        if "cart_product" in new_dict:
-            for promotion in new_dict["promotions"]:
-                new_dict["cart_product"] = new_dict["cart_product"].to_dict()
+                promotions_list.append(promotion.to_dict())
+            new_dict["promotions"] = promotions_list
+        if new_dict.get("cart_product"):
+            new_dict["cart_product"] = new_dict["cart_product"].to_dict()
         return new_dict

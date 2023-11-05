@@ -1,106 +1,112 @@
+$(document).ready(function () {
 /*
-=============
-Navigation
-=============
- */
-const navOpen = document.querySelector(".nav__hamburger");
-const navClose = document.querySelector(".close__toggle");
-const menu = document.querySelector(".nav__menu");
-const scrollLink = document.querySelectorAll(".scroll-link");
-const navContainer = document.querySelector(".nav__menu");
+    =============
+    Navigation
+    =============
+    */
+const navOpen = $(".nav__hamburger");
+const navClose = $(".close__toggle");
+const menu = $(".nav__menu");
+const scrollLink = $(".scroll-link");
+const navContainer = $(".nav__menu");
 
-navOpen.addEventListener("click", () => {
-  menu.classList.add("open");
-  document.body.classList.add("active");
-  navContainer.style.left = "0";
-  navContainer.style.width = "30rem";
+navOpen.on("click", () => {
+    menu.addClass("open");
+    $(this).addClass("active");
+    navContainer[0].style.left = '0';
+    navContainer[0].style.width = "30rem"
 });
 
-navClose.addEventListener("click", () => {
-  menu.classList.remove("open");
-  document.body.classList.remove("active");
-  navContainer.style.left = "-30rem";
-  navContainer.style.width = "0";
+navClose.on("click", () => {
+    menu.removeClass("open");
+    $(this).removeClass("active");
+    navContainer[0].style.left = "-30rem";
+    navContainer[0].style.width = 0;
 });
 
 
 /*
-=============
-Fixed Navigation
-=============
- */
+    =============
+    Fixed Navigation
+    =============
+    */
 
-const navBar = document.querySelector(".navigation");
-const gotoTop = document.querySelector(".goto-top");
-
+const navBar = $(".navigation");
+const gotoTop = $(".goto-top");
 // Smooth Scroll
-Array.from(scrollLink).map(link => {
-  link.addEventListener("click", e => {
-    // Prevent Default
-    e.preventDefault();
+scrollLink.each(function(idx) {
+    $(this).on("click", e => {
+        // Prevent Default
+        e.preventDefault();
 
-    const id = e.currentTarget.getAttribute("href").slice(1);
-    const element = document.getElementById(id);
-    const navHeight = navBar.getBoundingClientRect().height;
-    const fixNav = navBar.classList.contains("fix__nav");
-    let position = element.offsetTop - navHeight;
+        const id = e.currentTarget.getAttribute("href").slice(1);
+        const element = document.getElementById(id);
+        const navHeight = navBar.height();
+        const fixNav = navBarhasClass("fix__nav");
+        let position = element.offsetTop - navHeight;
 
-    if (!fixNav) {
-      position = position - navHeight;
-    }
+        if (!fixNav) {
+            position = position - navHeight;
+        }
 
-    window.scrollTo({
-      left: 0,
-      top: position,
+        window.scrollTo({
+            left: 0,
+            top: position,
+        });
+        navContainer.css(left , "-30rem");
+        document.body.classList.remove("active");
     });
-    navContainer.style.left = "-30rem";
-    document.body.classList.remove("active");
-  });
 });
 
 // Fix NavBar
 
 window.addEventListener("scroll", e => {
-  const scrollHeight = window.pageYOffset;
-  const navHeight = navBar.getBoundingClientRect().height;
-  if (scrollHeight > navHeight) {
-    navBar.classList.add("fix__nav");
-  } else {
-    navBar.classList.remove("fix__nav");
-  }
+    const scrollHeight = window.scrollY;
+    const navHeight = navBar.height();
+    if (scrollHeight > navHeight) {
+        navBaraddClass("fix__nav");
+    } else {
+        navBar.removeClass("fix__nav");
+    }
 
-  if (scrollHeight > 300) {
-    gotoTop.classList.add("show-top");
-  } else {
-    gotoTop.classList.remove("show-top");
-  }
+    if (scrollHeight > 300) {
+        gotoTop.addClass("show-top");
+    } else {
+        gotoTop.addClass("show-top");
+    }
 });
 
-let login=document.querySelector('.login-form');
+let login = $('.login-form');
 
-document.querySelector('#login-btn').onclick=()=>{
-    login.classList.toggle('active');
-   searchForm.classList.remove('active');
-    shoppingCart.classList.remove('active');
+if ($("#login-btn")) {
+    $('#login-btn').onclick=()=>{
+        login.toggle('active');
+        searchForm.removeClass('active');
+        if (shoppingCart)
+            shoppingCart.removeClass('active');
 
+    }
 }
 
-let shoppingCart=document.querySelector('.shopping-cart');
+let shoppingCart=$('.shopping-cart');
 
-cartBtn = document.querySelector("#cart-btn")
+cartBtn = $("#cart-btn")
 if (cartBtn) {
-cartBtn.onclick=()=>{
-    shoppingCart.classList.toggle('active');
-    searchForm.classList.remove('active');
-    login.classList.remove('active');
-
+    cartBtn.on("click", (e)=>{
+        e.stopPropagation()
+        shoppingCart.toggle('active');
+        searchForm.removeClass('active');
+        if (login)
+            login.removeClass('active');
+    })
 }
-}
-let searchForm=document.querySelector('.search-form');
 
-document.querySelector('#search-btn').onclick=()=>{
-    searchForm.classList.toggle('active');
-    shoppingCart.classList.remove('active');
-    login.classList.remove('active');
+let searchForm=$('.search-form');
 
+$('#search-btn').onclick=()=>{
+    searchForm.toggle('active');
+    shoppingCart.removeClass('active');
+    if (login)
+        login.removeClass('active');
 }
+})

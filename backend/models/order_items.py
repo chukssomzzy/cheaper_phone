@@ -22,6 +22,6 @@ class OrderItem(BaseModel, Base):
     def to_dict(self):
         """serialize orderItem"""
         new_dict = super().to_dict()
-        if "product" in new_dict:
+        if new_dict.get("product"):
             new_dict["product"] = new_dict["product"].to_dict()
         return new_dict

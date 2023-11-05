@@ -34,6 +34,6 @@ class ChatHistory(BaseModel, Base):
     def to_dict(self):
         """Serialize chathistory"""
         new_dict = super().to_dict()
-        if "customer" in new_dict:
+        if new_dict.get("customer"):
             new_dict["customer"] = new_dict["customer"].to_dict()
         return new_dict

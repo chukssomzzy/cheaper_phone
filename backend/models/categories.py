@@ -19,7 +19,9 @@ class Category(BaseModel, Base):
     def to_dict(self):
         """use the inherited to_dict to serialize"""
         new_dict = super().to_dict()
-        if "products" in "new_dict":
+        if new_dict.get("products"):
+            products_list = []
             for product in new_dict["products"]:
-                new_dict["products"].append(product.to_dict())
+                products_list.append(product.to_dict())
+            new_dict["products"] = products_list
         return new_dict
