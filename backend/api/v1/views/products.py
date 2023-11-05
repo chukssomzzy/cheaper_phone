@@ -121,15 +121,17 @@ def get_product_by_id(product_id):
         abort(404, "product not found")
     product_return = {}
     product_return["data"] = product.to_dict()
-    del product_return["brand_id"]
+    if product_return["data"].get("brand_id"):
+        del product_return["data"]["brand_id"]
     if product.brand:
         product_return["brand"] = product.brand.to_dict()
     product_return["categories"] = []
     for category in product.categories:
         product_return["categories"].append(category.to_dict())
-    product_return["images"] = []
+    product_return["data"]["images"] = []
     for image in product.images:
-        product_return["data"]['images'].append(image.image_url)
+        product_return["data"]['images'].append(image.to_dict())
+
     if current_user:
         product_return["actions"] = []
         product_return["actions"].append({"add_to_cart": url_for(

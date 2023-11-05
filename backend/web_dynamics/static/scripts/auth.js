@@ -53,15 +53,16 @@ $(document).ready(function () {
   })
 
     /* Logout callback */
-if (!isLoggedIn)
-    $('logout__section').on('click', function(e) {
-
+    $('.logout__section').on('click', function(e) {
+        e.preventDefault()
+        e.stopPropagation()
+        console.log("click")
         localStorage.removeItem('accessToken');
         localStorage.removeItem('refreshToken');
         $.ajax("/logout").done(function(){
-            console.log(done)
+            console.log("done")
+            location.reload()
         })
-        return false
     })
 
 
@@ -70,9 +71,9 @@ if (!isLoggedIn)
 })
 
 const setupLogin = () => {
-  const logoutBtn = `<a href="/logout" class="nav__logout">
-        <div><p>logout</p></div>
-        </a>`
+  const logoutBtn = `<a class="nav__logout logout__section" href="/logout">
+          logout
+        <a>`
   $('#logout__section').html(logoutBtn)
   $('#login-btn').css('display', 'none')
 }

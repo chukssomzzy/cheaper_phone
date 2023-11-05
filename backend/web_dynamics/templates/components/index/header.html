@@ -37,13 +37,14 @@
             </li>
           </ul>
         </div>
-        <div id="logout__section">
+
           {% if current_user.is_authenticated %}
-          <a href="/logout" class="nav__logout">
-            <div><p>logout</p></div>
-          </a>
-          {% endif %}
+        <div id="logout__section">
+        <a class="nav__logout logout__section" href="/logout">
+          logout
+        <a>
         </div>
+          {% endif %}
         <div class="nav__icons">
           {% if not current_user.is_authenticated %}
           <a href="/#login-btn" class="icon__item" id="login-btn">

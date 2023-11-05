@@ -59,7 +59,10 @@
           ) {
             xhr.setRequestHeader("X-CSRFToken", csrf_token);
           }
-          if (settings.url.indexOf("/api/v1") != -1) {
+          if (
+            settings.url.indexOf("/api/v1") != -1 &&
+            localStorage.getItem("accessToken")
+          ) {
             const auth = `Bearer ${localStorage.getItem("accessToken")}`;
             xhr.setRequestHeader("Authorization", auth);
           }
