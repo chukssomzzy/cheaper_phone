@@ -2,7 +2,7 @@
 {% block title %}
 cart
 {{ super() }}
-{% endblock title}
+{% endblock title %}
 
 {% block main %}
     <main id="main">
@@ -22,20 +22,23 @@ cart
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    {% for item in current_user.cart.items %}
                                     <tr>
                                         <td class="product__thumbnail">
-                                            <a href="#">
-                                                <img src="./data/images/products/iPhone/iphone6.jpeg" alt="">
+                                            <a href="/product/{{ item.product.id }}">
+                                                <img src="{{ item.product.image.image_url }}" alt="{{ item.product.image.alt_text }}">
                                             </a>
                                         </td>
                                         <td class="product__name">
-                                            <a href="#">Apple iPhone 11</a>
+                                            <a href="#">{{ item.product.name[:20] }}</a>
                                             <br><br>
-                                            <small>White/6.25</small>
+                                            {% if item.product.brand %}
+                                            <small>{{ item.product.brand.name }}</small>
+                                            {% endif %}
                                         </td>
                                         <td class="product__price">
                                             <div class="price">
-                                                <span class="new__price">$250.99</span>
+                                                <span class="new__price">₦{{ "{:,.2f}".format(item.product.price) }}</span>
                                             </div>
                                         </td>
                                         <td class="product__quantity">
@@ -43,13 +46,13 @@ cart
                                                 <div>
                                                     <span class="minus-btn">
                                                         <svg>
-                                                            <use xlink:href="./data/images/sprite.svg#icon-minus"></use>
+                                                            <use xlink:href="/static/images/sprite.svg#icon-minus"></use>
                                                         </svg>
                                                     </span>
-                                                    <input type="text" min="1" value="1" max="10" class="counter-btn">
+                                                    <input value="{{ item.quantity }}" type="text" min="1" value="1" max="{{ item.quantity if item.quantity > 10 else 10}}" class="counter-btn">
                                                     <span class="plus-btn">
                                                         <svg>
-                                                            <use xlink:href="./data/images/sprite.svg#icon-plus"></use>
+                                                            <use xlink:href="/static/images/sprite.svg#icon-plus"></use>
                                                         </svg>
                                                     </span>
                                                 </div>
@@ -57,147 +60,16 @@ cart
                                         </td>
                                         <td class="product__subtotal">
                                             <div class="price">
-                                                <span class="new__price">$250.99</span>
+                                                <span class="new__price">₦{{ "{:,.2f}".format((item.total)) }}</span>
                                             </div>
                                             <a href="#" class="remove__cart-item">
                                                 <svg>
-                                                    <use xlink:href="./data/images/sprite.svg#icon-trash"></use>
+                                                    <use xlink:href="/static/images/sprite.svg#icon-trash"></use>
                                                 </svg>
                                             </a>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td class="product__thumbnail">
-                                            <a href="#">
-                                                <img src="./data/images/products/sumsung/samsung5.jpeg" alt="">
-                                            </a>
-                                        </td>
-                                        <td class="product__name">
-                                            <a href="#">Apple iPhone 11</a>
-                                            <br><br>
-                                            <small>White/6.25</small>
-                                        </td>
-                                        <td class="product__price">
-                                            <div class="price">
-                                                <span class="new__price">$250.99</span>
-                                            </div>
-                                        </td>
-                                        <td class="product__quantity">
-                                            <div class="input-counter">
-                                                <div>
-                                                    <span class="minus-btn">
-                                                        <svg>
-                                                            <use xlink:href="./data/images/sprite.svg#icon-minus"></use>
-                                                        </svg>
-                                                    </span>
-                                                    <input type="text" min="1" value="1" max="10" class="counter-btn">
-                                                    <span class="plus-btn">
-                                                        <svg>
-                                                            <use xlink:href="./data/images/sprite.svg#icon-plus"></use>
-                                                        </svg>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="product__subtotal">
-                                            <div class="price">
-                                                <span class="new__price">$250.99</span>
-                                            </div>
-                                            <a href="#" class="remove__cart-item">
-                                                <svg>
-                                                    <use xlink:href="./data/images/sprite.svg#icon-trash"></use>
-                                                </svg>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="product__thumbnail">
-                                            <a href="#">
-                                                <img src="./data/images/products/sumsung/samsung2.jpeg" alt="">
-                                            </a>
-                                        </td>
-                                        <td class="product__name">
-                                            <a href="#">Apple iPhone 11</a>
-                                            <br><br>
-                                            <small>White/6.25</small>
-                                        </td>
-                                        <td class="product__price">
-                                            <div class="price">
-                                                <span class="new__price">$250.99</span>
-                                            </div>
-                                        </td>
-                                        <td class="product__quantity">
-                                            <div class="input-counter">
-                                                <div>
-                                                    <span class="minus-btn">
-                                                        <svg>
-                                                            <use xlink:href="./data/images/sprite.svg#icon-minus"></use>
-                                                        </svg>
-                                                    </span>
-                                                    <input type="text" min="1" value="1" max="10" class="counter-btn">
-                                                    <span class="plus-btn">
-                                                        <svg>
-                                                            <use xlink:href="./data/images/sprite.svg#icon-plus"></use>
-                                                        </svg>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="product__subtotal">
-                                            <div class="price">
-                                                <span class="new__price">$250.99</span>
-                                            </div>
-                                            <a href="#" class="remove__cart-item">
-                                                <svg>
-                                                    <use xlink:href="./data/images/sprite.svg#icon-trash"></use>
-                                                </svg>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="product__thumbnail">
-                                            <a href="#">
-                                                <img src="./data/images/products/iPhone/iphone4.jpeg" alt="">
-                                            </a>
-                                        </td>
-                                        <td class="product__name">
-                                            <a href="#">Apple iPhone 11</a>
-                                            <br><br>
-                                            <small>White/6.25</small>
-                                        </td>
-                                        <td class="product__price">
-                                            <div class="price">
-                                                <span class="new__price">$250.99</span>
-                                            </div>
-                                        </td>
-                                        <td class="product__quantity">
-                                            <div class="input-counter">
-                                                <div>
-                                                    <span class="minus-btn">
-                                                        <svg>
-                                                            <use xlink:href="./data/images/sprite.svg#icon-minus"></use>
-                                                        </svg>
-                                                    </span>
-                                                    <input type="text" min="1" value="1" max="10" class="counter-btn">
-                                                    <span class="plus-btn">
-                                                        <svg>
-                                                            <use xlink:href="./data/images/sprite.svg#icon-plus"></use>
-                                                        </svg>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="product__subtotal">
-                                            <div class="price">
-                                                <span class="new__price">$250.99</span>
-                                            </div>
-                                            <a href="#" class="remove__cart-item">
-                                                <svg>
-                                                    <use xlink:href="./data/images/sprite.svg#icon-trash"></use>
-                                                </svg>
-                                            </a>
-                                        </td>
-                                    </tr>
+                                    {% endfor %}
                                 </tbody>
                             </table>
                         </div>
@@ -208,7 +80,7 @@ cart
                             </div>
                             <div class="check__shipping">
                                 <input type="checkbox">
-                                <span>Shipping(+7$)</span>
+                                <span>Shipping(+7₦)</span>
                             </div>
                         </div>
 
@@ -217,15 +89,15 @@ cart
                             <ul>
                                 <li>
                                     Subtotal
-                                    <span class="new__price">$250.99</span>
+                                    <span class="new__price">₦{{ "{:,.2f}".format(current_user.cart.total_items) }}</span>
                                 </li>
                                 <li>
                                     Shipping
-                                    <span>$0</span>
+                                    <span>₦0</span>
                                 </li>
                                 <li>
                                     Total
-                                    <span class="new__price">$250.99</span>
+                                    <span class="new__price">₦{{ "{:,.2f}".format(current_user.cart.total_items) }}</span>
                                 </li>
                             </ul>
                             <a href="">PROCEED TO CHECKOUT</a>
@@ -238,4 +110,4 @@ cart
         <!-- Facility Section -->
         {% include "components/index/facility.html" %}
     </main>
-    {% endblock main %}
+{% endblock main %}

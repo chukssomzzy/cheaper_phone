@@ -1,4 +1,10 @@
 $(document).ready(function (){
+    cart = JSON.parse(localStorage.getItem("cart"))
+    if (cart)
+        renderCart(cart)
+
+
+
     /*
         ===========
         Add to cart
@@ -24,23 +30,12 @@ $(document).ready(function (){
                         {type: "POST",
                         })
                         .done(function (data){
-                            const cartItem = data.cart.items.map((item) => `
-                                <div class="box">
-                                <i class="fas fa-trash"></i>
-                                <img src="${item.product.image.image_url}" alt="${ item.product.image.alt_text }" />
-                                <div class="content">
-                                <h3>${ item.product.name }</h3>
-                                <span class="price">₦${ NigeriaNira.format(Number(item.product.price)) }/-</span>
-                                <span class="quantity">qty : ${ item.quantity}</span>
-                                </div>
-                                </div>
-                                `)
-                            const cartTotal = `<div class="total">₦${NigeriaNira.format(Number(data.cart.data.total_price))} /-</div>
-                                <a href="#" class="btn">Check out</a>
-                                `
-                            cartItem.push(cartTotal)
-                            $("#shopping-cart-id").html(cartItem.join())
-                            $("#cart__total").text(data.cart.items.length)
+                            cart = {
+                                total: data.cart.data.total,
+                                items: data.cart.items
+                            }
+                            renderCart(cart);
+                            localStorage.setItem("cart", JSON.stringify(cart))
                         })
                 } else {
                     let cart = JSON.parse(localStorage.getItem("cart")) || {};
@@ -48,7 +43,9 @@ $(document).ready(function (){
                     if (!items.length){
                         $.ajax(apiUrl + "/products/" + productId).done(function (data) {
                             items = cart.items ?? []
-                            const product = data.data
+                            let product = data.data
+                            product.image = product.images[0]
+                            product.images = null
                             const item = {
                                 product
                             }
@@ -79,31 +76,12 @@ const inCart = (productId, items)=> {
                 item.quantity = item.quantity ? item.quantity + 1 : 1;
             return item;
         })
-        console.log(items)
         return items
     }
     return []
 }
 
-const renderCart = (cart) => {
-    const cartItem = cart.items.map((item) => `
-        <div class="box">
-        <i class="fas fa-trash"></i>
-        <img src="${item.product.images[0].image_url}" alt="${ item.product.images[0].alt_text }" />
-        <div class="content">
-        <h3>${ item.product.name }</h3>
-        <span class="price">₦${ NigeriaNira.format(Number(item.product.price)) }/-</span>
-        <span class="quantity">qty : ${ item.quantity ?? 1}</span>
-        </div>
-        </div>
-        `)
-    const cartTotal = `<div class="total">₦${NigeriaNira.format(Number(cart.total))} /-</div>
-        <a href="#" class="btn">Check out</a>
-        `
-    cartItem.push(cartTotal)
-    $("#shopping-cart-id").html(cartItem.join())
-    $("#cart__total").text(cart.items.length)
-}
+
 
 const itemsTotal = (items) => {
     return (items.reduce((prevTotal, item) => {

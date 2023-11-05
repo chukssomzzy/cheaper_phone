@@ -47,7 +47,7 @@ $(document).ready(function () {
     }).done(function () {
       loginApiUser(formData)
       $(this).removeClass('active')
-      setupLogin()
+        setupLogin()
     }.bind(this))
     e.preventDefault()
   })
@@ -56,11 +56,8 @@ $(document).ready(function () {
     $('.logout__section').on('click', function(e) {
         e.preventDefault()
         e.stopPropagation()
-        console.log("click")
-        localStorage.removeItem('accessToken');
-        localStorage.removeItem('refreshToken');
+        localStorage.clear();
         $.ajax("/logout").done(function(){
-            console.log("done")
             location.reload()
         })
     })
@@ -90,7 +87,8 @@ const loginApiUser = function (formData) {
         refreshToken = response.refresh_token
 
         localStorage.setItem('accessToken', accessToken)
-        localStorage.setItem('refreshToken', refreshToken)
+          localStorage.setItem('refreshToken', refreshToken)
+        setupCart()
       }
 
     })
@@ -98,3 +96,13 @@ const loginApiUser = function (formData) {
 }
 
 var isLoggedIn = () => (!!localStorage.getItem("accessToken"))
+var setupCart = () => {
+    $.ajax(apiUrl + "/customer/cart").done(function (data) {
+        cart = {
+            items: data.items,
+            total: data.data.total
+        }
+        localStorage.setItem("cart", JSON.stringify(cart))
+        renderCart(cart)
+    })
+}

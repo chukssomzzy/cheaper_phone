@@ -7,6 +7,6 @@ from web_dynamics.views import web_dynamics
 
 
 @web_dynamics.route("/customer/cart", methods=["GET"], strict_slashes=False)
-def get_user_cart(product_id):
+def get_user_cart():
     """Render content in user cart"""
     return render_template("pages/cart.html", cart="cart")

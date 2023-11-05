@@ -40,16 +40,18 @@ def get_cart():
     cart_dict = {}
     if cart:
         cart_dict["data"] = cart.to_dict()
+        cart_dict["data"]["total"] = cart.total_items
     else:
         raise InvalidApiUsage(
             "customer needs to first create a cart", status_code=404)
     cart_dict["items"] = []
     if cart:
-        for productDetail in cart.items:
+        for item in cart.items:
             item_dict = {}
-            item_dict["data"] = productDetail.to_dict()
-            if productDetail.product:
-                item_dict["product"] = productDetail.product.to_dict()
+            item_dict = item.to_dict()
+            item_dict["product"] = item.product.to_dict()
+            if item.product.images:
+                item_dict["product"]["image"] = item.product.image.to_dict()
             cart_dict["items"].append(item_dict)
     return cart_dict
 
