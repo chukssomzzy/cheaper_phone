@@ -52,12 +52,21 @@ $(document).ready(function () {
     e.preventDefault()
   })
 
-  /* Logout callback */
-  $('logout__section').on('click', () => {
-    console.log('logout')
-    localStorage.removeItem('accessToken')
-    localStorage.removeItem('refreshToken')
-  })
+    /* Logout callback */
+if (!isLoggedIn)
+    $('logout__section').on('click', function(e) {
+
+        localStorage.removeItem('accessToken');
+        localStorage.removeItem('refreshToken');
+        $.ajax("/logout").done(function(){
+            console.log(done)
+        })
+        return false
+    })
+
+
+
+
 })
 
 const setupLogin = () => {

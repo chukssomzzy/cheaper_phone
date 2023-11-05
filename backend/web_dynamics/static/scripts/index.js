@@ -10,6 +10,7 @@ const menu = $(".nav__menu");
 const scrollLink = $(".scroll-link");
 const navContainer = $(".nav__menu");
 
+
 navOpen.on("click", () => {
     menu.addClass("open");
     $(this).addClass("active");
@@ -42,8 +43,8 @@ scrollLink.each(function(idx) {
         const id = e.currentTarget.getAttribute("href").slice(1);
         const element = document.getElementById(id);
         const navHeight = navBar.height();
-        const fixNav = navBarhasClass("fix__nav");
-        let position = element.offsetTop - navHeight;
+        const fixNav = navBar.hasClass("fix__nav");
+        const position = element.offsetTop - navHeight;
 
         if (!fixNav) {
             position = position - navHeight;
@@ -53,7 +54,7 @@ scrollLink.each(function(idx) {
             left: 0,
             top: position,
         });
-        navContainer.css(left , "-30rem");
+        navContainer.css("left" , "-30rem");
         document.body.classList.remove("active");
     });
 });
@@ -64,7 +65,7 @@ window.addEventListener("scroll", e => {
     const scrollHeight = window.scrollY;
     const navHeight = navBar.height();
     if (scrollHeight > navHeight) {
-        navBaraddClass("fix__nav");
+        navBar.addClass("fix__nav");
     } else {
         navBar.removeClass("fix__nav");
     }
@@ -76,37 +77,33 @@ window.addEventListener("scroll", e => {
     }
 });
 
-let login = $('.login-form');
+const login = $('.login-form');
+const shoppingCart = $('.shopping-cart');
+const cartBtn = $("#cart-btn")
+const searchForm = $('.search-form');
 
-if ($("#login-btn")) {
-    $('#login-btn').onclick=()=>{
-        login.toggle('active');
+$('#login-btn').on( "click", ()=>{
+        login[0].classList.toggle('active');
         searchForm.removeClass('active');
-        if (shoppingCart)
-            shoppingCart.removeClass('active');
+        shoppingCart.removeClass('active');
+})
 
-    }
-}
 
-let shoppingCart=$('.shopping-cart');
 
-cartBtn = $("#cart-btn")
-if (cartBtn) {
-    cartBtn.on("click", (e)=>{
-        e.stopPropagation()
-        shoppingCart.toggle('active');
-        searchForm.removeClass('active');
-        if (login)
-            login.removeClass('active');
-    })
-}
+cartBtn.on("click", (e)=>{
+    e.stopPropagation()
+    shoppingCart[0].classList.toggle('active');
+    searchForm.removeClass('active');
+    login.removeClass('active');
+})
 
-let searchForm=$('.search-form');
 
-$('#search-btn').onclick=()=>{
-    searchForm.toggle('active');
+$("#search-btn").on("click", () =>{
+    searchForm[0].classList.toggle('active');
     shoppingCart.removeClass('active');
     if (login)
         login.removeClass('active');
-}
+})
+
+
 })
