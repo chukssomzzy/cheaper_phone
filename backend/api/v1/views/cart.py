@@ -106,6 +106,8 @@ def add_product_to_cart(product_id):
     for item in customer.cart.items:
         item.product
         product_dict = item.to_dict()
+        product_dict["subtotal"] = item.total
+        product_dict["product"]["image"] = item.product.image.to_dict()
         if item.product.image:
             product_dict["product"]["image"] = item.product.image.to_dict()
         product_items.append(product_dict)
@@ -157,12 +159,19 @@ def remove_product_from_cart(product_id):
     user_cart_product.decrease_quantity()
     storage.save()
     customer_dict = {}
+    customer.id
     customer_dict['customer'] = customer.to_dict()
+    customer_dict['cart'] = {}
+    user_cart.id
     customer_dict["cart"]["data"] = user_cart.to_dict()
+    customer_dict["cart"]["data"]["total_price"] = user_cart.total_items
     product_items = []
     for item in customer.cart.items:
+        item.product
+        item.product.brand
         product_dict = item.to_dict()
-        product_dict["product"] = item.product.to_dict()
+        product_dict["product"]["image"] = item.product.image.to_dict()
+        product_dict["subtotal"] = item.total
         product_items.append(product_dict)
     customer_dict["cart"]["items"] = product_items
     return customer_dict, 200
@@ -206,4 +215,21 @@ def delete_from_cart(product_id):
                                                product_id=product.id,
                                                _external=True)})
     user_cart_product.delete()
-    return {}, 204
+    storage.save()
+    cart_dict = {}
+    customer.id
+    user_cart.id
+    cart_dict["customer"] = customer.to_dict()
+    cart_dict["cart"] = {}
+    cart_dict["cart"]["data"] = user_cart.to_dict()
+    cart_dict["cart"]["data"]["total_price"] = user_cart.total_items
+    cart_dict["cart"]["items"] = []
+    for item in customer.cart.items:
+        item.product
+        item.product.brand
+        item_dict = item.to_dict()
+        item_dict["product"]["image"] = item.product.image.to_dict()
+        item_dict["subtotal"] = item.total
+        cart_dict["cart"]["items"].append(item_dict)
+
+    return cart_dict, 200

@@ -72,6 +72,10 @@ class User(BaseModel, Base, UserMixin):
     def to_dict(self):
         """dictionary representation of object"""
         new_dict = super().to_dict()
+        if new_dict.get("_salt"):
+            del new_dict["_salt"]
+        if new_dict.get("_pwd_hash"):
+            del new_dict["_pwd_hash"]
         if new_dict.get("role"):
             new_dict["role"] = str(self.role.value)
         if new_dict.get("reviews"):

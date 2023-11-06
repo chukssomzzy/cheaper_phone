@@ -244,7 +244,7 @@
       {% if current_user.cart %} Total : ₦{{
       "{:,.2f}".format(current_user.cart.total_items) or 0 }}/- {% endif %}
     </div>
-    <a href="/customer/cart" class="btn">Check out</a>
+    <a href="/customer/cart" class="btn check-out">Check out</a>
   </div>
   {% else %}
   <div id="shopping-cart-id" class="shopping-cart">

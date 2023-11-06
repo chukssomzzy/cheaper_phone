@@ -31,7 +31,7 @@ $(document).ready(function (){
                         })
                         .done(function (data){
                             cart = {
-                                total: data.cart.data.total,
+                                total: data.cart.data.total_price,
                                 items: data.cart.items
                             }
                             renderCart(cart);
@@ -65,28 +65,18 @@ $(document).ready(function (){
                 }
             })
         })
+
+    $("a.check-out").on("click", function(e) {
+        e.preventDefault()
+        e.stopPropagation()
+        if (!isLoggedIn()){
+            $(".login-form").addClass("active");
+            $(".shopping-cart").removeClass("active");
+            $(".search-form").removeClass("active");
+        }
+    })
+
+
+
 })
 
-// check if product is already in cart
-const inCart = (productId, items)=> {
-    const product = items.find(item => (item.product.id == productId))
-    if (product) {
-        items = items.map((item) => {
-            if (item.product.id === productId)
-                item.quantity = item.quantity ? item.quantity + 1 : 1;
-            return item;
-        })
-        return items
-    }
-    return []
-}
-
-
-
-const itemsTotal = (items) => {
-    return (items.reduce((prevTotal, item) => {
-        price = Number(item.product.price)
-        quantity = item.quantity ?? 1
-        return prevTotal + (price * quantity)
-    }, 0))
-}

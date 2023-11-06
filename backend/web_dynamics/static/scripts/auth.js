@@ -53,11 +53,12 @@ $(document).ready(function () {
   })
 
     /* Logout callback */
-    $('.logout__section').on('click', function(e) {
+        $('.logout__section').on('click', function(e) {
         e.preventDefault()
         e.stopPropagation()
-        localStorage.clear();
-        $.ajax("/logout").done(function(){
+            $.ajax("/logout").done(function(){
+
+            localStorage.removeItem("accessToken")
             location.reload()
         })
     })
@@ -76,7 +77,7 @@ const setupLogin = () => {
 }
 
 const loginApiUser = function (formData) {
-  if (!localStorage.getItem('accessToken')) {
+  if (!isLoggedIn()) {
     $.ajax(apiUrl + '/customer/login', {
       type: 'POST',
       dataType: 'json',

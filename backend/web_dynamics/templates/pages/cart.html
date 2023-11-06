@@ -21,7 +21,7 @@ cart
                                         <th>TOTAL</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody class="product__content">
                                     {% for item in current_user.cart.items %}
                                     <tr>
                                         <td class="product__thumbnail">
@@ -44,13 +44,13 @@ cart
                                         <td class="product__quantity">
                                             <div class="input-counter">
                                                 <div>
-                                                    <span class="minus-btn">
+                                                    <span class="minus-btn" data-id="{{ item.product.id }}">
                                                         <svg>
                                                             <use xlink:href="/static/images/sprite.svg#icon-minus"></use>
                                                         </svg>
                                                     </span>
                                                     <input value="{{ item.quantity }}" type="text" min="1" value="1" max="{{ item.quantity if item.quantity > 10 else 10}}" class="counter-btn">
-                                                    <span class="plus-btn">
+                                                    <span class="plus-btn" data-id="{{ item.product.id }}">
                                                         <svg>
                                                             <use xlink:href="/static/images/sprite.svg#icon-plus"></use>
                                                         </svg>
@@ -62,7 +62,7 @@ cart
                                             <div class="price">
                                                 <span class="new__price">₦{{ "{:,.2f}".format((item.total)) }}</span>
                                             </div>
-                                            <a href="#" class="remove__cart-item">
+                                            <a href="/customer/cart/{{ item.product.id }}" class="remove__cart-item" data-id="{{ item.product.id }}">
                                                 <svg>
                                                     <use xlink:href="/static/images/sprite.svg#icon-trash"></use>
                                                 </svg>
@@ -89,7 +89,7 @@ cart
                             <ul>
                                 <li>
                                     Subtotal
-                                    <span class="new__price">₦{{ "{:,.2f}".format(current_user.cart.total_items) }}</span>
+                                    <span class="new__price total">₦{{ "{:,.2f}".format(current_user.cart.total_items) }}</span>
                                 </li>
                                 <li>
                                     Shipping
@@ -97,10 +97,10 @@ cart
                                 </li>
                                 <li>
                                     Total
-                                    <span class="new__price">₦{{ "{:,.2f}".format(current_user.cart.total_items) }}</span>
+                                    <span class="new__price total">₦{{ "{:,.2f}".format(current_user.cart.total_items) }}</span>
                                 </li>
                             </ul>
-                            <a href="">PROCEED TO CHECKOUT</a>
+                            <a href="/customer/checkout">PROCEED TO CHECKOUT</a>
                         </div>
                     </form>
                 </div>
