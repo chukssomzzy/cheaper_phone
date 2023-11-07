@@ -2,12 +2,12 @@ $(document).ready(function (){
  /** Cart Details Page */
 
         /** Decrease A product **/
-        removeFromCart("span.minus-btn")
-    observe(((removeFromCart("span.minus-btn"))()), $("tbody.product__content")[0])
+    removeFromCart("span.minus-btn")
+    observe((() => removeFromCart("span.minus-btn")), $("tbody.product__content")[0])
     increaseCartQuantity("span.plus-btn")
-    observe(((increaseCartQuantity("span.plus-btn"))()), $("tbody.product__content")[0])
+    observe((() => increaseCartQuantity("span.plus-btn")), $("tbody.product__content")[0])
     deleteFromCart()
-    observe(((deleteFromCart("a.remove__cart-item"))()), $("tbody.product__content")[0])
+    observe((() => deleteFromCart("a.remove__cart-item")), $("tbody.product__content")[0])
 })
 
 

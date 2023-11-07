@@ -67,13 +67,12 @@
             xhr.setRequestHeader("Authorization", auth);
           }
         },
-        error: function (xhr, testStatus, errorThrown) {
+        error: function (xhr, textStatus, errorThrown) {
           if (
             xhr.responseJSON &&
             "msg" in xhr.responseJSON &&
             xhr.responseJSON.msg === "Token has expired"
           ) {
-            console.log(xhr, xhr.responseJSON, "in error");
             let accessToken = "";
             const refreshToken = localStorage.getItem("refreshToken");
             $.ajax({

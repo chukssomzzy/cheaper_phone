@@ -77,6 +77,7 @@ const itemsTotal = (items) => {
 
 const increaseCartQuantity = (increaseSelector) => {
     /** increase cart quatity **/
+
         $(increaseSelector).on("click", function(e) {
             productId = $(this).data("id")
             $.ajax(apiUrl + "/customer/cart/" + productId, {

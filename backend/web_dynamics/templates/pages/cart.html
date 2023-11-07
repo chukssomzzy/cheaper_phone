@@ -111,3 +111,6 @@ cart
         {% include "components/index/facility.html" %}
     </main>
 {% endblock main %}
+{% block custom_js %}
+<script src="/static/scripts/cartDetails.js?{{ cache_id }}"></script>
+{% endblock %}
