@@ -67,9 +67,9 @@ $(document).ready(function (){
         })
 
     $("a.check-out").on("click", function(e) {
-        e.preventDefault()
-        e.stopPropagation()
         if (!isLoggedIn()){
+            e.preventDefault()
+            e.stopPropagation()
             $(".login-form").addClass("active");
             $(".shopping-cart").removeClass("active");
             $(".search-form").removeClass("active");

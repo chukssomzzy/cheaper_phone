@@ -10,3 +10,4 @@ from web_dynamics.views.usercart import *
 from web_dynamics.views.register import *
 from web_dynamics.views.login import *
 from web_dynamics.views.logout import *
+from web_dynamics.views.checkout import *

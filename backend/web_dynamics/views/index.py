@@ -2,7 +2,7 @@
 """Defines home route for web_dynamics"""
 from uuid import uuid4
 
-from flask import render_template
+from flask import render_template, request, session
 from models import storage
 
 from web_dynamics.views import web_dynamics

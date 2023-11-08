@@ -38,7 +38,7 @@ class Order(BaseModel, Base):
     total_amount = Column(Numeric(10, 2), nullable=False, default=0.00)
     status = Column(Enum(statusEnum), default=statusEnum.pending)
     shipping_address_id = Column(Integer, ForeignKey("shipping_address.id"))
-    items = relationship("OrderItem", backref="order")
+    stripe_orders_id = Column(String(100), unique=True)
     address = relationship(
         "ShippingAddress", backref=backref("order", uselist=False))
     customer = relationship("User", backref="orders")

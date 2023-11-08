@@ -29,6 +29,7 @@ class Product(BaseModel, Base):
     description = Column(Text)
     price = Column(Numeric(10, 2))
     brand_id = Column(Integer, ForeignKey('brands.id'))
+    stripe_products_id = Column(String(100), unique=True)
 
     brand = relationship("Brand", backref="products",
                          cascade="delete")

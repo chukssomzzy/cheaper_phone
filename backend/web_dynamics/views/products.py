@@ -1,6 +1,6 @@
 #!/usr/bin/env -S venv/bin/python3
 """Defines product endpoints"""
-from flask import render_template
+from flask import render_template, session
 from models import storage
 from models.products import Product
 
@@ -11,6 +11,7 @@ from web_dynamics.views import web_dynamics
                     strict_slashes=False)
 def get_product_detail(product_id):
     """Render product details"""
+    print(session.__dict__)
     product = storage.get("Product", str(product_id))
     reviews = storage.page_join("Product", "Review", id=str(product_id))
     reviews_count = storage.sec_count("Product", "Review", id=str(product_id))

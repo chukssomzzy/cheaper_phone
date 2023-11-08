@@ -15,6 +15,8 @@ class OrderItem(BaseModel, Base):
         "products.id"), primary_key=True)
     product = relationship("Product")
 
+    order = relationship("Order", backref="items")
+
     def __init__(self, *args, **kwargs):
         """Initialized order_items"""
         return super().__init__(*args, **kwargs)

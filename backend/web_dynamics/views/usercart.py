@@ -2,7 +2,6 @@
 """ Render content in user cart """
 from uuid import uuid4
 from flask import render_template
-from models import storage
 
 from web_dynamics.views import web_dynamics
 
