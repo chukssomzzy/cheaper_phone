@@ -38,8 +38,8 @@ def checkout():
                     .product.description
                 line_item["price_data"]["product_data"]["images"] = [
                     image.image_url for image in item.product.images]
-                line_item["price_data"]["unit_amount"] = float(
-                    item.product.price)
+                line_item["price_data"]["unit_amount"] = int(
+                    item.product.price) * 100
             else:
                 line_item["price"] = item.product.stripe_products_id
             line_item["quantity"] = item.quantity
@@ -54,6 +54,7 @@ def checkout():
         checkout_settings["shipping_address_collection"] = {}
         checkout_settings["shipping_address_collection"]["allowed_countries"] \
             = ["NG"]
+        print(checkout_settings)
         checkout_session = stripe.checkout.Session.create(
             **checkout_settings)
         session["checkout_session"] = checkout_session.id
@@ -108,4 +109,4 @@ def checkout_success():
         storage.save()
         del session["order_id"]
         del session["checkout_session"]
-    return redirect(url_for(".get_home", _anchor="success"))
+    return redirect(url_for(".get_home", _anchor="#success"))

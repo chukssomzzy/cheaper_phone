@@ -67,12 +67,13 @@ $(document).ready(function (){
         })
 
     $("a.check-out").on("click", function(e) {
+        e.preventDefault()
         if (!isLoggedIn()){
-            e.preventDefault()
-            e.stopPropagation()
             $(".login-form").addClass("active");
             $(".shopping-cart").removeClass("active");
             $(".search-form").removeClass("active");
+        } else {
+            location.assign(e.target.href)
         }
     })
 

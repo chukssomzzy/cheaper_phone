@@ -1,10 +1,13 @@
 #!/usr/bin/env -S venv/bin/python3
 """Defines product endpoints"""
+from os import getenv
 from flask import render_template, session
 from models import storage
 from models.products import Product
 
 from web_dynamics.views import web_dynamics
+
+api_url = getenv("ECOMMERCE_API_URL")
 
 
 @web_dynamics.route("/product/<uuid:product_id>", methods=["GET"],
@@ -25,4 +28,4 @@ def get_product_detail(product_id):
                            reviews_count=reviews_count, brand=brand,
                            related_products=related_products,
                            latest_products=latest_products,
-                           comments=comments)
+                           comments=comments, api_url=api_url)

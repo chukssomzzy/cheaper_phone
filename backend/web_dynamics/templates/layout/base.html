@@ -50,7 +50,7 @@
     {% endblock %}
     <script type="text/javascript">
       var csrf_token = "{{ csrf_token() }}";
-
+      var apiUrl = "{{ api_url }}";
       $.ajaxSetup({
         beforeSend: function (xhr, settings) {
           if (
@@ -81,7 +81,7 @@
                 xhr.setRequestHeader("Authorization", `Bearer ${refreshToken}`);
               },
               contentType: "application/json",
-              url: "http://localhost:5000/api/v1/refresh",
+              url: apiUrl + "/refresh",
             }).done(
               function (data) {
                 accessToken = data.access_token;
