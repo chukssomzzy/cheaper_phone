@@ -13,7 +13,7 @@ from sqlalchemy import (Boolean, Column, DateTime, ForeignKey, Integer, Sequence
 product_promotions = Table("product_promotions", Base.metadata,
                            Column("product_id", String(60),
                                   ForeignKey("products.id"), primary_key=True),
-                           Column("promotion_id", String(60),
+                           Column("promotion_id", Integer,
                                   ForeignKey("promotions.id"), primary_key=True)
                            )
 # changes
