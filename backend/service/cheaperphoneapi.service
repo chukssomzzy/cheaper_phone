@@ -1,0 +1,13 @@
+[Unit]
+Description=Gunicorn instance to serve cheaper_phone api
+After=network.target mysql.service
+
+[Service]
+User=ubuntu
+Group=www-data
+WorkingDirectory=/home/ubuntu/cheaper_phone/backend
+Environment="PATH=/home/ubuntu/.local/bin"
+ExecStart=/home/ubuntu/.local/bin/gunicorn --access-logfile /tmp/cheaperphoneapi-access.log --error-logfile /tmp/cheaperphoneapi-error.log --workers 3 --bind 0.0.0.0:5000 api.v1.app:app 
+
+[Install]
+WantedBy=multi-user.target

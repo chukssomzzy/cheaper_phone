@@ -1,0 +1,13 @@
+[Unit]
+Description=Gunicorn instance to serve cheaper_phone web dynamics
+After=network.target mysql.service
+
+[Service]
+User=ubuntu
+Group=www-data
+WorkingDirectory=/home/ubuntu/cheaper_phone/backend
+Environment="PATH=/home/ubuntu/.local/bin"
+ExecStart=/home/ubuntu/.local/bin/gunicorn --access-logfile /tmp/cheaperphonedynamics-access.log --error-logfile /tmp/cheaperphonedynamics-error.log --workers 3 --bind 0.0.0.0:5001 web_dynamics.app:app 
+
+[Install]
+WantedBy=multi-user.target
