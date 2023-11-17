@@ -14,7 +14,6 @@ api_url = getenv("ECOMMERCE_API_URL")
                     strict_slashes=False)
 def get_product_detail(product_id):
     """Render product details"""
-    print(session.__dict__)
     product = storage.get("Product", str(product_id))
     reviews = storage.page_join("Product", "Review", id=str(product_id))
     reviews_count = storage.sec_count("Product", "Review", id=str(product_id))

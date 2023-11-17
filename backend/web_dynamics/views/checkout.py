@@ -54,7 +54,6 @@ def checkout():
         checkout_settings["shipping_address_collection"] = {}
         checkout_settings["shipping_address_collection"]["allowed_countries"] \
             = ["NG"]
-        print(checkout_settings)
         checkout_session = stripe.checkout.Session.create(
             **checkout_settings)
         session["checkout_session"] = checkout_session.id
@@ -63,7 +62,6 @@ def checkout():
         order = Order(**order_dict)
         order.save()
         order_id = order.id
-        print(order)
         for item in customer.cart.items:
             order_item = {"order_id": order_id, "product_id": item.product.id}
             order_item = OrderItem(**order_item)
