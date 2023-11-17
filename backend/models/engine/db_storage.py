@@ -45,7 +45,7 @@ class DBStorage:
 
         self.__engine = create_engine(
             "mysql+mysqldb://{}:{}@{}/{}".
-            format(db_user, db_password, db_host, db_name))
+            format(db_user, db_password, db_host, db_name), pool_pre_ping=True)
         if getenv("ECOMMERCE_ENV") != "DEV":
             Base.metadata.dropall(self.__engine)
 
