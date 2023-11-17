@@ -5,7 +5,7 @@ cart
 {% endblock title %}
 
 {% block main %}
-    <main id="main">
+<main id="main" data-user-id="{{ current_user.id }}">
         <section class="section cart__area">
             <div class="container">
                 <div class="responsive__cart-area">

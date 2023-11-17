@@ -3,7 +3,7 @@
 Register User
 {{ super() }}
 {% endblock title %} {% block main %}
-<main id="main">
+<main id="main" data-user-id="{{ current_user.id }}">
     <section class="section register__container">
         <form method="POST" action="/register" class="register__form">
             {{ form.csrf_token }}

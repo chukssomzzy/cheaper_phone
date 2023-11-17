@@ -1,4 +1,10 @@
 const NigeriaNira = new Intl.NumberFormat('en-US', {minimumFractionDigits:2})
+$(document).ready(function(){
+    loggedIn = $("main").data("user-id")
+    if (loggedIn && localStorage.getItem("accessToken")) {
+        localStorage.removeItem("accessToken")
+    }
+})
 const renderCart = (cart) => {
     if (cart && cart.items.length > 0) {
         const cartItem = cart.items.map((item) => {

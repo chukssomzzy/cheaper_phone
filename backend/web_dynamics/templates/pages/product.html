@@ -1,6 +1,6 @@
 {% extends "layout/base.html" %} {% block title %} {{ product.name }} {{ super()
 }} {% endblock title %} {% block main %}
-<main id="main" data-id="{{ product.id }}">
+<main id="main" data-id="{{ product.id }}" data-user-id="{{ current_user.id }}">
     <div class="container">
         <!-- Products Details -->
         <section class="section product-details__section">
