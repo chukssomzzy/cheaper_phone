@@ -1,7 +1,8 @@
 const NigeriaNira = new Intl.NumberFormat('en-US', {minimumFractionDigits:2})
 $(document).ready(function(){
-    loggedIn = $("main").data("user-id")
-    if (loggedIn && localStorage.getItem("accessToken")) {
+    const loggedIn = $("main").data("user-id")
+
+    if (!Boolean(loggedIn) && localStorage.getItem("accessToken")) {
         localStorage.removeItem("accessToken")
     }
 })
