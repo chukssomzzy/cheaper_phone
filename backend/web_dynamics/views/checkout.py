@@ -2,6 +2,7 @@
 """Checkout page"""
 
 from os import getenv
+import sys
 
 import stripe
 from flask import abort, redirect, request, session, url_for
@@ -11,6 +12,7 @@ from api.v1.utils.error_handles.invalid_api_error import InvalidApiUsage
 from models import storage
 from models.order_items import OrderItem
 from models.orders import Order, statusEnum
+from models.shipping_address import ShippingAddress
 from web_dynamics.views import web_dynamics
 
 stripe.api_key = getenv("STRIPE_SECRET_KEY")
@@ -30,7 +32,7 @@ def checkout():
     if checkout_id:
         checkout_session = stripe.checkout.Session.retrieve(
             checkout_id)
-        if checkout_session.get("status") == "expired":
+        if checkout_session.get("status") != "open":
             del session["checkout_session"]
             checkout_session = {}
 
@@ -56,13 +58,16 @@ def checkout():
         checkout_settings = {}
         checkout_settings["line_items"] = line_items
         checkout_settings["mode"] = "payment"
-        checkout_settings["success_url"] = url_for(".get_home", _external=True)
+        checkout_settings["success_url"] = url_for(
+            ".checkout_success", _external=True) +\
+            "?session_id={CHECKOUT_SESSION_ID}"
         checkout_settings["client_reference_id"] = customer.id
         checkout_settings["currency"] = "NGN"
         checkout_settings["customer"] = customer.stripe_customer_id
         checkout_settings["shipping_address_collection"] = {}
         checkout_settings["shipping_address_collection"]["allowed_countries"] \
             = ["NG"]
+        checkout_session["phone_number_collection"] = {"enabled": True}
         checkout_session = stripe.checkout.Session.create(
             **checkout_settings)
         session["checkout_session"] = checkout_session.id
@@ -86,31 +91,41 @@ def checkout():
 @login_required
 def checkout_success():
     """Checkout successful page"""
-    session_id = request.args.get("session_id")
-    customer = current_user
-    if not session_id or not session["order_id"]:
+    try:
+        session_id = request.args.get("session_id")
+        print(session_id)
+        customer = current_user
+        checkout_session = stripe.checkout.Session.retrieve(
+            session_id, expand=["line_items"])
+        shipping_address = checkout_session["customer_details"]["address"]
+        shipping_address_data = {}
+        if not shipping_address:
+            abort(400)
+        shipping_address_data["user_id"] = customer.id
+        shipping_address_data["address_line1"] = shipping_address["line1"]
+        shipping_address_data["city"] = shipping_address["city"]
+        shipping_address_data["postal_code"] = shipping_address["postal_code"]
+        shipping_address_data["country"] = shipping_address["country"]
+        if shipping_address.get("phone"):
+            shipping_address_data["phone_number"] = shipping_address.get(
+                "phone")
+        if shipping_address.get("line2"):
+            shipping_address_data["address_line2"] = shipping_address["line2"]
+        shipping_address_data["state_province"] = shipping_address["state"]
+        order = storage.session.query(Order).filter_by(
+            stripe_orders_id=session_id).one()
+        shipping_address = ShippingAddress(**shipping_address_data)
+        shipping_address.save()
+        if checkout_session["payment_status"] == "paid":
+            order.update(status=statusEnum.processing,
+                         shipping_address_id=shipping_address.id)
+            for item in customer.cart.items:
+                storage.delete(item)
+            print("reached item i am tired of debugging")
+            storage.save()
+            del session["order_id"]
+            del session["checkout_session"]
+        return redirect(url_for(".get_home", _anchor="success"))
+    except Exception as e:
+        print(e)
         abort(400)
-    checkout_session = stripe.checkout.Session.retrieve(
-        session_id, expand=["line_items"])
-    shipping_address = checkout_session["customer_details"]["address"]
-    shipping_address_data = {}
-    if not shipping_address:
-        abort(400)
-    shipping_address_data["user_id"] = customer.id
-    shipping_address_data["address_line1"] = shipping_address["line1"]
-    shipping_address_data["city"] = shipping_address["city"]
-    shipping_address_data["postal_code"] = shipping_address["postal_code"]
-    shipping_address_data["country"] = shipping_address["country"]
-    if shipping_address.get("line2"):
-        shipping_address_data["address_line2"] = shipping_address["line2"]
-    shipping_address_data["state_province"] = shipping_address["state"]
-    order_id = session["order_id"]
-    order = storage.get("Order", order_id)
-    if checkout_session["payment_status"] == "paid":
-        order.update(status=statusEnum.processing)
-        for item in customer.cart.items:
-            item.delete()
-        storage.save()
-        del session["order_id"]
-        del session["checkout_session"]
-    return redirect(url_for(".get_home", _anchor="#success"))

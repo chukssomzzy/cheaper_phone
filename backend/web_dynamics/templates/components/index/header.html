@@ -227,7 +227,7 @@
       <label for="search-box" class="fas fa-search"></label>
     </form>
   </div>
-  {% if current_user.is_authenticated %}
+  {% if current_user.is_authenticated and current_user.cart and current_user.cart.items %}
   <div id="shopping-cart-id" class="shopping-cart">
     {% if current_user.cart %} {% for item in current_user.cart.items %}
     <div class="box">
@@ -241,7 +241,7 @@
     </div>
     {% endfor %} {% endif %}
     <div class="total">
-      {% if current_user.cart %} Total : ₦{{
+      {% if current_user.cart  %} Total : ₦{{
       "{:,.2f}".format(current_user.cart.total_items) or 0 }}/- {% endif %}
     </div>
     <a href="/customer/cart" class="btn check-out">Check out</a>

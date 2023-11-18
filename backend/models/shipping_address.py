@@ -27,7 +27,7 @@ class ShippingAddress(BaseModel, Base):
     postal_code = Column(String(20), nullable=False)
     default = Column(Boolean, nullable=False, default=False)
     country = Column(String(100), nullable=False)
-    phone_number = Column(String(20), nullable=False)
+    phone_number = Column(String(20))
     address_type = Column(Enum(AddressTypeEnum),
                           nullable=False, default=AddressTypeEnum.residential)
     customer = relationship("User", backref="addresses")

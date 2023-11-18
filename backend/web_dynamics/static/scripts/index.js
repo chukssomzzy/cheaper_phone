@@ -9,8 +9,11 @@ const navClose = $(".close__toggle");
 const menu = $(".nav__menu");
 const scrollLink = $(".scroll-link");
 const navContainer = $(".nav__menu");
-if (location.hash === "#success")
+    if (location.hash === "#success")
+    {
     localStorage.removeItem("cart")
+    location.hash = ""
+    }
 
 navOpen.on("click", () => {
     menu.addClass("open");
