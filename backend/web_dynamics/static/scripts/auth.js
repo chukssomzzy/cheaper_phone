@@ -58,7 +58,7 @@ $(document).ready(function () {
         e.stopPropagation()
             $.ajax("/logout").done(function(){
 
-            localStorage.clear()
+            localStorage.removeItem("accessToken")
             location.reload()
         })
     })
@@ -72,6 +72,7 @@ const setupLogin = () => {
   const logoutBtn = `<a class="nav__logout logout__section" href="/logout">
           logout
         <a>`
+    console.log(cart)
   $('#logout__section').html(logoutBtn)
   $('#login-btn').css('display', 'none')
 }
