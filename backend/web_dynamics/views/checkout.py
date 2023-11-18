@@ -23,9 +23,18 @@ def checkout():
     customer = current_user
     line_items = []
     checkout_session = {}
+
     if not customer.cart.items:
         abort(400)
-    if not session.get("checkout_session") or not session.get("order_id"):
+    checkout_id = session.get("checkout_session")
+    if checkout_id:
+        checkout_session = stripe.checkout.Session.retrieve(
+            checkout_id)
+        if checkout_session.get("status") == "expired":
+            del session["checkout_session"]
+            checkout_session = {}
+
+    if not session.get("checkout_session"):
         for item in customer.cart.items:
             line_item = {}
             if not item.product.stripe_products_id:
@@ -68,11 +77,8 @@ def checkout():
             order.items.append(order_item)
         storage.save()
         session["order_id"] = order_id
-    else:
-        checkout_session = stripe.checkout.Session.retrieve(
-            session["checkout_session"])
 
-    redirect_url = checkout_session['url']
+    redirect_url = checkout_session['url'] or url_for(".get_home")
     return redirect(redirect_url)
 
 

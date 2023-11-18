@@ -58,7 +58,7 @@ $(document).ready(function () {
         e.stopPropagation()
             $.ajax("/logout").done(function(){
 
-            localStorage.removeItem("accessToken")
+            localStorage.clear()
             location.reload()
         })
     })
