@@ -19,7 +19,6 @@ $(document).ready(function () {
                         items: data.cart.items
                     }
                     const item = cart.items.find((item)=> item.product.id === productId)
-                    console.log(item.subtotal)
                     $("li a.new__price").text("₦" + NigeriaNira.format(item.subtotal))
                     $(".input-counter .counter-btn").val(item.quantity)
                     renderCart(cart)

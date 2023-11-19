@@ -36,6 +36,8 @@ $(document).ready(function (){
                             }
                             renderCart(cart);
                             localStorage.setItem("cart", JSON.stringify(cart))
+                            const product = cart.items.find(item => item.product.id === productId)?.product
+                            notifier.success(`${product.name} added to cart`)
                         })
                 } else {
                     let cart = JSON.parse(localStorage.getItem("cart")) || {};
@@ -55,6 +57,7 @@ $(document).ready(function (){
                             cart = {items, total}
                             renderCart(cart);
                             localStorage.setItem("cart", JSON.stringify(cart))
+                            notifier.success(`${product.name} added to cart`)
                         })
                     } else {
                         cart.total = itemsTotal(items)
@@ -72,6 +75,13 @@ $(document).ready(function (){
             $(".login-form").addClass("active");
             $(".shopping-cart").removeClass("active");
             $(".search-form").removeClass("active");
+            notifier.warning("You are not logged In", {
+                position: "bottom-left",
+                maxNotifications: 1,
+                durations: {
+                    warning: 2000
+                }
+            })
         } else {
             location.assign(e.target.href)
         }

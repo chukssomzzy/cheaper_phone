@@ -1,3 +1,12 @@
+options = {
+    position: "top-right",
+    durations: {
+        warning: 1500,
+        info: 2000,
+        success: 3000,
+    }
+}
+let notifier = new AWN({position: "top-right"});
 const NigeriaNira = new Intl.NumberFormat('en-US', {minimumFractionDigits:2})
 $(document).ready(function(){
     const loggedIn = $("main").data("user-id")
@@ -93,6 +102,9 @@ const removeFromCart = (removeSelector) => {
                 renderCartPage(cart)
                 renderCart(cart)
                 localStorage.setItem("cart", JSON.stringify(cart))
+                product = cart.items.find(item => item.product.id === productId)?.product
+                if (!product)
+                    notifier.info("Removed Product From Cart")
             })
         })
 }
@@ -131,6 +143,7 @@ const deleteFromCart = (deleteSelector) => {
                 renderCartPage(cart)
                 renderCart(cart)
                 localStorage.setItem("cart", JSON.stringify(cart))
+                notifier.info("Product deleted from cart")
             })
         })
 }

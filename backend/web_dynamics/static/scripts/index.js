@@ -12,7 +12,8 @@ const navContainer = $(".nav__menu");
     if (location.hash === "#success")
     {
     localStorage.removeItem("cart")
-    location.hash = ""
+        location.hash = ""
+        notifier.success("Checkout Successful")
     }
 
 navOpen.on("click", () => {

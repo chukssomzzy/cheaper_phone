@@ -43,7 +43,7 @@ $(document).ready(function () {
       data: formData,
       dataType: 'json',
       encode: true,
-      error: (xhr, msg) => console.log(msg)
+        error: (xhr, msg) => notifier.warning("Incorrect Username or Password", {duration: {warning: 1000}})
     }).done(function () {
       loginApiUser(formData)
       $(this).removeClass('active')
