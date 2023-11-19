@@ -36,8 +36,11 @@ $(document).ready(function (){
                             }
                             renderCart(cart);
                             localStorage.setItem("cart", JSON.stringify(cart))
-                            const product = cart.items.find(item => item.product.id === productId)?.product
-                            notifier.success(`${product.name} added to cart`)
+                            const item = cart.items.find(item => item.product.id === productId)
+                            if (item.quantity === 1)
+                                notifier.info(`${item.product.name} Added To Cart`)
+                            else
+                                notifier.info(`${item.product.name} Quantity Increased`)
                         })
                 } else {
                     let cart = JSON.parse(localStorage.getItem("cart")) || {};
@@ -57,13 +60,15 @@ $(document).ready(function (){
                             cart = {items, total}
                             renderCart(cart);
                             localStorage.setItem("cart", JSON.stringify(cart))
-                            notifier.success(`${product.name} added to cart`)
+                            notifier.info(`${product.name} Added To Cart`)
                         })
                     } else {
                         cart.total = itemsTotal(items)
                         cart.items = items;
                         renderCart(cart);
                         localStorage.setItem("cart", JSON.stringify(cart))
+                        let item = cart.items.find(item => item.product.id === productId)
+                        notifier.info(`${item.product.name} Quantity Increased`)
                     }
                 }
             })
