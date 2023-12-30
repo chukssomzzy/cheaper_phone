@@ -7,7 +7,7 @@ from models.products import Product
 
 from web_dynamics.views import web_dynamics
 
-api_url = getenv("ECOMMERCE_API_URL")
+api_url = getenv("API_URL")
 
 
 @web_dynamics.route("/product/<uuid:product_id>", methods=["GET"],

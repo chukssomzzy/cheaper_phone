@@ -1,0 +1,117 @@
+version: '1.0.0'
+name: cheaper_phone
+
+services:
+  cheaper_phone: 
+    image: chukssomzzy/cheaper_phone
+    build: 
+      context: . 
+      dockerfile: nginx/Dockerfile  
+    ports:
+      - "8080:80"
+    environment: 
+      - NGINX_PORT=80
+    depends_on:
+      db:
+        condition: service_healthy 
+        restart: false 
+      api:
+        condition: service_healthy
+        restart: false
+      web: 
+        condition: service_healthy
+        restart: false
+    networks:
+      - cheaper_phone_net
+  db: 
+    image: mysql
+    restart: on-failure 
+    container_name: cheaper_phone_db
+    env_file:
+      - .env
+    expose: 
+      - 3306
+    networks:
+      - mysql_net
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 1m30s
+      timeout: 30s
+      retries: 5
+      start_period: 30s
+  api:
+    image: chukssomzzy/cheaper_phone_api
+    command: null
+    container_name: cheaper_phone_api
+    build:
+      context: . 
+      dockerfile: api/Dockerfile 
+    expose:
+      - 5000
+    networks:
+      - mysql_net
+      - cheaper_phone_net
+    depends_on:
+      db: 
+        condition: service_healthy 
+        restart: true
+      scrape: 
+        condition: service_healthy
+        restart: true
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://0.0.0.0:5000/api/v1/status"]
+      interval: 1m30s
+      timeout: 30s
+      retries: 5
+      start_period: 30s
+  web: 
+    image: chukssomzzy/cheaper_phone_web
+    restart: on-failure
+    command: null
+    container_name: cheaper_phone_web
+    build:
+      context: . 
+      dockerfile: web_dynamics/Dockerfile 
+    expose: 
+      - 5001
+    networks: 
+      - mysql_net
+      - cheaper_phone_net
+    depends_on:
+      db: 
+        condition: service_healthy 
+        restart: true
+      api: 
+        condition: service_healthy 
+        restart: true
+      scrape:
+        condition: service_healthy
+        restart: true
+    healthcheck:
+      test: ["CMD", "curl", "-f", "localhost:5001"]
+      interval: 1m30s
+      timeout: 30s
+      retries: 5
+      start_period: 30s
+  scrape:
+    image: chukssomzzy/cheaper_phone_scrape
+    container_name: ecommerce_scraper
+    build: 
+      context: . 
+      dockerfile: ecommerce_scrape/Dockerfile
+    command: null
+    networks: 
+      - mysql_net
+    depends_on: 
+      db:               
+        condition: service_healthy 
+        restart: false
+    healthcheck:
+      test: ["CMD", "nc", "-zv", "localhost", "6023"]
+      interval: 1m30s
+      timeout: 30s
+      retries: 5
+      start_period: 30s
+networks:
+  mysql_net:
+  cheaper_phone_net:

@@ -20,7 +20,7 @@ RUN apt-get -yqq update && \
     export MYSQLCLIENT_CFLAGS=`pkg-config mysqlclient --cflags` && \
     export MYSQLCLIENT_LDFLAGS=`pkg-config mysqlclient --libs` && \ 
     apt-get -yq install gunicorn
- 
+RUN apt-get -yqq install curl 
 WORKDIR /app
 
 # # Create a non-privileged user that the app will run under.

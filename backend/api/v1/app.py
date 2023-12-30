@@ -113,10 +113,10 @@ def handle_not_found(e):
 
 
 if __name__ == "__main__":
-    port = int(getenv("ECOMMERCE_API_PORT", 5000))
-    host = getenv("ECOMMERCE_API_HOST", "0.0.0.0")
-    threaded = getenv("ECOMMERCE_API_THREAD", False)
+    port = int(getenv("API_PORT", 5000))
+    host = getenv("API_HOST", "0.0.0.0")
+    threaded = getenv("API_THREAD", False)
     debug = False
-    if getenv("ECOMMERCE_ENV") == "DEV":
+    if getenv("ENVIRONMENT") == "development":
         debug = True
     app.run(host=host, port=port, threaded=threaded, debug=debug)

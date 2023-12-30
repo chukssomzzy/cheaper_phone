@@ -11,7 +11,7 @@ from web_dynamics.utils.forms.register_customer import RegistrationForm
 from web_dynamics.views import web_dynamics
 
 stripe.api_key = getenv("STRIPE_SECRET_KEY")
-api_url = getenv("ECOMMERCE_API_URL")
+api_url = getenv("API_URL")
 
 
 @web_dynamics.route("/register", methods=["GET", "POST"],

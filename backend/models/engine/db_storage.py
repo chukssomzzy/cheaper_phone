@@ -38,15 +38,15 @@ class DBStorage:
 
     def __init__(self):
         """Connects sqlalchemy to storage and creates an engine"""
-        db_name = getenv("ECOMMERCE_DB")
-        db_user = getenv("ECOMMERCE_USER")
-        db_password = getenv("ECOMMERCE_PWD")
-        db_host = getenv("ECOMMERCE_MYSQL_HOST")
+        db_name = getenv("MYSQL_DATABASE")
+        db_user = getenv("MYSQL_USER")
+        db_password = getenv("MYSQL_PASSWORD")
+        db_host = getenv("MYSQL_HOST")
 
         self.__engine = create_engine(
             "mysql+mysqldb://{}:{}@{}/{}".
             format(db_user, db_password, db_host, db_name), pool_pre_ping=True)
-        if getenv("ECOMMERCE_ENV") == "TEST":
+        if getenv("ENVIRONMENT") == "TEST":
             Base.metadata.drop_all(self.__engine)
 
     def reload(self):

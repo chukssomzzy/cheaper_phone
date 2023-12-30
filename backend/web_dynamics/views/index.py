@@ -7,7 +7,7 @@ from flask import render_template, request, session
 from models import storage
 
 from web_dynamics.views import web_dynamics
-api_url = getenv("ECOMMERCE_API_URL")
+api_url = getenv("API_URL")
 
 
 @web_dynamics.route("/", methods=["GET"], strict_slashes=False)

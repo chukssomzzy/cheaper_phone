@@ -5,7 +5,7 @@ from uuid import uuid4
 from flask import render_template
 
 from web_dynamics.views import web_dynamics
-api_url = getenv("ECOMMERCE_API_URL")
+api_url = getenv("API_URL")
 
 
 @web_dynamics.route("/customer/cart", methods=["GET"], strict_slashes=False)

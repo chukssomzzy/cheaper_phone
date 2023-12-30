@@ -30,7 +30,8 @@ RUN apt-get -yqq update && \
     apt-get -yq install pkg-config default-libmysqlclient-dev build-essential pkg-config && \
     export MYSQLCLIENT_CFLAGS=`pkg-config mysqlclient --cflags` && \
     export MYSQLCLIENT_LDFLAGS=`pkg-config mysqlclient --libs`
-RUN apt-get install -yq alembic 
+RUN apt-get install -yq alembic
+RUN apt-get -yqq update && apt-get install -y  netcat-openbsd
 WORKDIR /app
  
 
@@ -48,6 +49,9 @@ COPY ecommerce_scrape ecommerce_scrape/
 COPY  scrapy.cfg . 
 COPY  alembic alembic/
 COPY  alembic.ini .
+COPY .env .
+COPY models models/
+RUN rm -r alembic/versions
 
 # Download dependencies as a separate step to take advantage of Docker's caching.
 # Leverage a cache mount to /root/.cache/pip to speed up subsequent builds.

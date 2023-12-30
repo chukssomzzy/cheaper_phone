@@ -34,10 +34,10 @@ def tear_down(error):
 
 
 if __name__ == "__main__":
-    port = int(getenv("ECOMMERCE_WEB_PORT", 3000))
-    host = getenv("ECOMMERCE_HOST", "0.0.0.0")
-    threaded = getenv("ECOMMERCE_WEB_THREAD", False)
+    port = int(getenv("WEB_PORT", 5001))
+    host = getenv("WEB_HOST", "0.0.0.0")
+    threaded = getenv("WEB_THREAD", False)
     debug = False
-    if getenv("ECOMMERCE_ENV") == "DEV":
+    if getenv("ENVIRONMENT") == "DEV":
         debug = True
     app.run(host=host, port=port, threaded=threaded, debug=debug)
